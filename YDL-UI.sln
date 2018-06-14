@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YDL-UI", "YDL-UI\YDL-UI.csproj", "{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57B8B45E-D968-48FA-BB5C-BC4758B8B2DE}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{DB271ABA-221B-4BBE-BA11-3E63DBF2720F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB271ABA-221B-4BBE-BA11-3E63DBF2720F}.Debug|Any CPU.ActiveCfg = Debug
+		{DB271ABA-221B-4BBE-BA11-3E63DBF2720F}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F66AB2A-00F0-4E97-97BC-942079D28960}
+	EndGlobalSection
+EndGlobal
