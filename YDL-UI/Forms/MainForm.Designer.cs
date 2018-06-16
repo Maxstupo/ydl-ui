@@ -37,6 +37,7 @@
             this.rbPlaylistOnly = new System.Windows.Forms.RadioButton();
             this.txtDownloadArchive = new System.Windows.Forms.TextBox();
             this.cbxRecodeFormat = new System.Windows.Forms.ComboBox();
+            this.txtFileTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.btnStartDownload = new System.Windows.Forms.Button();
             this.cbOutputFormat = new System.Windows.Forms.CheckBox();
@@ -78,6 +79,7 @@
             this.btnOpenPlaylistItemsEditor = new System.Windows.Forms.Button();
             this.nudPlaylistEnd = new System.Windows.Forms.NumericUpDown();
             this.nudPlaylistStart = new System.Windows.Forms.NumericUpDown();
+            this.txtPlaylistRange = new Maxstupo.YdlUi.Controls.NumberTextBox();
             this.cbPlaylistRange = new System.Windows.Forms.CheckBox();
             this.cbPlaylistReversed = new System.Windows.Forms.CheckBox();
             this.cbPlaylistRandom = new System.Windows.Forms.CheckBox();
@@ -168,11 +170,9 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.txtFileTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
-            this.txtPlaylistRange = new Maxstupo.YdlUi.Controls.NumberTextBox();
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl.SuspendLayout();
             this.tpGeneral.SuspendLayout();
             this.gbVideoSelectionPlaylistSelection.SuspendLayout();
@@ -267,6 +267,8 @@
             this.cbDownloadArchive.Size = new System.Drawing.Size(123, 17);
             this.cbDownloadArchive.TabIndex = 86;
             this.cbDownloadArchive.Text = "Download Archive:";
+            this.toolTip.SetToolTip(this.cbDownloadArchive, "Download only videos not listed in the archive file. Record the IDs of all downlo" +
+        "aded videos in it.");
             this.cbDownloadArchive.UseVisualStyleBackColor = true;
             // 
             // btnOpenUrlEditor
@@ -299,6 +301,7 @@
             this.cbRecodeFormat.Size = new System.Drawing.Size(106, 17);
             this.cbRecodeFormat.TabIndex = 86;
             this.cbRecodeFormat.Text = "Recode Format:";
+            this.toolTip.SetToolTip(this.cbRecodeFormat, "Encode the video to another format if necessary");
             this.cbRecodeFormat.UseVisualStyleBackColor = true;
             // 
             // gbVideoSelectionPlaylistSelection
@@ -370,6 +373,16 @@
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(125, 21);
             this.cbxRecodeFormat.TabIndex = 85;
+            // 
+            // txtFileTemplate
+            // 
+            this.txtFileTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileTemplate.KeywordMatchingEnabled = true;
+            this.txtFileTemplate.Location = new System.Drawing.Point(138, 62);
+            this.txtFileTemplate.Name = "txtFileTemplate";
+            this.txtFileTemplate.Size = new System.Drawing.Size(977, 22);
+            this.txtFileTemplate.TabIndex = 84;
             // 
             // txtCommand
             // 
@@ -461,6 +474,8 @@
             this.cbOutputFormat.Size = new System.Drawing.Size(106, 17);
             this.cbOutputFormat.TabIndex = 81;
             this.cbOutputFormat.Text = "Output Format:";
+            this.toolTip.SetToolTip(this.cbOutputFormat, "If merge is required, output to given container format. Ignore if no merge is req" +
+        "uired");
             this.cbOutputFormat.UseVisualStyleBackColor = true;
             // 
             // cbxOutputFormat
@@ -494,6 +509,7 @@
             this.cbCustomFormatSelector.Size = new System.Drawing.Size(151, 17);
             this.cbCustomFormatSelector.TabIndex = 77;
             this.cbCustomFormatSelector.Text = "Custom Format Selector:";
+            this.toolTip.SetToolTip(this.cbCustomFormatSelector, "Specify custom video format selector");
             this.cbCustomFormatSelector.UseVisualStyleBackColor = true;
             // 
             // cbMarkWatched
@@ -540,6 +556,7 @@
             this.cbWriteThumbnail.Size = new System.Drawing.Size(116, 17);
             this.cbWriteThumbnail.TabIndex = 65;
             this.cbWriteThumbnail.Text = "Write Thumbnail?";
+            this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail image to disk");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
             // 
             // cbWriteAnnotations
@@ -550,6 +567,7 @@
             this.cbWriteAnnotations.Size = new System.Drawing.Size(126, 17);
             this.cbWriteAnnotations.TabIndex = 64;
             this.cbWriteAnnotations.Text = "Write Annotations?";
+            this.toolTip.SetToolTip(this.cbWriteAnnotations, "Write video annotations");
             this.cbWriteAnnotations.UseVisualStyleBackColor = true;
             // 
             // cbWriteDescription
@@ -560,6 +578,7 @@
             this.cbWriteDescription.Size = new System.Drawing.Size(121, 17);
             this.cbWriteDescription.TabIndex = 62;
             this.cbWriteDescription.Text = "Write Description?";
+            this.toolTip.SetToolTip(this.cbWriteDescription, "Write video description to a .description");
             this.cbWriteDescription.UseVisualStyleBackColor = true;
             // 
             // cbNoOverwrites
@@ -572,6 +591,7 @@
             this.cbNoOverwrites.Size = new System.Drawing.Size(104, 17);
             this.cbNoOverwrites.TabIndex = 61;
             this.cbNoOverwrites.Text = "No Overwrites?";
+            this.toolTip.SetToolTip(this.cbNoOverwrites, "Do not overwrite files");
             this.cbNoOverwrites.UseVisualStyleBackColor = true;
             // 
             // cbRestrictFilenames
@@ -582,6 +602,7 @@
             this.cbRestrictFilenames.Size = new System.Drawing.Size(123, 17);
             this.cbRestrictFilenames.TabIndex = 60;
             this.cbRestrictFilenames.Text = "Restrict Filenames?";
+            this.toolTip.SetToolTip(this.cbRestrictFilenames, "Restrict filenames to only ASCII");
             this.cbRestrictFilenames.UseVisualStyleBackColor = true;
             // 
             // cbIgnoreErrors
@@ -642,6 +663,7 @@
             this.cbMatchFilter.Size = new System.Drawing.Size(90, 17);
             this.cbMatchFilter.TabIndex = 81;
             this.cbMatchFilter.Text = "Match Filter:";
+            this.toolTip.SetToolTip(this.cbMatchFilter, "Generic video filter. Specify any key.");
             this.cbMatchFilter.UseVisualStyleBackColor = true;
             // 
             // txtMatchFilter
@@ -660,6 +682,7 @@
             this.cbFilesizeMax.Size = new System.Drawing.Size(90, 17);
             this.cbFilesizeMax.TabIndex = 79;
             this.cbFilesizeMax.Text = "Max Filesize:";
+            this.toolTip.SetToolTip(this.cbFilesizeMax, "Do not download any videos large than # size");
             this.cbFilesizeMax.UseVisualStyleBackColor = true;
             // 
             // nudFilesizeMax
@@ -711,6 +734,7 @@
             this.cbMaxViews.Size = new System.Drawing.Size(83, 17);
             this.cbMaxViews.TabIndex = 76;
             this.cbMaxViews.Text = "Max Views:";
+            this.toolTip.SetToolTip(this.cbMaxViews, "Do not download any videos with more than # views");
             this.cbMaxViews.UseVisualStyleBackColor = true;
             // 
             // nudViewRangeMin
@@ -807,6 +831,7 @@
             this.cbMinViews.Size = new System.Drawing.Size(82, 17);
             this.cbMinViews.TabIndex = 53;
             this.cbMinViews.Text = "Min Views:";
+            this.toolTip.SetToolTip(this.cbMinViews, "Do not download any videos with less than # views");
             this.cbMinViews.UseVisualStyleBackColor = true;
             // 
             // cbFilesizeMin
@@ -817,6 +842,7 @@
             this.cbFilesizeMin.Size = new System.Drawing.Size(89, 17);
             this.cbFilesizeMin.TabIndex = 52;
             this.cbFilesizeMin.Text = "Min Filesize:";
+            this.toolTip.SetToolTip(this.cbFilesizeMin, "Do not download any videos smaller than # size");
             this.cbFilesizeMin.UseVisualStyleBackColor = true;
             // 
             // cbDateBefore
@@ -827,6 +853,7 @@
             this.cbDateBefore.Size = new System.Drawing.Size(90, 17);
             this.cbDateBefore.TabIndex = 41;
             this.cbDateBefore.Text = "Date Before:";
+            this.toolTip.SetToolTip(this.cbDateBefore, "Download only videos uploaded on or before this date");
             this.cbDateBefore.UseVisualStyleBackColor = true;
             // 
             // dtpDateBefore
@@ -845,6 +872,7 @@
             this.cbDateAfter.Size = new System.Drawing.Size(81, 17);
             this.cbDateAfter.TabIndex = 39;
             this.cbDateAfter.Text = "Date After:";
+            this.toolTip.SetToolTip(this.cbDateAfter, "Download only videos uploaded on or after this date");
             this.cbDateAfter.UseVisualStyleBackColor = true;
             // 
             // dtpDateAfter
@@ -863,6 +891,7 @@
             this.cbDate.Size = new System.Drawing.Size(53, 17);
             this.cbDate.TabIndex = 37;
             this.cbDate.Text = "Date:";
+            this.toolTip.SetToolTip(this.cbDate, "Download only videos uploaded on this date");
             this.cbDate.UseVisualStyleBackColor = true;
             // 
             // dtpDate
@@ -933,6 +962,19 @@
             this.nudPlaylistStart.TabIndex = 69;
             this.nudPlaylistStart.ThousandsSeparator = true;
             // 
+            // txtPlaylistRange
+            // 
+            this.txtPlaylistRange.AllowDecimal = false;
+            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaylistRange.Location = new System.Drawing.Point(70, 68);
+            this.txtPlaylistRange.Name = "txtPlaylistRange";
+            this.txtPlaylistRange.Size = new System.Drawing.Size(271, 22);
+            this.txtPlaylistRange.TabIndex = 22;
+            this.txtPlaylistRange.WhitelistedChars = new char[] {
+        '-',
+        ','};
+            // 
             // cbPlaylistRange
             // 
             this.cbPlaylistRange.AutoSize = true;
@@ -941,6 +983,7 @@
             this.cbPlaylistRange.Size = new System.Drawing.Size(62, 17);
             this.cbPlaylistRange.TabIndex = 21;
             this.cbPlaylistRange.Text = "Range:";
+            this.toolTip.SetToolTip(this.cbPlaylistRange, "Playlist video items to download. Sperated by commas, or range by hypens");
             this.cbPlaylistRange.UseVisualStyleBackColor = true;
             // 
             // cbPlaylistReversed
@@ -951,6 +994,7 @@
             this.cbPlaylistReversed.Size = new System.Drawing.Size(77, 17);
             this.cbPlaylistReversed.TabIndex = 42;
             this.cbPlaylistReversed.Text = "Reversed?";
+            this.toolTip.SetToolTip(this.cbPlaylistReversed, "Download playlist videos in reverse order");
             this.cbPlaylistReversed.UseVisualStyleBackColor = true;
             // 
             // cbPlaylistRandom
@@ -961,6 +1005,7 @@
             this.cbPlaylistRandom.Size = new System.Drawing.Size(74, 17);
             this.cbPlaylistRandom.TabIndex = 43;
             this.cbPlaylistRandom.Text = "Random?";
+            this.toolTip.SetToolTip(this.cbPlaylistRandom, "Download playlist videos in random order");
             this.cbPlaylistRandom.UseVisualStyleBackColor = true;
             // 
             // cbPlaylistStart
@@ -971,6 +1016,7 @@
             this.cbPlaylistStart.Size = new System.Drawing.Size(53, 17);
             this.cbPlaylistStart.TabIndex = 18;
             this.cbPlaylistStart.Text = "Start:";
+            this.toolTip.SetToolTip(this.cbPlaylistStart, "Playlist video to start at");
             this.cbPlaylistStart.UseVisualStyleBackColor = true;
             // 
             // cbPlaylistEnd
@@ -981,6 +1027,7 @@
             this.cbPlaylistEnd.Size = new System.Drawing.Size(49, 17);
             this.cbPlaylistEnd.TabIndex = 20;
             this.cbPlaylistEnd.Text = "End:";
+            this.toolTip.SetToolTip(this.cbPlaylistEnd, "Playlist video to end at");
             this.cbPlaylistEnd.UseVisualStyleBackColor = true;
             // 
             // cbMaxDownloads
@@ -1167,6 +1214,7 @@
             this.txtDownloadDirectory.Name = "txtDownloadDirectory";
             this.txtDownloadDirectory.Size = new System.Drawing.Size(896, 22);
             this.txtDownloadDirectory.TabIndex = 2;
+            this.toolTip.SetToolTip(this.txtDownloadDirectory, "The base directory for downloaded videos");
             this.txtDownloadDirectory.TextChanged += new System.EventHandler(this.txtDownloadDirectory_TextChanged);
             // 
             // gbVideoQuality
@@ -1359,6 +1407,7 @@
             this.label2.Size = new System.Drawing.Size(113, 13);
             this.label2.TabIndex = 71;
             this.label2.Text = "Download Directory:";
+            this.toolTip.SetToolTip(this.label2, "The base directory for downloaded videos");
             // 
             // cbFileTemplate
             // 
@@ -1368,6 +1417,7 @@
             this.cbFileTemplate.Size = new System.Drawing.Size(123, 17);
             this.cbFileTemplate.TabIndex = 4;
             this.cbFileTemplate.Text = "Filename Template:";
+            this.toolTip.SetToolTip(this.cbFileTemplate, "Output filename template.");
             this.cbFileTemplate.UseVisualStyleBackColor = true;
             // 
             // txtUrl
@@ -1378,6 +1428,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(938, 22);
             this.txtUrl.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtUrl, "The url(s) to download");
             // 
             // label1
             // 
@@ -1387,6 +1438,7 @@
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "URL:";
+            this.toolTip.SetToolTip(this.label1, "The url(s) to download");
             // 
             // btnBrowseDownloadDirectory
             // 
@@ -1903,7 +1955,7 @@
             // 
             this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
             this.optionsToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
             this.optionsToolStripMenuItem1.Text = "Options...";
             this.optionsToolStripMenuItem1.Click += new System.EventHandler(this.optionsToolStripMenuItem1_Click);
             // 
@@ -1916,33 +1968,6 @@
             this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem1.Text = "&Help";
             // 
-            // toolTip
-            // 
-            this.toolTip.ShowAlways = true;
-            // 
-            // txtFileTemplate
-            // 
-            this.txtFileTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileTemplate.KeywordMatchingEnabled = true;
-            this.txtFileTemplate.Location = new System.Drawing.Point(138, 62);
-            this.txtFileTemplate.Name = "txtFileTemplate";
-            this.txtFileTemplate.Size = new System.Drawing.Size(977, 22);
-            this.txtFileTemplate.TabIndex = 84;
-            // 
-            // txtPlaylistRange
-            // 
-            this.txtPlaylistRange.AllowDecimal = false;
-            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlaylistRange.Location = new System.Drawing.Point(70, 68);
-            this.txtPlaylistRange.Name = "txtPlaylistRange";
-            this.txtPlaylistRange.Size = new System.Drawing.Size(271, 22);
-            this.txtPlaylistRange.TabIndex = 22;
-            this.txtPlaylistRange.WhitelistedChars = new char[] {
-        '-',
-        ','};
-            // 
             // checkForUpdatesToolStripMenuItem
             // 
             this.checkForUpdatesToolStripMenuItem.Enabled = false;
@@ -1952,10 +1977,14 @@
             // 
             // wikiToolStripMenuItem
             // 
-            this.wikiToolStripMenuItem.Enabled = false;
             this.wikiToolStripMenuItem.Name = "wikiToolStripMenuItem";
             this.wikiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wikiToolStripMenuItem.Text = "Wiki...";
+            this.wikiToolStripMenuItem.Click += new System.EventHandler(this.wikiToolStripMenuItem_Click);
+            // 
+            // toolTip
+            // 
+            this.toolTip.ShowAlways = true;
             // 
             // MainForm
             // 
@@ -1971,7 +2000,7 @@
             this.MinimumSize = new System.Drawing.Size(1145, 573);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "YDL v1.3";
+            this.Text = "YDL v1.3.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);

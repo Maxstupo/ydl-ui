@@ -40,7 +40,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(338, 214);
+            this.btnCancel.Location = new System.Drawing.Point(607, 242);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -59,7 +59,7 @@
             this.lbxUrls.ItemHeight = 21;
             this.lbxUrls.Location = new System.Drawing.Point(12, 12);
             this.lbxUrls.Name = "lbxUrls";
-            this.lbxUrls.Size = new System.Drawing.Size(401, 193);
+            this.lbxUrls.Size = new System.Drawing.Size(670, 214);
             this.lbxUrls.TabIndex = 0;
             this.lbxUrls.SelectedValueChanged += new System.EventHandler(this.lbxUrls_SelectedValueChanged);
             // 
@@ -94,7 +94,7 @@
             // btnConfirm
             // 
             this.btnConfirm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirm.Location = new System.Drawing.Point(257, 214);
+            this.btnConfirm.Location = new System.Drawing.Point(526, 242);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(75, 23);
             this.btnConfirm.TabIndex = 3;
@@ -105,7 +105,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 214);
+            this.btnAdd.Location = new System.Drawing.Point(12, 242);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(56, 23);
             this.btnAdd.TabIndex = 1;
@@ -116,7 +116,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(74, 214);
+            this.btnDelete.Location = new System.Drawing.Point(74, 242);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 2;
@@ -129,18 +129,18 @@
             this.AcceptButton = this.btnConfirm;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(425, 249);
+            this.ClientSize = new System.Drawing.Size(694, 277);
             this.ControlBox = false;
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.lbxUrls);
             this.Controls.Add(this.btnCancel);
-            this.MaximumSize = new System.Drawing.Size(441, 900);
+            this.MaximumSize = new System.Drawing.Size(1000, 600);
             this.MinimumSize = new System.Drawing.Size(441, 198);
             this.Name = "FormUrlsEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "URL List Editor...";
+            this.Text = "URL List Editor";
             this.Load += new System.EventHandler(this.FormUrlsEditor_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -169,6 +169,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_399423126948F4C8A696D2206B9B4F1B"
+                    {
+                    "Name" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
             "TargetName" = "8:"
@@ -195,6 +200,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_5CF60C9FE8D31BCC1EE3BE5E6492E979"
+                    {
+                    "Name" = "8:Microsoft.WindowsAPICodePack.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.WindowsAPICodePack.dll"
             "TargetName" = "8:"
@@ -221,6 +231,11 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
+                    "_8BF201C60A1C769350045A0EEC9569C9"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -316,15 +331,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:YDL-UI"
-        "ProductCode" = "8:{B0CA5D2A-2C04-4835-AA68-E1A6D14CBA97}"
-        "PackageCode" = "8:{093EDF15-7FB6-472D-9327-33F49B3FEF47}"
+        "ProductCode" = "8:{7FF9540A-8E23-4906-B525-60A44A20D477}"
+        "PackageCode" = "8:{10F60AEA-5DB0-4757-BA4E-8D8EB500940A}"
         "UpgradeCode" = "8:{EC599254-947F-4F8A-A1B5-8E29DD82EC0A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.3.0"
+        "ProductVersion" = "8:1.3.1"
         "Manufacturer" = "8:Maxstupo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -880,7 +895,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_593D9FABF6A247EEA2F1D7A88B6D778E"
             {
-            "SourcePath" = "8:..\\YDL-UI\\obj\\Debug\\YDL-UI.exe"
+            "SourcePath" = "8:..\\YDL-UI\\obj\\Release\\YDL-UI.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C425C42EA8B747F29150A2AE53FCBC33"

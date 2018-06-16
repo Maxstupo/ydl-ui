@@ -70,9 +70,9 @@ namespace Maxstupo.YdlUi.Forms {
 
             ffmpegPath = Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "ffmpeg.exe");
             api = new YoutubeDLApi(Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "youtube-dl.exe"), new YoutubeDLArguments());
-            
+
             CheckVersion();
-            
+
             cbxFilesizeMaxUnits.DataSource = Enum.GetValues(typeof(FilesizeUnit));
             cbxFilesizeMaxUnits.SelectedItem = FilesizeUnit.MB;
 
@@ -172,6 +172,7 @@ namespace Maxstupo.YdlUi.Forms {
             rbVideoOnly.BindValueTo(v => api.Arguments.VideoSelection.NoPlaylist = v).Listen(clg);
 
             nudAgeLimit.BindEnableTo(cbAgeLimit).BindValueTo(v => api.Arguments.VideoSelection.AgeLimit = (int?)v, cbAgeLimit, clg);
+            btnBrowseDownloadArchive.BindEnableTo(cbDownloadArchive);
             txtDownloadArchive.BindEnableTo(cbDownloadArchive).BindValueTo(v => {
                 api.Arguments.VideoSelection.DownloadArchive = v;
             }, cbDownloadArchive, clg);
@@ -304,6 +305,8 @@ namespace Maxstupo.YdlUi.Forms {
                 if (!rbFpsCustom.Checked)
                     nudFpsCustom.Value = vq.Fps;
 
+                if (!cbCustomFormatSelector.Checked)
+                    txtCustomFormatSelector.Text = vq.FormatSelector;
 
                 clg.Trigger();
             };
@@ -402,7 +405,7 @@ namespace Maxstupo.YdlUi.Forms {
 
                 if (Utils.IsValidUrl(url)) {
                     txtUrl.Text = url;
-                    
+
                 }
 
             }
@@ -483,12 +486,6 @@ namespace Maxstupo.YdlUi.Forms {
             txtCommand.SelectAll();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
-            using (AboutBox dialog = new AboutBox()) {
-                dialog.ShowDialog(this);
-            }
-        }
-
         private void btnBrowseDownloadArchive_Click_1(object sender, EventArgs e) {
             using (SaveFileDialog dialog = new SaveFileDialog()) {
                 dialog.Title = "Select download archive file...";
@@ -496,6 +493,14 @@ namespace Maxstupo.YdlUi.Forms {
                 dialog.InitialDirectory = txtDownloadArchive.Text;
                 if (dialog.ShowDialog() == DialogResult.OK)
                     txtDownloadArchive.Text = dialog.FileName;
+            }
+        }
+
+        private void wikiToolStripMenuItem_Click(object sender, EventArgs e) {
+            try {
+                Process.Start("https://github.com/Maxstupo/ydl-ui/wiki");
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
             }
         }
     }
