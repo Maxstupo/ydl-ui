@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using System.Xml.Serialization;
 
 namespace Maxstupo.YdlUi.Util {
+    [Serializable]
     public enum FilesizeUnit {
         KB,
         MB,
@@ -32,8 +34,11 @@ namespace Maxstupo.YdlUi.Util {
         public const string TeraByteSymbol = "TB";
         public const string PetaByteSymbol = "PB";
 
-        public long Bits { get; private set; }
-        public double Bytes { get; private set; }
+        public long Bits {
+            // Get ceiling because bits are whole units
+            get { return (long)Math.Ceiling(Bytes * BitsInByte); }
+        }
+        [XmlText]public double Bytes { get; set; }
         public double KiloBytes => Bytes / BytesInKiloByte;
         public double MegaBytes => Bytes / BytesInMegaByte;
         public double GigaBytes => Bytes / BytesInGigaByte;
@@ -91,9 +96,6 @@ namespace Maxstupo.YdlUi.Util {
         }
 
         public ByteSize(double byteSize) : this() {
-            // Get ceiling because bits are whole units
-            Bits = (long)Math.Ceiling(byteSize * BitsInByte);
-
             Bytes = byteSize;
         }
 
@@ -374,6 +376,16 @@ namespace Maxstupo.YdlUi.Util {
                 result = new ByteSize();
                 return false;
             }
+        }
+
+        public double ToUnit(FilesizeUnit unit) {
+            switch (unit) {
+                case FilesizeUnit.KB: return KiloBytes;
+                case FilesizeUnit.MB: return MegaBytes;
+                case FilesizeUnit.GB: return GigaBytes;
+                default: break;
+            }
+            throw new Exception();
         }
     }
 
