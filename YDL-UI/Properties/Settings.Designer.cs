@@ -25,37 +25,25 @@ namespace Maxstupo.YdlUi.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("download-archive.txt")]
-        public string DownloadArchive {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PromptSaveOnClose {
             get {
-                return ((string)(this["DownloadArchive"]));
+                return ((bool)(this["PromptSaveOnClose"]));
             }
             set {
-                this["DownloadArchive"] = value;
+                this["PromptSaveOnClose"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DownloadDirectory {
+        public string DefaultPresetLocation {
             get {
-                return ((string)(this["DownloadDirectory"]));
+                return ((string)(this["DefaultPresetLocation"]));
             }
             set {
-                this["DownloadDirectory"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%(title)s - %(id)s.%(ext)s")]
-        public string FilenameTemplate {
-            get {
-                return ((string)(this["FilenameTemplate"]));
-            }
-            set {
-                this["FilenameTemplate"] = value;
+                this["DefaultPresetLocation"] = value;
             }
         }
     }

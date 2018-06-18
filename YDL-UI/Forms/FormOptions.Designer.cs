@@ -24,39 +24,61 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOptions));
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cbDefaultPresetLocation = new System.Windows.Forms.CheckBox();
+            this.txtDefaultPresetLocation = new System.Windows.Forms.TextBox();
+            this.cbPromptSaveOnClose = new System.Windows.Forms.CheckBox();
+            this.btnBrowsePresetLocation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // checkBox1
+            // cbDefaultPresetLocation
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(216, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Remember download directory path?";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbDefaultPresetLocation.AutoSize = true;
+            this.cbDefaultPresetLocation.Location = new System.Drawing.Point(12, 35);
+            this.cbDefaultPresetLocation.Name = "cbDefaultPresetLocation";
+            this.cbDefaultPresetLocation.Size = new System.Drawing.Size(148, 17);
+            this.cbDefaultPresetLocation.TabIndex = 2;
+            this.cbDefaultPresetLocation.Text = "Default Preset Location:";
+            this.cbDefaultPresetLocation.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // txtDefaultPresetLocation
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(12, 35);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(207, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Remember download archive path?";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.txtDefaultPresetLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDefaultPresetLocation.Location = new System.Drawing.Point(166, 33);
+            this.txtDefaultPresetLocation.Name = "txtDefaultPresetLocation";
+            this.txtDefaultPresetLocation.Size = new System.Drawing.Size(541, 22);
+            this.txtDefaultPresetLocation.TabIndex = 3;
+            // 
+            // cbPromptSaveOnClose
+            // 
+            this.cbPromptSaveOnClose.AutoSize = true;
+            this.cbPromptSaveOnClose.Location = new System.Drawing.Point(12, 12);
+            this.cbPromptSaveOnClose.Name = "cbPromptSaveOnClose";
+            this.cbPromptSaveOnClose.Size = new System.Drawing.Size(139, 17);
+            this.cbPromptSaveOnClose.TabIndex = 4;
+            this.cbPromptSaveOnClose.Text = "Prompt save on close?";
+            this.cbPromptSaveOnClose.UseVisualStyleBackColor = true;
+            // 
+            // btnBrowsePresetLocation
+            // 
+            this.btnBrowsePresetLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowsePresetLocation.Location = new System.Drawing.Point(713, 33);
+            this.btnBrowsePresetLocation.Name = "btnBrowsePresetLocation";
+            this.btnBrowsePresetLocation.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowsePresetLocation.TabIndex = 5;
+            this.btnBrowsePresetLocation.Text = "Browse";
+            this.btnBrowsePresetLocation.UseVisualStyleBackColor = true;
+            this.btnBrowsePresetLocation.Click += new System.EventHandler(this.btnBrowsePresetLocation_Click);
             // 
             // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.btnBrowsePresetLocation);
+            this.Controls.Add(this.cbPromptSaveOnClose);
+            this.Controls.Add(this.txtDefaultPresetLocation);
+            this.Controls.Add(this.cbDefaultPresetLocation);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -64,6 +86,8 @@
             this.Name = "FormOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Options";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormOptions_FormClosing);
+            this.Load += new System.EventHandler(this.FormOptions_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -71,7 +95,9 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cbDefaultPresetLocation;
+        private System.Windows.Forms.TextBox txtDefaultPresetLocation;
+        private System.Windows.Forms.CheckBox cbPromptSaveOnClose;
+        private System.Windows.Forms.Button btnBrowsePresetLocation;
     }
 }

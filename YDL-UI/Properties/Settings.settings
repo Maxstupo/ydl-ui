@@ -2,14 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Maxstupo.YdlUi.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DownloadArchive" Type="System.String" Scope="User">
-      <Value Profile="(Default)">download-archive.txt</Value>
+    <Setting Name="PromptSaveOnClose" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="DownloadDirectory" Type="System.String" Scope="User">
+    <Setting Name="DefaultPresetLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="FilenameTemplate" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%(title)s - %(id)s.%(ext)s</Value>
     </Setting>
   </Settings>
 </SettingsFile>
