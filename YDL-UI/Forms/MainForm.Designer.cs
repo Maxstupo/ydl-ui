@@ -1946,6 +1946,7 @@
             this.optionsToolStripMenuItem,
             this.helpToolStripMenuItem1});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.MinimumSize = new System.Drawing.Size(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1129, 24);
             this.menuStrip.TabIndex = 13;
@@ -2068,10 +2069,11 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
+            this.MaximumSize = new System.Drawing.Size(1145, 573);
             this.MinimumSize = new System.Drawing.Size(1145, 573);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "YDL v1.4.0";
+            this.Text = "YDL-UI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);

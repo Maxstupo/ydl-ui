@@ -52,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8BF201C60A1C769350045A0EEC9569C9"
+        "OwnerKey" = "8:_399423126948F4C8A696D2206B9B4F1B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_399423126948F4C8A696D2206B9B4F1B"
+        "OwnerKey" = "8:_8BF201C60A1C769350045A0EEC9569C9"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -316,15 +316,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:YDL-UI"
-        "ProductCode" = "8:{F675B1C2-D004-45C2-8909-8CE8488FAAA0}"
-        "PackageCode" = "8:{9A8D984B-66D4-497D-A575-49072B7A033B}"
+        "ProductCode" = "8:{9F5E3E51-31A7-4690-A1CC-AB37B2299FC6}"
+        "PackageCode" = "8:{F8CAB8E9-DCDD-471B-9238-8AEC985BB9D8}"
         "UpgradeCode" = "8:{EC599254-947F-4F8A-A1B5-8E29DD82EC0A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.4.0"
+        "ProductVersion" = "8:1.4.1"
         "Manufacturer" = "8:Maxstupo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
