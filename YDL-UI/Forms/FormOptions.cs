@@ -20,6 +20,7 @@ namespace Maxstupo.YdlUi.Forms {
             btnBrowsePresetLocation.BindEnableTo(cbDefaultPresetLocation);
 
             cbPromptSaveOnClose.Checked = Properties.Settings.Default.PromptSaveOnClose;
+            cbClosePresetOnDownloadStart.Checked = Properties.Settings.Default.ClosePresetOnDownloadStart;
 
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.DefaultPresetLocation)) {
                 cbDefaultPresetLocation.Checked = true;
@@ -28,6 +29,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             txtDefaultPresetLocation.BindValueTo(v => Properties.Settings.Default.DefaultPresetLocation = v, cbDefaultPresetLocation);
             cbPromptSaveOnClose.BindValueTo(v => Properties.Settings.Default.PromptSaveOnClose = v);
+            cbClosePresetOnDownloadStart.BindValueTo(v => Properties.Settings.Default.ClosePresetOnDownloadStart = v);
         }
 
         private void btnBrowsePresetLocation_Click(object sender, EventArgs e) {

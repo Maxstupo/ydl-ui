@@ -28,6 +28,7 @@
             this.txtDefaultPresetLocation = new System.Windows.Forms.TextBox();
             this.cbPromptSaveOnClose = new System.Windows.Forms.CheckBox();
             this.btnBrowsePresetLocation = new System.Windows.Forms.Button();
+            this.cbClosePresetOnDownloadStart = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cbDefaultPresetLocation
@@ -70,11 +71,22 @@
             this.btnBrowsePresetLocation.UseVisualStyleBackColor = true;
             this.btnBrowsePresetLocation.Click += new System.EventHandler(this.btnBrowsePresetLocation_Click);
             // 
+            // cbClosePresetOnDownloadStart
+            // 
+            this.cbClosePresetOnDownloadStart.AutoSize = true;
+            this.cbClosePresetOnDownloadStart.Location = new System.Drawing.Point(12, 61);
+            this.cbClosePresetOnDownloadStart.Name = "cbClosePresetOnDownloadStart";
+            this.cbClosePresetOnDownloadStart.Size = new System.Drawing.Size(193, 17);
+            this.cbClosePresetOnDownloadStart.TabIndex = 6;
+            this.cbClosePresetOnDownloadStart.Text = "Close preset on download start?";
+            this.cbClosePresetOnDownloadStart.UseVisualStyleBackColor = true;
+            // 
             // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbClosePresetOnDownloadStart);
             this.Controls.Add(this.btnBrowsePresetLocation);
             this.Controls.Add(this.cbPromptSaveOnClose);
             this.Controls.Add(this.txtDefaultPresetLocation);
@@ -99,5 +111,6 @@
         private System.Windows.Forms.TextBox txtDefaultPresetLocation;
         private System.Windows.Forms.CheckBox cbPromptSaveOnClose;
         private System.Windows.Forms.Button btnBrowsePresetLocation;
+        private System.Windows.Forms.CheckBox cbClosePresetOnDownloadStart;
     }
 }

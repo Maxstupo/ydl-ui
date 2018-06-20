@@ -472,7 +472,9 @@ namespace Maxstupo.YdlUi.Forms {
 
                 api.Execute(txtDownloadDirectory.Text);
             }
-            //txtUrl.Text = string.Empty;
+
+            if (Properties.Settings.Default.ClosePresetOnDownloadStart)
+                ClosePreset();
         }
 
 
@@ -547,9 +549,15 @@ namespace Maxstupo.YdlUi.Forms {
             saveLocation = location;
             saveToolStripMenuItem.Enabled = true;
             NeedsSave = false;
+        }
 
-            //  Text = defaultTitle + "  -  " + location;
+        private void ClosePreset() {
+            saveLocation = null;
+            saveToolStripMenuItem.Enabled = false;
 
+            defaultUiState.Apply(tabControl, presetSavableTypes);
+
+            NeedsSave = true;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -565,11 +573,9 @@ namespace Maxstupo.YdlUi.Forms {
                 dialog.FileName = "ydl-ui";
                 dialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
 
-                if (dialog.ShowDialog(this) == DialogResult.OK) {
+                if (dialog.ShowDialog(this) == DialogResult.OK)
                     SavePreset(dialog.FileName);
 
-                    //    Text = defaultTitle + "  -  " + saveLocation;
-                }
             }
         }
 
@@ -584,23 +590,15 @@ namespace Maxstupo.YdlUi.Forms {
                 dialog.CheckFileExists = true;
                 dialog.CheckPathExists = true;
 
-                if (dialog.ShowDialog(this) == DialogResult.OK) {
+                if (dialog.ShowDialog(this) == DialogResult.OK)
                     OpenPreset(dialog.FileName);
-                }
+
             }
 
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
-
-            saveLocation = null;
-            saveToolStripMenuItem.Enabled = false;
-
-            //  Text = defaultTitle;
-
-            defaultUiState.Apply(tabControl, presetSavableTypes);
-
-            NeedsSave = true;
+            ClosePreset();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {

@@ -46,5 +46,17 @@ namespace Maxstupo.YdlUi.Properties {
                 this["DefaultPresetLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ClosePresetOnDownloadStart {
+            get {
+                return ((bool)(this["ClosePresetOnDownloadStart"]));
+            }
+            set {
+                this["ClosePresetOnDownloadStart"] = value;
+            }
+        }
     }
 }
