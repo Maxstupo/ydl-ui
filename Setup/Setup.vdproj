@@ -52,7 +52,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_399423126948F4C8A696D2206B9B4F1B"
+        "OwnerKey" = "8:_8BF201C60A1C769350045A0EEC9569C9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +64,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8BF201C60A1C769350045A0EEC9569C9"
+        "OwnerKey" = "8:_399423126948F4C8A696D2206B9B4F1B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -169,11 +169,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_399423126948F4C8A696D2206B9B4F1B"
-                    {
-                    "Name" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.WindowsAPICodePack.Shell.dll"
             "TargetName" = "8:"
@@ -200,11 +195,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5CF60C9FE8D31BCC1EE3BE5E6492E979"
-                    {
-                    "Name" = "8:Microsoft.WindowsAPICodePack.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.WindowsAPICodePack.dll"
             "TargetName" = "8:"
@@ -231,11 +221,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_8BF201C60A1C769350045A0EEC9569C9"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -331,15 +316,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:YDL-UI"
-        "ProductCode" = "8:{7FF9540A-8E23-4906-B525-60A44A20D477}"
-        "PackageCode" = "8:{10F60AEA-5DB0-4757-BA4E-8D8EB500940A}"
+        "ProductCode" = "8:{F675B1C2-D004-45C2-8909-8CE8488FAAA0}"
+        "PackageCode" = "8:{9A8D984B-66D4-497D-A575-49072B7A033B}"
         "UpgradeCode" = "8:{EC599254-947F-4F8A-A1B5-8E29DD82EC0A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.3.1"
+        "ProductVersion" = "8:1.4.0"
         "Manufacturer" = "8:Maxstupo"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

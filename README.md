@@ -1,10 +1,10 @@
-# YDL-UI v1.3.1
+# YDL-UI v1.4.0
 
 A UI for the command-line video downloader "youtube-dl"
 
 This UI provides a easy method of building youtube-dl argument queries that can be run by a click of a button. YDL-UI is packaged with a release of youtube-dl and ffmpeg.
 
-![YDL-UI v1.3.0](https://github.com/Maxstupo/ydl-ui/blob/master/ydl-ui_v1.3.0.png "YDL-UI v1.3.0")
+![YDL-UI v1.3.0](https://github.com/Maxstupo/ydl-ui/blob/master/ydl-ui_v1.4.0.png "YDL-UI v1.4.0")
 
 ## Releases
 
