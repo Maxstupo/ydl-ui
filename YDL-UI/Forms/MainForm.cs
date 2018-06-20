@@ -13,10 +13,16 @@ using Maxstupo.YdlUi.YoutubeDL;
 using System.Xml.Serialization;
 using Maxstupo.YdlUi.Util.UiStore;
 using Maxstupo.YdlUi.Controls;
+using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Maxstupo.YdlUi.Forms {
 
     public partial class MainForm : Form {
+        public string Version { get; } = "v1.4.0";
+        public string Title { get { return "YDL-UI " + Version; } }
+
         private static readonly Color LightRed = ControlPaint.LightLight(Color.Red);
 
         private static readonly string BIN_FOLDER_NAME = "bin";
@@ -42,17 +48,15 @@ namespace Maxstupo.YdlUi.Forms {
         private bool NeedsSave {
             get { return needsSave; }
             set {
-                if (value) {
-                    Text = defaultTitle + " - " + (saveLocation ?? "<untitled>") + "*";
-                } else {
-                    Text = defaultTitle + " - " + (saveLocation ?? "<untitled>");
-                }
+                Text = Title + " - " + (saveLocation ?? "<untitled>");
+                if (value)
+                    Text += "*";
+
                 needsSave = value;
             }
         }
 
         private string ffmpegPath;
-        private string defaultTitle;
 
         private ControlListenGroup clg;
         private YoutubeDLApi api;
@@ -89,8 +93,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void MainForm_Load(object sender, EventArgs e) {
             Application.Idle += Application_Idle;
-
-            defaultTitle = Text;
+            Text = Title;
 
             this.ResizeBegin += (s, ee) => { this.SuspendLayout(); };
             this.ResizeEnd += (s, ee) => { this.ResumeLayout(true); };
@@ -112,6 +115,16 @@ namespace Maxstupo.YdlUi.Forms {
 
 
             CheckVersion();
+
+            if (Properties.Settings.Default.CheckForUpdates) {
+                Timer updateTimer = new Timer();
+                updateTimer.Tick += (s, ee) => {
+                    updateTimer.Stop();
+                    CheckForUpdates(false);
+                };
+                updateTimer.Interval = 250;
+                updateTimer.Start();
+            }
 
             cbxFilesizeMaxUnits.DataSource = Enum.GetValues(typeof(FilesizeUnit));
             cbxFilesizeMaxUnits.SelectedItem = FilesizeUnit.MB;
@@ -614,6 +627,50 @@ namespace Maxstupo.YdlUi.Forms {
                 }
 
             }
+        }
+
+        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e) {
+            CheckForUpdates(true);
+        }
+
+        private void CheckForUpdates(bool alertForNoUpdatesFound = true) {
+            try {
+
+                string url = @"https://api.github.com/repos/Maxstupo/ydl-ui/releases/latest";
+                string html = string.Empty;
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.UserAgent = "Maxstupo/" + Title;
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse()) {
+                    using (Stream stream = response.GetResponseStream()) {
+                        using (StreamReader sr = new StreamReader(stream)) {
+                            html = sr.ReadToEnd();
+                        }
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(html)) return;
+
+                JObject obj = JsonConvert.DeserializeObject<JObject>(html);
+
+                string ver = obj.Value<string>("tag_name");
+                Util.Version repo_version = Util.Version.Parse(ver);
+                Util.Version our_version = Util.Version.Parse(this.Version);
+
+                string updateUrl = obj.Value<string>("html_url");
+
+                if (repo_version.IsNewerThan(our_version)) {
+                    if (MessageBox.Show(this, "YDL-UI " + repo_version.ToString() + " is available! Do you want to go to the download page?", "An update is available!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+                        Process.Start(updateUrl);
+                    }
+                } else if (alertForNoUpdatesFound) {
+                    MessageBox.Show(this, "No new updates found.", "Check for Updates");
+                }
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 

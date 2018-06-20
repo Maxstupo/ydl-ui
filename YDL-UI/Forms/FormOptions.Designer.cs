@@ -29,6 +29,7 @@
             this.cbPromptSaveOnClose = new System.Windows.Forms.CheckBox();
             this.btnBrowsePresetLocation = new System.Windows.Forms.Button();
             this.cbClosePresetOnDownloadStart = new System.Windows.Forms.CheckBox();
+            this.cbCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cbDefaultPresetLocation
@@ -81,11 +82,22 @@
             this.cbClosePresetOnDownloadStart.Text = "Close preset on download start?";
             this.cbClosePresetOnDownloadStart.UseVisualStyleBackColor = true;
             // 
+            // cbCheckForUpdates
+            // 
+            this.cbCheckForUpdates.AutoSize = true;
+            this.cbCheckForUpdates.Location = new System.Drawing.Point(12, 113);
+            this.cbCheckForUpdates.Name = "cbCheckForUpdates";
+            this.cbCheckForUpdates.Size = new System.Drawing.Size(128, 17);
+            this.cbCheckForUpdates.TabIndex = 7;
+            this.cbCheckForUpdates.Text = "Check For Updates?";
+            this.cbCheckForUpdates.UseVisualStyleBackColor = true;
+            // 
             // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cbCheckForUpdates);
             this.Controls.Add(this.cbClosePresetOnDownloadStart);
             this.Controls.Add(this.btnBrowsePresetLocation);
             this.Controls.Add(this.cbPromptSaveOnClose);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.CheckBox cbPromptSaveOnClose;
         private System.Windows.Forms.Button btnBrowsePresetLocation;
         private System.Windows.Forms.CheckBox cbClosePresetOnDownloadStart;
+        private System.Windows.Forms.CheckBox cbCheckForUpdates;
     }
 }
