@@ -70,9 +70,7 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationIcon>ydl-ui_1.ico</ApplicationIcon>
   </PropertyGroup>
@@ -126,6 +124,7 @@
     <Compile Include="Forms\FormUrlsEditor.Designer.cs">
       <DependentUpon>FormUrlsEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\UiState.cs" />
     <Compile Include="YoutubeDL\Keyword.cs" />
     <Compile Include="Controls\KeywordTextBox.cs">
       <SubType>Component</SubType>

@@ -3,14 +3,11 @@ using Maxstupo.YdlUi.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Xml.Serialization;
 
 namespace Maxstupo.YdlUi.YoutubeDL {
 
 
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLGeneral {
         [FlagArgument("--help")] public bool Help { get; set; }
@@ -41,8 +38,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLNetwork {
         [Argument("--proxy")] public string Proxy { get; set; } = null;
@@ -53,8 +48,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         [FlagArgument("--force-ipv6")] public bool ForceIpv6 { get; set; }
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLGeoRestriction {
         [Argument("--geo-verification-proxy")] public string GeoVerificationProxy { get; set; } = null;
@@ -67,8 +60,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLVideoSelection {
         [Argument("--playlist-start")] public int? PlaylistStart { get; set; } = null;
@@ -101,8 +92,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLDownload {
         [Argument("--limit-rate")] public ByteSize? LimitRate { get; set; } = null;
@@ -128,8 +117,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLFilesystem {
         [Argument("--batch-file")] public string BatchFile { get; set; } = null;
@@ -157,8 +144,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLThumbnail {
         [FlagArgument("--write-thumbnail")] public bool WriteThumbnail { get; set; }
@@ -167,8 +152,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLVerbosity {
 
@@ -199,13 +182,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-    [Serializable]
-    public class KeyValue {
-        [XmlAttribute("key")] public string Key { get; set; }
-        [XmlAttribute("value")] public string Value { get; set; }
-    }
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLWorkarounds {
         [Argument("--encoding")] public string Encoding { get; set; } = null;
@@ -215,13 +191,8 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         [Argument("--user-agent")] public string UserAgent { get; set; } = null;
         [Argument("--referer")] public string Referer { get; set; } = null;
 
-        [XmlIgnore] [Argument("--add-header")] public Dictionary<string, string> Headers { get; set; } = new Dictionary<string, string>();
-        [XmlArray("Headers")]
-        [XmlArrayItem("Header")]
-        public List<KeyValue> HeadersProxy {
-            get { return Headers.Select(i => new KeyValue() { Key = i.Key, Value = i.Value }).ToList(); }
-            set { Headers.Clear(); foreach (KeyValue entry in value) Headers.Add(entry.Key, entry.Value); }
-        }
+        [Argument("--add-header")] public Dictionary<string, string> Headers { get; set; } = new Dictionary<string, string>();
+
 
 
         [FlagArgument("--bidi-workaround")] public bool BidiWorkaround { get; set; }
@@ -231,8 +202,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLVideoFormat {
         [Argument("--format")] public string Format { get; set; } = null;
@@ -244,8 +213,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLSubtitle {
         [FlagArgument("--write-sub")] public bool WriteSub { get; set; }
@@ -258,8 +225,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLAuthentication {
         [Argument("--username")] public string Username { get; set; } = null;
@@ -270,8 +235,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLAdobePass {
         [Argument("--ap-mso")] public string ApMso { get; set; } = null;
@@ -281,8 +244,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLPostProcessing {
 
@@ -299,28 +260,16 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         [Argument("--metadata-from-title")] public string MetadataFromTitle { get; set; } = null;
         [FlagArgument("--xattrs")] public bool XAttrs { get; set; }
         [Argument("--fixup")] public string Fixup { get; set; } = null;
-        [XmlIgnore] [FlagArgument("--prefer-avconv")] public bool PreferAvconv { get; set; }
-        [XmlIgnore] [FlagArgument("--prefer-ffmpeg")] public bool PreferFFmpeg { get; set; }
-        [XmlIgnore] [Argument("--ffmpeg-location")] public string FFmpegLocation { get; set; } = null;
+        [FlagArgument("--prefer-avconv")] public bool PreferAvconv { get; set; }
+        [FlagArgument("--prefer-ffmpeg")] public bool PreferFFmpeg { get; set; }
+        [Argument("--ffmpeg-location")] public string FFmpegLocation { get; set; } = null;
         [Argument("--exec")] public string Exec { get; set; } = null;
         [Argument("--convert-subs", EnumCase = EnumCasePolicy.LOWERCASE)] public SubtitleFormat? ConvertSubs { get; set; } = null;
     }
 
-
-    [Serializable]
     [ArgumentContainer]
     public class YoutubeDLArguments {
         [Argument("", QuotePolicy = QuotePolicy.ALWAYS, Order = int.MaxValue)] public string Url { get; set; } = null;
-
-        // No argument attributes are used for these properties as they are only used for XML presets.
-        public string DownloadDirectory { get; set; }
-
-        public FilesizeUnit FilesizeMinUnit { get; set; }
-        public FilesizeUnit FilesizeMaxUnit { get; set; }
-        public FilesizeUnit LimitRateUnit { get; set; }
-
-        public VideoQuality Vq { get; set; } = new VideoQuality();
-        public bool CustomFormat { get; set; }
 
         public YoutubeDLGeneral General { get; set; } = new YoutubeDLGeneral();
         public YoutubeDLNetwork Network { get; set; } = new YoutubeDLNetwork();
@@ -333,7 +282,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public YoutubeDLWorkarounds Workarounds { get; set; } = new YoutubeDLWorkarounds();
         public YoutubeDLVideoFormat VideoFormat { get; set; } = new YoutubeDLVideoFormat();
         public YoutubeDLSubtitle Subtitle { get; set; } = new YoutubeDLSubtitle();
-        [XmlIgnore] public YoutubeDLAuthentication Authentication { get; set; } = new YoutubeDLAuthentication(); // XmlIgnore auth arguments to prevent password being added to XML file presets.
+        public YoutubeDLAuthentication Authentication { get; set; } = new YoutubeDLAuthentication(); // XmlIgnore auth arguments to prevent password being added to XML file presets.
         public YoutubeDLAdobePass AdobePass { get; set; } = new YoutubeDLAdobePass();
         public YoutubeDLPostProcessing PostProcessing { get; set; } = new YoutubeDLPostProcessing();
     }

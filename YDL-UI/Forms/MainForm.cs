@@ -11,6 +11,8 @@ using Maxstupo.YdlUi.Util;
 using Maxstupo.CommandBuilder;
 using Maxstupo.YdlUi.YoutubeDL;
 using System.Xml.Serialization;
+using Maxstupo.YdlUi.Util.UiStore;
+using Maxstupo.YdlUi.Controls;
 
 namespace Maxstupo.YdlUi.Forms {
 
@@ -20,9 +22,34 @@ namespace Maxstupo.YdlUi.Forms {
         private static readonly string BIN_FOLDER_NAME = "bin";
         private static readonly string ROOT_DIRECTORY = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
 
+        private readonly Type[] presetSavableTypes = {
+            typeof(TextBox),
+            typeof(CheckBox),
+            typeof(RadioButton),
+            typeof(ComboBox),
+            typeof(NumericUpDown),
+            typeof(DateTimePicker),
+            typeof(DataGridView),
+            typeof(KeywordTextBox)
+        };
+        private UiState uiState = new UiState();
+        private UiState defaultUiState;
+
         private bool isYoutube;
         private string saveLocation = null;
-        private bool needsSave = false;
+
+        private bool needsSave;
+        private bool NeedsSave {
+            get { return needsSave; }
+            set {
+                if (value) {
+                    Text = defaultTitle + " - " + (saveLocation ?? "<untitled>") + "*";
+                } else {
+                    Text = defaultTitle + " - " + (saveLocation ?? "<untitled>");
+                }
+                needsSave = value;
+            }
+        }
 
         private string ffmpegPath;
         private string defaultTitle;
@@ -61,14 +88,27 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void MainForm_Load(object sender, EventArgs e) {
-            defaultTitle = Text;
             Application.Idle += Application_Idle;
+
+            defaultTitle = Text;
+
             this.ResizeBegin += (s, ee) => { this.SuspendLayout(); };
             this.ResizeEnd += (s, ee) => { this.ResumeLayout(true); };
             saveToolStripMenuItem.Enabled = false;
 
             ffmpegPath = Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "ffmpeg.exe");
             api = new YoutubeDLApi(Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "youtube-dl.exe"), new YoutubeDLArguments());
+
+            Func<Control, SerializedValue> kTextboxSeralizer = control => {
+                return new SerializedValue(((KeywordTextBox)control).Text);
+            };
+            Action<Control, SerializedValue> kTextboxDeseralizer = (c, val) => {
+                ((KeywordTextBox)c).Text = val.Value;
+            };
+
+
+            uiState.Serializers.Add(typeof(KeywordTextBox), kTextboxSeralizer);
+            uiState.Deserializers.Add(typeof(KeywordTextBox), kTextboxDeseralizer);
 
 
             CheckVersion();
@@ -88,10 +128,13 @@ namespace Maxstupo.YdlUi.Forms {
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
             cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
 
+            defaultUiState = new UiState(uiState);
+            defaultUiState.CreateFrom(tabControl, presetSavableTypes); // Create a default ui state for making "New" presets.
+
 
             clg = ControlListenGroup.New();
             clg.OnChanged += () => {
-                needsSave = true;
+                NeedsSave = true;
 
                 string exe = api.Executable;
                 string urls = api.Arguments.Url;
@@ -118,15 +161,6 @@ namespace Maxstupo.YdlUi.Forms {
             });
 
             txtUrl.BindValueTo(v => api.Arguments.Url = v).Listen(clg);
-            txtDownloadDirectory.BindValueTo(v => api.Arguments.DownloadDirectory = v);
-
-            cbVqPreferred.BindValueTo(v => api.Arguments.Vq.ResPreferred = v);
-            cbVqFallback.BindValueTo(v => api.Arguments.Vq.ResFallback = v);
-
-            cbFpsPreferred.BindValueTo(v => api.Arguments.Vq.FpsPreferred = v);
-            cbFpsFallback.BindValueTo(v => api.Arguments.Vq.FpsFallback = v);
-
-            cbCustomFormatSelector.BindValueTo(v => api.Arguments.CustomFormat = v);
 
             nudVideoQualityWidth.BindEnableTo(rbVqCustom);
             nudVideoQualityHeight.BindEnableTo(rbVqCustom);
@@ -154,14 +188,12 @@ namespace Maxstupo.YdlUi.Forms {
             txtMatchFilter.BindEnableTo(cbMatchFilter).BindValueTo(v => api.Arguments.VideoSelection.MatchFilter = v, cbMatchFilter, clg);
 
             void filesizeMinEvt(float? v) {
-                api.Arguments.FilesizeMinUnit = (FilesizeUnit)cbxFilesizeMinUnits.SelectedItem;
                 api.Arguments.VideoSelection.MinFilesize = (v == null || v == 0) ? (ByteSize?)null : ByteSize.From(v.Value, (FilesizeUnit)cbxFilesizeMinUnits.SelectedItem);
             }
             cbxFilesizeMinUnits.BindEnableTo(cbFilesizeMin).BindValueTo(obj => filesizeMinEvt(nudFilesizeMin.GetValueFloat(cbFilesizeMin))).Listen(clg);
             nudFilesizeMin.BindEnableTo(cbFilesizeMin).BindValueTo(filesizeMinEvt, cbFilesizeMin, clg);
 
             void filesizeMaxEvt(float? v) {
-                api.Arguments.FilesizeMaxUnit = (FilesizeUnit)cbxFilesizeMaxUnits.SelectedItem;
                 api.Arguments.VideoSelection.MaxFilesize = (v == null || v == 0) ? (ByteSize?)null : ByteSize.From(v.Value, (FilesizeUnit)cbxFilesizeMaxUnits.SelectedItem);
             }
             cbxFilesizeMaxUnits.BindEnableTo(cbFilesizeMax).BindValueTo(obj => filesizeMaxEvt(nudFilesizeMax.GetValueFloat(cbFilesizeMax))).Listen(clg);
@@ -211,7 +243,6 @@ namespace Maxstupo.YdlUi.Forms {
 
             void limitRateEvt(float? v) {
                 api.Arguments.Download.LimitRate = (v == null || v == 0) ? (ByteSize?)null : ByteSize.From(v.Value, (FilesizeUnit)cbxLimitRateUnits.SelectedItem);
-                api.Arguments.LimitRateUnit = (FilesizeUnit)cbxLimitRateUnits.SelectedItem;
             }
             cbxLimitRateUnits.BindEnableTo(cbLimitRate).BindValueTo(obj => limitRateEvt(nudLimitRate.GetValueFloat(cbLimitRate))).Listen(clg);
             nudLimitRate.BindEnableTo(cbLimitRate).BindValueTo(limitRateEvt, cbLimitRate, clg);
@@ -327,7 +358,7 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         }
-        
+
         private void Application_Idle(object sender, EventArgs e) {
             txtUrl.BackColor = txtUrl.IsValidUrl() ? Color.LightGreen : LightRed;
             txtDownloadDirectory.BackColor = txtDownloadDirectory.ExistsDirectory() ? Color.LightGreen : LightRed;
@@ -390,9 +421,7 @@ namespace Maxstupo.YdlUi.Forms {
             } else if (rbFpsCustom.Checked) {
                 fps = nudFpsCustom.GetValueInt(null).Value;
             }
-            VideoQuality vq = new VideoQuality(width, height, fps, resPreferred, resFallback, fpsPreferred, fpsFallback);
-            api.Arguments.Vq = vq;
-            return vq;
+            return new VideoQuality(width, height, fps, resPreferred, resFallback, fpsPreferred, fpsFallback);
         }
 
         #region Drag & Drop
@@ -443,15 +472,13 @@ namespace Maxstupo.YdlUi.Forms {
 
                 api.Execute(txtDownloadDirectory.Text);
             }
-            txtUrl.Text = string.Empty;
+            //txtUrl.Text = string.Empty;
         }
 
 
         private void btnStartDownload_Click_1(object sender, EventArgs e) {
             StartDownload();
         }
-
-
 
         private void btnOpenPlaylistItemsEditor_Click(object sender, EventArgs e) {
             using (FormPlaylistItemsEditor dialog = new FormPlaylistItemsEditor(txtPlaylistRange.Text)) {
@@ -501,210 +528,12 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
 
-        private void UpdateControls(YoutubeDLArguments args) {
-            txtUrl.Text = args.Url ?? string.Empty;
-            txtDownloadDirectory.Text = args.DownloadDirectory ?? string.Empty;
-
-            cbDownloadArchive.Checked = args.VideoSelection.DownloadArchive != null;
-            txtDownloadArchive.Text = args.VideoSelection.DownloadArchive ?? string.Empty;
-
-            cbFileTemplate.Checked = args.FileSystem.OutputTemplate != null;
-            txtFileTemplate.Text = args.FileSystem.OutputTemplate ?? string.Empty;
-
-            cbWriteDescription.Checked = args.FileSystem.WriteDescription;
-            cbWriteAnnotations.Checked = args.FileSystem.WriteAnnotations;
-            cbWriteThumbnail.Checked = args.Thumbnail.WriteThumbnail;
-            cbRestrictFilenames.Checked = args.FileSystem.RestrictFilenames;
-            cbNoOverwrites.Checked = args.FileSystem.NoOverwrites;
-
-            cbIgnoreErrors.Checked = args.General.IgnoreErrors;
-            cbAbortOnErrors.Checked = args.General.AbortOnError;
-            cbMarkWatched.Checked = args.General.MarkWatched;
-
-            cbRecodeFormat.Checked = args.PostProcessing.RecodeVideo.HasValue;
-            if (args.PostProcessing.RecodeVideo.HasValue) cbxRecodeFormat.SelectedItem = args.PostProcessing.RecodeVideo.Value;
-
-            cbDate.Checked = args.VideoSelection.Date.HasValue;
-            if (args.VideoSelection.Date.HasValue) dtpDate.Value = args.VideoSelection.Date.Value;
-
-            cbDateAfter.Checked = args.VideoSelection.DateAfter.HasValue;
-            if (args.VideoSelection.DateAfter.HasValue) dtpDateAfter.Value = args.VideoSelection.DateAfter.Value;
-
-            cbDateBefore.Checked = args.VideoSelection.DateBefore.HasValue;
-            if (args.VideoSelection.DateBefore.HasValue) dtpDateBefore.Value = args.VideoSelection.DateBefore.Value;
-
-
-
-            cbFilesizeMin.Checked = args.VideoSelection.MinFilesize.HasValue;
-            if (args.VideoSelection.MinFilesize.HasValue) {
-                double bytes = args.VideoSelection.MinFilesize.Value.Bytes;
-                nudFilesizeMin.Value = (decimal)ByteSize.FromBytes(bytes).ToUnit(args.FilesizeMinUnit);
-                cbxFilesizeMinUnits.SelectedItem = args.FilesizeMinUnit;
-            }
-
-            cbFilesizeMax.Checked = args.VideoSelection.MaxFilesize.HasValue;
-            if (args.VideoSelection.MaxFilesize.HasValue) {
-                double bytes = args.VideoSelection.MaxFilesize.Value.Bytes;
-                nudFilesizeMax.Value = (decimal)ByteSize.FromBytes(bytes).ToUnit(args.FilesizeMaxUnit);
-                cbxFilesizeMaxUnits.SelectedItem = args.FilesizeMaxUnit;
-            }
-
-            cbMinViews.Checked = args.VideoSelection.MinViews.HasValue;
-            if (args.VideoSelection.MinViews.HasValue) nudViewRangeMin.Value = args.VideoSelection.MinViews.Value;
-
-            cbMaxViews.Checked = args.VideoSelection.MaxViews.HasValue;
-            if (args.VideoSelection.MaxViews.HasValue) nudViewRangeMax.Value = args.VideoSelection.MaxViews.Value;
-
-            cbAgeLimit.Checked = args.VideoSelection.AgeLimit.HasValue;
-            if (args.VideoSelection.AgeLimit.HasValue) nudAgeLimit.Value = args.VideoSelection.AgeLimit.Value;
-
-            cbMatchTitle.Checked = args.VideoSelection.MatchTitle != null;
-            txtMatchTitle.Text = args.VideoSelection.MatchTitle ?? string.Empty;
-
-            cbRejectTitle.Checked = args.VideoSelection.RejectTitle != null;
-            txtRejectTitle.Text = args.VideoSelection.RejectTitle ?? string.Empty;
-
-            cbMaxDownloads.Checked = args.VideoSelection.MaxDownloads.HasValue;
-            if (args.VideoSelection.MaxDownloads.HasValue) nudMaxDownloads.Value = args.VideoSelection.MaxDownloads.Value;
-
-            cbMatchFilter.Checked = args.VideoSelection.MatchFilter != null;
-            txtMatchFilter.Text = args.VideoSelection.MatchFilter ?? string.Empty;
-
-            cbPlaylistStart.Checked = args.VideoSelection.PlaylistStart.HasValue;
-            if (args.VideoSelection.PlaylistStart.HasValue) nudPlaylistStart.Value = args.VideoSelection.PlaylistStart.Value;
-
-            cbPlaylistEnd.Checked = args.VideoSelection.PlaylistEnd.HasValue;
-            if (args.VideoSelection.PlaylistEnd.HasValue) nudPlaylistEnd.Value = args.VideoSelection.PlaylistEnd.Value;
-
-            cbPlaylistRange.Checked = args.VideoSelection.PlaylistItems != null;
-            txtPlaylistRange.Text = args.VideoSelection.PlaylistItems ?? string.Empty;
-
-            cbPlaylistReversed.Checked = args.Download.PlaylistReverse;
-            cbPlaylistRandom.Checked = args.Download.PlaylistRandom;
-
-            if (args.VideoSelection.YesPlaylist) {
-                rbVideoOnly.Checked = true;
-            } else if (args.VideoSelection.NoPlaylist) {
-                rbPlaylistOnly.Checked = true;
-            } else {
-                rbPlaylistAndVideo.Checked = true;
-            }
-
-            cbVqPreferred.Checked = args.Vq.ResPreferred;
-            cbVqFallback.Checked = args.Vq.ResFallback;
-            cbFpsPreferred.Checked = args.Vq.FpsPreferred;
-            cbFpsFallback.Checked = args.Vq.FpsFallback;
-
-            if (args.Vq.Width == 3840 && args.Vq.Height == 2160) {
-                rbVq2160p.Checked = true;
-            } else if (args.Vq.Width == 2560 && args.Vq.Height == 1440) {
-                rbVq1440p.Checked = true;
-            } else if (args.Vq.Width == 1920 && args.Vq.Height == 1080) {
-                rbVq1080p.Checked = true;
-            } else if (args.Vq.Width == 1280 && args.Vq.Height == 720) {
-                rbVq720p.Checked = true;
-            } else if (args.Vq.Width == 854 && args.Vq.Height == 480) {
-                rbVq480p.Checked = true;
-            } else if (args.Vq.Width == 640 && args.Vq.Height == 360) {
-                rbVq360p.Checked = true;
-            } else if (args.Vq.Width == 426 && args.Vq.Height == 240) {
-                rbVq240p.Checked = true;
-            } else {
-                rbVqCustom.Checked = true;
-                nudVideoQualityWidth.Value = args.Vq.Width;
-                nudVideoQualityHeight.Value = args.Vq.Height;
-            }
-
-            if (args.Vq.Fps == 144) {
-                rbFps144.Checked = true;
-            } else if (args.Vq.Fps == 120) {
-                rbFps120.Checked = true;
-            } else if (args.Vq.Fps == 60) {
-                rbFps60.Checked = true;
-            } else if (args.Vq.Fps == 30) {
-                rbFps30.Checked = true;
-            } else if (args.Vq.Fps == 25) {
-                rbFps25.Checked = true;
-            } else {
-                rbFpsCustom.Checked = true;
-                nudFpsCustom.Value = args.Vq.Fps;
-            }
-
-            cbReferer.Checked = args.Workarounds.Referer != null;
-            txtReferer.Text = args.Workarounds.Referer ?? string.Empty;
-
-            cbUserAgent.Checked = args.Workarounds.UserAgent != null;
-            txtUserAgent.Text = args.Workarounds.UserAgent ?? string.Empty;
-
-            cbProxy.Checked = args.Network.Proxy != null;
-            txtProxy.Text = args.Network.Proxy ?? string.Empty;
-
-            cbSocketTimeout.Checked = args.Network.SocketTimeout.HasValue;
-            if (args.Network.SocketTimeout.HasValue) nudSocketTimeout.Value = args.Network.SocketTimeout.Value;
-
-            cbSourceAddress.Checked = args.Network.SourceAddress != null;
-            txtSourceAddress.Text = args.Network.SourceAddress ?? string.Empty;
-
-            if (args.Network.ForceIpv4) {
-                rbForceIpv4.Checked = true;
-            } else if (args.Network.ForceIpv6) {
-                rbForceIpv6.Checked = true;
-            } else {
-                rbAny.Checked = true;
-            }
-
-            cbLimitRate.Checked = args.Download.LimitRate.HasValue;
-            if (args.Download.LimitRate.HasValue) {
-                double bytes = args.Download.LimitRate.Value.Bytes;
-                nudLimitRate.Value = (decimal)ByteSize.FromBytes(bytes).ToUnit(args.LimitRateUnit);
-                cbxLimitRateUnits.SelectedItem = args.LimitRateUnit;
-            }
-
-            cbRetries.Checked = args.Download.Retries != null;
-            cbRetriesInf.Checked = args.Download.Retries == "infinite";
-            nudRetries.Minimum = cbRetriesInf.Checked ? -1 : 0;
-            nudRetries.Value = cbRetries.Checked ? (cbRetriesInf.Checked ? -1 : int.Parse(args.Download.Retries)) : 0;
-
-            cbFragmentRetries.Checked = args.Download.FragmentRetries != null;
-            cbFragmentRetriesInf.Checked = args.Download.FragmentRetries == "infinite";
-            nudFragmentRetries.Minimum = cbFragmentRetriesInf.Checked ? -1 : 0;
-            nudFragmentRetries.Value = cbFragmentRetries.Checked ? (cbFragmentRetriesInf.Checked ? -1 : int.Parse(args.Download.FragmentRetries)) : 0;
-
-            rbSleepDefault.Checked = !args.Workarounds.SleepInterval.HasValue;
-            if (args.Workarounds.MaxSleepInterval.HasValue && args.Workarounds.MinSleepInterval.HasValue) {
-                rbSleepRange.Checked = true;
-                nudSleepRangeMin.Value = args.Workarounds.MinSleepInterval.Value;
-                nudSleepRangeMax.Value = args.Workarounds.MaxSleepInterval.Value;
-            } else if (args.Workarounds.SleepInterval.HasValue) {
-                rbSleepValue.Checked = true;
-                nudSleepValue.Value = args.Workarounds.SleepInterval.Value;
-            }
-
-            cbCustomFormatSelector.Checked = args.CustomFormat;
-            txtCustomFormatSelector.Text = args.VideoFormat.Format;
-
-            dgvHeaders.Rows.Clear();
-            foreach (KeyValuePair<string, string> entry in args.Workarounds.Headers) {
-                if (string.IsNullOrWhiteSpace(entry.Key) || string.IsNullOrWhiteSpace(entry.Value))
-                    continue;
-                dgvHeaders.Rows.Add(new object[] { entry.Key, entry.Value });
-            }
-
-            // Note: Authentication not saved in preset.
-
-            api.Arguments = args;
-            clg.Trigger();
-            needsSave = false;
-        }
-
         private void SavePreset(string location) {
-            XmlSerializer serializer = new XmlSerializer(typeof(YoutubeDLArguments));
-            using (StreamWriter sw = new StreamWriter(location, false, Encoding.UTF8)) {
-                serializer.Serialize(sw, api.Arguments);
-                saveLocation = location;
-                saveToolStripMenuItem.Enabled = true;
+            saveLocation = location;
+            saveToolStripMenuItem.Enabled = true;
+            NeedsSave = false;
 
-            }
+            uiState.CreateFrom(tabControl, presetSavableTypes).Save(location);
         }
 
         private void OpenPreset(string location) {
@@ -713,16 +542,14 @@ namespace Maxstupo.YdlUi.Forms {
                 return;
             }
 
-            XmlSerializer serializer = new XmlSerializer(typeof(YoutubeDLArguments));
-            using (StreamReader sr = new StreamReader(location)) {
-                YoutubeDLArguments args = serializer.Deserialize(sr) as YoutubeDLArguments;
-                UpdateControls(args);
+            uiState.Load(location).Apply(tabControl, presetSavableTypes);
 
-                saveLocation = location;
-                saveToolStripMenuItem.Enabled = true;
+            saveLocation = location;
+            saveToolStripMenuItem.Enabled = true;
+            NeedsSave = false;
 
-                Text = defaultTitle + "  -  " + location;
-            }
+            //  Text = defaultTitle + "  -  " + location;
+
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -741,7 +568,7 @@ namespace Maxstupo.YdlUi.Forms {
                 if (dialog.ShowDialog(this) == DialogResult.OK) {
                     SavePreset(dialog.FileName);
 
-                    Text = defaultTitle + "  -  " + saveLocation;
+                    //    Text = defaultTitle + "  -  " + saveLocation;
                 }
             }
         }
@@ -769,19 +596,15 @@ namespace Maxstupo.YdlUi.Forms {
             saveLocation = null;
             saveToolStripMenuItem.Enabled = false;
 
-            Text = defaultTitle;
-            rbVq2160p.Checked = true;
+            //  Text = defaultTitle;
 
-            YoutubeDLArguments args = new YoutubeDLArguments();
-            args.Vq = GetVideoQuality();
-            UpdateControls(args);
-            api.Arguments = args;
+            defaultUiState.Apply(tabControl, presetSavableTypes);
 
-            needsSave = true;
+            NeedsSave = true;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if (Properties.Settings.Default.PromptSaveOnClose && needsSave) {
+            if (Properties.Settings.Default.PromptSaveOnClose && NeedsSave) {
 
                 if (MessageBox.Show(this, "You are exiting without saving, do you want to save?", "Are you sure you want to exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                     if (saveLocation == null) {
