@@ -41,6 +41,16 @@ namespace Maxstupo.YdlUi.Forms {
         private UiState uiState = new UiState();
         private UiState defaultUiState;
 
+        public string DefaultDownloadDirectory {
+            get {
+                try {
+                    return Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+                } catch (PlatformNotSupportedException ex) {
+                    return string.Empty;
+                }
+            }
+        }
+
         private bool isYoutube;
         private string saveLocation = null;
 
@@ -141,7 +151,7 @@ namespace Maxstupo.YdlUi.Forms {
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
             cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
 
-
+            txtDownloadDirectory.Text = DefaultDownloadDirectory;
 
             clg = ControlListenGroup.New();
             clg.OnChanged += () => {
@@ -469,8 +479,6 @@ namespace Maxstupo.YdlUi.Forms {
             }
         }
 
-
-
         private void StartDownload() {
             if (!txtUrl.IsValidUrl())
                 return;
@@ -478,13 +486,17 @@ namespace Maxstupo.YdlUi.Forms {
             api.Arguments.PostProcessing.FFmpegLocation = ffmpegPath;
             api.Arguments.PostProcessing.PreferFFmpeg = true;
 
+            string downloadDirectory = DefaultDownloadDirectory;
+            if (string.IsNullOrWhiteSpace(downloadDirectory) || !string.IsNullOrWhiteSpace(txtDownloadDirectory.Text))
+                downloadDirectory = txtDownloadDirectory.Text;
+
             string[] urls = txtUrl.Text.Split(new string[] { ";", "," }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string url in urls) {
                 if (!Utils.IsValidUrl(url))
                     continue;
                 api.Arguments.Url = url;
 
-                api.Execute(txtDownloadDirectory.Text);
+                api.Execute(downloadDirectory);
             }
 
             if (Properties.Settings.Default.ClosePresetOnDownloadStart)
