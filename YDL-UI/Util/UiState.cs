@@ -13,9 +13,16 @@ namespace Maxstupo.YdlUi.Util.UiStore {
         public string Value { get; }
         public Type Type { get; }
 
+        public SerializedValue(SerializedValue copy) : this(copy.Value, copy.Type) {
+        }
+
         public SerializedValue(string value, Type type = null) {
             Value = value;
             Type = type;
+        }
+
+        public SerializedValue Copy() {
+            return new SerializedValue(this);
         }
     }
 
@@ -29,11 +36,17 @@ namespace Maxstupo.YdlUi.Util.UiStore {
         public Dictionary<Type, Action<Control, SerializedValue>> Deserializers { get; private set; } = new Dictionary<Type, Action<Control, SerializedValue>>();
 
         public UiState(UiState copy) {
+            this.Clear();
+
             this.Serializers = new Dictionary<Type, Func<Control, SerializedValue>>(copy.Serializers);
             this.Deserializers = new Dictionary<Type, Action<Control, SerializedValue>>(copy.Deserializers);
-            this.states = new List<ControlState>(copy.states);
+
             this.rootControl = copy.rootControl;
             this.whitelist = copy.whitelist;
+
+
+            foreach (ControlState controlState in copy.states)
+                this.states.Add(controlState.Copy());
         }
 
         public UiState(Control rootControl = null, params Type[] whitelist) {
@@ -290,10 +303,17 @@ namespace Maxstupo.YdlUi.Util.UiStore {
         public string Key { get; }
         public SerializedValue Value { get; }
 
+        public ControlState(ControlState copy) : this(copy.State, copy.Key, new SerializedValue(copy.Value)) {
+        }
+
         public ControlState(UiState state, string key, SerializedValue value) {
             this.State = state;
             this.Key = key;
             this.Value = value;
+        }
+
+        public ControlState Copy() {
+            return new ControlState(this);
         }
 
         public void Write(XmlWriter w) {

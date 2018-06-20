@@ -128,8 +128,6 @@ namespace Maxstupo.YdlUi.Forms {
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
             cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
 
-            defaultUiState = new UiState(uiState);
-            defaultUiState.CreateFrom(tabControl, presetSavableTypes); // Create a default ui state for making "New" presets.
 
 
             clg = ControlListenGroup.New();
@@ -148,6 +146,9 @@ namespace Maxstupo.YdlUi.Forms {
                 api.Arguments.Url = urls;
             };
             CreateBindings(clg);
+
+            defaultUiState = new UiState(uiState);
+            defaultUiState.CreateFrom(tabControl, presetSavableTypes); // Create a default ui state for making "New" presets.
 
 
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.DefaultPresetLocation)) {
@@ -338,7 +339,7 @@ namespace Maxstupo.YdlUi.Forms {
                     api.Arguments.VideoFormat.Format = GetVideoQuality().FormatSelector;
 
                 VideoQuality vq = GetVideoQuality();
-                if (!rbVqCustom.Checked) {
+                if (!rbVqCustom.Checked && vq.Width > 0 && vq.Height > 0) {
                     nudVideoQualityWidth.Value = vq.Width;
                     nudVideoQualityHeight.Value = vq.Height;
                 }
