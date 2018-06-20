@@ -201,16 +201,7 @@ namespace Maxstupo.YdlUi.Util {
         }
 
         #endregion
-
-        public static void AppendLine(this TextBox src, string line, int totalLines = 500) {
-            if (src.Lines.Length > totalLines)
-                src.Lines = src.Lines.Skip(1).ToArray();
-
-
-            src.AppendText(line);
-            src.AppendText(Environment.NewLine);
-        }
-
+        
         public static bool IsTextValid(this TextBox src, CheckBox enable) {
             if (enable != null && !enable.Checked)
                 return false;
@@ -238,22 +229,7 @@ namespace Maxstupo.YdlUi.Util {
                 return false;
             return !string.IsNullOrWhiteSpace(src.Text);
         }
-        public static string RemoveAfterOccurances(this string src, char target, int times = 1) {
-            int occurances = 0;
-            int pos = 0;
-
-            for (int i = 0; i < src.Length; i++) {
-                pos = i;
-                if (src[i] == target)
-                    occurances++;
-
-
-                if (occurances >= times)
-                    return src.Remove(0, i + 1);
-            }
-            return src.Remove(0, pos);
-        }
-
+     
         public static T Get<T>(this T[] src, int index) {
             if (index < 0 || index >= src.Length)
                 return default(T);
@@ -265,19 +241,23 @@ namespace Maxstupo.YdlUi.Util {
                 return null;
             return src.ValueToInt32();
         }
+
         public static float? GetValueFloat(this NumericUpDown src, CheckBox enable = null) {
             if (enable != null && !enable.Checked)
                 return null;
             return (float)src.Value;
         }
+
         public static float? GetValueFloat(this NumericUpDown src, RadioButton enable = null) {
             if (enable != null && !enable.Checked)
                 return null;
             return (float)src.Value;
         }
+
         public static int ValueToInt32(this NumericUpDown src) {
             return Decimal.ToInt32(src.Value);
         }
+
         public static string GetText(this TextBox src, RadioButton enabled = null) {
             return src.IsTextValid(enabled) ? src.Text : null;
         }
@@ -305,6 +285,7 @@ namespace Maxstupo.YdlUi.Util {
             src.Enabled = cb.Checked;
             return src;
         }
+
         public static T BindEnableTo<T>(this T src, CheckBox cb) where T : Control {
             cb.CheckedChanged += (sender, e) => {
                 src.Enabled = cb.Checked;
