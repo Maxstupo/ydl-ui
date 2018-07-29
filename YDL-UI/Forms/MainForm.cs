@@ -197,11 +197,11 @@ namespace Maxstupo.YdlUi.Forms {
 
             cbIgnoreErrors.BindValueTo(v => api.Arguments.General.IgnoreErrors = v).Listen(clg);
             cbAbortOnErrors.BindValueTo(v => api.Arguments.General.AbortOnError = v).Listen(clg);
-            cbMarkWatched.BindValueTo(v => api.Arguments.General.MarkWatched = isYoutube ? v : false, cbUsernamePassword, clg);
 
             #endregion
 
             #region Video Selection
+
             nudPlaylistStart.BindEnableTo(cbPlaylistStart).BindValueTo(v => api.Arguments.VideoSelection.PlaylistStart = (int?)v, cbPlaylistStart, clg);
             nudPlaylistEnd.BindEnableTo(cbPlaylistEnd).BindValueTo(v => api.Arguments.VideoSelection.PlaylistEnd = (int?)v, cbPlaylistEnd, clg);
             txtPlaylistRange.BindEnableTo(cbPlaylistRange).BindValueTo(v => api.Arguments.VideoSelection.PlaylistItems = v, cbPlaylistRange, clg);
@@ -235,7 +235,6 @@ namespace Maxstupo.YdlUi.Forms {
             rbPlaylistOnly.BindValueTo(v => api.Arguments.VideoSelection.YesPlaylist = v).Listen(clg);
             rbVideoOnly.BindValueTo(v => api.Arguments.VideoSelection.NoPlaylist = v).Listen(clg);
 
-            nudAgeLimit.BindEnableTo(cbAgeLimit).BindValueTo(v => api.Arguments.VideoSelection.AgeLimit = (int?)v, cbAgeLimit, clg);
             btnBrowseDownloadArchive.BindEnableTo(cbDownloadArchive);
             txtDownloadArchive.BindEnableTo(cbDownloadArchive).BindValueTo(v => {
                 api.Arguments.VideoSelection.DownloadArchive = v;
@@ -402,8 +401,6 @@ namespace Maxstupo.YdlUi.Forms {
                 nudFragmentRetries.Minimum = 0;
             }
 
-            cbMarkWatched.Enabled = isYoutube && cbUsernamePassword.Checked;
-
         }
 
         private VideoQuality GetVideoQuality() {
@@ -540,7 +537,8 @@ namespace Maxstupo.YdlUi.Forms {
         private void btnBrowseDownloadArchive_Click_1(object sender, EventArgs e) {
             using (SaveFileDialog dialog = new SaveFileDialog()) {
                 dialog.Title = "Select download archive file...";
-                dialog.OverwritePrompt = true;
+                dialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                dialog.OverwritePrompt = false;
                 dialog.InitialDirectory = txtDownloadArchive.Text;
                 if (dialog.ShowDialog() == DialogResult.OK)
                     txtDownloadArchive.Text = dialog.FileName;

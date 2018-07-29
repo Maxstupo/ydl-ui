@@ -44,7 +44,6 @@
             this.cbxOutputFormat = new System.Windows.Forms.ComboBox();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
-            this.cbMarkWatched = new System.Windows.Forms.CheckBox();
             this.cbAbortOnErrors = new System.Windows.Forms.CheckBox();
             this.gbFilesystem = new System.Windows.Forms.GroupBox();
             this.cbWriteThumbnail = new System.Windows.Forms.CheckBox();
@@ -62,11 +61,9 @@
             this.nudViewRangeMax = new System.Windows.Forms.NumericUpDown();
             this.cbMaxViews = new System.Windows.Forms.CheckBox();
             this.nudViewRangeMin = new System.Windows.Forms.NumericUpDown();
-            this.nudAgeLimit = new System.Windows.Forms.NumericUpDown();
             this.nudMaxDownloads = new System.Windows.Forms.NumericUpDown();
             this.cbxFilesizeMinUnits = new System.Windows.Forms.ComboBox();
             this.cbxFilesizeMaxUnits = new System.Windows.Forms.ComboBox();
-            this.cbAgeLimit = new System.Windows.Forms.CheckBox();
             this.cbMinViews = new System.Windows.Forms.CheckBox();
             this.cbFilesizeMin = new System.Windows.Forms.CheckBox();
             this.cbDateBefore = new System.Windows.Forms.CheckBox();
@@ -190,7 +187,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudFilesizeMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewRangeMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewRangeMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAgeLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxDownloads)).BeginInit();
             this.gbVideoSelectionPlaylist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPlaylistEnd)).BeginInit();
@@ -246,7 +242,6 @@
             this.tpGeneral.Controls.Add(this.cbxOutputFormat);
             this.tpGeneral.Controls.Add(this.txtCustomFormatSelector);
             this.tpGeneral.Controls.Add(this.cbCustomFormatSelector);
-            this.tpGeneral.Controls.Add(this.cbMarkWatched);
             this.tpGeneral.Controls.Add(this.cbAbortOnErrors);
             this.tpGeneral.Controls.Add(this.gbFilesystem);
             this.tpGeneral.Controls.Add(this.cbIgnoreErrors);
@@ -520,17 +515,6 @@
             this.toolTip.SetToolTip(this.cbCustomFormatSelector, "Specify custom video format selector");
             this.cbCustomFormatSelector.UseVisualStyleBackColor = true;
             // 
-            // cbMarkWatched
-            // 
-            this.cbMarkWatched.AutoSize = true;
-            this.cbMarkWatched.Location = new System.Drawing.Point(880, 279);
-            this.cbMarkWatched.Name = "cbMarkWatched";
-            this.cbMarkWatched.Size = new System.Drawing.Size(106, 17);
-            this.cbMarkWatched.TabIndex = 75;
-            this.cbMarkWatched.Text = "Mark Watched?";
-            this.toolTip.SetToolTip(this.cbMarkWatched, "Mark videos watched (YouTube only)");
-            this.cbMarkWatched.UseVisualStyleBackColor = true;
-            // 
             // cbAbortOnErrors
             // 
             this.cbAbortOnErrors.AutoSize = true;
@@ -637,11 +621,9 @@
             this.gbVideoSelection.Controls.Add(this.nudViewRangeMax);
             this.gbVideoSelection.Controls.Add(this.cbMaxViews);
             this.gbVideoSelection.Controls.Add(this.nudViewRangeMin);
-            this.gbVideoSelection.Controls.Add(this.nudAgeLimit);
             this.gbVideoSelection.Controls.Add(this.nudMaxDownloads);
             this.gbVideoSelection.Controls.Add(this.cbxFilesizeMinUnits);
             this.gbVideoSelection.Controls.Add(this.cbxFilesizeMaxUnits);
-            this.gbVideoSelection.Controls.Add(this.cbAgeLimit);
             this.gbVideoSelection.Controls.Add(this.cbMinViews);
             this.gbVideoSelection.Controls.Add(this.cbFilesizeMin);
             this.gbVideoSelection.Controls.Add(this.cbDateBefore);
@@ -758,19 +740,6 @@
             this.nudViewRangeMin.TabIndex = 74;
             this.nudViewRangeMin.ThousandsSeparator = true;
             // 
-            // nudAgeLimit
-            // 
-            this.nudAgeLimit.Location = new System.Drawing.Point(102, 234);
-            this.nudAgeLimit.Maximum = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            this.nudAgeLimit.Name = "nudAgeLimit";
-            this.nudAgeLimit.Size = new System.Drawing.Size(96, 22);
-            this.nudAgeLimit.TabIndex = 73;
-            this.nudAgeLimit.ThousandsSeparator = true;
-            // 
             // nudMaxDownloads
             // 
             this.nudMaxDownloads.Location = new System.Drawing.Point(337, 74);
@@ -819,17 +788,6 @@
             this.cbxFilesizeMaxUnits.Name = "cbxFilesizeMaxUnits";
             this.cbxFilesizeMaxUnits.Size = new System.Drawing.Size(42, 21);
             this.cbxFilesizeMaxUnits.TabIndex = 46;
-            // 
-            // cbAgeLimit
-            // 
-            this.cbAgeLimit.AutoSize = true;
-            this.cbAgeLimit.Location = new System.Drawing.Point(6, 235);
-            this.cbAgeLimit.Name = "cbAgeLimit";
-            this.cbAgeLimit.Size = new System.Drawing.Size(76, 17);
-            this.cbAgeLimit.TabIndex = 54;
-            this.cbAgeLimit.Text = "Age Limit:";
-            this.toolTip.SetToolTip(this.cbAgeLimit, "Download only videos suitable for the given age");
-            this.cbAgeLimit.UseVisualStyleBackColor = true;
             // 
             // cbMinViews
             // 
@@ -1946,7 +1904,6 @@
             this.optionsToolStripMenuItem,
             this.helpToolStripMenuItem1});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.MinimumSize = new System.Drawing.Size(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1129, 24);
             this.menuStrip.TabIndex = 13;
@@ -2091,7 +2048,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudFilesizeMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewRangeMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudViewRangeMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAgeLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxDownloads)).EndInit();
             this.gbVideoSelectionPlaylist.ResumeLayout(false);
             this.gbVideoSelectionPlaylist.PerformLayout();
@@ -2198,11 +2154,9 @@
         private System.Windows.Forms.NumericUpDown nudViewRangeMax;
         private System.Windows.Forms.CheckBox cbMaxViews;
         private System.Windows.Forms.NumericUpDown nudViewRangeMin;
-        private System.Windows.Forms.NumericUpDown nudAgeLimit;
         private System.Windows.Forms.NumericUpDown nudMaxDownloads;
         private System.Windows.Forms.ComboBox cbxFilesizeMinUnits;
         private System.Windows.Forms.ComboBox cbxFilesizeMaxUnits;
-        private System.Windows.Forms.CheckBox cbAgeLimit;
         private System.Windows.Forms.CheckBox cbMinViews;
         private System.Windows.Forms.CheckBox cbFilesizeMin;
         private System.Windows.Forms.CheckBox cbDateBefore;
@@ -2243,7 +2197,6 @@
         private System.Windows.Forms.CheckBox cbAbortOnErrors;
         private System.Windows.Forms.CheckBox cbIgnoreErrors;
         private System.Windows.Forms.NumericUpDown nudSleepValue;
-        private System.Windows.Forms.CheckBox cbMarkWatched;
         private System.Windows.Forms.TextBox txtCustomFormatSelector;
         private System.Windows.Forms.CheckBox cbCustomFormatSelector;
         private System.Windows.Forms.CheckBox cbOutputFormat;
