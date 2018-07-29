@@ -37,11 +37,8 @@
             this.rbPlaylistOnly = new System.Windows.Forms.RadioButton();
             this.txtDownloadArchive = new System.Windows.Forms.TextBox();
             this.cbxRecodeFormat = new System.Windows.Forms.ComboBox();
-            this.txtFileTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.btnStartDownload = new System.Windows.Forms.Button();
-            this.cbOutputFormat = new System.Windows.Forms.CheckBox();
-            this.cbxOutputFormat = new System.Windows.Forms.ComboBox();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
             this.cbAbortOnErrors = new System.Windows.Forms.CheckBox();
@@ -76,7 +73,6 @@
             this.btnOpenPlaylistItemsEditor = new System.Windows.Forms.Button();
             this.nudPlaylistEnd = new System.Windows.Forms.NumericUpDown();
             this.nudPlaylistStart = new System.Windows.Forms.NumericUpDown();
-            this.txtPlaylistRange = new Maxstupo.YdlUi.Controls.NumberTextBox();
             this.cbPlaylistRange = new System.Windows.Forms.CheckBox();
             this.cbPlaylistReversed = new System.Windows.Forms.CheckBox();
             this.cbPlaylistRandom = new System.Windows.Forms.CheckBox();
@@ -178,6 +174,8 @@
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.txtFileTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
+            this.txtPlaylistRange = new Maxstupo.YdlUi.Controls.NumberTextBox();
             this.tabControl.SuspendLayout();
             this.tpGeneral.SuspendLayout();
             this.gbVideoSelectionPlaylistSelection.SuspendLayout();
@@ -238,8 +236,6 @@
             this.tpGeneral.Controls.Add(this.txtFileTemplate);
             this.tpGeneral.Controls.Add(this.txtCommand);
             this.tpGeneral.Controls.Add(this.btnStartDownload);
-            this.tpGeneral.Controls.Add(this.cbOutputFormat);
-            this.tpGeneral.Controls.Add(this.cbxOutputFormat);
             this.tpGeneral.Controls.Add(this.txtCustomFormatSelector);
             this.tpGeneral.Controls.Add(this.cbCustomFormatSelector);
             this.tpGeneral.Controls.Add(this.cbAbortOnErrors);
@@ -299,7 +295,7 @@
             // cbRecodeFormat
             // 
             this.cbRecodeFormat.AutoSize = true;
-            this.cbRecodeFormat.Location = new System.Drawing.Point(880, 396);
+            this.cbRecodeFormat.Location = new System.Drawing.Point(880, 334);
             this.cbRecodeFormat.Name = "cbRecodeFormat";
             this.cbRecodeFormat.Size = new System.Drawing.Size(106, 17);
             this.cbRecodeFormat.TabIndex = 86;
@@ -372,20 +368,10 @@
             "KB",
             "MB",
             "GB"});
-            this.cbxRecodeFormat.Location = new System.Drawing.Point(992, 394);
+            this.cbxRecodeFormat.Location = new System.Drawing.Point(992, 332);
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(125, 21);
             this.cbxRecodeFormat.TabIndex = 85;
-            // 
-            // txtFileTemplate
-            // 
-            this.txtFileTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileTemplate.KeywordMatchingEnabled = true;
-            this.txtFileTemplate.Location = new System.Drawing.Point(138, 62);
-            this.txtFileTemplate.Name = "txtFileTemplate";
-            this.txtFileTemplate.Size = new System.Drawing.Size(977, 22);
-            this.txtFileTemplate.TabIndex = 84;
             // 
             // txtCommand
             // 
@@ -468,32 +454,6 @@
             this.btnStartDownload.UseVisualStyleBackColor = true;
             this.btnStartDownload.Click += new System.EventHandler(this.btnStartDownload_Click_1);
             // 
-            // cbOutputFormat
-            // 
-            this.cbOutputFormat.AutoSize = true;
-            this.cbOutputFormat.Enabled = false;
-            this.cbOutputFormat.Location = new System.Drawing.Point(880, 369);
-            this.cbOutputFormat.Name = "cbOutputFormat";
-            this.cbOutputFormat.Size = new System.Drawing.Size(106, 17);
-            this.cbOutputFormat.TabIndex = 81;
-            this.cbOutputFormat.Text = "Output Format:";
-            this.toolTip.SetToolTip(this.cbOutputFormat, "If merge is required, output to given container format. Ignore if no merge is req" +
-        "uired");
-            this.cbOutputFormat.UseVisualStyleBackColor = true;
-            // 
-            // cbxOutputFormat
-            // 
-            this.cbxOutputFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxOutputFormat.FormattingEnabled = true;
-            this.cbxOutputFormat.Items.AddRange(new object[] {
-            "KB",
-            "MB",
-            "GB"});
-            this.cbxOutputFormat.Location = new System.Drawing.Point(992, 367);
-            this.cbxOutputFormat.Name = "cbxOutputFormat";
-            this.cbxOutputFormat.Size = new System.Drawing.Size(125, 21);
-            this.cbxOutputFormat.TabIndex = 80;
-            // 
             // txtCustomFormatSelector
             // 
             this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -518,7 +478,7 @@
             // cbAbortOnErrors
             // 
             this.cbAbortOnErrors.AutoSize = true;
-            this.cbAbortOnErrors.Location = new System.Drawing.Point(880, 341);
+            this.cbAbortOnErrors.Location = new System.Drawing.Point(880, 299);
             this.cbAbortOnErrors.Name = "cbAbortOnErrors";
             this.cbAbortOnErrors.Size = new System.Drawing.Size(112, 17);
             this.cbAbortOnErrors.TabIndex = 18;
@@ -602,7 +562,7 @@
             this.cbIgnoreErrors.AutoSize = true;
             this.cbIgnoreErrors.Checked = true;
             this.cbIgnoreErrors.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIgnoreErrors.Location = new System.Drawing.Point(880, 319);
+            this.cbIgnoreErrors.Location = new System.Drawing.Point(880, 277);
             this.cbIgnoreErrors.Name = "cbIgnoreErrors";
             this.cbIgnoreErrors.Size = new System.Drawing.Size(98, 17);
             this.cbIgnoreErrors.TabIndex = 17;
@@ -927,19 +887,6 @@
             this.nudPlaylistStart.Size = new System.Drawing.Size(310, 22);
             this.nudPlaylistStart.TabIndex = 69;
             this.nudPlaylistStart.ThousandsSeparator = true;
-            // 
-            // txtPlaylistRange
-            // 
-            this.txtPlaylistRange.AllowDecimal = false;
-            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlaylistRange.Location = new System.Drawing.Point(70, 68);
-            this.txtPlaylistRange.Name = "txtPlaylistRange";
-            this.txtPlaylistRange.Size = new System.Drawing.Size(271, 22);
-            this.txtPlaylistRange.TabIndex = 22;
-            this.txtPlaylistRange.WhitelistedChars = new char[] {
-        '-',
-        ','};
             // 
             // cbPlaylistRange
             // 
@@ -2015,6 +1962,29 @@
             // 
             this.toolTip.ShowAlways = true;
             // 
+            // txtFileTemplate
+            // 
+            this.txtFileTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileTemplate.KeywordMatchingEnabled = true;
+            this.txtFileTemplate.Location = new System.Drawing.Point(138, 62);
+            this.txtFileTemplate.Name = "txtFileTemplate";
+            this.txtFileTemplate.Size = new System.Drawing.Size(977, 22);
+            this.txtFileTemplate.TabIndex = 84;
+            // 
+            // txtPlaylistRange
+            // 
+            this.txtPlaylistRange.AllowDecimal = false;
+            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaylistRange.Location = new System.Drawing.Point(70, 68);
+            this.txtPlaylistRange.Name = "txtPlaylistRange";
+            this.txtPlaylistRange.Size = new System.Drawing.Size(271, 22);
+            this.txtPlaylistRange.TabIndex = 22;
+            this.txtPlaylistRange.WhitelistedChars = new char[] {
+        '-',
+        ','};
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -2199,8 +2169,6 @@
         private System.Windows.Forms.NumericUpDown nudSleepValue;
         private System.Windows.Forms.TextBox txtCustomFormatSelector;
         private System.Windows.Forms.CheckBox cbCustomFormatSelector;
-        private System.Windows.Forms.CheckBox cbOutputFormat;
-        private System.Windows.Forms.ComboBox cbxOutputFormat;
         private System.Windows.Forms.TextBox txtTwoFactor;
         private System.Windows.Forms.CheckBox cbTwoFactor;
         private System.Windows.Forms.TextBox txtVideoPassword;

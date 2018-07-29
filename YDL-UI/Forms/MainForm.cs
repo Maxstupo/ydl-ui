@@ -145,9 +145,6 @@ namespace Maxstupo.YdlUi.Forms {
             cbxLimitRateUnits.DataSource = Enum.GetValues(typeof(FilesizeUnit));
             cbxLimitRateUnits.SelectedItem = FilesizeUnit.MB;
 
-            cbxOutputFormat.DataSource = Enum.GetValues(typeof(MergeVideoFormat));
-            cbxOutputFormat.SelectedItem = MergeVideoFormat.MP4;
-
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
             cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
 
@@ -349,8 +346,6 @@ namespace Maxstupo.YdlUi.Forms {
 
             ControlListenGroup formatGroup = ControlListenGroup.New();
             txtCustomFormatSelector.BindEnableTo(cbCustomFormatSelector).BindValueTo(v => api.Arguments.VideoFormat.Format = v, cbCustomFormatSelector, formatGroup);
-
-            cbxOutputFormat.BindEnableTo(cbOutputFormat).BindValueTo(v => api.Arguments.VideoFormat.MergeOutputFormat = (v == null) ? null : (MergeVideoFormat?)v, cbOutputFormat, clg);
 
             formatGroup.Listen(rbVq2160p, rbVq1440p, rbVq1080p, rbVq720p, rbVq480p, rbVq360p, rbVq240p, rbVqCustom, rbFps144, rbFps120, rbFps60, rbFps30, rbFps25, rbFpsCustom);
             formatGroup.Listen(cbVqPreferred, cbFpsPreferred, cbVqFallback, cbFpsFallback);
