@@ -174,6 +174,8 @@ namespace Maxstupo.YdlUi.Forms {
 
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.DefaultPresetLocation)) {
                 OpenPreset(Properties.Settings.Default.DefaultPresetLocation);
+            } else {
+                NeedsSave = false;
             }
         }
 
@@ -492,8 +494,11 @@ namespace Maxstupo.YdlUi.Forms {
                 api.Execute(downloadDirectory);
             }
 
-            if (Properties.Settings.Default.ClosePresetOnDownloadStart)
+            if (saveLocation == null) {
+                ResetUiState();
+            } else if (Properties.Settings.Default.ClosePresetOnDownloadStart) {
                 ClosePreset();
+            }
         }
 
 
@@ -575,9 +580,12 @@ namespace Maxstupo.YdlUi.Forms {
             saveLocation = null;
             saveToolStripMenuItem.Enabled = false;
 
-            defaultUiState.Apply(tabControl, presetSavableTypes);
+            ResetUiState();
+        }
 
-            NeedsSave = true;
+        private void ResetUiState() {
+            defaultUiState.Apply(tabControl, presetSavableTypes);
+            NeedsSave = false;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -618,6 +626,15 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (NeedsSave) {
+                if (MessageBox.Show(this, "Do you want to save your configuration, before opening a new one?", "Save Preset?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                    if (saveLocation != null) {
+                        saveToolStripMenuItem.PerformClick();
+                    } else {
+                        saveAsToolStripMenuItem.PerformClick();
+                    }
+                }
+            }
             ClosePreset();
         }
 
