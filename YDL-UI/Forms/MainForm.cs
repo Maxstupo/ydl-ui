@@ -149,6 +149,7 @@ namespace Maxstupo.YdlUi.Forms {
             cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
 
             txtDownloadDirectory.Text = DefaultDownloadDirectory;
+            txtDownloadDirectory.TextChanged += (ss, ee) => { NeedsSave = true; };
 
             clg = ControlListenGroup.New();
             clg.OnChanged += () => {
