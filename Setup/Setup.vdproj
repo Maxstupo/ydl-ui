@@ -321,6 +321,29 @@
         }
         "FileType"
         {
+            "{5EB83D71-FA18-4901-BE56-DE22E13CC478}:_5E34B20F7E7645679E921FC86B8D0446"
+            {
+            "Name" = "8:Profile"
+            "Description" = "8:"
+            "Extensions" = "8:yui"
+            "MIME" = "8:text/xml"
+            "Icon" = "8:_A1C388AFE3A24E57A01CA580D35E5C12"
+            "IconIndex" = "3:0"
+                "Command"
+                {
+                "Command" = "8:_593D9FABF6A247EEA2F1D7A88B6D778E"
+                }
+                "Verbs"
+                {
+                    "{95C0C507-CBF0-42B8-B119-07219E384A4A}:_0BB4F988776E4DAB91452BDA33CC4221"
+                    {
+                    "Command" = "8:&Open"
+                    "Verb" = "8:open"
+                    "Arguments" = "8:\"%1\""
+                    "Order" = "3:0"
+                    }
+                }
+            }
         }
         "Folder"
         {
@@ -938,7 +961,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_593D9FABF6A247EEA2F1D7A88B6D778E"
             {
-            "SourcePath" = "8:..\\YDL-UI\\obj\\Debug\\YDL-UI.exe"
+            "SourcePath" = "8:..\\YDL-UI\\obj\\Release\\YDL-UI.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C425C42EA8B747F29150A2AE53FCBC33"

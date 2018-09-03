@@ -179,12 +179,18 @@ namespace Maxstupo.YdlUi.Forms {
             defaultUiState = new UiState(uiState);
             defaultUiState.CreateFrom(tabControl, presetSavableTypes); // Create a default ui state for making "New" presets.
 
+            string[] args = Environment.GetCommandLineArgs();
+          
+            if (args.Length > 1) {
+                OpenPreset(args[1]);
 
-            if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.DefaultPresetLocation)) {
+            } else if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.DefaultPresetLocation)) {
                 OpenPreset(Properties.Settings.Default.DefaultPresetLocation);
             } else {
                 NeedsSave = false;
             }
+
+
         }
 
         private void CreateBindings(ControlListenGroup clg) {
@@ -607,9 +613,9 @@ namespace Maxstupo.YdlUi.Forms {
             using (SaveFileDialog dialog = new SaveFileDialog()) {
                 dialog.Title = "Save preset as...";
                 dialog.OverwritePrompt = true;
-                dialog.DefaultExt = "xml";
-                dialog.FileName = "ydl-ui";
-                dialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+                dialog.DefaultExt = "yui";
+                dialog.FileName = "profile";
+                dialog.Filter = "YDL-UI Profile Files (*.yui)|*.yui|All Files (*.*)|*.*";
 
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                     SavePreset(dialog.FileName);
@@ -623,8 +629,8 @@ namespace Maxstupo.YdlUi.Forms {
             using (OpenFileDialog dialog = new OpenFileDialog()) {
                 dialog.Title = "Open preset...";
                 dialog.Multiselect = false;
-                dialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
-                dialog.DefaultExt = "xml";
+                dialog.Filter = "YDL-UI Profile Files (*.yui)|*.yui|All Files (*.*)|*.*";
+                dialog.DefaultExt = "yui";
                 dialog.CheckFileExists = true;
                 dialog.CheckPathExists = true;
 
