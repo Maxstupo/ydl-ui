@@ -160,13 +160,18 @@ namespace Maxstupo.YdlUi.Forms {
 
                 string exe = api.Executable;
                 string urls = api.Arguments.Url;
+                string ffmpeg = api.Arguments.PostProcessing.FFmpegLocation;
+
+
                 if (urls != null && urls.Split(new string[] { ";", "," }, StringSplitOptions.RemoveEmptyEntries).Length > 1)
                     api.Arguments.Url = "...urls(s)...";
                 api.Executable = "youtube-dl";
 
-
+                api.Arguments.PostProcessing.FFmpegLocation = null;
                 txtCommand.Text = api.BuildCommandString();
+
                 api.Executable = exe;
+                api.Arguments.PostProcessing.FFmpegLocation = ffmpeg;
                 api.Arguments.Url = urls;
             };
             CreateBindings(clg);
