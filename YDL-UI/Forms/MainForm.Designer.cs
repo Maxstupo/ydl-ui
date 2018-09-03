@@ -37,6 +37,7 @@
             this.rbPlaylistOnly = new System.Windows.Forms.RadioButton();
             this.txtDownloadArchive = new System.Windows.Forms.TextBox();
             this.cbxRecodeFormat = new System.Windows.Forms.ComboBox();
+            this.txtFileTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.btnStartDownload = new System.Windows.Forms.Button();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
@@ -73,6 +74,7 @@
             this.btnOpenPlaylistItemsEditor = new System.Windows.Forms.Button();
             this.nudPlaylistEnd = new System.Windows.Forms.NumericUpDown();
             this.nudPlaylistStart = new System.Windows.Forms.NumericUpDown();
+            this.txtPlaylistRange = new Maxstupo.YdlUi.Controls.NumberTextBox();
             this.cbPlaylistRange = new System.Windows.Forms.CheckBox();
             this.cbPlaylistReversed = new System.Windows.Forms.CheckBox();
             this.cbPlaylistRandom = new System.Windows.Forms.CheckBox();
@@ -174,8 +176,8 @@
             this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.txtFileTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
-            this.txtPlaylistRange = new Maxstupo.YdlUi.Controls.NumberTextBox();
+            this.cbAudioOnly = new System.Windows.Forms.CheckBox();
+            this.cbxAudioOnly = new System.Windows.Forms.ComboBox();
             this.tabControl.SuspendLayout();
             this.tpGeneral.SuspendLayout();
             this.gbVideoSelectionPlaylistSelection.SuspendLayout();
@@ -226,6 +228,8 @@
             // 
             // tpGeneral
             // 
+            this.tpGeneral.Controls.Add(this.cbAudioOnly);
+            this.tpGeneral.Controls.Add(this.cbxAudioOnly);
             this.tpGeneral.Controls.Add(this.cbDownloadArchive);
             this.tpGeneral.Controls.Add(this.btnOpenUrlEditor);
             this.tpGeneral.Controls.Add(this.btnBrowseDownloadArchive);
@@ -372,6 +376,16 @@
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(125, 21);
             this.cbxRecodeFormat.TabIndex = 85;
+            // 
+            // txtFileTemplate
+            // 
+            this.txtFileTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileTemplate.KeywordMatchingEnabled = true;
+            this.txtFileTemplate.Location = new System.Drawing.Point(138, 62);
+            this.txtFileTemplate.Name = "txtFileTemplate";
+            this.txtFileTemplate.Size = new System.Drawing.Size(977, 22);
+            this.txtFileTemplate.TabIndex = 84;
             // 
             // txtCommand
             // 
@@ -887,6 +901,19 @@
             this.nudPlaylistStart.Size = new System.Drawing.Size(310, 22);
             this.nudPlaylistStart.TabIndex = 69;
             this.nudPlaylistStart.ThousandsSeparator = true;
+            // 
+            // txtPlaylistRange
+            // 
+            this.txtPlaylistRange.AllowDecimal = false;
+            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaylistRange.Location = new System.Drawing.Point(70, 68);
+            this.txtPlaylistRange.Name = "txtPlaylistRange";
+            this.txtPlaylistRange.Size = new System.Drawing.Size(271, 22);
+            this.txtPlaylistRange.TabIndex = 22;
+            this.txtPlaylistRange.WhitelistedChars = new char[] {
+        '-',
+        ','};
             // 
             // cbPlaylistRange
             // 
@@ -1931,7 +1958,7 @@
             // 
             this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
             this.optionsToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
+            this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.optionsToolStripMenuItem1.Text = "Options...";
             this.optionsToolStripMenuItem1.Click += new System.EventHandler(this.optionsToolStripMenuItem1_Click);
             // 
@@ -1962,28 +1989,29 @@
             // 
             this.toolTip.ShowAlways = true;
             // 
-            // txtFileTemplate
+            // cbAudioOnly
             // 
-            this.txtFileTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileTemplate.KeywordMatchingEnabled = true;
-            this.txtFileTemplate.Location = new System.Drawing.Point(138, 62);
-            this.txtFileTemplate.Name = "txtFileTemplate";
-            this.txtFileTemplate.Size = new System.Drawing.Size(977, 22);
-            this.txtFileTemplate.TabIndex = 84;
+            this.cbAudioOnly.AutoSize = true;
+            this.cbAudioOnly.Location = new System.Drawing.Point(880, 361);
+            this.cbAudioOnly.Name = "cbAudioOnly";
+            this.cbAudioOnly.Size = new System.Drawing.Size(87, 17);
+            this.cbAudioOnly.TabIndex = 88;
+            this.cbAudioOnly.Text = "Audio Only:";
+            this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video files to audio-only files");
+            this.cbAudioOnly.UseVisualStyleBackColor = true;
             // 
-            // txtPlaylistRange
+            // cbxAudioOnly
             // 
-            this.txtPlaylistRange.AllowDecimal = false;
-            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlaylistRange.Location = new System.Drawing.Point(70, 68);
-            this.txtPlaylistRange.Name = "txtPlaylistRange";
-            this.txtPlaylistRange.Size = new System.Drawing.Size(271, 22);
-            this.txtPlaylistRange.TabIndex = 22;
-            this.txtPlaylistRange.WhitelistedChars = new char[] {
-        '-',
-        ','};
+            this.cbxAudioOnly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAudioOnly.FormattingEnabled = true;
+            this.cbxAudioOnly.Items.AddRange(new object[] {
+            "KB",
+            "MB",
+            "GB"});
+            this.cbxAudioOnly.Location = new System.Drawing.Point(992, 359);
+            this.cbxAudioOnly.Name = "cbxAudioOnly";
+            this.cbxAudioOnly.Size = new System.Drawing.Size(125, 21);
+            this.cbxAudioOnly.TabIndex = 87;
             // 
             // MainForm
             // 
@@ -2208,6 +2236,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbAudioOnly;
+        private System.Windows.Forms.ComboBox cbxAudioOnly;
     }
 }
 

@@ -44,6 +44,7 @@ namespace Maxstupo.YdlUi.Util {
             return string.Format("v{0}.{1}.{2}", Major, Minor, Revision);
         }
     }
+
     public class Utils {
         private static readonly object _lock = new object();
 

@@ -148,6 +148,9 @@ namespace Maxstupo.YdlUi.Forms {
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
             cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
 
+            cbxAudioOnly.DataSource = Enum.GetValues(typeof(AudioFormat));
+            cbxAudioOnly.SelectedItem = AudioFormat.MP3;
+
             txtDownloadDirectory.Text = DefaultDownloadDirectory;
             txtDownloadDirectory.TextChanged += (ss, ee) => { NeedsSave = true; };
 
@@ -342,7 +345,11 @@ namespace Maxstupo.YdlUi.Forms {
             #region Post Processing
 
             cbxRecodeFormat.BindEnableTo(cbRecodeFormat).BindValueTo(v => api.Arguments.PostProcessing.RecodeVideo = (VideoFormatRecode?)v, cbRecodeFormat, clg);
-
+            cbxAudioOnly.BindEnableTo(cbAudioOnly).BindValueTo(v => {
+                AudioFormat? format = (AudioFormat?)v;
+                api.Arguments.PostProcessing.AudioFormat = format;
+                api.Arguments.PostProcessing.ExtractAudio = (format != null);
+            }, cbAudioOnly, clg);
             #endregion
 
             #region Video Format
@@ -375,8 +382,6 @@ namespace Maxstupo.YdlUi.Forms {
 
 
             #endregion
-
-
 
         }
 
