@@ -230,6 +230,13 @@ namespace Maxstupo.YdlUi.Util.UiStore {
             if (string.IsNullOrWhiteSpace(file))
                 throw new ArgumentNullException("The given filepath is null!");
 
+            states.Sort((a, b) => {
+                bool av = a.Value.Value == "True" || a.Value.Value == "False" || a.Key.StartsWith("rb");
+                bool bv = b.Value.Value == "True" || b.Value.Value == "False" || b.Key.StartsWith("rb");
+
+                return (!av && bv) ? 1 : (av && !bv) ? -1 : 0;
+            });
+
             using (XmlWriter sw = XmlWriter.Create(file, new XmlWriterSettings() { Indent = true })) {
                 sw.WriteStartDocument();
                 {
