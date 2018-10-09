@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Maxstupo.YdlUi.YoutubeDL {
     public class YoutubeDLApi : CommandLineBuilder<YoutubeDLArguments> {
 
-        public override string Version => "2018.09.08";
+        public override string Version => "2018.10.05";
 
         public YoutubeDLApi(string executable, YoutubeDLArguments arguments = null) : base(executable, arguments) {
 

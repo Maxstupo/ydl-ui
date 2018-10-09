@@ -20,7 +20,7 @@ using Newtonsoft.Json.Linq;
 namespace Maxstupo.YdlUi.Forms {
 
     public partial class MainForm : Form {
-        public string Version { get; } = "v1.4.4";
+        public string Version { get; } = "v1.4.5";
         public string Title { get { return "YDL-UI " + Version; } }
 
         private static readonly Color LightRed = ControlPaint.LightLight(Color.Red);
