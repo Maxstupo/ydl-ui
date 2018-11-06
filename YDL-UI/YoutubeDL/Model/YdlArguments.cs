@@ -1,15 +1,35 @@
-﻿using Maxstupo.CommandBuilder;
+﻿using Maxstupo.YdlUi.ArgumentBuilder;
 using Maxstupo.YdlUi.Util;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace Maxstupo.YdlUi.YoutubeDL {
-
+namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
     [ArgumentContainer]
-    public class YoutubeDLGeneral {
+    public class YdlArguments {
+        public static readonly string Version = "2018.10.05";
+
+
+        [Argument("", QuotePolicy = QuotePolicy.Always, Order = int.MaxValue)] public string Url { get; set; } = null;
+
+        public YdlArgumentsGeneral General { get; set; } = new YdlArgumentsGeneral();
+        public YdlArgumentsNetwork Network { get; set; } = new YdlArgumentsNetwork();
+        public YdlArgumentsGeoRestriction GeoRestriction { get; set; } = new YdlArgumentsGeoRestriction();
+        public YdlArgumentsVideoSelection VideoSelection { get; set; } = new YdlArgumentsVideoSelection();
+        public YdlArgumentsDownload Download { get; set; } = new YdlArgumentsDownload();
+        public YdlArgumentsFilesystem FileSystem { get; set; } = new YdlArgumentsFilesystem();
+        public YdlArgumentsThumbnail Thumbnail { get; set; } = new YdlArgumentsThumbnail();
+        public YdlArgumentsVerbosity Verbosity { get; set; } = new YdlArgumentsVerbosity();
+        public YdlArgumentsWorkarounds Workarounds { get; set; } = new YdlArgumentsWorkarounds();
+        public YdlArgumentsVideoFormat VideoFormat { get; set; } = new YdlArgumentsVideoFormat();
+        public YdlArgumentsSubtitle Subtitle { get; set; } = new YdlArgumentsSubtitle();
+        public YdlArgumentsAuthentication Authentication { get; set; } = new YdlArgumentsAuthentication(); // XmlIgnore auth arguments to prevent password being added to XML file presets.
+        public YdlArgumentsAdobePass AdobePass { get; set; } = new YdlArgumentsAdobePass();
+        public YdlArgumentsPostProcessing PostProcessing { get; set; } = new YdlArgumentsPostProcessing();
+    }
+
+    [ArgumentContainer]
+    public class YdlArgumentsGeneral {
         [FlagArgument("--help")] public bool Help { get; set; }
 
         [FlagArgument("--version")] public bool Version { get; set; }
@@ -39,7 +59,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLNetwork {
+    public class YdlArgumentsNetwork {
         [Argument("--proxy")] public string Proxy { get; set; } = null;
         [Argument("--socket-timeout")] public int? SocketTimeout { get; set; } = null;
         [Argument("--source-address")] public string SourceAddress { get; set; } = null;
@@ -49,7 +69,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLGeoRestriction {
+    public class YdlArgumentsGeoRestriction {
         [Argument("--geo-verification-proxy")] public string GeoVerificationProxy { get; set; } = null;
 
         [FlagArgument("--geo-bypass")] public bool GeoBypass { get; set; }
@@ -61,7 +81,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLVideoSelection {
+    public class YdlArgumentsVideoSelection {
         [Argument("--playlist-start")] public int? PlaylistStart { get; set; } = null;
         [Argument("--playlist-end")] public int? PlaylistEnd { get; set; } = null;
         [Argument("--playlist-items")] public string PlaylistItems { get; set; } = null;
@@ -93,7 +113,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLDownload {
+    public class YdlArgumentsDownload {
         [Argument("--limit-rate")] public ByteSize? LimitRate { get; set; } = null;
         [Argument("--retries")] public string Retries { get; set; } = null;
         [Argument("--fragment-retries")] public string FragmentRetries { get; set; } = null;
@@ -118,7 +138,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLFilesystem {
+    public class YdlArgumentsFilesystem {
         [Argument("--batch-file")] public string BatchFile { get; set; } = null;
         [FlagArgument("--id")] public bool Id { get; set; }
         [Argument("--output")] public string OutputTemplate { get; set; } = null;
@@ -145,7 +165,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLThumbnail {
+    public class YdlArgumentsThumbnail {
         [FlagArgument("--write-thumbnail")] public bool WriteThumbnail { get; set; }
         [FlagArgument("--write-all-thumbnails")] public bool WriteAllThumbnails { get; set; }
         [FlagArgument("--list-thumbnails")] public bool ListThumbnails { get; set; }
@@ -153,7 +173,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLVerbosity {
+    public class YdlArgumentsVerbosity {
 
         [FlagArgument("--quiet")] public bool Quiet { get; set; }
         [FlagArgument("--no-warnings")] public bool NoWarnings { get; set; }
@@ -183,7 +203,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLWorkarounds {
+    public class YdlArgumentsWorkarounds {
         [Argument("--encoding")] public string Encoding { get; set; } = null;
         [FlagArgument("--no-check-certificate")] public bool NoCheckCertificate { get; set; }
         [FlagArgument("--prefer-insecure")] public bool PreferInsecure { get; set; }
@@ -203,18 +223,18 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLVideoFormat {
+    public class YdlArgumentsVideoFormat {
         [Argument("--format")] public string Format { get; set; } = null;
         [FlagArgument("--all-formats")] public bool AllFormats { get; set; }
         [FlagArgument("--prefer-free-formats")] public bool PreferFreeFormats { get; set; }
         [FlagArgument("--list-formats")] public bool ListFormats { get; set; }
         [FlagArgument("--youtube-skip-dash-manifest")] public bool YoutubeSkipDashManifest { get; set; }
-        [Argument("--merge-output-format", EnumCase = EnumCasePolicy.LOWERCASE)] public MergeVideoFormat? MergeOutputFormat { get; set; } = null;
+        [Argument("--merge-output-format", EnumCase = EnumCasePolicy.Lowercase)] public MergeVideoFormat? MergeOutputFormat { get; set; } = null;
 
     }
 
     [ArgumentContainer]
-    public class YoutubeDLSubtitle {
+    public class YdlArgumentsSubtitle {
         [FlagArgument("--write-sub")] public bool WriteSub { get; set; }
         [FlagArgument("--write-auto-sub")] public bool WriteAutoSub { get; set; }
         [FlagArgument("--all-subs")] public bool AllSubs { get; set; }
@@ -226,7 +246,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLAuthentication {
+    public class YdlArgumentsAuthentication {
         [Argument("--username")] public string Username { get; set; } = null;
         [Argument("--password")] public string Password { get; set; } = null;
         [Argument("--twofactor")] public string TwoFactor { get; set; } = null;
@@ -236,7 +256,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLAdobePass {
+    public class YdlArgumentsAdobePass {
         [Argument("--ap-mso")] public string ApMso { get; set; } = null;
         [Argument("--ap-username")] public string ApUsername { get; set; } = null;
         [Argument("--ap-password")] public string ApPassword { get; set; } = null;
@@ -245,12 +265,12 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     }
 
     [ArgumentContainer]
-    public class YoutubeDLPostProcessing {
+    public class YdlArgumentsPostProcessing {
 
         [FlagArgument("--extract-audio")] public bool ExtractAudio { get; set; }
-        [Argument("--audio-format", EnumCase = EnumCasePolicy.LOWERCASE)] public AudioFormat? AudioFormat { get; set; } = null;
+        [Argument("--audio-format", EnumCase = EnumCasePolicy.Lowercase)] public AudioFormat? AudioFormat { get; set; } = null;
         [Argument("--audio-quality")] public string AudioQuality { get; set; } = null;
-        [Argument("--recode-video", EnumCase = EnumCasePolicy.LOWERCASE)] public VideoFormatRecode? RecodeVideo { get; set; } = null;
+        [Argument("--recode-video", EnumCase = EnumCasePolicy.Lowercase)] public VideoFormatRecode? RecodeVideo { get; set; } = null;
         [Argument("--post-processor-args")] public string PostProcessorArgs { get; set; } = null;
         [FlagArgument("--keep-video")] public bool KeepVideo { get; set; }
         [FlagArgument("--no-post-overwrites")] public bool NoPostOverwrites { get; set; }
@@ -264,26 +284,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         [FlagArgument("--prefer-ffmpeg")] public bool PreferFFmpeg { get; set; }
         [Argument("--ffmpeg-location")] public string FFmpegLocation { get; set; } = null;
         [Argument("--exec")] public string Exec { get; set; } = null;
-        [Argument("--convert-subs", EnumCase = EnumCasePolicy.LOWERCASE)] public SubtitleFormat? ConvertSubs { get; set; } = null;
+        [Argument("--convert-subs", EnumCase = EnumCasePolicy.Lowercase)] public SubtitleFormat? ConvertSubs { get; set; } = null;
     }
 
-    [ArgumentContainer]
-    public class YoutubeDLArguments {
-        [Argument("", QuotePolicy = QuotePolicy.ALWAYS, Order = int.MaxValue)] public string Url { get; set; } = null;
-
-        public YoutubeDLGeneral General { get; set; } = new YoutubeDLGeneral();
-        public YoutubeDLNetwork Network { get; set; } = new YoutubeDLNetwork();
-        public YoutubeDLGeoRestriction GeoRestriction { get; set; } = new YoutubeDLGeoRestriction();
-        public YoutubeDLVideoSelection VideoSelection { get; set; } = new YoutubeDLVideoSelection();
-        public YoutubeDLDownload Download { get; set; } = new YoutubeDLDownload();
-        public YoutubeDLFilesystem FileSystem { get; set; } = new YoutubeDLFilesystem();
-        public YoutubeDLThumbnail Thumbnail { get; set; } = new YoutubeDLThumbnail();
-        public YoutubeDLVerbosity Verbosity { get; set; } = new YoutubeDLVerbosity();
-        public YoutubeDLWorkarounds Workarounds { get; set; } = new YoutubeDLWorkarounds();
-        public YoutubeDLVideoFormat VideoFormat { get; set; } = new YoutubeDLVideoFormat();
-        public YoutubeDLSubtitle Subtitle { get; set; } = new YoutubeDLSubtitle();
-        public YoutubeDLAuthentication Authentication { get; set; } = new YoutubeDLAuthentication(); // XmlIgnore auth arguments to prevent password being added to XML file presets.
-        public YoutubeDLAdobePass AdobePass { get; set; } = new YoutubeDLAdobePass();
-        public YoutubeDLPostProcessing PostProcessing { get; set; } = new YoutubeDLPostProcessing();
-    }
 }

@@ -1,12 +1,7 @@
-﻿using Maxstupo.YdlUi.YoutubeDL;
+﻿using Maxstupo.YdlUi.YoutubeDL.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -24,7 +19,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void FormKeywords_Load(object sender, EventArgs e) {
             lbxKeywords.DisplayMember = "Formatted";
-            keywords = YoutubeDLApi.GetKeywords().ToList();
+            keywords = Keyword.Keywords.ToList();
 
             btnInsert.Enabled = lbxKeywords.SelectedIndex >= 0;
 

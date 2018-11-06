@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
-namespace Maxstupo.YdlUi.YoutubeDL {
+namespace Maxstupo.YdlUi.YoutubeDL.Model {
+
     [Serializable]
     public class VideoQuality {
         private static readonly string LESS_THAN = "<";
@@ -40,4 +39,5 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             this.FpsFallback = fpsFallback;
         }
     }
+
 }

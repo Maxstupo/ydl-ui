@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Maxstupo.YdlUi.Util;
-using Maxstupo.CommandBuilder;
 using Maxstupo.YdlUi.YoutubeDL;
 using System.Xml.Serialization;
 using Maxstupo.YdlUi.Util.UiStore;
@@ -16,6 +15,7 @@ using Maxstupo.YdlUi.Controls;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Maxstupo.YdlUi.YoutubeDL.Model;
 
 namespace Maxstupo.YdlUi.Forms {
 
@@ -69,7 +69,7 @@ namespace Maxstupo.YdlUi.Forms {
         private string ffmpegPath;
 
         private ControlListenGroup clg;
-        private YoutubeDLApi api;
+        private YdlApi api;
 
 
         public MainForm() {
@@ -79,15 +79,16 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void CheckVersion() {
-            YoutubeDLArguments temp = new YoutubeDLArguments();
+            YdlArguments temp = new YdlArguments();
             temp.General.Version = true;
 
+
             api.ExecuteWithTempArguments(temp, (data, type) => {
-                if (type == ProcType.EXITED) {
+                if (type == ProcType.Exited) {
                     Console.WriteLine("youtube-dl version: '{0}'", data);
 
                     if (!api.IsCompatibleVersion(data)) {
-                        DialogResult dr = MessageBox.Show(this, "Version mismatch between YDL-UI and youtube-dl.\n\nPlease be aware that using YDL-UI with any other version of youtube-dl other than '" + api.Version + "' could result in bugs or broken functionality!", "WARNING: Version Mismatch!", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Exclamation);
+                        DialogResult dr = MessageBox.Show(this, "Version mismatch between YDL-UI and youtube-dl.\n\nPlease be aware that using YDL-UI with any other version of youtube-dl other than '" + YdlArguments.Version + "' could result in bugs or broken functionality!", "WARNING: Version Mismatch!", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Exclamation);
                         if (dr == DialogResult.Abort) {
                             Application.Exit();
                         } else if (dr == DialogResult.Retry) {
@@ -97,6 +98,7 @@ namespace Maxstupo.YdlUi.Forms {
                 }
                 return false;
             });
+
         }
 
 
@@ -110,7 +112,7 @@ namespace Maxstupo.YdlUi.Forms {
             saveToolStripMenuItem.Enabled = false;
 
             ffmpegPath = Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "ffmpeg.exe");
-            api = new YoutubeDLApi(Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "youtube-dl.exe"), new YoutubeDLArguments());
+            api = new YdlApi(Path.Combine(ROOT_DIRECTORY, BIN_FOLDER_NAME, "youtube-dl.exe"));
 
             Func<Control, SerializedValue> kTextboxSeralizer = control => {
                 return new SerializedValue(((KeywordTextBox)control).Text);
@@ -146,10 +148,10 @@ namespace Maxstupo.YdlUi.Forms {
             cbxLimitRateUnits.SelectedItem = FilesizeUnit.MB;
 
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
-            cbxRecodeFormat.SelectedItem = VideoFormatRecode.MP4;
+            cbxRecodeFormat.SelectedItem = VideoFormatRecode.Mp4;
 
             cbxAudioOnly.DataSource = Enum.GetValues(typeof(AudioFormat));
-            cbxAudioOnly.SelectedItem = AudioFormat.MP3;
+            cbxAudioOnly.SelectedItem = AudioFormat.Mp3;
 
             txtDownloadDirectory.Text = DefaultDownloadDirectory;
             txtDownloadDirectory.TextChanged += (ss, ee) => { NeedsSave = true; };
@@ -168,7 +170,7 @@ namespace Maxstupo.YdlUi.Forms {
                 api.Executable = "youtube-dl";
 
                 api.Arguments.PostProcessing.FFmpegLocation = null;
-                txtCommand.Text = api.BuildCommandString();
+                txtCommand.Text = api.BuildArgumentString();
 
                 api.Executable = exe;
                 api.Arguments.PostProcessing.FFmpegLocation = ffmpeg;
@@ -180,7 +182,7 @@ namespace Maxstupo.YdlUi.Forms {
             defaultUiState.CreateFrom(tabControl, presetSavableTypes); // Create a default ui state for making "New" presets.
 
             string[] args = Environment.GetCommandLineArgs();
-          
+
             if (args.Length > 1) {
                 OpenPreset(args[1]);
 

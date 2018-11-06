@@ -1,106 +1,32 @@
-﻿using Maxstupo.CommandBuilder;
-using Maxstupo.YdlUi.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
-namespace Maxstupo.YdlUi.YoutubeDL {
-    public class YoutubeDLApi : CommandLineBuilder<YoutubeDLArguments> {
+    public class Keyword {
+        public string Value { get; set; }
+        public string Description { get; set; }
+        public bool IsNumeric { get; set; }
 
-        public override string Version => "2018.10.05";
-
-        public YoutubeDLApi(string executable, YoutubeDLArguments arguments = null) : base(executable, arguments) {
-
-            ValueTranslators.Add(typeof(DateTime), (a, t, v) => {
-                return ((DateTime)v).ToString("yyyyMMdd");
-            });
-
-            ValueTranslators.Add(typeof(ByteSize), (a, t, v) => {
-                return ((ByteSize)v).Bytes.ToString("#.#");
-            });
-
-            AppendCheckers.Add(typeof(Dictionary<string, string>), (a, t, v) => {
-                return ((Dictionary<string, string>)v).Count > 0;
-            });
-
-        }
-
-        protected override bool DoExecute(string arguments, string workingDirectory, ProcessCallback callback) {
-            if (string.IsNullOrWhiteSpace(Executable))
-                return false;
-
-            StringBuilder sb = new StringBuilder();
-
-            bool disabledData = false;
-
-            Process proc = new Process();
-            proc.StartInfo.FileName = Executable;
-
-            if (!string.IsNullOrWhiteSpace(arguments))
-                proc.StartInfo.Arguments = arguments;
-
-            proc.StartInfo.CreateNoWindow = callback != null;
-            proc.StartInfo.Verb = "runas";
-            
-            proc.StartInfo.RedirectStandardOutput = callback != null;
-            proc.StartInfo.RedirectStandardInput = callback != null;
-            proc.StartInfo.RedirectStandardError = callback != null;
-
-            proc.StartInfo.UseShellExecute = callback == null;
-            if (!string.IsNullOrWhiteSpace(workingDirectory))
-                proc.StartInfo.WorkingDirectory = workingDirectory;
-
-            proc.EnableRaisingEvents = callback != null;
-
-            if (callback != null) {
-                proc.OutputDataReceived += (sender, e) => {
-                    if (string.IsNullOrEmpty(e.Data))
-                        return;
-
-                    sb.Append(e.Data).Append('\n');
-
-                    if (!disabledData && callback(e.Data, ProcType.DATA_RECEIVED))
-                        disabledData = true;
-                };
-
-                proc.Exited += (sender, e) => {
-
-                    proc.Dispose();
-
-                    if (sb.Length > 0)
-                        sb.Remove(sb.Length - 1, 1);
-
-                    callback(sb.ToString(), ProcType.EXITED);
-                };
-
-                proc.ErrorDataReceived += (sender, e) => {
-                    callback(e.Data, ProcType.ERROR);
-                };
-
+        public string Formatted {
+            get {
+                return string.Format("{0,-25} {2,-10} {1,-30}", Value, Description, IsNumeric ? "numeric" : "string");
             }
-            proc.Start();
-            if (callback != null) {
-                proc.BeginOutputReadLine();
-                proc.BeginErrorReadLine();
-            }
-            return true;
         }
 
-        public override bool IsCompatibleVersion(string version) {
-            return this.Version == version;
+        public Keyword() : this(string.Empty, false, string.Empty) { }
+
+        public Keyword(string value, bool isNumeric = false, string description = null) {
+            this.Value = value;
+            this.IsNumeric = isNumeric;
+            this.Description = description;
         }
 
-        public static string KeywordRegex { get { return @"%\(\w+\)(?:s{1}|(\d+)d)"; } }
-        public static string KeywordTemplate { get { return "%({keyword})s"; } }
+        public override string ToString() {
+            return Value ?? GetType().Name;
+        }
 
-        public static Keyword[] GetKeywords() {
-            return new Keyword[] {
+        public static string Regex { get { return @"%\(\w+\)(?:s{1}|(\d+)d)"; } }
+        public static string Template { get { return "%({keyword})s"; } }
+
+        public static Keyword[] Keywords { get; } = new Keyword[] {
                     new Keyword("id", false, "Video identifier"),
                     new Keyword("title", false, "Video title"),
                     new Keyword("url", false, "Video URL"),
@@ -175,7 +101,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                     new Keyword("release_year", true, "Year (YYYY) when the album was released"),
 
             };
-        }
-
     }
+
 }

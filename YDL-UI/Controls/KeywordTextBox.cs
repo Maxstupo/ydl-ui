@@ -1,15 +1,11 @@
-﻿using System;
+﻿using Maxstupo.YdlUi.Forms;
+using Maxstupo.YdlUi.YoutubeDL.Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using Maxstupo.YdlUi.YoutubeDL;
-using Maxstupo.YdlUi.Forms;
+using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Controls {
     public partial class KeywordTextBox : TextBox {
@@ -47,7 +43,7 @@ namespace Maxstupo.YdlUi.Controls {
 
             using (FormKeywords dialog = new FormKeywords()) {
                 if (dialog.ShowDialog() == DialogResult.OK) {
-                    string keyword = YoutubeDLApi.KeywordTemplate.Replace("{keyword}", dialog.SelectedKeyword.Value);
+                    string keyword = Keyword.Template.Replace("{keyword}", dialog.SelectedKeyword.Value);
                     InsertKeyword(keyword);
                 }
             }
@@ -77,7 +73,7 @@ namespace Maxstupo.YdlUi.Controls {
         public void FindMatches() {
             if (!KeywordMatchingEnabled)
                 return;
-            matches = Regex.Matches(Text, YoutubeDLApi.KeywordRegex).Cast<Match>().ToList();
+            matches = Regex.Matches(Text, Keyword.Regex).Cast<Match>().ToList();
         }
 
         private void FindAndSelectMatch() {

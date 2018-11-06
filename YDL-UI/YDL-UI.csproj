@@ -100,18 +100,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandBuilder\Argument.cs" />
-    <Compile Include="CommandBuilder\ArgumentContainer.cs" />
-    <Compile Include="CommandBuilder\CommandLineBuilder.cs" />
-    <Compile Include="CommandBuilder\EnumCasePolicy.cs" />
-    <Compile Include="CommandBuilder\FlagArugment.cs" />
-    <Compile Include="CommandBuilder\QuotePolicy.cs" />
-    <Compile Include="Forms\AboutBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AboutBox.Designer.cs">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ArgumentBuilder\Argument.cs" />
+    <Compile Include="ArgumentBuilder\ArgumentContainer.cs" />
+    <Compile Include="ArgumentBuilder\ArgumentSerializer.cs" />
+    <Compile Include="ArgumentBuilder\EnumCasePolicy.cs" />
+    <Compile Include="ArgumentBuilder\FlagArugment.cs" />
+    <Compile Include="ArgumentBuilder\QuotePolicy.cs" />
     <Compile Include="Forms\FormKeywords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,7 +125,7 @@
       <DependentUpon>FormUrlsEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\UiState.cs" />
-    <Compile Include="YoutubeDL\Keyword.cs" />
+    <Compile Include="YoutubeDL\Model\Keyword.cs" />
     <Compile Include="Controls\KeywordTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -163,7 +157,6 @@
       <DependentUpon>FormPromptNumber.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\ByteSize.cs" />
-    <Compile Include="Util\TempFile.cs" />
     <Compile Include="Util\Extensions.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -174,16 +167,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Utils.cs" />
-    <Compile Include="YoutubeDL\YoutubeDLArguments.cs" />
-    <Compile Include="YoutubeDL\AudioFormat.cs" />
-    <Compile Include="YoutubeDL\SubtitleFormat.cs" />
-    <Compile Include="YoutubeDL\VideoFormatRecode.cs" />
-    <Compile Include="YoutubeDL\MergeVideoFormat.cs" />
-    <Compile Include="YoutubeDL\VideoQuality.cs" />
-    <Compile Include="YoutubeDL\YoutubeDLApi.cs" />
-    <EmbeddedResource Include="Forms\AboutBox.resx">
-      <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="YoutubeDL\Model\YdlArguments.cs" />
+    <Compile Include="YoutubeDL\Model\AudioFormat.cs" />
+    <Compile Include="YoutubeDL\Model\SubtitleFormat.cs" />
+    <Compile Include="YoutubeDL\Model\VideoFormatRecode.cs" />
+    <Compile Include="YoutubeDL\Model\MergeVideoFormat.cs" />
+    <Compile Include="YoutubeDL\Model\VideoQuality.cs" />
+    <Compile Include="YoutubeDL\YdlArgumentSerializer.cs" />
+    <Compile Include="YoutubeDL\YdlApi.cs" />
     <EmbeddedResource Include="Forms\FormKeywords.resx">
       <DependentUpon>FormKeywords.cs</DependentUpon>
     </EmbeddedResource>
