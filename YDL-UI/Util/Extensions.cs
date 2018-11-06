@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Util {
@@ -201,7 +198,7 @@ namespace Maxstupo.YdlUi.Util {
         }
 
         #endregion
-        
+
         public static bool IsTextValid(this TextBox src, CheckBox enable) {
             if (enable != null && !enable.Checked)
                 return false;
@@ -229,7 +226,7 @@ namespace Maxstupo.YdlUi.Util {
                 return false;
             return !string.IsNullOrWhiteSpace(src.Text);
         }
-     
+
         public static T Get<T>(this T[] src, int index) {
             if (index < 0 || index >= src.Length)
                 return default(T);
@@ -304,6 +301,7 @@ namespace Maxstupo.YdlUi.Util {
             });
             return src;
         }
+
     }
 
 }

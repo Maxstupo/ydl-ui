@@ -1,21 +1,18 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using ByteSizeLib;
+using Maxstupo.YdlUi.Controls;
+using Maxstupo.YdlUi.Util;
+using Maxstupo.YdlUi.Util.UiStore;
+using Maxstupo.YdlUi.YoutubeDL;
+using Maxstupo.YdlUi.YoutubeDL.Model;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Maxstupo.YdlUi.Util;
-using Maxstupo.YdlUi.YoutubeDL;
-using System.Xml.Serialization;
-using Maxstupo.YdlUi.Util.UiStore;
-using Maxstupo.YdlUi.Controls;
 using System.Net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Maxstupo.YdlUi.YoutubeDL.Model;
+using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
 
@@ -228,13 +225,13 @@ namespace Maxstupo.YdlUi.Forms {
             txtMatchFilter.BindEnableTo(cbMatchFilter).BindValueTo(v => api.Arguments.VideoSelection.MatchFilter = v, cbMatchFilter, clg);
 
             void filesizeMinEvt(float? v) {
-                api.Arguments.VideoSelection.MinFilesize = (v == null || v == 0) ? (ByteSize?)null : ByteSize.From(v.Value, (FilesizeUnit)cbxFilesizeMinUnits.SelectedItem);
+                api.Arguments.VideoSelection.MinFilesize = (v == null || v == 0) ? (ByteSize?)null : Utils.From(v.Value, (FilesizeUnit)cbxFilesizeMinUnits.SelectedItem);
             }
             cbxFilesizeMinUnits.BindEnableTo(cbFilesizeMin).BindValueTo(obj => filesizeMinEvt(nudFilesizeMin.GetValueFloat(cbFilesizeMin))).Listen(clg);
             nudFilesizeMin.BindEnableTo(cbFilesizeMin).BindValueTo(filesizeMinEvt, cbFilesizeMin, clg);
 
             void filesizeMaxEvt(float? v) {
-                api.Arguments.VideoSelection.MaxFilesize = (v == null || v == 0) ? (ByteSize?)null : ByteSize.From(v.Value, (FilesizeUnit)cbxFilesizeMaxUnits.SelectedItem);
+                api.Arguments.VideoSelection.MaxFilesize = (v == null || v == 0) ? (ByteSize?)null : Utils.From(v.Value, (FilesizeUnit)cbxFilesizeMaxUnits.SelectedItem);
             }
             cbxFilesizeMaxUnits.BindEnableTo(cbFilesizeMax).BindValueTo(obj => filesizeMaxEvt(nudFilesizeMax.GetValueFloat(cbFilesizeMax))).Listen(clg);
             nudFilesizeMax.BindEnableTo(cbFilesizeMax).BindValueTo(filesizeMaxEvt, cbFilesizeMax, clg);
@@ -281,7 +278,7 @@ namespace Maxstupo.YdlUi.Forms {
             #region Download
 
             void limitRateEvt(float? v) {
-                api.Arguments.Download.LimitRate = (v == null || v == 0) ? (ByteSize?)null : ByteSize.From(v.Value, (FilesizeUnit)cbxLimitRateUnits.SelectedItem);
+                api.Arguments.Download.LimitRate = (v == null || v == 0) ? (ByteSize?)null : Utils.From(v.Value, (FilesizeUnit)cbxLimitRateUnits.SelectedItem);
             }
             cbxLimitRateUnits.BindEnableTo(cbLimitRate).BindValueTo(obj => limitRateEvt(nudLimitRate.GetValueFloat(cbLimitRate))).Listen(clg);
             nudLimitRate.BindEnableTo(cbLimitRate).BindValueTo(limitRateEvt, cbLimitRate, clg);

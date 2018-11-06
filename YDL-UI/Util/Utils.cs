@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteSizeLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,25 @@ namespace Maxstupo.YdlUi.Util {
     public class Utils {
         private static readonly object _lock = new object();
 
+        public static double ToUnit(ByteSize bs, FilesizeUnit unit) {
+            switch (unit) {
+                case FilesizeUnit.KB: return bs.KiloBytes;
+                case FilesizeUnit.MB: return bs.MegaBytes;
+                case FilesizeUnit.GB: return bs.GigaBytes;
+                default: break;
+            }
+            throw new Exception();
+        }
+
+        public static ByteSize From(double value, FilesizeUnit unit) {
+            switch (unit) {
+                case FilesizeUnit.KB: return ByteSize.FromKiloBytes(value);
+                case FilesizeUnit.MB: return ByteSize.FromMegaBytes(value);
+                case FilesizeUnit.GB: return ByteSize.FromGigaBytes(value);
+                default: break;
+            }
+            throw new Exception();
+        }
 
         public static bool IsValidUrl(string url) {
             return Uri.TryCreate(url, UriKind.Absolute, out Uri result) && (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);

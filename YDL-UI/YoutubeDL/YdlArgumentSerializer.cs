@@ -1,5 +1,5 @@
-﻿using Maxstupo.YdlUi.ArgumentBuilder;
-using Maxstupo.YdlUi.Util;
+﻿using ByteSizeLib;
+using Maxstupo.YdlUi.ArgumentBuilder;
 
 namespace Maxstupo.YdlUi.YoutubeDL {
 
