@@ -1,6 +1,7 @@
 ﻿using Maxstupo.YdlUi.Utility;
 using Maxstupo.YdlUi.YoutubeDL.Model;
 using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -57,15 +58,25 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 #endif
 
             string arguments = argumentSerializer.Serialize(Arguments, true);
-
+      
             ExecutableProcess process = new ExecutableProcess(ydlPath, arguments, DownloadDirectory);
-            process.OnExited += (s, e) => {
-                Status = DownloadStatus.Completed;
+
+            Log += $"\r\nWorking Directory: {DownloadDirectory}";
+            Log += $"\r\nExecuting: {process.Command}";
+
+            process.OnExited += (s, exitCode) => {
+                Status = (exitCode == 0) ? DownloadStatus.Completed : DownloadStatus.Failed;
             };
+
             process.OnReceived += (s, e) => {
                 YdlApi.Parse(e, this);
                 Log += $"\r\n{e}";
             };
+
+            process.OnError += (s, exitCode) => {
+                Log += $"\r\n{exitCode}";
+            };
+
             process.Start();
 
         }

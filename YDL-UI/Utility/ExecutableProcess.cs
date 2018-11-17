@@ -8,10 +8,11 @@ namespace Maxstupo.YdlUi.Utility {
 
         private readonly Process process;
 
-        public EventHandler OnExited { get; set; }
+        public EventHandler<int> OnExited { get; set; }
         public EventHandler<string> OnReceived { get; set; }
         public EventHandler<string> OnError { get; set; }
 
+        public string Command { get => $"{path} {arguments}"; }
 
         public ExecutableProcess(string path, string arguments, string workingDirectory = null) {
             this.path = path;
@@ -35,8 +36,7 @@ namespace Maxstupo.YdlUi.Utility {
             process.OutputDataReceived += Process_OutputDataReceived;
             process.Exited += Process_Exited;
             process.ErrorDataReceived += Process_ErrorDataReceived;
-
-
+            
         }
 
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e) {
@@ -45,8 +45,8 @@ namespace Maxstupo.YdlUi.Utility {
         }
 
         private void Process_Exited(object sender, EventArgs e) {
+            OnExited?.Invoke(this, process.ExitCode);
             Dispose();
-            OnExited?.Invoke(this, e);
         }
 
         private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e) {

@@ -37,7 +37,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             updateTimer.Elapsed += delegate { Update(); };
             updateTimer.Start();
         }
-        
+
         private void Update() {
             foreach (Download download in downloads) {
                 if (download.Status != DownloadStatus.Queued)
@@ -63,7 +63,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
             if (download.Status == DownloadStatus.Downloading)
                 download.Status = DownloadStatus.Queued;
-            
+
             Downloads.Add(download);
 
             FirePropertyChanged(nameof(TotalDownloads));
@@ -90,9 +90,9 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public bool RemoveDownload(Download download) {
             if (!CanRemoveDownload(download))
                 return false;
-            
+
             Downloads.Remove(download);
-            
+
             FirePropertyChanged(nameof(TotalDownloads));
 
             return true;
