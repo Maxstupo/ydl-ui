@@ -1,120 +1,33 @@
-﻿using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Diagnostics;
-using System.Text;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Maxstupo.YdlUi.YoutubeDL {
-
-    [Flags]
-    public enum ProcType : byte {
-        None = 0,
-        Error = 1,
-        DataReceived = 2,
-        Exited = 4
-    }
-
-    public delegate bool ProcessCallback(string data, ProcType type);
-
     public class YdlApi {
+        // TODO: Add youtube-dl version support checking.
+        public static string DownloadStatusRegex { get => @"\[download\]\s+(?<percent>\d{1,3}\.?\d{0,2})%?\s+of\s+(?<filesize>\d{1,3}\.?\d{1,3})(?<filesizeUnit>\w{1,3})\s+at\s+(?<speed>\d{1,3}\.?\d{1,3})(?<speedUnit>\w{1,3}\/s)\s+ETA\s+(?<eta>\d{1,3}:\d{1,3})"; }
 
-        public string Executable { get; set; }
-        public YdlArguments Arguments { get; private set; } = new YdlArguments();
+        private static readonly Regex regex = new Regex(DownloadStatusRegex);
 
-        private readonly YdlArgumentSerializer ydlArgumentSerializer = new YdlArgumentSerializer();
+        public static void Parse(string line, Download download) {
+            if (string.IsNullOrWhiteSpace(line))
+                return;
 
-        public YdlApi(string executable) {
-            this.Executable = executable;
-        }
+            try {
+                Match match = regex.Match(line);
+                if (match.Success) {
+                    download.Progress = (int)float.Parse(match.Groups["percent"].Value);
 
-        public string BuildArgumentString() {
-            return ydlArgumentSerializer.Serialize(Arguments, true);
-        }
+                    download.Eta = match.Groups["eta"].Value;
+                    download.Size = match.Groups["filesize"].Value + " " + match.Groups["filesizeUnit"].Value;
 
-        public bool Execute(string workingDirectory = null) {
-            string arguments = BuildArgumentString();
-            return DoExecute(arguments, workingDirectory);
-        }
+                    string unit = match.Groups["speedUnit"].Value;
+                    download.Speed = match.Groups["speed"].Value + " " + unit;
 
-        public bool Execute(ProcessCallback callback, string workingDirectory = null) {
-            string arguments = BuildArgumentString();
-            return DoExecute(arguments, workingDirectory, callback);
-        }
-
-        public bool ExecuteWithTempArguments(YdlArguments tempArgs, ProcessCallback callback, string workingDirectory = null) {
-            YdlArguments savedArgs = Arguments;
-            Arguments = tempArgs;
-
-            bool result = Execute(callback, workingDirectory);
-
-            Arguments = savedArgs;
-            return result;
-        }
-
-        private bool DoExecute(string arguments, string workingDirectory, ProcessCallback callback = null) {
-            if (string.IsNullOrWhiteSpace(Executable))
-                return false;
-
-            StringBuilder sb = new StringBuilder();
-
-            bool disabledData = false;
-
-            Process proc = new Process();
-            proc.StartInfo.FileName = Executable;
-
-            if (!string.IsNullOrWhiteSpace(arguments))
-                proc.StartInfo.Arguments = arguments;
-
-            proc.StartInfo.CreateNoWindow = callback != null;
-            proc.StartInfo.Verb = "runas";
-
-            proc.StartInfo.RedirectStandardOutput = callback != null;
-            proc.StartInfo.RedirectStandardInput = callback != null;
-            proc.StartInfo.RedirectStandardError = callback != null;
-
-            proc.StartInfo.UseShellExecute = callback == null;
-            if (!string.IsNullOrWhiteSpace(workingDirectory))
-                proc.StartInfo.WorkingDirectory = workingDirectory;
-
-            proc.EnableRaisingEvents = callback != null;
-
-            if (callback != null) {
-                proc.OutputDataReceived += (sender, e) => {
-                    if (string.IsNullOrEmpty(e.Data))
-                        return;
-
-                    sb.Append(e.Data).Append('\n');
-
-                    if (!disabledData && callback(e.Data, ProcType.DataReceived))
-                        disabledData = true;
-                };
-
-                proc.Exited += (sender, e) => {
-
-                    proc.Dispose();
-
-                    if (sb.Length > 0)
-                        sb.Remove(sb.Length - 1, 1);
-
-                    callback(sb.ToString(), ProcType.Exited);
-                };
-
-                proc.ErrorDataReceived += (sender, e) => {
-                    callback(e.Data, ProcType.Error);
-                };
-
+                }
+            } catch (Exception e) { // Attempt to update status, this could break if we are using a custom youtube-dl application.
+                Console.WriteLine(e);
             }
-            proc.Start();
-            if (callback != null) {
-                proc.BeginOutputReadLine();
-                proc.BeginErrorReadLine();
-            }
-            return true;
-        }
 
-        public bool IsCompatibleVersion(string version) {
-            return YdlArguments.Version == version;
         }
-
     }
-
 }

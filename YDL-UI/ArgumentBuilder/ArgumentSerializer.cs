@@ -249,5 +249,4 @@ namespace Maxstupo.YdlUi.ArgumentBuilder {
         }
 
     }
-
 }

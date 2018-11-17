@@ -1,11 +1,9 @@
 ﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
-
     public enum MergeVideoFormat {
-        Mkv,
+        Mvk,
         Mp4,
         Ogg,
         Webm,
         Flv
     }
-
 }

@@ -7,9 +7,6 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
     [ArgumentContainer]
     public class YdlArguments {
-        public static readonly string Version = "2018.10.05";
-
-
         [Argument("", QuotePolicy = QuotePolicy.Always, Order = int.MaxValue)] public string Url { get; set; } = null;
 
         public YdlArgumentsGeneral General { get; set; } = new YdlArgumentsGeneral();
@@ -17,7 +14,7 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
         public YdlArgumentsGeoRestriction GeoRestriction { get; set; } = new YdlArgumentsGeoRestriction();
         public YdlArgumentsVideoSelection VideoSelection { get; set; } = new YdlArgumentsVideoSelection();
         public YdlArgumentsDownload Download { get; set; } = new YdlArgumentsDownload();
-        public YdlArgumentsFilesystem FileSystem { get; set; } = new YdlArgumentsFilesystem();
+        public YdlArgumentsFileSystem FileSystem { get; set; } = new YdlArgumentsFileSystem();
         public YdlArgumentsThumbnail Thumbnail { get; set; } = new YdlArgumentsThumbnail();
         public YdlArgumentsVerbosity Verbosity { get; set; } = new YdlArgumentsVerbosity();
         public YdlArgumentsWorkarounds Workarounds { get; set; } = new YdlArgumentsWorkarounds();
@@ -138,7 +135,7 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
     }
 
     [ArgumentContainer]
-    public class YdlArgumentsFilesystem {
+    public class YdlArgumentsFileSystem {
         [Argument("--batch-file")] public string BatchFile { get; set; } = null;
         [FlagArgument("--id")] public bool Id { get; set; }
         [Argument("--output")] public string OutputTemplate { get; set; } = null;

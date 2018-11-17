@@ -22,53 +22,5 @@ namespace Maxstupo.YdlUi.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool PromptSaveOnClose {
-            get {
-                return ((bool)(this["PromptSaveOnClose"]));
-            }
-            set {
-                this["PromptSaveOnClose"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DefaultPresetLocation {
-            get {
-                return ((string)(this["DefaultPresetLocation"]));
-            }
-            set {
-                this["DefaultPresetLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ClosePresetOnDownloadStart {
-            get {
-                return ((bool)(this["ClosePresetOnDownloadStart"]));
-            }
-            set {
-                this["ClosePresetOnDownloadStart"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CheckForUpdates {
-            get {
-                return ((bool)(this["CheckForUpdates"]));
-            }
-            set {
-                this["CheckForUpdates"] = value;
-            }
-        }
     }
 }

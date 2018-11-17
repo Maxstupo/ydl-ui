@@ -1,8 +1,4 @@
-﻿using System;
-
-namespace Maxstupo.YdlUi.YoutubeDL.Model {
-
-    [Serializable]
+﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
     public enum VideoFormatRecode {
         Mp4,
         Flv,
@@ -11,5 +7,4 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
         Mkv,
         Avi
     }
-
 }

@@ -23,6 +23,7 @@
             return Value ?? GetType().Name;
         }
 
+
         public static string Regex { get { return @"%\(\w+\)(?:s{1}|(\d+)d)"; } }
         public static string Template { get { return "%({keyword})s"; } }
 

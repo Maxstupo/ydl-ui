@@ -1,9 +1,9 @@
 ﻿using System;
 
 namespace Maxstupo.YdlUi.ArgumentBuilder {
-    
+
     /// <summary>
-    /// Marks a property as a command-line argument, contains metadata describing how to serialize the property.
+    /// Marks a property as a command line argument, contains metadata describing how to serialize the property.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class Argument : Attribute {
@@ -40,5 +40,6 @@ namespace Maxstupo.YdlUi.ArgumentBuilder {
             this.Flag = flag ?? throw new ArgumentNullException(nameof(flag));
         }
     }
+
 
 }

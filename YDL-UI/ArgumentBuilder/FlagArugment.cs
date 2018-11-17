@@ -1,5 +1,4 @@
 ﻿namespace Maxstupo.YdlUi.ArgumentBuilder {
-
     /// <summary>
     /// Marks a property as a command line argument switch, use this attribute on boolean properties only.
     /// </summary>
@@ -9,5 +8,4 @@
             QuotePolicy = QuotePolicy.Off;
         }
     }
-
 }
