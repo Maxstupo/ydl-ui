@@ -13,6 +13,8 @@ namespace Maxstupo.YdlUi.Forms.Tab {
         private void TabWorkarounds_Load(object sender, EventArgs e) {
             cbxLimitRateUnit.DataSource = Enum.GetValues(typeof(FilesizeUnit));
 
+            GuiUtil.MakeRangeNumericUpDown(nudSleepIntervalMin,nudSleepIntervalMax);
+
             txtReferer.BindEnabledTo(cbReferer);
             txtUserAgent.BindEnabledTo(cbUserAgent);
 
@@ -90,6 +92,23 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             arguments.Authentication.Password = txtPassword.GetText();
             arguments.Authentication.TwoFactor = txtTwoFactorCode.GetText();
             arguments.Authentication.VideoPassword = txtVideoPassword.GetText();
+
+            // Headers
+            arguments.Workarounds.Headers.Clear();
+            foreach (DataGridViewRow row in dgvHeaders.Rows) {
+                if (row.IsNewRow)
+                    continue;
+
+                string key = (string)row.Cells["colKey"].Value;
+                string value = (string)row.Cells["colValue"].Value;
+
+                if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(value))
+                    continue;
+
+
+                if (!arguments.Workarounds.Headers.ContainsKey(key))
+                    arguments.Workarounds.Headers.Add(key, value);
+            }
         }
     }
 }

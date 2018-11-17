@@ -37,18 +37,18 @@
             this.btnDownloadArchiveBrowse = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpQuality = new System.Windows.Forms.TabPage();
+            this.tabQuality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
             this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.tpVideoSelection = new System.Windows.Forms.TabPage();
+            this.tabVideoSelection1 = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
             this.tpPostProcessing = new System.Windows.Forms.TabPage();
+            this.tabPostProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
             this.tpWorkarounds = new System.Windows.Forms.TabPage();
+            this.tabWorkarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.cbDownloadArchive = new System.Windows.Forms.CheckBox();
             this.cbFilenameTemplate = new System.Windows.Forms.CheckBox();
             this.cbBasicMode = new System.Windows.Forms.CheckBox();
-            this.tabQuality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
-            this.tabVideoSelection1 = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
-            this.tabPostProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
-            this.tabWorkarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.tabControl.SuspendLayout();
             this.tpQuality.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
@@ -144,6 +144,11 @@
             // 
             this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilenameTemplate.AutoCompleteCustomSource.AddRange(new string[] {
+            "%(title)s - %(id)s.%(ext)s",
+            "%(playlist_title)s\\%(playlist_index)02d - %(title)s - %(id)s.%(ext)s"});
+            this.txtFilenameTemplate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtFilenameTemplate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtFilenameTemplate.Location = new System.Drawing.Point(141, 65);
             this.txtFilenameTemplate.Name = "txtFilenameTemplate";
             this.txtFilenameTemplate.Size = new System.Drawing.Size(645, 22);
@@ -197,6 +202,15 @@
             this.tpQuality.TabIndex = 3;
             this.tpQuality.Text = "Quality";
             // 
+            // tabQuality
+            // 
+            this.tabQuality.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabQuality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabQuality.Location = new System.Drawing.Point(0, 0);
+            this.tabQuality.Name = "tabQuality";
+            this.tabQuality.Size = new System.Drawing.Size(766, 376);
+            this.tabQuality.TabIndex = 9;
+            // 
             // cbCustomFormatSelector
             // 
             this.cbCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -228,6 +242,15 @@
             this.tpVideoSelection.TabIndex = 0;
             this.tpVideoSelection.Text = "Video Selection";
             // 
+            // tabVideoSelection1
+            // 
+            this.tabVideoSelection1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabVideoSelection1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabVideoSelection1.Location = new System.Drawing.Point(3, 3);
+            this.tabVideoSelection1.Name = "tabVideoSelection1";
+            this.tabVideoSelection1.Size = new System.Drawing.Size(760, 370);
+            this.tabVideoSelection1.TabIndex = 0;
+            // 
             // tpPostProcessing
             // 
             this.tpPostProcessing.BackColor = System.Drawing.Color.White;
@@ -239,6 +262,15 @@
             this.tpPostProcessing.TabIndex = 1;
             this.tpPostProcessing.Text = "Post Processing";
             // 
+            // tabPostProcessing
+            // 
+            this.tabPostProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPostProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPostProcessing.Location = new System.Drawing.Point(3, 3);
+            this.tabPostProcessing.Name = "tabPostProcessing";
+            this.tabPostProcessing.Size = new System.Drawing.Size(760, 370);
+            this.tabPostProcessing.TabIndex = 0;
+            // 
             // tpWorkarounds
             // 
             this.tpWorkarounds.BackColor = System.Drawing.Color.White;
@@ -248,6 +280,15 @@
             this.tpWorkarounds.Size = new System.Drawing.Size(766, 376);
             this.tpWorkarounds.TabIndex = 2;
             this.tpWorkarounds.Text = "Workarounds";
+            // 
+            // tabWorkarounds
+            // 
+            this.tabWorkarounds.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabWorkarounds.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabWorkarounds.Location = new System.Drawing.Point(0, 0);
+            this.tabWorkarounds.Name = "tabWorkarounds";
+            this.tabWorkarounds.Size = new System.Drawing.Size(766, 376);
+            this.tabWorkarounds.TabIndex = 0;
             // 
             // cbDownloadArchive
             // 
@@ -280,42 +321,6 @@
             this.cbBasicMode.Text = "Basic Mode";
             this.cbBasicMode.UseVisualStyleBackColor = true;
             this.cbBasicMode.CheckedChanged += new System.EventHandler(this.cbBasicMode_CheckedChanged);
-            // 
-            // tabQuality
-            // 
-            this.tabQuality.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabQuality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabQuality.Location = new System.Drawing.Point(0, 0);
-            this.tabQuality.Name = "tabQuality";
-            this.tabQuality.Size = new System.Drawing.Size(766, 376);
-            this.tabQuality.TabIndex = 9;
-            // 
-            // tabVideoSelection1
-            // 
-            this.tabVideoSelection1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabVideoSelection1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabVideoSelection1.Location = new System.Drawing.Point(3, 3);
-            this.tabVideoSelection1.Name = "tabVideoSelection1";
-            this.tabVideoSelection1.Size = new System.Drawing.Size(760, 370);
-            this.tabVideoSelection1.TabIndex = 0;
-            // 
-            // tabPostProcessing
-            // 
-            this.tabPostProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPostProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPostProcessing.Location = new System.Drawing.Point(3, 3);
-            this.tabPostProcessing.Name = "tabPostProcessing";
-            this.tabPostProcessing.Size = new System.Drawing.Size(760, 370);
-            this.tabPostProcessing.TabIndex = 0;
-            // 
-            // tabWorkarounds
-            // 
-            this.tabWorkarounds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabWorkarounds.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabWorkarounds.Location = new System.Drawing.Point(0, 0);
-            this.tabWorkarounds.Name = "tabWorkarounds";
-            this.tabWorkarounds.Size = new System.Drawing.Size(766, 376);
-            this.tabWorkarounds.TabIndex = 0;
             // 
             // FormAddDownload
             // 

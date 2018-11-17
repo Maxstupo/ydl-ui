@@ -17,6 +17,10 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             cbxMinSizeUnit.DataSource = Enum.GetValues(typeof(FilesizeUnit));
             cbxMinSizeUnit.SelectedItem = FilesizeUnit.MB;
 
+            GuiUtil.MakeRangeNumericUpDown(nudPlaylistStart, nudPlaylistEnd, 1);
+            GuiUtil.MakeRangeNumericUpDown(nudMinSize, nudMaxSize, 0.1M);
+            GuiUtil.MakeRangeNumericUpDown(nudMinViews, nudMaxViews, 1);
+
             // Date Filters
             dtpDate.BindEnabledTo(cbDate);
             dtpDateAfter.BindEnabledTo(cbDateAfter);
@@ -79,6 +83,11 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             arguments.VideoSelection.MatchTitle = txtMatchTitle.GetText();
             arguments.VideoSelection.RejectTitle = txtRejectTitle.GetText();
             arguments.VideoSelection.MatchFilter = txtMatchFilter.GetText();
+        }
+
+        // Only allow numbers, commas, and hyphens for playlist range.
+        private void txtPlaylistRange_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = e.KeyChar != (char)Keys.Back && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !char.IsControl(e.KeyChar);
         }
     }
 }

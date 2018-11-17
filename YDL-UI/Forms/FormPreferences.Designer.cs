@@ -339,6 +339,7 @@
             // cbxCheckForUpdates
             // 
             this.cbxCheckForUpdates.AutoSize = true;
+            this.cbxCheckForUpdates.Enabled = false;
             this.cbxCheckForUpdates.Location = new System.Drawing.Point(8, 21);
             this.cbxCheckForUpdates.Name = "cbxCheckForUpdates";
             this.cbxCheckForUpdates.Size = new System.Drawing.Size(126, 17);

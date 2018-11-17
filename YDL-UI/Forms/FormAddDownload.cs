@@ -30,7 +30,7 @@ namespace Maxstupo.YdlUi.Forms {
             };
             txtUrl.Text = " "; // Used to trigger TextChanged event.
             txtUrl.Text = url ?? string.Empty;
-            
+
         }
 
         private void FormAddDownload_Load(object sender, EventArgs e) {
@@ -59,6 +59,20 @@ namespace Maxstupo.YdlUi.Forms {
             // Preload data bindings for tabs. (XXX: Really need to find a better way of doing this)
             tabControl.PreloadTabs();
 
+
+#if DEBUG 
+            // Debug arguments generated from UI.
+            Timer timer = new Timer {
+                Interval = 300
+            };
+            timer.Tick += delegate {
+                YdlArguments args = new YdlArguments();
+                SetArguments(args);
+                YdlArgumentSerializer serializer = new YdlArgumentSerializer();
+                Console.WriteLine(serializer.Serialize(args, true));
+            };
+            timer.Start();
+#endif
         }
 
         private void FormAddDownload_FormClosing(object sender, FormClosingEventArgs e) {
@@ -147,7 +161,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnDownloadArchiveBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select download archive...", "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDownloadArchive.Text,false);
+            string filepath = GuiUtil.SelectFile(this, "Select download archive...", "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDownloadArchive.Text, false);
             if (filepath != null)
                 txtDownloadArchive.Text = filepath;
         }

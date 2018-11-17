@@ -107,7 +107,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(778, 340);
-            this.tableLayoutPanel1.TabIndex = 12;
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // gbDownload
             // 
@@ -121,10 +121,10 @@
             this.gbDownload.Controls.Add(this.nudLimitRate);
             this.gbDownload.Controls.Add(this.cbLimitRate);
             this.gbDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbDownload.Location = new System.Drawing.Point(233, 3);
+            this.gbDownload.Location = new System.Drawing.Point(232, 3);
             this.gbDownload.MinimumSize = new System.Drawing.Size(259, 125);
             this.gbDownload.Name = "gbDownload";
-            this.gbDownload.Size = new System.Drawing.Size(270, 164);
+            this.gbDownload.Size = new System.Drawing.Size(269, 164);
             this.gbDownload.TabIndex = 1;
             this.gbDownload.TabStop = false;
             this.gbDownload.Text = "Download";
@@ -134,19 +134,19 @@
             this.cbxLimitRateUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxLimitRateUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLimitRateUnit.FormattingEnabled = true;
-            this.cbxLimitRateUnit.Location = new System.Drawing.Point(202, 20);
+            this.cbxLimitRateUnit.Location = new System.Drawing.Point(201, 20);
             this.cbxLimitRateUnit.Name = "cbxLimitRateUnit";
             this.cbxLimitRateUnit.Size = new System.Drawing.Size(62, 21);
-            this.cbxLimitRateUnit.TabIndex = 17;
+            this.cbxLimitRateUnit.TabIndex = 2;
             // 
             // cbRetriesInf
             // 
             this.cbRetriesInf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRetriesInf.AutoSize = true;
-            this.cbRetriesInf.Location = new System.Drawing.Point(202, 51);
+            this.cbRetriesInf.Location = new System.Drawing.Point(201, 51);
             this.cbRetriesInf.Name = "cbRetriesInf";
             this.cbRetriesInf.Size = new System.Drawing.Size(63, 17);
-            this.cbRetriesInf.TabIndex = 16;
+            this.cbRetriesInf.TabIndex = 5;
             this.cbRetriesInf.Text = "Infinite";
             this.cbRetriesInf.UseVisualStyleBackColor = true;
             // 
@@ -154,10 +154,10 @@
             // 
             this.cbFragmentRetriesInf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFragmentRetriesInf.AutoSize = true;
-            this.cbFragmentRetriesInf.Location = new System.Drawing.Point(202, 79);
+            this.cbFragmentRetriesInf.Location = new System.Drawing.Point(201, 79);
             this.cbFragmentRetriesInf.Name = "cbFragmentRetriesInf";
             this.cbFragmentRetriesInf.Size = new System.Drawing.Size(63, 17);
-            this.cbFragmentRetriesInf.TabIndex = 15;
+            this.cbFragmentRetriesInf.TabIndex = 8;
             this.cbFragmentRetriesInf.Text = "Infinite";
             this.cbFragmentRetriesInf.UseVisualStyleBackColor = true;
             // 
@@ -172,8 +172,8 @@
             0,
             0});
             this.nudFragmentRetries.Name = "nudFragmentRetries";
-            this.nudFragmentRetries.Size = new System.Drawing.Size(68, 22);
-            this.nudFragmentRetries.TabIndex = 14;
+            this.nudFragmentRetries.Size = new System.Drawing.Size(67, 22);
+            this.nudFragmentRetries.TabIndex = 7;
             // 
             // cbFragmentRetries
             // 
@@ -181,7 +181,7 @@
             this.cbFragmentRetries.Location = new System.Drawing.Point(6, 77);
             this.cbFragmentRetries.Name = "cbFragmentRetries";
             this.cbFragmentRetries.Size = new System.Drawing.Size(116, 17);
-            this.cbFragmentRetries.TabIndex = 13;
+            this.cbFragmentRetries.TabIndex = 6;
             this.cbFragmentRetries.Text = "Fragment Retries:";
             this.cbFragmentRetries.UseVisualStyleBackColor = true;
             // 
@@ -196,8 +196,8 @@
             0,
             0});
             this.nudRetries.Name = "nudRetries";
-            this.nudRetries.Size = new System.Drawing.Size(68, 22);
-            this.nudRetries.TabIndex = 12;
+            this.nudRetries.Size = new System.Drawing.Size(67, 22);
+            this.nudRetries.TabIndex = 4;
             // 
             // cbRetries
             // 
@@ -205,7 +205,7 @@
             this.cbRetries.Location = new System.Drawing.Point(6, 49);
             this.cbRetries.Name = "cbRetries";
             this.cbRetries.Size = new System.Drawing.Size(64, 17);
-            this.cbRetries.TabIndex = 11;
+            this.cbRetries.TabIndex = 3;
             this.cbRetries.Text = "Retries:";
             this.cbRetries.UseVisualStyleBackColor = true;
             // 
@@ -226,8 +226,8 @@
             0,
             0});
             this.nudLimitRate.Name = "nudLimitRate";
-            this.nudLimitRate.Size = new System.Drawing.Size(68, 22);
-            this.nudLimitRate.TabIndex = 10;
+            this.nudLimitRate.Size = new System.Drawing.Size(67, 22);
+            this.nudLimitRate.TabIndex = 1;
             // 
             // cbLimitRate
             // 
@@ -235,7 +235,7 @@
             this.cbLimitRate.Location = new System.Drawing.Point(6, 21);
             this.cbLimitRate.Name = "cbLimitRate";
             this.cbLimitRate.Size = new System.Drawing.Size(79, 17);
-            this.cbLimitRate.TabIndex = 9;
+            this.cbLimitRate.TabIndex = 0;
             this.cbLimitRate.Text = "Limit Rate:";
             this.cbLimitRate.UseVisualStyleBackColor = true;
             // 
@@ -253,8 +253,8 @@
             this.gbAuthentication.Location = new System.Drawing.Point(3, 173);
             this.gbAuthentication.MinimumSize = new System.Drawing.Size(218, 134);
             this.gbAuthentication.Name = "gbAuthentication";
-            this.gbAuthentication.Size = new System.Drawing.Size(224, 164);
-            this.gbAuthentication.TabIndex = 3;
+            this.gbAuthentication.Size = new System.Drawing.Size(223, 164);
+            this.gbAuthentication.TabIndex = 2;
             this.gbAuthentication.TabStop = false;
             this.gbAuthentication.Text = "Authentication";
             // 
@@ -264,7 +264,7 @@
             this.lblPassword.Location = new System.Drawing.Point(2, 52);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(59, 13);
-            this.lblPassword.TabIndex = 16;
+            this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Password:";
             // 
             // cbVideoPassword
@@ -273,7 +273,7 @@
             this.cbVideoPassword.Location = new System.Drawing.Point(5, 107);
             this.cbVideoPassword.Name = "cbVideoPassword";
             this.cbVideoPassword.Size = new System.Drawing.Size(111, 17);
-            this.cbVideoPassword.TabIndex = 15;
+            this.cbVideoPassword.TabIndex = 6;
             this.cbVideoPassword.Text = "Video Password:";
             this.cbVideoPassword.UseVisualStyleBackColor = true;
             // 
@@ -283,7 +283,7 @@
             this.cbTwoFactorCode.Location = new System.Drawing.Point(5, 80);
             this.cbTwoFactorCode.Name = "cbTwoFactorCode";
             this.cbTwoFactorCode.Size = new System.Drawing.Size(114, 17);
-            this.cbTwoFactorCode.TabIndex = 14;
+            this.cbTwoFactorCode.TabIndex = 4;
             this.cbTwoFactorCode.Text = "Two Factor Code:";
             this.cbTwoFactorCode.UseVisualStyleBackColor = true;
             // 
@@ -293,8 +293,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtVideoPassword.Location = new System.Drawing.Point(119, 105);
             this.txtVideoPassword.Name = "txtVideoPassword";
-            this.txtVideoPassword.Size = new System.Drawing.Size(98, 22);
-            this.txtVideoPassword.TabIndex = 13;
+            this.txtVideoPassword.PasswordChar = '•';
+            this.txtVideoPassword.Size = new System.Drawing.Size(97, 22);
+            this.txtVideoPassword.TabIndex = 7;
             // 
             // txtTwoFactorCode
             // 
@@ -302,8 +303,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTwoFactorCode.Location = new System.Drawing.Point(119, 77);
             this.txtTwoFactorCode.Name = "txtTwoFactorCode";
-            this.txtTwoFactorCode.Size = new System.Drawing.Size(98, 22);
-            this.txtTwoFactorCode.TabIndex = 12;
+            this.txtTwoFactorCode.Size = new System.Drawing.Size(97, 22);
+            this.txtTwoFactorCode.TabIndex = 5;
             // 
             // txtPassword
             // 
@@ -312,8 +313,8 @@
             this.txtPassword.Location = new System.Drawing.Point(119, 49);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(98, 22);
-            this.txtPassword.TabIndex = 11;
+            this.txtPassword.Size = new System.Drawing.Size(97, 22);
+            this.txtPassword.TabIndex = 3;
             // 
             // txtUsername
             // 
@@ -321,8 +322,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Location = new System.Drawing.Point(119, 21);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(98, 22);
-            this.txtUsername.TabIndex = 10;
+            this.txtUsername.Size = new System.Drawing.Size(97, 22);
+            this.txtUsername.TabIndex = 1;
             // 
             // cbUsername
             // 
@@ -330,7 +331,7 @@
             this.cbUsername.Location = new System.Drawing.Point(5, 23);
             this.cbUsername.Name = "cbUsername";
             this.cbUsername.Size = new System.Drawing.Size(80, 17);
-            this.cbUsername.TabIndex = 9;
+            this.cbUsername.TabIndex = 0;
             this.cbUsername.Text = "Username:";
             this.cbUsername.UseVisualStyleBackColor = true;
             // 
@@ -342,11 +343,11 @@
             this.gbSleepInterval.Controls.Add(this.rbSleepIntervalValue);
             this.gbSleepInterval.Controls.Add(this.rbSleepIntervalDefault);
             this.gbSleepInterval.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbSleepInterval.Location = new System.Drawing.Point(233, 173);
+            this.gbSleepInterval.Location = new System.Drawing.Point(232, 173);
             this.gbSleepInterval.MinimumSize = new System.Drawing.Size(262, 123);
             this.gbSleepInterval.Name = "gbSleepInterval";
-            this.gbSleepInterval.Size = new System.Drawing.Size(270, 164);
-            this.gbSleepInterval.TabIndex = 2;
+            this.gbSleepInterval.Size = new System.Drawing.Size(269, 164);
+            this.gbSleepInterval.TabIndex = 3;
             this.gbSleepInterval.TabStop = false;
             this.gbSleepInterval.Text = "Sleep Interval";
             // 
@@ -366,8 +367,8 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(188, 28);
-            this.tableLayoutPanel2.TabIndex = 20;
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(187, 28);
+            this.tableLayoutPanel2.TabIndex = 4;
             // 
             // nudSleepIntervalMin
             // 
@@ -380,14 +381,14 @@
             0,
             0});
             this.nudSleepIntervalMin.Name = "nudSleepIntervalMin";
-            this.nudSleepIntervalMin.Size = new System.Drawing.Size(79, 22);
-            this.nudSleepIntervalMin.TabIndex = 19;
+            this.nudSleepIntervalMin.Size = new System.Drawing.Size(78, 22);
+            this.nudSleepIntervalMin.TabIndex = 0;
             // 
             // nudSleepIntervalMax
             // 
             this.nudSleepIntervalMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudSleepIntervalMax.Location = new System.Drawing.Point(105, 3);
+            this.nudSleepIntervalMax.Location = new System.Drawing.Point(104, 3);
             this.nudSleepIntervalMax.Maximum = new decimal(new int[] {
             3600,
             0,
@@ -395,16 +396,16 @@
             0});
             this.nudSleepIntervalMax.Name = "nudSleepIntervalMax";
             this.nudSleepIntervalMax.Size = new System.Drawing.Size(80, 22);
-            this.nudSleepIntervalMax.TabIndex = 20;
+            this.nudSleepIntervalMax.TabIndex = 2;
             // 
             // lblSleepIntervalRangeSeperator
             // 
             this.lblSleepIntervalRangeSeperator.AutoSize = true;
             this.lblSleepIntervalRangeSeperator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSleepIntervalRangeSeperator.Location = new System.Drawing.Point(88, 0);
+            this.lblSleepIntervalRangeSeperator.Location = new System.Drawing.Point(87, 0);
             this.lblSleepIntervalRangeSeperator.Name = "lblSleepIntervalRangeSeperator";
             this.lblSleepIntervalRangeSeperator.Size = new System.Drawing.Size(11, 28);
-            this.lblSleepIntervalRangeSeperator.TabIndex = 21;
+            this.lblSleepIntervalRangeSeperator.TabIndex = 1;
             this.lblSleepIntervalRangeSeperator.Text = "-";
             this.lblSleepIntervalRangeSeperator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -419,8 +420,8 @@
             0,
             0});
             this.nudSleepInterval.Name = "nudSleepInterval";
-            this.nudSleepInterval.Size = new System.Drawing.Size(185, 22);
-            this.nudSleepInterval.TabIndex = 18;
+            this.nudSleepInterval.Size = new System.Drawing.Size(184, 22);
+            this.nudSleepInterval.TabIndex = 2;
             // 
             // rbSleepIntervalRange
             // 
@@ -428,7 +429,7 @@
             this.rbSleepIntervalRange.Location = new System.Drawing.Point(6, 79);
             this.rbSleepIntervalRange.Name = "rbSleepIntervalRange";
             this.rbSleepIntervalRange.Size = new System.Drawing.Size(61, 17);
-            this.rbSleepIntervalRange.TabIndex = 11;
+            this.rbSleepIntervalRange.TabIndex = 3;
             this.rbSleepIntervalRange.Text = "Range:";
             this.rbSleepIntervalRange.UseVisualStyleBackColor = true;
             // 
@@ -438,7 +439,7 @@
             this.rbSleepIntervalValue.Location = new System.Drawing.Point(6, 48);
             this.rbSleepIntervalValue.Name = "rbSleepIntervalValue";
             this.rbSleepIntervalValue.Size = new System.Drawing.Size(56, 17);
-            this.rbSleepIntervalValue.TabIndex = 10;
+            this.rbSleepIntervalValue.TabIndex = 1;
             this.rbSleepIntervalValue.Text = "Value:";
             this.rbSleepIntervalValue.UseVisualStyleBackColor = true;
             // 
@@ -449,7 +450,7 @@
             this.rbSleepIntervalDefault.Location = new System.Drawing.Point(6, 21);
             this.rbSleepIntervalDefault.Name = "rbSleepIntervalDefault";
             this.rbSleepIntervalDefault.Size = new System.Drawing.Size(63, 17);
-            this.rbSleepIntervalDefault.TabIndex = 9;
+            this.rbSleepIntervalDefault.TabIndex = 0;
             this.rbSleepIntervalDefault.TabStop = true;
             this.rbSleepIntervalDefault.Text = "Default";
             this.rbSleepIntervalDefault.UseVisualStyleBackColor = true;
@@ -469,7 +470,7 @@
             this.gbNetwork.Location = new System.Drawing.Point(3, 3);
             this.gbNetwork.MinimumSize = new System.Drawing.Size(218, 125);
             this.gbNetwork.Name = "gbNetwork";
-            this.gbNetwork.Size = new System.Drawing.Size(224, 164);
+            this.gbNetwork.Size = new System.Drawing.Size(223, 164);
             this.gbNetwork.TabIndex = 0;
             this.gbNetwork.TabStop = false;
             this.gbNetwork.Text = "Network";
@@ -517,8 +518,8 @@
             0,
             0});
             this.nudSocketTimeout.Name = "nudSocketTimeout";
-            this.nudSocketTimeout.Size = new System.Drawing.Size(98, 22);
-            this.nudSocketTimeout.TabIndex = 5;
+            this.nudSocketTimeout.Size = new System.Drawing.Size(97, 22);
+            this.nudSocketTimeout.TabIndex = 3;
             // 
             // cbSocketTimeout
             // 
@@ -526,7 +527,7 @@
             this.cbSocketTimeout.Location = new System.Drawing.Point(5, 48);
             this.cbSocketTimeout.Name = "cbSocketTimeout";
             this.cbSocketTimeout.Size = new System.Drawing.Size(107, 17);
-            this.cbSocketTimeout.TabIndex = 4;
+            this.cbSocketTimeout.TabIndex = 2;
             this.cbSocketTimeout.Text = "Socket Timeout:";
             this.cbSocketTimeout.UseVisualStyleBackColor = true;
             // 
@@ -536,8 +537,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSourceAddress.Location = new System.Drawing.Point(119, 75);
             this.txtSourceAddress.Name = "txtSourceAddress";
-            this.txtSourceAddress.Size = new System.Drawing.Size(98, 22);
-            this.txtSourceAddress.TabIndex = 3;
+            this.txtSourceAddress.Size = new System.Drawing.Size(97, 22);
+            this.txtSourceAddress.TabIndex = 5;
             // 
             // cbSourceAddress
             // 
@@ -545,7 +546,7 @@
             this.cbSourceAddress.Location = new System.Drawing.Point(5, 77);
             this.cbSourceAddress.Name = "cbSourceAddress";
             this.cbSourceAddress.Size = new System.Drawing.Size(108, 17);
-            this.cbSourceAddress.TabIndex = 2;
+            this.cbSourceAddress.TabIndex = 4;
             this.cbSourceAddress.Text = "Source Address:";
             this.cbSourceAddress.UseVisualStyleBackColor = true;
             // 
@@ -555,7 +556,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProxy.Location = new System.Drawing.Point(119, 19);
             this.txtProxy.Name = "txtProxy";
-            this.txtProxy.Size = new System.Drawing.Size(98, 22);
+            this.txtProxy.Size = new System.Drawing.Size(97, 22);
             this.txtProxy.TabIndex = 1;
             // 
             // cbProxy
@@ -572,11 +573,10 @@
             // 
             this.gbHeaders.Controls.Add(this.dgvHeaders);
             this.gbHeaders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbHeaders.Enabled = false;
-            this.gbHeaders.Location = new System.Drawing.Point(509, 3);
+            this.gbHeaders.Location = new System.Drawing.Point(507, 3);
             this.gbHeaders.Name = "gbHeaders";
             this.tableLayoutPanel1.SetRowSpan(this.gbHeaders, 2);
-            this.gbHeaders.Size = new System.Drawing.Size(266, 334);
+            this.gbHeaders.Size = new System.Drawing.Size(268, 334);
             this.gbHeaders.TabIndex = 4;
             this.gbHeaders.TabStop = false;
             this.gbHeaders.Text = "Headers";
@@ -593,8 +593,8 @@
             this.dgvHeaders.Location = new System.Drawing.Point(3, 18);
             this.dgvHeaders.Name = "dgvHeaders";
             this.dgvHeaders.RowHeadersVisible = false;
-            this.dgvHeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvHeaders.Size = new System.Drawing.Size(260, 313);
+            this.dgvHeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvHeaders.Size = new System.Drawing.Size(262, 313);
             this.dgvHeaders.TabIndex = 0;
             // 
             // colKey
@@ -759,7 +759,7 @@
             this.txtUserAgent.Location = new System.Drawing.Point(95, 31);
             this.txtUserAgent.Name = "txtUserAgent";
             this.txtUserAgent.Size = new System.Drawing.Size(686, 22);
-            this.txtUserAgent.TabIndex = 11;
+            this.txtUserAgent.TabIndex = 3;
             // 
             // cbUserAgent
             // 
@@ -767,7 +767,7 @@
             this.cbUserAgent.Location = new System.Drawing.Point(3, 34);
             this.cbUserAgent.Name = "cbUserAgent";
             this.cbUserAgent.Size = new System.Drawing.Size(86, 17);
-            this.cbUserAgent.TabIndex = 10;
+            this.cbUserAgent.TabIndex = 2;
             this.cbUserAgent.Text = "User Agent:";
             this.cbUserAgent.UseVisualStyleBackColor = true;
             // 
@@ -778,7 +778,7 @@
             this.txtReferer.Location = new System.Drawing.Point(95, 3);
             this.txtReferer.Name = "txtReferer";
             this.txtReferer.Size = new System.Drawing.Size(687, 22);
-            this.txtReferer.TabIndex = 9;
+            this.txtReferer.TabIndex = 1;
             // 
             // cbReferer
             // 
@@ -786,7 +786,7 @@
             this.cbReferer.Location = new System.Drawing.Point(3, 6);
             this.cbReferer.Name = "cbReferer";
             this.cbReferer.Size = new System.Drawing.Size(66, 17);
-            this.cbReferer.TabIndex = 8;
+            this.cbReferer.TabIndex = 0;
             this.cbReferer.Text = "Referer:";
             this.cbReferer.UseVisualStyleBackColor = true;
             // 

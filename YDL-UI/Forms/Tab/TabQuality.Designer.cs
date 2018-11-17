@@ -52,7 +52,7 @@
             this.gbGeneral.Location = new System.Drawing.Point(359, 3);
             this.gbGeneral.Name = "gbGeneral";
             this.gbGeneral.Size = new System.Drawing.Size(131, 96);
-            this.gbGeneral.TabIndex = 23;
+            this.gbGeneral.TabIndex = 2;
             this.gbGeneral.TabStop = false;
             this.gbGeneral.Text = "General";
             // 
@@ -64,7 +64,7 @@
             this.cbIgnoreErrors.Location = new System.Drawing.Point(6, 21);
             this.cbIgnoreErrors.Name = "cbIgnoreErrors";
             this.cbIgnoreErrors.Size = new System.Drawing.Size(93, 17);
-            this.cbIgnoreErrors.TabIndex = 1;
+            this.cbIgnoreErrors.TabIndex = 0;
             this.cbIgnoreErrors.Text = "Ignore Errors";
             this.cbIgnoreErrors.UseVisualStyleBackColor = true;
             // 
@@ -74,7 +74,7 @@
             this.cbAbortOnErrors.Location = new System.Drawing.Point(6, 44);
             this.cbAbortOnErrors.Name = "cbAbortOnErrors";
             this.cbAbortOnErrors.Size = new System.Drawing.Size(107, 17);
-            this.cbAbortOnErrors.TabIndex = 0;
+            this.cbAbortOnErrors.TabIndex = 1;
             this.cbAbortOnErrors.Text = "Abort On Errors";
             this.cbAbortOnErrors.UseVisualStyleBackColor = true;
             // 
@@ -89,7 +89,7 @@
             this.gbFileSystem.Location = new System.Drawing.Point(584, 3);
             this.gbFileSystem.Name = "gbFileSystem";
             this.gbFileSystem.Size = new System.Drawing.Size(131, 138);
-            this.gbFileSystem.TabIndex = 22;
+            this.gbFileSystem.TabIndex = 3;
             this.gbFileSystem.TabStop = false;
             this.gbFileSystem.Text = "File System";
             // 
@@ -150,14 +150,14 @@
             this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
             this.videoQualitySelector.Name = "videoQualitySelector";
             this.videoQualitySelector.Size = new System.Drawing.Size(170, 95);
-            this.videoQualitySelector.TabIndex = 20;
+            this.videoQualitySelector.TabIndex = 0;
             // 
             // frameRateSelector
             // 
             this.frameRateSelector.Location = new System.Drawing.Point(179, 3);
             this.frameRateSelector.Name = "frameRateSelector";
             this.frameRateSelector.Size = new System.Drawing.Size(174, 96);
-            this.frameRateSelector.TabIndex = 21;
+            this.frameRateSelector.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -170,7 +170,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 104);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(252, 104);
-            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Subtitles";
             this.groupBox1.Visible = false;
@@ -181,7 +181,7 @@
             this.checkBox5.Location = new System.Drawing.Point(6, 71);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(123, 17);
-            this.checkBox5.TabIndex = 11;
+            this.checkBox5.TabIndex = 3;
             this.checkBox5.Text = "Subtitle Language:";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
@@ -192,7 +192,7 @@
             this.comboBox2.Location = new System.Drawing.Point(135, 69);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(80, 21);
-            this.comboBox2.TabIndex = 10;
+            this.comboBox2.TabIndex = 4;
             // 
             // checkBox4
             // 
@@ -200,7 +200,7 @@
             this.checkBox4.Location = new System.Drawing.Point(6, 44);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(108, 17);
-            this.checkBox4.TabIndex = 9;
+            this.checkBox4.TabIndex = 1;
             this.checkBox4.Text = "Subtitle Format:";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
@@ -211,7 +211,7 @@
             this.comboBox1.Location = new System.Drawing.Point(135, 42);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(80, 21);
-            this.comboBox1.TabIndex = 8;
+            this.comboBox1.TabIndex = 2;
             // 
             // checkBox1
             // 
@@ -219,7 +219,7 @@
             this.checkBox1.Location = new System.Drawing.Point(6, 21);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 17);
-            this.checkBox1.TabIndex = 2;
+            this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Write Subtitles";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 

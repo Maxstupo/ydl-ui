@@ -90,7 +90,7 @@
             this.gbRegexFilters.Location = new System.Drawing.Point(234, 140);
             this.gbRegexFilters.Name = "gbRegexFilters";
             this.gbRegexFilters.Size = new System.Drawing.Size(401, 105);
-            this.gbRegexFilters.TabIndex = 11;
+            this.gbRegexFilters.TabIndex = 5;
             this.gbRegexFilters.TabStop = false;
             this.gbRegexFilters.Text = "Text / Regex Filters";
             // 
@@ -167,7 +167,7 @@
             this.gbPlaylistFilters.Location = new System.Drawing.Point(234, 3);
             this.gbPlaylistFilters.Name = "gbPlaylistFilters";
             this.gbPlaylistFilters.Size = new System.Drawing.Size(401, 134);
-            this.gbPlaylistFilters.TabIndex = 10;
+            this.gbPlaylistFilters.TabIndex = 4;
             this.gbPlaylistFilters.TabStop = false;
             this.gbPlaylistFilters.Text = "Playlist Filters";
             // 
@@ -190,6 +190,7 @@
             this.txtPlaylistRange.Name = "txtPlaylistRange";
             this.txtPlaylistRange.Size = new System.Drawing.Size(281, 22);
             this.txtPlaylistRange.TabIndex = 5;
+            this.txtPlaylistRange.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaylistRange_KeyPress);
             // 
             // nudPlaylistEnd
             // 
@@ -277,7 +278,7 @@
             this.gbSelectionType.Location = new System.Drawing.Point(3, 3);
             this.gbSelectionType.Name = "gbSelectionType";
             this.gbSelectionType.Size = new System.Drawing.Size(223, 93);
-            this.gbSelectionType.TabIndex = 6;
+            this.gbSelectionType.TabIndex = 0;
             this.gbSelectionType.TabStop = false;
             this.gbSelectionType.Text = "Selection Type";
             // 
@@ -322,7 +323,7 @@
             this.gbViewCountFilters.Location = new System.Drawing.Point(3, 293);
             this.gbViewCountFilters.Name = "gbViewCountFilters";
             this.gbViewCountFilters.Size = new System.Drawing.Size(220, 77);
-            this.gbViewCountFilters.TabIndex = 9;
+            this.gbViewCountFilters.TabIndex = 3;
             this.gbViewCountFilters.TabStop = false;
             this.gbViewCountFilters.Text = "View Count Filters";
             // 
@@ -397,7 +398,7 @@
             this.gbFilesizeFilters.Location = new System.Drawing.Point(3, 210);
             this.gbFilesizeFilters.Name = "gbFilesizeFilters";
             this.gbFilesizeFilters.Size = new System.Drawing.Size(220, 77);
-            this.gbFilesizeFilters.TabIndex = 8;
+            this.gbFilesizeFilters.TabIndex = 2;
             this.gbFilesizeFilters.TabStop = false;
             this.gbFilesizeFilters.Text = "Filesize Filters";
             // 
@@ -492,7 +493,7 @@
             this.gbDateFilters.Location = new System.Drawing.Point(3, 102);
             this.gbDateFilters.Name = "gbDateFilters";
             this.gbDateFilters.Size = new System.Drawing.Size(220, 102);
-            this.gbDateFilters.TabIndex = 7;
+            this.gbDateFilters.TabIndex = 1;
             this.gbDateFilters.TabStop = false;
             this.gbDateFilters.Text = "Date Filters";
             // 

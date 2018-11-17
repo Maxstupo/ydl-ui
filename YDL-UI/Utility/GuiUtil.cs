@@ -16,6 +16,17 @@ namespace Maxstupo.YdlUi.Utility {
             return src.Enabled && cbxUnit.Enabled ? (ByteSize?)Util.From((double)src.Value, (FilesizeUnit)cbxUnit.SelectedValue) : defaultValue;
         }
 
+        public static void MakeRangeNumericUpDown(NumericUpDown min, NumericUpDown max, decimal minRange = 1) {
+            min.ValueChanged += delegate {
+                if (min.Value > max.Value - minRange)
+                    max.Value = Math.Min(min.Value + minRange, max.Maximum);
+            };
+            max.ValueChanged += delegate {
+                if (max.Value < min.Value + minRange)
+                    min.Value = Math.Max(min.Value - minRange, min.Minimum);
+            };
+        }
+
         public static T GetSelectedValue<T>(this ComboBox src, T defaultValue = default(T)) {
             return src.Enabled ? (T)src.SelectedValue : defaultValue;
         }

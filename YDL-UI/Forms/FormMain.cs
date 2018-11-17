@@ -25,6 +25,9 @@ namespace Maxstupo.YdlUi.Forms {
 
             // Set the title of the application.
             Text = $"{Application.ProductName} v{Application.ProductVersion.RemoveAfterLast('.')}";
+#if DEBUG
+            Text += "  -  Debug Build";
+#endif
 
             // Create a new preferences manager with multiple preference file locations. (Multiple filepaths are used to make YDL portable).
             preferencesManager = new PreferencesManager<Preferences>(new string[] {

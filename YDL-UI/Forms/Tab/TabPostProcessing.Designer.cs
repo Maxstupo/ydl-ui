@@ -41,7 +41,7 @@
             this.cbxAudioOnly.Location = new System.Drawing.Point(114, 3);
             this.cbxAudioOnly.Name = "cbxAudioOnly";
             this.cbxAudioOnly.Size = new System.Drawing.Size(116, 21);
-            this.cbxAudioOnly.TabIndex = 7;
+            this.cbxAudioOnly.TabIndex = 1;
             // 
             // cbxRecodeFormat
             // 
@@ -50,7 +50,7 @@
             this.cbxRecodeFormat.Location = new System.Drawing.Point(114, 30);
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(116, 21);
-            this.cbxRecodeFormat.TabIndex = 6;
+            this.cbxRecodeFormat.TabIndex = 3;
             // 
             // cbRecodeFormat
             // 
@@ -58,7 +58,7 @@
             this.cbRecodeFormat.Location = new System.Drawing.Point(2, 32);
             this.cbRecodeFormat.Name = "cbRecodeFormat";
             this.cbRecodeFormat.Size = new System.Drawing.Size(106, 17);
-            this.cbRecodeFormat.TabIndex = 5;
+            this.cbRecodeFormat.TabIndex = 2;
             this.cbRecodeFormat.Text = "Recode Format:";
             this.cbRecodeFormat.UseVisualStyleBackColor = true;
             // 
@@ -68,7 +68,7 @@
             this.cbAudioOnly.Location = new System.Drawing.Point(2, 5);
             this.cbAudioOnly.Name = "cbAudioOnly";
             this.cbAudioOnly.Size = new System.Drawing.Size(87, 17);
-            this.cbAudioOnly.TabIndex = 4;
+            this.cbAudioOnly.TabIndex = 0;
             this.cbAudioOnly.Text = "Audio Only:";
             this.cbAudioOnly.UseVisualStyleBackColor = true;
             // 
@@ -79,9 +79,10 @@
             this.checkBox1.Location = new System.Drawing.Point(2, 96);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(109, 17);
-            this.checkBox1.TabIndex = 8;
+            this.checkBox1.TabIndex = 4;
             this.checkBox1.Text = "Embed Subtitles";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             // 
             // checkBox2
             // 
@@ -90,9 +91,10 @@
             this.checkBox2.Location = new System.Drawing.Point(2, 142);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(99, 17);
-            this.checkBox2.TabIndex = 9;
+            this.checkBox2.TabIndex = 6;
             this.checkBox2.Text = "Add Metadata";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Visible = false;
             // 
             // checkBox3
             // 
@@ -101,9 +103,10 @@
             this.checkBox3.Location = new System.Drawing.Point(2, 119);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(118, 17);
-            this.checkBox3.TabIndex = 10;
+            this.checkBox3.TabIndex = 5;
             this.checkBox3.Text = "Embed Thumbnail";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Visible = false;
             // 
             // comboBox1
             // 
@@ -113,7 +116,8 @@
             this.comboBox1.Location = new System.Drawing.Point(125, 163);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(116, 21);
-            this.comboBox1.TabIndex = 12;
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.Visible = false;
             // 
             // checkBox4
             // 
@@ -122,9 +126,10 @@
             this.checkBox4.Location = new System.Drawing.Point(2, 165);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(117, 17);
-            this.checkBox4.TabIndex = 11;
+            this.checkBox4.TabIndex = 7;
             this.checkBox4.Text = "Convert Subtitles:";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.Visible = false;
             // 
             // TabPostProcessing
             // 
