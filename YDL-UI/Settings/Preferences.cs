@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace Maxstupo.YdlUi.Settings {
     public class Preferences {
+        public int Version { get; set; } = 1;
+
         public bool CheckForUpdates { get; set; } = true;
 
         public bool PromptDownloadingOnClose { get; set; } = true;
