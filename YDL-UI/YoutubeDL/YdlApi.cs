@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 namespace Maxstupo.YdlUi.YoutubeDL {
     public class YdlApi {
         // TODO: Add youtube-dl version support checking.
-        public static string DownloadStatusRegex { get => @"\[download\]\s+(?<percent>\d{1,3}\.?\d{0,2})%?\s+of\s+(?<filesize>\d{1,3}\.?\d{1,3})(?<filesizeUnit>\w{1,3})\s+at\s+(?<speed>\d{1,3}\.?\d{1,3})(?<speedUnit>\w{1,3}\/s)\s+ETA\s+(?<eta>\d{1,3}:\d{1,3})"; }
+        public static string DownloadStatusRegex { get => @"\[download\]\s+(?<percent>\d{1,3}\.?\d{0,2})%?\s+of\s+\~?(?<filesize>\d{1,4}\.?\d{1,3})(?<filesizeUnit>\w{1,3})\s+at\s+((?<speed>\d{1,3}\.?\d{1,3})(?<speedUnit>\w{1,3}\/s)|Unknown speed)\s+ETA\s+\~?(?<eta>\d{1,3}:\d{1,3})"; }
 
         private static readonly Regex regex = new Regex(DownloadStatusRegex);
 

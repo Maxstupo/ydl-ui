@@ -10,7 +10,7 @@ using System.Timers;
 
 namespace Maxstupo.YdlUi.YoutubeDL {
     public class DownloadManager : INotifyPropertyChanged {
-        private readonly Preferences preferences;
+        private readonly PreferencesManager<Preferences> preferencesManager;
         private readonly string downloadListFilepath;
 
         private readonly List<Download> downloads = new List<Download>();
@@ -28,8 +28,8 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         private readonly Timer updateTimer = new Timer(2000);
 
-        public DownloadManager(Preferences preferences, string downloadListFilepath) {
-            this.preferences = preferences;
+        public DownloadManager(PreferencesManager<Preferences> preferencesManager, string downloadListFilepath) {
+            this.preferencesManager = preferencesManager;
             this.downloadListFilepath = downloadListFilepath;
 
             Downloads = new SortableBindingList<Download>(downloads);
@@ -42,7 +42,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             foreach (Download download in downloads) {
                 if (download.Status != DownloadStatus.Queued)
                     continue;
-                if (ConcurrentDownloads >= preferences.MaxConcurrentDownloads)
+                if (ConcurrentDownloads >= preferencesManager.Preferences.MaxConcurrentDownloads)
                     return;
                 download.Start(YdlPath, FfmpegPath);
             }
@@ -64,10 +64,17 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             if (download.Status == DownloadStatus.Downloading)
                 download.Status = DownloadStatus.Queued;
 
+            download.PropertyChanged += Download_PropertyChanged;
             Downloads.Add(download);
+
 
             FirePropertyChanged(nameof(TotalDownloads));
             return true;
+        }
+
+        private void Download_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+            FirePropertyChanged(nameof(ConcurrentDownloads));
+            FirePropertyChanged(nameof(CompletedDownloads));
         }
 
         private void FirePropertyChanged(string name) {
@@ -91,6 +98,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             if (!CanRemoveDownload(download))
                 return false;
 
+            download.PropertyChanged -= Download_PropertyChanged;
             Downloads.Remove(download);
 
             FirePropertyChanged(nameof(TotalDownloads));

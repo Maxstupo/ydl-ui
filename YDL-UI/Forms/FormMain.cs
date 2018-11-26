@@ -16,7 +16,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private const string UrlWiki = "https://github.com/Maxstupo/ydl-ui/wiki";
 
-        private readonly PreferencesManager<Preferences> preferencesManager;
+        public PreferencesManager<Preferences> PreferencesManager { get; }
         private readonly DownloadManager downloadManager;
 
 
@@ -30,16 +30,16 @@ namespace Maxstupo.YdlUi.Forms {
 #endif
 
             // Create a new preferences manager with multiple preference file locations. (Multiple filepaths are used to make YDL portable).
-            preferencesManager = new PreferencesManager<Preferences>(new string[] {
+            PreferencesManager = new PreferencesManager<Preferences>(new string[] {
               "ydl-ui.json", // ~\ydl-ui.json
               Path.Combine(Util.GetAppDataPath(),".ydl-ui", "ydl-ui.json") // %appdata%\.ydl-ui\ydl-ui.json
             });
 
             // The filepath to the download list, it's within the same folder as the preferences file.
-            string downloadListFilepath = Path.Combine(preferencesManager.PrefDirectory, "download-list.json");
+            string downloadListFilepath = Path.Combine(PreferencesManager.PrefDirectory, "download-list.json");
 
             // XXX: DownloadManager doesn't create or check if the download list directory exists.
-            downloadManager = new DownloadManager(preferencesManager.Preferences, downloadListFilepath);
+            downloadManager = new DownloadManager(PreferencesManager, downloadListFilepath);
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
         }
 
@@ -60,7 +60,7 @@ namespace Maxstupo.YdlUi.Forms {
             failedDownloadsToolStripMenuItem.Tag = DownloadStatus.Failed;
 
             // Attempt to load preferences if file exists, else create a new preferences file.
-            preferencesManager.Load(true);
+            PreferencesManager.Load(true);
 
             UpdateResources();
 
@@ -69,7 +69,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         // Check if we are closing YDL-UI when we are downloading or haven't saved our changes.
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
-            if (downloadManager.ConcurrentDownloads > 0 && preferencesManager.Preferences.PromptDownloadingOnClose) {
+            if (downloadManager.ConcurrentDownloads > 0 && PreferencesManager.Preferences.PromptDownloadingOnClose) {
                 if (MessageBox.Show(this, "There are still items downloading! Do you want to quit?", "Are you sure you want to quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                     e.Cancel = true;
             }
@@ -80,8 +80,8 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void UpdateResources() {
 
-            string ydlPath = preferencesManager.Preferences.Binaries.YoutubeDl;
-            string ffmpegPath = preferencesManager.Preferences.Binaries.Ffmpeg;
+            string ydlPath = PreferencesManager.Preferences.Binaries.YoutubeDl;
+            string ffmpegPath = PreferencesManager.Preferences.Binaries.Ffmpeg;
 
             bool ydlCustomExists = File.Exists(ydlPath);
             bool ffmpegCustomExists = File.Exists(ffmpegPath);
@@ -126,9 +126,9 @@ namespace Maxstupo.YdlUi.Forms {
         #region Dialog Methods
 
         private void ShowPreferencesDialog() {
-            using (FormPreferences dialog = new FormPreferences(downloadManager, preferencesManager.Preferences, preferencesManager.PrefPath)) {
+            using (FormPreferences dialog = new FormPreferences(downloadManager, PreferencesManager.Preferences, PreferencesManager.PrefPath)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK) {
-                    preferencesManager.Save();
+                    PreferencesManager.Save();
 
                     if (dialog.RequiresRestart) {
                         if (MessageBox.Show(this, $"{Application.ProductName} requires a restart for changes to take effect.\n\nWould you like to restart {Application.ProductName} now?", "Restart required", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
@@ -136,13 +136,13 @@ namespace Maxstupo.YdlUi.Forms {
                     }
 
                 } else {
-                    preferencesManager.Load();
+                    PreferencesManager.Load();
                 }
             }
         }
 
         private void ShowAddDownloadDialog(string url = null) {
-            using (FormAddDownload dialog = new FormAddDownload(preferencesManager.Preferences, url)) {
+            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, url)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                     AddDownload(dialog.Download);
             }
