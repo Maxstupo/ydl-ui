@@ -49,6 +49,15 @@ namespace Maxstupo.YdlUi.Utility {
             return GetRelativePath(path, Directory.GetCurrentDirectory());
         }
 
+        public static string GetAbsolutePath(string path) {
+            return GetAbsolutePath(path, Directory.GetCurrentDirectory());
+        }
+
+        public static string GetAbsolutePath(string path, string folder) {
+            string absolutePath = Path.Combine(folder, path);
+            return Path.GetFullPath((new Uri(absolutePath).LocalPath));
+        }
+
         /// <summary>
         /// Returns the relative path of the specified absolute <paramref name="path"/>, based off the specified <paramref name="folder"/>.
         /// </summary>

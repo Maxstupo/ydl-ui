@@ -110,7 +110,7 @@ namespace Maxstupo.YdlUi.Forms {
 
 
             downloadManager.YdlPath = ydlPath;
-            downloadManager.FfmpegPath = ffmpegPath;
+            downloadManager.FfmpegPath = Util.GetAbsolutePath(ffmpegPath);
 
             Logger.Instance.Debug("Resources", "youtube-dl path: '{0}'", ydlPath);
             Logger.Instance.Debug("Resources", "ffmpeg path: '{0}'", ffmpegPath);
