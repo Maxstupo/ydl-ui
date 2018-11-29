@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreferences));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,6 +51,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbxCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.llblPreferencesLocation = new System.Windows.Forms.LinkLabel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
@@ -95,6 +97,7 @@
             this.btnUpdateYdl.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateYdl.TabIndex = 2;
             this.btnUpdateYdl.Text = "Upda&te";
+            this.toolTip.SetToolTip(this.btnUpdateYdl, "Update the custom youtube-dl binary.\r\nExecutes \"youtube-dl.exe -U\".");
             this.btnUpdateYdl.UseVisualStyleBackColor = true;
             this.btnUpdateYdl.Click += new System.EventHandler(this.btnUpdateYdl_Click);
             // 
@@ -115,6 +118,7 @@
             this.txtFfmpeg.Name = "txtFfmpeg";
             this.txtFfmpeg.Size = new System.Drawing.Size(513, 22);
             this.txtFfmpeg.TabIndex = 5;
+            this.toolTip.SetToolTip(this.txtFfmpeg, "The custom binary path to ffmpeg.exe");
             // 
             // label2
             // 
@@ -124,6 +128,7 @@
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "&ffmpeg:";
+            this.toolTip.SetToolTip(this.label2, "The custom binary path to ffmpeg.exe");
             // 
             // btnBrowseFfmpeg
             // 
@@ -145,6 +150,7 @@
             this.txtYdl.Name = "txtYdl";
             this.txtYdl.Size = new System.Drawing.Size(432, 22);
             this.txtYdl.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtYdl, "The custom binary path to youtube-dl.exe");
             // 
             // label1
             // 
@@ -154,6 +160,7 @@
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "&youtube-dl:";
+            this.toolTip.SetToolTip(this.label1, "The custom binary path to youtube-dl.exe");
             // 
             // btnBrowseYdl
             // 
@@ -219,6 +226,7 @@
             this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
             this.cbBasicMode.TabIndex = 9;
             this.cbBasicMode.Text = "Ba&sic Mode";
+            this.toolTip.SetToolTip(this.cbBasicMode, "Use \"Basic Mode\" for the \"Add Download\" dialog by default.");
             this.cbBasicMode.UseVisualStyleBackColor = true;
             // 
             // txtDefaultDownloadDirectory
@@ -229,6 +237,7 @@
             this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
             this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(427, 22);
             this.txtDefaultDownloadDirectory.TabIndex = 6;
+            this.toolTip.SetToolTip(this.txtDefaultDownloadDirectory, "Sets the default download directory for the \"Add Download\" dialog.");
             // 
             // label5
             // 
@@ -238,6 +247,7 @@
             this.label5.Size = new System.Drawing.Size(154, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Default Down&load Directory:";
+            this.toolTip.SetToolTip(this.label5, "Sets the default download directory for the \"Add Download\" dialog.");
             // 
             // btnDefaultDownloadDirectoryBrowse
             // 
@@ -259,6 +269,7 @@
             this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
             this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(427, 22);
             this.txtDefaultDownloadArchive.TabIndex = 3;
+            this.toolTip.SetToolTip(this.txtDefaultDownloadArchive, "Sets the default download archive for the \"Add Download\" dialog.");
             // 
             // label4
             // 
@@ -268,6 +279,7 @@
             this.label4.Size = new System.Drawing.Size(145, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "&Default Download Archive:";
+            this.toolTip.SetToolTip(this.label4, "Sets the default download archive for the \"Add Download\" dialog.");
             // 
             // cbPromptOnClose
             // 
@@ -277,6 +289,8 @@
             this.cbPromptOnClose.Size = new System.Drawing.Size(111, 17);
             this.cbPromptOnClose.TabIndex = 8;
             this.cbPromptOnClose.Text = "Prompt on &Close";
+            this.toolTip.SetToolTip(this.cbPromptOnClose, "If any downloads are still running, prompt for confirmation when closing the appl" +
+        "ication.");
             this.cbPromptOnClose.UseVisualStyleBackColor = true;
             // 
             // btnDefaultDownloadArchiveBrowse
@@ -309,6 +323,7 @@
             this.nudMaxConcurrentDownloads.Name = "nudMaxConcurrentDownloads";
             this.nudMaxConcurrentDownloads.Size = new System.Drawing.Size(508, 22);
             this.nudMaxConcurrentDownloads.TabIndex = 1;
+            this.toolTip.SetToolTip(this.nudMaxConcurrentDownloads, "The max simultaneous downloads allowed to download at once.");
             this.nudMaxConcurrentDownloads.Value = new decimal(new int[] {
             2,
             0,
@@ -323,6 +338,7 @@
             this.label3.Size = new System.Drawing.Size(154, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "&Max Concurrent Downloads:";
+            this.toolTip.SetToolTip(this.label3, "The max simultaneous downloads allowed to download at once.");
             // 
             // groupBox3
             // 
@@ -344,6 +360,7 @@
             this.cbxCheckForUpdates.Size = new System.Drawing.Size(126, 17);
             this.cbxCheckForUpdates.TabIndex = 0;
             this.cbxCheckForUpdates.Text = "Check for &Updates?";
+            this.toolTip.SetToolTip(this.cbxCheckForUpdates, "Check for updates on startup.");
             this.cbxCheckForUpdates.UseVisualStyleBackColor = true;
             // 
             // llblPreferencesLocation
@@ -357,6 +374,13 @@
             this.llblPreferencesLocation.TabStop = true;
             this.llblPreferencesLocation.Text = "Open Preferences File...";
             this.llblPreferencesLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblPreferencesLocation_LinkClicked);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
             // 
             // FormPreferences
             // 
@@ -418,5 +442,6 @@
         private System.Windows.Forms.CheckBox cbBasicMode;
         private System.Windows.Forms.Button btnUpdateYdl;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

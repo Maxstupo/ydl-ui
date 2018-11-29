@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.gbGeneral = new System.Windows.Forms.GroupBox();
             this.cbIgnoreErrors = new System.Windows.Forms.CheckBox();
             this.cbAbortOnErrors = new System.Windows.Forms.CheckBox();
@@ -40,6 +41,7 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gbGeneral.SuspendLayout();
             this.gbFileSystem.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -66,6 +68,8 @@
             this.cbIgnoreErrors.Size = new System.Drawing.Size(93, 17);
             this.cbIgnoreErrors.TabIndex = 0;
             this.cbIgnoreErrors.Text = "Ignore Errors";
+            this.toolTip.SetToolTip(this.cbIgnoreErrors, "Continue downloading on download errors (e.g. Skip unavailable videos in a playli" +
+        "st).");
             this.cbIgnoreErrors.UseVisualStyleBackColor = true;
             // 
             // cbAbortOnErrors
@@ -76,6 +80,7 @@
             this.cbAbortOnErrors.Size = new System.Drawing.Size(107, 17);
             this.cbAbortOnErrors.TabIndex = 1;
             this.cbAbortOnErrors.Text = "Abort On Errors";
+            this.toolTip.SetToolTip(this.cbAbortOnErrors, "Abort downloading of further videos (in a playlist) if an error occurs.");
             this.cbAbortOnErrors.UseVisualStyleBackColor = true;
             // 
             // gbFileSystem
@@ -103,6 +108,7 @@
             this.cbNoOverwrites.Size = new System.Drawing.Size(99, 17);
             this.cbNoOverwrites.TabIndex = 4;
             this.cbNoOverwrites.Text = "No Overwrites";
+            this.toolTip.SetToolTip(this.cbNoOverwrites, "Don\'t overwrite files.");
             this.cbNoOverwrites.UseVisualStyleBackColor = true;
             // 
             // cbRestrictFilenames
@@ -113,6 +119,8 @@
             this.cbRestrictFilenames.Size = new System.Drawing.Size(118, 17);
             this.cbRestrictFilenames.TabIndex = 3;
             this.cbRestrictFilenames.Text = "Restrict Filenames";
+            this.toolTip.SetToolTip(this.cbRestrictFilenames, "Restrict filenames to only ASCII characters, and avoid \"&\" and spaces in filename" +
+        "s.");
             this.cbRestrictFilenames.UseVisualStyleBackColor = true;
             // 
             // cbWriteThumbnail
@@ -123,6 +131,7 @@
             this.cbWriteThumbnail.Size = new System.Drawing.Size(111, 17);
             this.cbWriteThumbnail.TabIndex = 2;
             this.cbWriteThumbnail.Text = "Write Thumbnail";
+            this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail to disk.");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
             // 
             // cbWriteAnnotations
@@ -133,6 +142,7 @@
             this.cbWriteAnnotations.Size = new System.Drawing.Size(121, 17);
             this.cbWriteAnnotations.TabIndex = 1;
             this.cbWriteAnnotations.Text = "Write Annotations";
+            this.toolTip.SetToolTip(this.cbWriteAnnotations, "Write video annotations to a .annotations.xml file.");
             this.cbWriteAnnotations.UseVisualStyleBackColor = true;
             // 
             // cbWriteDescription
@@ -143,6 +153,7 @@
             this.cbWriteDescription.Size = new System.Drawing.Size(116, 17);
             this.cbWriteDescription.TabIndex = 0;
             this.cbWriteDescription.Text = "Write Description";
+            this.toolTip.SetToolTip(this.cbWriteDescription, "Write video description to a .description file.");
             this.cbWriteDescription.UseVisualStyleBackColor = true;
             // 
             // videoQualitySelector
@@ -223,6 +234,13 @@
             this.checkBox1.Text = "Write Subtitles";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
+            // 
             // TabQuality
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,5 +282,6 @@
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

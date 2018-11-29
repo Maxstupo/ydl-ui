@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.nudCustomHeight = new System.Windows.Forms.NumericUpDown();
@@ -30,6 +31,7 @@
             this.cbxQuality = new System.Windows.Forms.ComboBox();
             this.cbPreferred = new System.Windows.Forms.CheckBox();
             this.cbFallback = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCustomHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCustomWidth)).BeginInit();
@@ -130,6 +132,7 @@
             this.cbPreferred.Size = new System.Drawing.Size(75, 17);
             this.cbPreferred.TabIndex = 4;
             this.cbPreferred.Text = "Preferred?";
+            this.toolTip.SetToolTip(this.cbPreferred, "Select video with the highest resolution up to the selected resolution.");
             this.cbPreferred.UseVisualStyleBackColor = true;
             // 
             // cbFallback
@@ -143,7 +146,15 @@
             this.cbFallback.Size = new System.Drawing.Size(72, 17);
             this.cbFallback.TabIndex = 5;
             this.cbFallback.Text = "Fallback?";
+            this.toolTip.SetToolTip(this.cbFallback, "If resolution metadata isn\'t available, ignore resolution check.");
             this.cbFallback.UseVisualStyleBackColor = true;
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
             // 
             // VideoQualitySelector
             // 
@@ -170,5 +181,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudCustomHeight;
         private System.Windows.Forms.NumericUpDown nudCustomWidth;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

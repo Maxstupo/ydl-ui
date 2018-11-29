@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddDownload));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -49,6 +50,7 @@
             this.cbDownloadArchive = new System.Windows.Forms.CheckBox();
             this.cbFilenameTemplate = new System.Windows.Forms.CheckBox();
             this.cbBasicMode = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl.SuspendLayout();
             this.tpQuality.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
@@ -90,6 +92,7 @@
             this.cbImmediateStart.Size = new System.Drawing.Size(111, 17);
             this.cbImmediateStart.TabIndex = 11;
             this.cbImmediateStart.Text = "&Immediate Start?";
+            this.toolTip.SetToolTip(this.cbImmediateStart, "Start the download immediately upon clicking \"Add\".");
             this.cbImmediateStart.UseVisualStyleBackColor = true;
             // 
             // lblUrl
@@ -100,6 +103,7 @@
             this.lblUrl.Size = new System.Drawing.Size(30, 13);
             this.lblUrl.TabIndex = 0;
             this.lblUrl.Text = "&URL:";
+            this.toolTip.SetToolTip(this.lblUrl, "The URL to download.");
             // 
             // txtUrl
             // 
@@ -109,6 +113,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(645, 22);
             this.txtUrl.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtUrl, "The URL to download.");
             // 
             // txtDownloadDirectory
             // 
@@ -119,6 +124,7 @@
             this.txtDownloadDirectory.ReadOnly = true;
             this.txtDownloadDirectory.Size = new System.Drawing.Size(564, 22);
             this.txtDownloadDirectory.TabIndex = 3;
+            this.toolTip.SetToolTip(this.txtDownloadDirectory, "The directory to download the video to.");
             // 
             // lblDownloadDirectory
             // 
@@ -128,6 +134,7 @@
             this.lblDownloadDirectory.Size = new System.Drawing.Size(113, 13);
             this.lblDownloadDirectory.TabIndex = 2;
             this.lblDownloadDirectory.Text = "&Download Directory:";
+            this.toolTip.SetToolTip(this.lblDownloadDirectory, "The directory to download the video to.");
             // 
             // btnBrowseDownloadDirectory
             // 
@@ -153,6 +160,7 @@
             this.txtFilenameTemplate.Name = "txtFilenameTemplate";
             this.txtFilenameTemplate.Size = new System.Drawing.Size(645, 22);
             this.txtFilenameTemplate.TabIndex = 6;
+            this.toolTip.SetToolTip(this.txtFilenameTemplate, "Output filename template.");
             // 
             // txtDownloadArchive
             // 
@@ -163,6 +171,8 @@
             this.txtDownloadArchive.ReadOnly = true;
             this.txtDownloadArchive.Size = new System.Drawing.Size(564, 22);
             this.txtDownloadArchive.TabIndex = 8;
+            this.toolTip.SetToolTip(this.txtDownloadArchive, "Download the video only if it\'s not listed in the archive file. \r\nUpon successful" +
+        " download, the video ID will be added to the archive file.");
             // 
             // btnDownloadArchiveBrowse
             // 
@@ -298,6 +308,8 @@
             this.cbDownloadArchive.Size = new System.Drawing.Size(123, 17);
             this.cbDownloadArchive.TabIndex = 7;
             this.cbDownloadArchive.Text = "Download Archive:";
+            this.toolTip.SetToolTip(this.cbDownloadArchive, "Download the video only if it\'s not listed in the archive file. \r\nUpon successful" +
+        " download, the video ID will be added to the archive file.");
             this.cbDownloadArchive.UseVisualStyleBackColor = true;
             // 
             // cbFilenameTemplate
@@ -308,6 +320,7 @@
             this.cbFilenameTemplate.Size = new System.Drawing.Size(123, 17);
             this.cbFilenameTemplate.TabIndex = 5;
             this.cbFilenameTemplate.Text = "Filename Template:";
+            this.toolTip.SetToolTip(this.cbFilenameTemplate, "Output filename template.");
             this.cbFilenameTemplate.UseVisualStyleBackColor = true;
             // 
             // cbBasicMode
@@ -319,8 +332,16 @@
             this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
             this.cbBasicMode.TabIndex = 14;
             this.cbBasicMode.Text = "Basic Mode";
+            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
             this.cbBasicMode.UseVisualStyleBackColor = true;
             this.cbBasicMode.CheckedChanged += new System.EventHandler(this.cbBasicMode_CheckedChanged);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
             // 
             // FormAddDownload
             // 
@@ -392,5 +413,6 @@
         private Tab.TabPostProcessing tabPostProcessing;
         private Tab.TabQuality tabQuality;
         private System.Windows.Forms.CheckBox cbBasicMode;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

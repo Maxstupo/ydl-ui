@@ -23,11 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nudCustomFrameRate = new System.Windows.Forms.NumericUpDown();
             this.cbxFrameRate = new System.Windows.Forms.ComboBox();
             this.cbFallback = new System.Windows.Forms.CheckBox();
             this.cbPreferred = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCustomFrameRate)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +97,7 @@
             this.cbFallback.Size = new System.Drawing.Size(72, 17);
             this.cbFallback.TabIndex = 3;
             this.cbFallback.Text = "Fallback?";
+            this.toolTip.SetToolTip(this.cbFallback, "If frame rate metadata isn\'t available, ignore frame rate check.");
             this.cbFallback.UseVisualStyleBackColor = true;
             // 
             // cbPreferred
@@ -108,7 +111,15 @@
             this.cbPreferred.Size = new System.Drawing.Size(75, 17);
             this.cbPreferred.TabIndex = 2;
             this.cbPreferred.Text = "Preferred?";
+            this.toolTip.SetToolTip(this.cbPreferred, "Select video with the highest frame rate up to the selected frame rate.");
             this.cbPreferred.UseVisualStyleBackColor = true;
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
             // 
             // FrameRateSelector
             // 
@@ -132,5 +143,6 @@
         private System.Windows.Forms.CheckBox cbPreferred;
         private System.Windows.Forms.ComboBox cbxFrameRate;
         private System.Windows.Forms.NumericUpDown nudCustomFrameRate;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

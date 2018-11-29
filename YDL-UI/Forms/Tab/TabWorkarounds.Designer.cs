@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gbDownload = new System.Windows.Forms.GroupBox();
             this.cbxLimitRateUnit = new System.Windows.Forms.ComboBox();
@@ -70,6 +71,7 @@
             this.cbUserAgent = new System.Windows.Forms.CheckBox();
             this.txtReferer = new System.Windows.Forms.TextBox();
             this.cbReferer = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.gbDownload.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFragmentRetries)).BeginInit();
@@ -124,7 +126,7 @@
             this.gbDownload.Location = new System.Drawing.Point(232, 3);
             this.gbDownload.MinimumSize = new System.Drawing.Size(259, 125);
             this.gbDownload.Name = "gbDownload";
-            this.gbDownload.Size = new System.Drawing.Size(269, 164);
+            this.gbDownload.Size = new System.Drawing.Size(268, 164);
             this.gbDownload.TabIndex = 1;
             this.gbDownload.TabStop = false;
             this.gbDownload.Text = "Download";
@@ -134,7 +136,7 @@
             this.cbxLimitRateUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxLimitRateUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLimitRateUnit.FormattingEnabled = true;
-            this.cbxLimitRateUnit.Location = new System.Drawing.Point(201, 20);
+            this.cbxLimitRateUnit.Location = new System.Drawing.Point(200, 20);
             this.cbxLimitRateUnit.Name = "cbxLimitRateUnit";
             this.cbxLimitRateUnit.Size = new System.Drawing.Size(62, 21);
             this.cbxLimitRateUnit.TabIndex = 2;
@@ -143,22 +145,24 @@
             // 
             this.cbRetriesInf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRetriesInf.AutoSize = true;
-            this.cbRetriesInf.Location = new System.Drawing.Point(201, 51);
+            this.cbRetriesInf.Location = new System.Drawing.Point(200, 51);
             this.cbRetriesInf.Name = "cbRetriesInf";
             this.cbRetriesInf.Size = new System.Drawing.Size(63, 17);
             this.cbRetriesInf.TabIndex = 5;
             this.cbRetriesInf.Text = "Infinite";
+            this.toolTip.SetToolTip(this.cbRetriesInf, "Infinite retries.");
             this.cbRetriesInf.UseVisualStyleBackColor = true;
             // 
             // cbFragmentRetriesInf
             // 
             this.cbFragmentRetriesInf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFragmentRetriesInf.AutoSize = true;
-            this.cbFragmentRetriesInf.Location = new System.Drawing.Point(201, 79);
+            this.cbFragmentRetriesInf.Location = new System.Drawing.Point(200, 79);
             this.cbFragmentRetriesInf.Name = "cbFragmentRetriesInf";
             this.cbFragmentRetriesInf.Size = new System.Drawing.Size(63, 17);
             this.cbFragmentRetriesInf.TabIndex = 8;
             this.cbFragmentRetriesInf.Text = "Infinite";
+            this.toolTip.SetToolTip(this.cbFragmentRetriesInf, "Infinite fragment retries.");
             this.cbFragmentRetriesInf.UseVisualStyleBackColor = true;
             // 
             // nudFragmentRetries
@@ -172,8 +176,9 @@
             0,
             0});
             this.nudFragmentRetries.Name = "nudFragmentRetries";
-            this.nudFragmentRetries.Size = new System.Drawing.Size(67, 22);
+            this.nudFragmentRetries.Size = new System.Drawing.Size(66, 22);
             this.nudFragmentRetries.TabIndex = 7;
+            this.toolTip.SetToolTip(this.nudFragmentRetries, "Number of retries for a fragment (default is 10) (DASH, hlsnative and ISM)");
             // 
             // cbFragmentRetries
             // 
@@ -183,6 +188,7 @@
             this.cbFragmentRetries.Size = new System.Drawing.Size(116, 17);
             this.cbFragmentRetries.TabIndex = 6;
             this.cbFragmentRetries.Text = "Fragment Retries:";
+            this.toolTip.SetToolTip(this.cbFragmentRetries, "Number of retries for a fragment (default is 10) (DASH, hlsnative and ISM)");
             this.cbFragmentRetries.UseVisualStyleBackColor = true;
             // 
             // nudRetries
@@ -196,8 +202,9 @@
             0,
             0});
             this.nudRetries.Name = "nudRetries";
-            this.nudRetries.Size = new System.Drawing.Size(67, 22);
+            this.nudRetries.Size = new System.Drawing.Size(66, 22);
             this.nudRetries.TabIndex = 4;
+            this.toolTip.SetToolTip(this.nudRetries, "Number of retries (default is 10).");
             // 
             // cbRetries
             // 
@@ -207,6 +214,7 @@
             this.cbRetries.Size = new System.Drawing.Size(64, 17);
             this.cbRetries.TabIndex = 3;
             this.cbRetries.Text = "Retries:";
+            this.toolTip.SetToolTip(this.cbRetries, "Number of retries (default is 10).");
             this.cbRetries.UseVisualStyleBackColor = true;
             // 
             // nudLimitRate
@@ -226,8 +234,9 @@
             0,
             0});
             this.nudLimitRate.Name = "nudLimitRate";
-            this.nudLimitRate.Size = new System.Drawing.Size(67, 22);
+            this.nudLimitRate.Size = new System.Drawing.Size(66, 22);
             this.nudLimitRate.TabIndex = 1;
+            this.toolTip.SetToolTip(this.nudLimitRate, "Maximum download rate per second.");
             // 
             // cbLimitRate
             // 
@@ -237,6 +246,7 @@
             this.cbLimitRate.Size = new System.Drawing.Size(79, 17);
             this.cbLimitRate.TabIndex = 0;
             this.cbLimitRate.Text = "Limit Rate:";
+            this.toolTip.SetToolTip(this.cbLimitRate, "Maximum download rate per second.");
             this.cbLimitRate.UseVisualStyleBackColor = true;
             // 
             // gbAuthentication
@@ -266,6 +276,7 @@
             this.lblPassword.Size = new System.Drawing.Size(59, 13);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Password:";
+            this.toolTip.SetToolTip(this.lblPassword, "Account password.");
             // 
             // cbVideoPassword
             // 
@@ -275,6 +286,7 @@
             this.cbVideoPassword.Size = new System.Drawing.Size(111, 17);
             this.cbVideoPassword.TabIndex = 6;
             this.cbVideoPassword.Text = "Video Password:";
+            this.toolTip.SetToolTip(this.cbVideoPassword, "Video password (vimeo, smotri, youku)");
             this.cbVideoPassword.UseVisualStyleBackColor = true;
             // 
             // cbTwoFactorCode
@@ -285,6 +297,7 @@
             this.cbTwoFactorCode.Size = new System.Drawing.Size(114, 17);
             this.cbTwoFactorCode.TabIndex = 4;
             this.cbTwoFactorCode.Text = "Two Factor Code:";
+            this.toolTip.SetToolTip(this.cbTwoFactorCode, "Two-factor authentication code.");
             this.cbTwoFactorCode.UseVisualStyleBackColor = true;
             // 
             // txtVideoPassword
@@ -296,6 +309,7 @@
             this.txtVideoPassword.PasswordChar = '•';
             this.txtVideoPassword.Size = new System.Drawing.Size(97, 22);
             this.txtVideoPassword.TabIndex = 7;
+            this.toolTip.SetToolTip(this.txtVideoPassword, "Video password (vimeo, smotri, youku)");
             // 
             // txtTwoFactorCode
             // 
@@ -305,6 +319,7 @@
             this.txtTwoFactorCode.Name = "txtTwoFactorCode";
             this.txtTwoFactorCode.Size = new System.Drawing.Size(97, 22);
             this.txtTwoFactorCode.TabIndex = 5;
+            this.toolTip.SetToolTip(this.txtTwoFactorCode, "Two-factor authentication code.");
             // 
             // txtPassword
             // 
@@ -315,6 +330,7 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(97, 22);
             this.txtPassword.TabIndex = 3;
+            this.toolTip.SetToolTip(this.txtPassword, "Account password.");
             // 
             // txtUsername
             // 
@@ -324,6 +340,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(97, 22);
             this.txtUsername.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtUsername, "Login with this account ID.");
             // 
             // cbUsername
             // 
@@ -333,6 +350,7 @@
             this.cbUsername.Size = new System.Drawing.Size(80, 17);
             this.cbUsername.TabIndex = 0;
             this.cbUsername.Text = "Username:";
+            this.toolTip.SetToolTip(this.cbUsername, "Login with this account ID.");
             this.cbUsername.UseVisualStyleBackColor = true;
             // 
             // gbSleepInterval
@@ -346,7 +364,7 @@
             this.gbSleepInterval.Location = new System.Drawing.Point(232, 173);
             this.gbSleepInterval.MinimumSize = new System.Drawing.Size(262, 123);
             this.gbSleepInterval.Name = "gbSleepInterval";
-            this.gbSleepInterval.Size = new System.Drawing.Size(269, 164);
+            this.gbSleepInterval.Size = new System.Drawing.Size(268, 164);
             this.gbSleepInterval.TabIndex = 3;
             this.gbSleepInterval.TabStop = false;
             this.gbSleepInterval.Text = "Sleep Interval";
@@ -367,7 +385,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(187, 28);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(186, 28);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // nudSleepIntervalMin
@@ -383,6 +401,8 @@
             this.nudSleepIntervalMin.Name = "nudSleepIntervalMin";
             this.nudSleepIntervalMin.Size = new System.Drawing.Size(78, 22);
             this.nudSleepIntervalMin.TabIndex = 0;
+            this.toolTip.SetToolTip(this.nudSleepIntervalMin, "Sleep by a random interval before each download, between the specified lower and " +
+        "upper bounds.");
             // 
             // nudSleepIntervalMax
             // 
@@ -395,8 +415,10 @@
             0,
             0});
             this.nudSleepIntervalMax.Name = "nudSleepIntervalMax";
-            this.nudSleepIntervalMax.Size = new System.Drawing.Size(80, 22);
+            this.nudSleepIntervalMax.Size = new System.Drawing.Size(79, 22);
             this.nudSleepIntervalMax.TabIndex = 2;
+            this.toolTip.SetToolTip(this.nudSleepIntervalMax, "Sleep by a random interval before each download, between the specified lower and " +
+        "upper bounds.");
             // 
             // lblSleepIntervalRangeSeperator
             // 
@@ -420,8 +442,9 @@
             0,
             0});
             this.nudSleepInterval.Name = "nudSleepInterval";
-            this.nudSleepInterval.Size = new System.Drawing.Size(184, 22);
+            this.nudSleepInterval.Size = new System.Drawing.Size(183, 22);
             this.nudSleepInterval.TabIndex = 2;
+            this.toolTip.SetToolTip(this.nudSleepInterval, "The number of seconds to sleep before each download.");
             // 
             // rbSleepIntervalRange
             // 
@@ -431,6 +454,8 @@
             this.rbSleepIntervalRange.Size = new System.Drawing.Size(61, 17);
             this.rbSleepIntervalRange.TabIndex = 3;
             this.rbSleepIntervalRange.Text = "Range:";
+            this.toolTip.SetToolTip(this.rbSleepIntervalRange, "Sleep by a random interval before each download, between the specified lower and " +
+        "upper bounds.");
             this.rbSleepIntervalRange.UseVisualStyleBackColor = true;
             // 
             // rbSleepIntervalValue
@@ -441,6 +466,7 @@
             this.rbSleepIntervalValue.Size = new System.Drawing.Size(56, 17);
             this.rbSleepIntervalValue.TabIndex = 1;
             this.rbSleepIntervalValue.Text = "Value:";
+            this.toolTip.SetToolTip(this.rbSleepIntervalValue, "The number of seconds to sleep before each download.");
             this.rbSleepIntervalValue.UseVisualStyleBackColor = true;
             // 
             // rbSleepIntervalDefault
@@ -453,6 +479,7 @@
             this.rbSleepIntervalDefault.TabIndex = 0;
             this.rbSleepIntervalDefault.TabStop = true;
             this.rbSleepIntervalDefault.Text = "Default";
+            this.toolTip.SetToolTip(this.rbSleepIntervalDefault, "Don\'t sleep before each download.");
             this.rbSleepIntervalDefault.UseVisualStyleBackColor = true;
             // 
             // gbNetwork
@@ -483,6 +510,7 @@
             this.rbForceIp6.Size = new System.Drawing.Size(76, 17);
             this.rbForceIp6.TabIndex = 8;
             this.rbForceIp6.Text = "Force IPv6";
+            this.toolTip.SetToolTip(this.rbForceIp6, "Make all connections via IPv6");
             this.rbForceIp6.UseVisualStyleBackColor = true;
             // 
             // rbForceIp4
@@ -493,6 +521,7 @@
             this.rbForceIp4.Size = new System.Drawing.Size(76, 17);
             this.rbForceIp4.TabIndex = 7;
             this.rbForceIp4.Text = "Force IPv4";
+            this.toolTip.SetToolTip(this.rbForceIp4, "Make all connections via IPv4.");
             this.rbForceIp4.UseVisualStyleBackColor = true;
             // 
             // rbAnyIp
@@ -505,6 +534,7 @@
             this.rbAnyIp.TabIndex = 6;
             this.rbAnyIp.TabStop = true;
             this.rbAnyIp.Text = "Any";
+            this.toolTip.SetToolTip(this.rbAnyIp, "Use either IPv4 or IPv6.");
             this.rbAnyIp.UseVisualStyleBackColor = true;
             // 
             // nudSocketTimeout
@@ -520,6 +550,7 @@
             this.nudSocketTimeout.Name = "nudSocketTimeout";
             this.nudSocketTimeout.Size = new System.Drawing.Size(97, 22);
             this.nudSocketTimeout.TabIndex = 3;
+            this.toolTip.SetToolTip(this.nudSocketTimeout, "Time to wait before giving up, in seconds.");
             // 
             // cbSocketTimeout
             // 
@@ -529,6 +560,7 @@
             this.cbSocketTimeout.Size = new System.Drawing.Size(107, 17);
             this.cbSocketTimeout.TabIndex = 2;
             this.cbSocketTimeout.Text = "Socket Timeout:";
+            this.toolTip.SetToolTip(this.cbSocketTimeout, "Time to wait before giving up, in seconds.");
             this.cbSocketTimeout.UseVisualStyleBackColor = true;
             // 
             // txtSourceAddress
@@ -539,6 +571,7 @@
             this.txtSourceAddress.Name = "txtSourceAddress";
             this.txtSourceAddress.Size = new System.Drawing.Size(97, 22);
             this.txtSourceAddress.TabIndex = 5;
+            this.toolTip.SetToolTip(this.txtSourceAddress, "Client side IP address to bind to.");
             // 
             // cbSourceAddress
             // 
@@ -548,6 +581,7 @@
             this.cbSourceAddress.Size = new System.Drawing.Size(108, 17);
             this.cbSourceAddress.TabIndex = 4;
             this.cbSourceAddress.Text = "Source Address:";
+            this.toolTip.SetToolTip(this.cbSourceAddress, "Client side IP address to bind to.");
             this.cbSourceAddress.UseVisualStyleBackColor = true;
             // 
             // txtProxy
@@ -558,6 +592,8 @@
             this.txtProxy.Name = "txtProxy";
             this.txtProxy.Size = new System.Drawing.Size(97, 22);
             this.txtProxy.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtProxy, "Use the specified HTTP/HTTPS/SOCKS proxy.\r\nTo enable SOCKS proxy, specify a prope" +
+        "r scheme (e.g. socks5://127.0.0.1:1080/).\r\nLeave blank for direct connection.");
             // 
             // cbProxy
             // 
@@ -567,16 +603,18 @@
             this.cbProxy.Size = new System.Drawing.Size(56, 17);
             this.cbProxy.TabIndex = 0;
             this.cbProxy.Text = "Proxy:";
+            this.toolTip.SetToolTip(this.cbProxy, "Use the specified HTTP/HTTPS/SOCKS proxy.\r\nTo enable SOCKS proxy, specify a prope" +
+        "r scheme (e.g. socks5://127.0.0.1:1080/).\r\nLeave blank for direct connection.");
             this.cbProxy.UseVisualStyleBackColor = true;
             // 
             // gbHeaders
             // 
             this.gbHeaders.Controls.Add(this.dgvHeaders);
             this.gbHeaders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbHeaders.Location = new System.Drawing.Point(507, 3);
+            this.gbHeaders.Location = new System.Drawing.Point(506, 3);
             this.gbHeaders.Name = "gbHeaders";
             this.tableLayoutPanel1.SetRowSpan(this.gbHeaders, 2);
-            this.gbHeaders.Size = new System.Drawing.Size(268, 334);
+            this.gbHeaders.Size = new System.Drawing.Size(269, 334);
             this.gbHeaders.TabIndex = 4;
             this.gbHeaders.TabStop = false;
             this.gbHeaders.Text = "Headers";
@@ -594,8 +632,9 @@
             this.dgvHeaders.Name = "dgvHeaders";
             this.dgvHeaders.RowHeadersVisible = false;
             this.dgvHeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHeaders.Size = new System.Drawing.Size(262, 313);
+            this.dgvHeaders.Size = new System.Drawing.Size(263, 313);
             this.dgvHeaders.TabIndex = 0;
+            this.toolTip.SetToolTip(this.dgvHeaders, "Specify custom HTTP headers.");
             // 
             // colKey
             // 
@@ -760,6 +799,7 @@
             this.txtUserAgent.Name = "txtUserAgent";
             this.txtUserAgent.Size = new System.Drawing.Size(686, 22);
             this.txtUserAgent.TabIndex = 3;
+            this.toolTip.SetToolTip(this.txtUserAgent, "Custom user agent");
             // 
             // cbUserAgent
             // 
@@ -769,6 +809,7 @@
             this.cbUserAgent.Size = new System.Drawing.Size(86, 17);
             this.cbUserAgent.TabIndex = 2;
             this.cbUserAgent.Text = "User Agent:";
+            this.toolTip.SetToolTip(this.cbUserAgent, "Custom user agent");
             this.cbUserAgent.UseVisualStyleBackColor = true;
             // 
             // txtReferer
@@ -779,6 +820,7 @@
             this.txtReferer.Name = "txtReferer";
             this.txtReferer.Size = new System.Drawing.Size(687, 22);
             this.txtReferer.TabIndex = 1;
+            this.toolTip.SetToolTip(this.txtReferer, "Custom referer, use if the video access is restricted to one domain.");
             // 
             // cbReferer
             // 
@@ -788,7 +830,15 @@
             this.cbReferer.Size = new System.Drawing.Size(66, 17);
             this.cbReferer.TabIndex = 0;
             this.cbReferer.Text = "Referer:";
+            this.toolTip.SetToolTip(this.cbReferer, "Custom referer, use if the video access is restricted to one domain.");
             this.cbReferer.UseVisualStyleBackColor = true;
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
             // 
             // TabWorkarounds
             // 
@@ -877,5 +927,6 @@
         private System.Windows.Forms.CheckBox cbUserAgent;
         private System.Windows.Forms.TextBox txtReferer;
         private System.Windows.Forms.CheckBox cbReferer;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

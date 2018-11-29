@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.cbxAudioOnly = new System.Windows.Forms.ComboBox();
             this.cbAudioOnly = new System.Windows.Forms.CheckBox();
             this.frameRateSelector1 = new Maxstupo.YdlUi.Controls.FrameRateSelector();
@@ -31,6 +32,7 @@
             this.cbRestrictFilenames = new System.Windows.Forms.CheckBox();
             this.cbWriteThumbnail = new System.Windows.Forms.CheckBox();
             this.videoQualitySelector1 = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gbFileSystem.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +46,7 @@
             this.cbxAudioOnly.Name = "cbxAudioOnly";
             this.cbxAudioOnly.Size = new System.Drawing.Size(88, 21);
             this.cbxAudioOnly.TabIndex = 9;
+            this.toolTip.SetToolTip(this.cbxAudioOnly, "Convert video file to audio-only file.");
             // 
             // cbAudioOnly
             // 
@@ -53,6 +56,7 @@
             this.cbAudioOnly.Size = new System.Drawing.Size(80, 17);
             this.cbAudioOnly.TabIndex = 8;
             this.cbAudioOnly.Text = "Audio Only:";
+            this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
             // 
             // frameRateSelector1
@@ -86,6 +90,7 @@
             this.cbNoOverwrites.Size = new System.Drawing.Size(93, 17);
             this.cbNoOverwrites.TabIndex = 4;
             this.cbNoOverwrites.Text = "No Overwrites";
+            this.toolTip.SetToolTip(this.cbNoOverwrites, "Don\'t overwrite files.");
             this.cbNoOverwrites.UseVisualStyleBackColor = true;
             // 
             // cbRestrictFilenames
@@ -96,6 +101,8 @@
             this.cbRestrictFilenames.Size = new System.Drawing.Size(112, 17);
             this.cbRestrictFilenames.TabIndex = 3;
             this.cbRestrictFilenames.Text = "Restrict Filenames";
+            this.toolTip.SetToolTip(this.cbRestrictFilenames, "Restrict filenames to only ASCII characters, and avoid \"&\" and spaces in filename" +
+        "s.");
             this.cbRestrictFilenames.UseVisualStyleBackColor = true;
             // 
             // cbWriteThumbnail
@@ -106,6 +113,7 @@
             this.cbWriteThumbnail.Size = new System.Drawing.Size(103, 17);
             this.cbWriteThumbnail.TabIndex = 2;
             this.cbWriteThumbnail.Text = "Write Thumbnail";
+            this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail to disk.");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
             // 
             // videoQualitySelector1
@@ -114,6 +122,13 @@
             this.videoQualitySelector1.Name = "videoQualitySelector1";
             this.videoQualitySelector1.Size = new System.Drawing.Size(173, 115);
             this.videoQualitySelector1.TabIndex = 28;
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
             // 
             // BasicAddDownloadPanel
             // 
@@ -140,5 +155,6 @@
         private System.Windows.Forms.CheckBox cbRestrictFilenames;
         private System.Windows.Forms.CheckBox cbWriteThumbnail;
         private VideoQualitySelector videoQualitySelector1;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

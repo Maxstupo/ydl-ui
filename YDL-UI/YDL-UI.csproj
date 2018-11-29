@@ -234,6 +234,9 @@
     <EmbeddedResource Include="Controls\FrameRateSelector.resx">
       <DependentUpon>FrameRateSelector.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VideoQualitySelector.resx">
+      <DependentUpon>VideoQualitySelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormAddDownload.resx">
       <DependentUpon>FormAddDownload.cs</DependentUpon>
     </EmbeddedResource>

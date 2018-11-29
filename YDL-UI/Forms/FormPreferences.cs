@@ -21,6 +21,7 @@ namespace Maxstupo.YdlUi.Forms {
                 llblPreferencesLocation.Visible = false;
             } else {
                 llblPreferencesLocation.Tag = preferencesLocation;
+                toolTip.SetToolTip(llblPreferencesLocation, preferencesLocation);
             }
         }
 

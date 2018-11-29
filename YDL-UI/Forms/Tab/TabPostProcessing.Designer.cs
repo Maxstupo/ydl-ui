@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.cbxAudioOnly = new System.Windows.Forms.ComboBox();
             this.cbxRecodeFormat = new System.Windows.Forms.ComboBox();
             this.cbRecodeFormat = new System.Windows.Forms.CheckBox();
@@ -32,6 +33,7 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // cbxAudioOnly
@@ -42,6 +44,7 @@
             this.cbxAudioOnly.Name = "cbxAudioOnly";
             this.cbxAudioOnly.Size = new System.Drawing.Size(116, 21);
             this.cbxAudioOnly.TabIndex = 1;
+            this.toolTip.SetToolTip(this.cbxAudioOnly, "Convert video file to audio-only file.");
             // 
             // cbxRecodeFormat
             // 
@@ -51,6 +54,7 @@
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(116, 21);
             this.cbxRecodeFormat.TabIndex = 3;
+            this.toolTip.SetToolTip(this.cbxRecodeFormat, "Encode the video to another format if necessary.");
             // 
             // cbRecodeFormat
             // 
@@ -60,6 +64,7 @@
             this.cbRecodeFormat.Size = new System.Drawing.Size(106, 17);
             this.cbRecodeFormat.TabIndex = 2;
             this.cbRecodeFormat.Text = "Recode Format:";
+            this.toolTip.SetToolTip(this.cbRecodeFormat, "Encode the video to another format if necessary.");
             this.cbRecodeFormat.UseVisualStyleBackColor = true;
             // 
             // cbAudioOnly
@@ -70,6 +75,7 @@
             this.cbAudioOnly.Size = new System.Drawing.Size(87, 17);
             this.cbAudioOnly.TabIndex = 0;
             this.cbAudioOnly.Text = "Audio Only:";
+            this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
             // 
             // checkBox1
@@ -131,6 +137,13 @@
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.Visible = false;
             // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
+            // 
             // TabPostProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,5 +177,6 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
