@@ -17,7 +17,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private BasicAddDownloadPanel basicAddDownloadPanel;
 
-        private Size oldMaxSize, oldMinSize, oldSize;
+        private Size oldMaxSize, oldMinSize;
 
         public FormAddDownload(Preferences preferences, string url = null) {
             InitializeComponent();
@@ -108,7 +108,6 @@ namespace Maxstupo.YdlUi.Forms {
         private void InitializeBasicAdvancedModes(bool basicMode) {
             oldMaxSize = MaximumSize;
             oldMinSize = MinimumSize;
-            oldSize = Size;
 
             basicAddDownloadPanel = new BasicAddDownloadPanel {
                 Location = new Point(12, 67),
@@ -123,19 +122,22 @@ namespace Maxstupo.YdlUi.Forms {
             txtFilenameTemplate.Visible = cbFilenameTemplate.Visible = !BasicMode;
             btnDownloadArchiveBrowse.Visible = cbDownloadArchive.Visible = txtDownloadArchive.Visible = !BasicMode;
 
+            FormBorderStyle = BasicMode ? FormBorderStyle.FixedSingle : FormBorderStyle.Sizable;
+
             if (BasicMode) {
                 cbDownloadArchive.Checked = false;
                 cbFilenameTemplate.Checked = false;
 
-                oldSize = Size;
                 Size = MinimumSize = MaximumSize = new Size(basicAddDownloadPanel.Size.Width + 33, 280);
+                WindowState = FormWindowState.Normal;
 
             } else {
                 MaximumSize = oldMaxSize;
-                Size = oldSize;
-                MinimumSize = oldMinSize;
-
+                Size = MinimumSize = oldMinSize;
             }
+
+
+            MaximizeBox = !BasicMode;
 
             tabControl.Visible = !BasicMode;
             basicAddDownloadPanel.Visible = BasicMode;
