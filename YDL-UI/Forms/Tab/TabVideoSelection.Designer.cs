@@ -181,6 +181,7 @@
             this.btnPlaylistRangeEditor.Text = "...";
             this.btnPlaylistRangeEditor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPlaylistRangeEditor.UseVisualStyleBackColor = true;
+            this.btnPlaylistRangeEditor.Click += new System.EventHandler(this.btnPlaylistRangeEditor_Click);
             // 
             // txtPlaylistRange
             // 

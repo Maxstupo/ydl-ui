@@ -89,5 +89,12 @@ namespace Maxstupo.YdlUi.Forms.Tab {
         private void txtPlaylistRange_KeyPress(object sender, KeyPressEventArgs e) {
             e.Handled = e.KeyChar != (char)Keys.Back && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !char.IsControl(e.KeyChar);
         }
+
+        private void btnPlaylistRangeEditor_Click(object sender, EventArgs e) {
+            using (FormPlaylistRangeEditor dialog = new FormPlaylistRangeEditor(txtPlaylistRange.Text)) {
+                if (dialog.ShowDialog(this) == DialogResult.OK) 
+                    txtPlaylistRange.Text = dialog.Selector;
+            }
+        }
     }
 }

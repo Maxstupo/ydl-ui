@@ -161,11 +161,23 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormPlaylistRangeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPlaylistRangeEditor.Designer.cs">
+      <DependentUpon>FormPlaylistRangeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormPreferences.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormPreferences.Designer.cs">
       <DependentUpon>FormPreferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormPromptNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormPromptNumber.Designer.cs">
+      <DependentUpon>FormPromptNumber.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Tab\TabPostProcessing.cs">
       <SubType>UserControl</SubType>
@@ -231,8 +243,14 @@
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPlaylistRangeEditor.resx">
+      <DependentUpon>FormPlaylistRangeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormPreferences.resx">
       <DependentUpon>FormPreferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormPromptNumber.resx">
+      <DependentUpon>FormPromptNumber.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\TabPostProcessing.resx">
       <DependentUpon>TabPostProcessing.cs</DependentUpon>
