@@ -49,9 +49,11 @@ namespace Maxstupo.YdlUi.Utility {
         #region Binding Helpers
 
         public static void BindEnabledTo(this Control control, TextBox textBox, Func<string, bool> predicate) {
-            textBox.TextChanged += (sender, e) => {
+            void textChanged(object sender, EventArgs e) {
                 control.Enabled = predicate((sender as TextBox).Text);
             };
+            textBox.TextChanged += textChanged;
+            textChanged(textBox, null);
         }
 
         public static Binding BindEnabledTo(this Control control, CheckBox checkBox) {
@@ -64,6 +66,10 @@ namespace Maxstupo.YdlUi.Utility {
 
         #endregion
 
+        /// <summary>
+        /// Call the given <paramref name="action"/> on all <see cref="Control"/> descendants of the type <typeparamref name="T"/>. 
+        /// </summary>
+        /// <param name="action">The action to be executed.</param>
         public static void ForEachControl<T>(this Control src, Action<T> action) where T : Control {
             foreach (Control control in src.Controls) {
                 control.ForEachControl<T>(action);
@@ -144,6 +150,11 @@ namespace Maxstupo.YdlUi.Utility {
             return src.SelectedRows.Count > 0;
         }
 
+        /// <summary>
+        /// Returns true if <see cref="DataGridView"/> has <strong>one</strong> selected row.
+        /// </summary>
+        /// <param name="src"></param>
+        /// <returns></returns>
         public static bool HasSingleSelectedRow(this DataGridView src) {
             return src.SelectedRows.Count == 1;
         }
@@ -174,6 +185,12 @@ namespace Maxstupo.YdlUi.Utility {
             src.Visible = state;
         }
 
+        /// <summary>
+        /// Opens a select folder dialog with no multiselect and filepath validation enabled.
+        /// </summary>
+        /// <param name="title">The title of the dialog.</param>
+        /// <param name="initialDirectory">The initial directory that the dialog will display.</param>
+        /// <returns>The selected filepath or null if cancel was selected.</returns>
         public static string SelectFolder(string title, string initialDirectory = null) {
             using (CommonOpenFileDialog dialog = new CommonOpenFileDialog(title)) {
                 dialog.IsFolderPicker = true;

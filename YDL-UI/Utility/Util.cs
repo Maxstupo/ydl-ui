@@ -1,11 +1,13 @@
 ﻿using ByteSizeLib;
 using System;
 using System.IO;
+using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Maxstupo.YdlUi.Utility {
     public static class Util {
-
+        
         /// <summary>
         /// Removes all text after the <paramref name="lastChar"/> including the last character.
         /// </summary>
@@ -83,5 +85,28 @@ namespace Maxstupo.YdlUi.Utility {
             }
         }
 
+    }
+
+    public class NetUtil {
+        private NetUtil() { }
+
+        public static async Task<string> HttpGetAsync(string url, string userAgent = null) {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Timeout = 15000; // 15 seconds
+
+            if (userAgent != null)
+                request.UserAgent = userAgent;
+
+
+            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync()) {
+                using (Stream stream = response.GetResponseStream()) {
+                    using (StreamReader streamReader = new StreamReader(stream)) {
+                        return await streamReader.ReadToEndAsync();
+                    }
+                }
+            }
+        }
     }
 }

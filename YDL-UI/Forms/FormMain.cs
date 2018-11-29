@@ -1,11 +1,13 @@
 ﻿using Maxstupo.YdlUi.Settings;
 using Maxstupo.YdlUi.Utility;
 using Maxstupo.YdlUi.YoutubeDL;
+using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -14,17 +16,19 @@ namespace Maxstupo.YdlUi.Forms {
         private const string EmbeddedYdlName = "youtube-dl.exe";
         private const string EmbeddedFfmpegName = "ffmpeg.exe";
 
-        private const string UrlWiki = "https://github.com/Maxstupo/ydl-ui/wiki";
+        private const string UrlWiki = @"https://github.com/Maxstupo/ydl-ui/wiki";
+        private const string UpdateUrl = @"https://api.github.com/repos/Maxstupo/ydl-ui/releases/latest";
 
         public PreferencesManager<Preferences> PreferencesManager { get; }
         private readonly DownloadManager downloadManager;
 
+        public string ApplicationVersion { get => Application.ProductVersion.RemoveAfterLast('.'); }
 
         public FormMain() {
             InitializeComponent();
 
             // Set the title of the application.
-            Text = $"{Application.ProductName} v{Application.ProductVersion.RemoveAfterLast('.')}";
+            Text = $"{Application.ProductName} v{ApplicationVersion}";
 #if DEBUG
             Text += "  -  Debug Build";
 #endif
@@ -65,6 +69,9 @@ namespace Maxstupo.YdlUi.Forms {
             UpdateResources();
 
             downloadManager.Load(true);
+
+            if (PreferencesManager.Preferences.CheckForUpdates)
+                CheckForUpdates(true);
         }
 
         // Check if we are closing YDL-UI when we are downloading or haven't saved our changes.
@@ -77,7 +84,8 @@ namespace Maxstupo.YdlUi.Forms {
                 downloadManager.Save();
         }
 
-
+        // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise auto-extract
+        // the resource to a temp directory and update the filepath to this temp resource instead.
         private void UpdateResources() {
 
             string ydlPath = PreferencesManager.Preferences.Binaries.YoutubeDl;
@@ -108,7 +116,7 @@ namespace Maxstupo.YdlUi.Forms {
                 ffmpegPath = ResourceExtractor.GetFullPath(descriptors, EmbeddedFfmpegName); // Get the full filepath of our extracted binary.
             }
 
-
+            // Apply the ydl and ffmpeg paths to our download manager.
             downloadManager.YdlPath = ydlPath;
             downloadManager.FfmpegPath = Util.GetAbsolutePath(ffmpegPath);
 
@@ -186,13 +194,9 @@ namespace Maxstupo.YdlUi.Forms {
         private void wikiToolStripMenuItem_Click(object sender, EventArgs e) {
             Process.Start(UrlWiki);
         }
-
-        private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e) {
-
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
-
+        
+        private void checkForUpdatesToolStripMenuItem_Click_1(object sender, EventArgs e) {
+            CheckForUpdates(false);
         }
 
         #endregion
@@ -281,6 +285,53 @@ namespace Maxstupo.YdlUi.Forms {
 
         #endregion
 
+        
+        /// <summary>
+        /// Check for a new release of the application by accessing the github API for the YDL-UI repo.
+        /// </summary>
+        /// <param name="silent">If true the update checker will run sliently in the background and only notify the user if a new update is found, used for update check on startup.</param>
+        public async void CheckForUpdates(bool silent) {
+            Logger.Instance.Info("Updater", "Checking for updates...");
+            try {
+                string response = await NetUtil.HttpGetAsync(UpdateUrl, Text);
+
+                if (string.IsNullOrWhiteSpace(response))
+                    return;
+
+                JObject json = JObject.Parse(response);
+
+                string releasePageUrl = json["html_url"].Value<string>();
+                string releaseTagName = json["tag_name"].Value<string>();
+                // DateTime releasePublishedAt = json["published_at"].Value<DateTime>();
+                //string changelog = Regex.Replace(json["body"].Value<string>(), @"(\[.+\])\(.+\)", string.Empty); 
+
+                if (releaseTagName.StartsWith("v"))
+                    releaseTagName = releaseTagName.Substring(1);
+
+                Version currentVersion = new Version(ApplicationVersion);
+                Version releaseVersion = new Version(releaseTagName);
+
+                int delta = releaseVersion.CompareTo(currentVersion);
+                if (delta > 0) {
+                    Logger.Instance.Info("Updater", "New version available: {0} -> {1} ({2})", currentVersion, releaseVersion, delta);
+                    if (MessageBox.Show(this, $"{Application.ProductName} v{releaseTagName} is available! Do you want to go to the download page?", "An Update is Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+                        Process.Start(releasePageUrl);
+                    }
+                } else {
+                    Logger.Instance.Info("Updater", "Up to date.");
+
+                    if (!silent)
+                        MessageBox.Show(this, "No new updates found.", "Check For Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            } catch (Exception e) {
+                Logger.Instance.Error("Updater", "Failed to check for updates!\n{0}", e.ToString());
+
+                if(!silent) 
+                    MessageBox.Show(this, "Failed to check for updates!", "Check For Updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
 
     }
 }
