@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -194,7 +195,7 @@ namespace Maxstupo.YdlUi.Forms {
         private void wikiToolStripMenuItem_Click(object sender, EventArgs e) {
             Process.Start(UrlWiki);
         }
-        
+
         private void checkForUpdatesToolStripMenuItem_Click_1(object sender, EventArgs e) {
             CheckForUpdates(false);
         }
@@ -285,7 +286,17 @@ namespace Maxstupo.YdlUi.Forms {
 
         #endregion
 
-        
+        private void dgvDownloads_SelectionChanged(object sender, EventArgs e) {
+            // Set LinkCells to have white text when selected.
+            foreach (DataGridViewRow row in dgvDownloads.Rows) {
+                if (row.IsNewRow)
+                    continue;
+
+                if (row.Cells["colUrl"] is DataGridViewLinkCell cell)
+                    cell.LinkColor = cell.VisitedLinkColor = cell.Selected ? Color.White : Color.Blue;
+            }
+        }
+
         /// <summary>
         /// Check for a new release of the application by accessing the github API for the YDL-UI repo.
         /// </summary>
@@ -327,7 +338,7 @@ namespace Maxstupo.YdlUi.Forms {
             } catch (Exception e) {
                 Logger.Instance.Error("Updater", "Failed to check for updates!\n{0}", e.ToString());
 
-                if(!silent) 
+                if (!silent)
                     MessageBox.Show(this, "Failed to check for updates!", "Check For Updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

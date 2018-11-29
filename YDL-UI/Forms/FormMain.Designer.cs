@@ -259,6 +259,7 @@
             this.dgvDownloads.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDownloads.Size = new System.Drawing.Size(800, 404);
             this.dgvDownloads.TabIndex = 1;
+            this.dgvDownloads.SelectionChanged += new System.EventHandler(this.dgvDownloads_SelectionChanged);
             // 
             // colUrl
             // 
