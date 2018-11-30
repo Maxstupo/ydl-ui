@@ -26,9 +26,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPreferences));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblNote2 = new System.Windows.Forms.Label();
             this.btnUpdateYdl = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblNote1 = new System.Windows.Forms.Label();
             this.txtFfmpeg = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBrowseFfmpeg = new System.Windows.Forms.Button();
@@ -62,9 +62,9 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.lblNote2);
             this.groupBox1.Controls.Add(this.btnUpdateYdl);
-            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.lblNote1);
             this.groupBox1.Controls.Add(this.txtFfmpeg);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnBrowseFfmpeg);
@@ -78,15 +78,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "&Binaries";
             // 
-            // label6
+            // lblNote2
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(414, 82);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(259, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Changing binary paths requires YDL-UI to restart.";
+            this.lblNote2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNote2.AutoSize = true;
+            this.lblNote2.Location = new System.Drawing.Point(414, 82);
+            this.lblNote2.Name = "lblNote2";
+            this.lblNote2.Size = new System.Drawing.Size(259, 13);
+            this.lblNote2.TabIndex = 8;
+            this.lblNote2.Text = "Changing binary paths requires YDL-UI to restart.";
             // 
             // btnUpdateYdl
             // 
@@ -101,14 +101,14 @@
             this.btnUpdateYdl.UseVisualStyleBackColor = true;
             this.btnUpdateYdl.Click += new System.EventHandler(this.btnUpdateYdl_Click);
             // 
-            // label7
+            // lblNote1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 82);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(238, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Note: Leave blank to use embedded binaries.";
+            this.lblNote1.AutoSize = true;
+            this.lblNote1.Location = new System.Drawing.Point(5, 82);
+            this.lblNote1.Name = "lblNote1";
+            this.lblNote1.Size = new System.Drawing.Size(238, 13);
+            this.lblNote1.TabIndex = 7;
+            this.lblNote1.Text = "Note: Leave blank to use embedded binaries.";
             // 
             // txtFfmpeg
             // 
@@ -438,10 +438,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnDefaultDownloadDirectoryBrowse;
         private System.Windows.Forms.LinkLabel llblPreferencesLocation;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblNote1;
         private System.Windows.Forms.CheckBox cbBasicMode;
         private System.Windows.Forms.Button btnUpdateYdl;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblNote2;
         private System.Windows.Forms.ToolTip toolTip;
     }
 }

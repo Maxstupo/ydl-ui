@@ -45,6 +45,11 @@ namespace Maxstupo.YdlUi.Forms {
 
             // Ensure filepaths are valid.
             this.ForEachControl<TextBox>(control => control.TextChanged += TextBoxes_TextChanged);
+
+            // Hide notes about binaries when running a portable build, as they are required.
+#if PORTABLE
+            lblNote1.Visible = false;
+#endif
         }
 
         private void TextBoxes_TextChanged(object sender, EventArgs e) {
