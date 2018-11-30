@@ -66,15 +66,19 @@ namespace Maxstupo.YdlUi.Settings {
         }
 
         public void Save() {
-            Logger.Instance.Debug(nameof(PreferencesManager<T>), "Saving preferences to disk...");
-           
-            string json = JsonConvert.SerializeObject(Preferences, Formatting.Indented);
-                        
-            using (StreamWriter sw = new StreamWriter(PrefPath, false, Encoding.UTF8))
-                sw.WriteLine(json);
-
+            Save(PrefPath, Preferences);
             OnSave?.Invoke(this, new EventArgs());
         }
+
+        public static void Save(string filepath, T preferences) {
+            Logger.Instance.Debug(nameof(PreferencesManager<T>), "Saving preferences to disk...");
+
+            string json = JsonConvert.SerializeObject(preferences, Formatting.Indented);
+
+            using (StreamWriter sw = new StreamWriter(filepath, false, Encoding.UTF8))
+                sw.WriteLine(json);
+        }
+
 
     }
 }

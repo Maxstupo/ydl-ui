@@ -29,9 +29,19 @@ namespace Maxstupo.YdlUi.Forms {
             InitializeComponent();
 
             // Set the title of the application.
-            Text = $"{Application.ProductName} v{ApplicationVersion}";
+            Text = $"{Application.ProductName}";
+#if PORTABLE
+            Text += " Portable";
+#endif
+            Text += $" v{ ApplicationVersion}";
 #if DEBUG
             Text += "  -  Debug Build";
+#endif
+
+            // Ensure portable build always has a preference file in the same directory as the executable.
+#if PORTABLE
+            if (!File.Exists("ydl-ui.json"))
+                PreferencesManager<Preferences>.Save("ydl-ui.json", new Preferences());
 #endif
 
             // Create a new preferences manager with multiple preference file locations. (Multiple filepaths are used to make YDL portable).
@@ -95,7 +105,8 @@ namespace Maxstupo.YdlUi.Forms {
             bool ydlCustomExists = File.Exists(ydlPath);
             bool ffmpegCustomExists = File.Exists(ffmpegPath);
 
-
+            // If this is a portable build, disable auto-extraction as we don't have the binaries embedded within the application.
+#if !PORTABLE
             TempDirectory tempDirectory = null;
 
             // Create temp directory only if needed, and mark it for deletion on application exit.
@@ -116,9 +127,17 @@ namespace Maxstupo.YdlUi.Forms {
 
                 ffmpegPath = ResourceExtractor.GetFullPath(descriptors, EmbeddedFfmpegName); // Get the full filepath of our extracted binary.
             }
+#else
+            // If this is a portable build and our custom binary paths don't exist, ask for their location in a dialog.
+            if (!ydlCustomExists || !ffmpegCustomExists) {
+                ShowUpdateBinaryLocationsDialog(true);
+                ydlPath = PreferencesManager.Preferences.Binaries.YoutubeDl;
+                ffmpegPath = PreferencesManager.Preferences.Binaries.Ffmpeg;
+            }
+#endif
 
             // Apply the ydl and ffmpeg paths to our download manager.
-            downloadManager.YdlPath = ydlPath;
+            downloadManager.YdlPath = Util.GetAbsolutePath(ydlPath);
             downloadManager.FfmpegPath = Util.GetAbsolutePath(ffmpegPath);
 
             Logger.Instance.Debug("Resources", "youtube-dl path: '{0}'", ydlPath);
@@ -133,6 +152,19 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         #region Dialog Methods
+
+        private void ShowUpdateBinaryLocationsDialog(bool exitOnCancel = true) {
+            using (FormUpdateBinaryLocations dialog = new FormUpdateBinaryLocations(PreferencesManager.Preferences)) {
+                if (dialog.ShowDialog(this) == DialogResult.OK) {
+                    PreferencesManager.Save();
+                } else {
+                    PreferencesManager.Load();
+
+                    if (exitOnCancel)
+                        Application.Exit();
+                }
+            }
+        }
 
         private void ShowPreferencesDialog() {
             using (FormPreferences dialog = new FormPreferences(downloadManager, PreferencesManager.Preferences, PreferencesManager.PrefPath)) {

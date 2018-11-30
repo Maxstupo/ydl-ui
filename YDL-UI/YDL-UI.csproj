@@ -90,6 +90,36 @@
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleasePortable|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <OutputType>WinExe</OutputType>
+    <Optimize>true</Optimize>
+    <OutputPath>build\ReleasePortable\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowedReferenceRelatedFileExtensions>
+      <!-- Prevent default XML and PDB files copied to output in RELEASE. 
+           Only *.json files will be included
+       -->
+      .json
+    </AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugPortable|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputType>Exe</OutputType>
+    <Optimize>false</Optimize>
+    <OutputPath>build\DebugPortable\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ByteSize, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ByteSize.1.3.0\lib\net45\ByteSize.dll</HintPath>
@@ -179,6 +209,12 @@
     <Compile Include="Forms\FormPromptNumber.Designer.cs">
       <DependentUpon>FormPromptNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormUpdateBinaryLocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormUpdateBinaryLocations.Designer.cs">
+      <DependentUpon>FormUpdateBinaryLocations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tab\TabPostProcessing.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,6 +291,9 @@
     <EmbeddedResource Include="Forms\FormPromptNumber.resx">
       <DependentUpon>FormPromptNumber.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormUpdateBinaryLocations.resx">
+      <DependentUpon>FormUpdateBinaryLocations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\TabPostProcessing.resx">
       <DependentUpon>TabPostProcessing.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,7 +340,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' Or '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Content Include="FodyWeavers.xml" />
     <EmbeddedResource Include="Resources\youtube-dl.exe" />
     <EmbeddedResource Include="Resources\swscale-5.dll" />
@@ -315,6 +354,58 @@
     <EmbeddedResource Include="Resources\avfilter-7.dll" />
     <EmbeddedResource Include="Resources\avdevice-58.dll" />
     <EmbeddedResource Include="Resources\avcodec-58.dll" />
+    <None Include="ydl-ui_1.ico" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleasePortable|AnyCPU' Or '$(Configuration)|$(Platform)' == 'DebugPortable|AnyCPU' ">
+    <Content Include="FodyWeavers.xml" />
+    <None Include="Resources\youtube-dl.exe">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\swscale-5.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\swresample-3.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\postproc-55.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\ffprobe.exe">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\ffplay.exe">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\ffmpeg.exe">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\avutil-56.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\avformat-58.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\avfilter-7.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\avdevice-58.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\avcodec-58.dll">
+      
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ydl-ui_1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
