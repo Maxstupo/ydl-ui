@@ -85,7 +85,7 @@
             this.btnCancel.Location = new System.Drawing.Point(573, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "C&ancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -96,7 +96,7 @@
             this.btnOkay.Location = new System.Drawing.Point(492, 9);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
-            this.btnOkay.TabIndex = 4;
+            this.btnOkay.TabIndex = 0;
             this.btnOkay.Text = "O&kay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -114,7 +114,7 @@
             this.cbBasicMode.Location = new System.Drawing.Point(6, 29);
             this.cbBasicMode.Name = "cbBasicMode";
             this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
-            this.cbBasicMode.TabIndex = 4;
+            this.cbBasicMode.TabIndex = 1;
             this.cbBasicMode.Text = "Basic Mode";
             this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for the Download dialog.");
             this.cbBasicMode.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             this.cbPromptOnClose.Location = new System.Drawing.Point(6, 6);
             this.cbPromptOnClose.Name = "cbPromptOnClose";
             this.cbPromptOnClose.Size = new System.Drawing.Size(111, 17);
-            this.cbPromptOnClose.TabIndex = 3;
+            this.cbPromptOnClose.TabIndex = 0;
             this.cbPromptOnClose.Text = "Prompt on Close";
             this.toolTip.SetToolTip(this.cbPromptOnClose, "If any downloads are still running, prompt for confirmation when closing.");
             this.cbPromptOnClose.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@
             0});
             this.nudMaxConcurrentDownloads.Name = "nudMaxConcurrentDownloads";
             this.nudMaxConcurrentDownloads.Size = new System.Drawing.Size(79, 22);
-            this.nudMaxConcurrentDownloads.TabIndex = 2;
+            this.nudMaxConcurrentDownloads.TabIndex = 3;
             this.toolTip.SetToolTip(this.nudMaxConcurrentDownloads, "The max simultaneous downloads allowed to download at once.");
             this.nudMaxConcurrentDownloads.Value = new decimal(new int[] {
             1,
@@ -159,7 +159,7 @@
             this.label1.Location = new System.Drawing.Point(3, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Max Concurrent Downloads:";
             this.toolTip.SetToolTip(this.label1, "The max simultaneous downloads allowed to download at once.");
             // 
@@ -182,7 +182,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.tablessTabControl);
             this.splitContainer1.Size = new System.Drawing.Size(642, 347);
             this.splitContainer1.SplitterDistance = 169;
-            this.splitContainer1.TabIndex = 6;
+            this.splitContainer1.TabIndex = 0;
             // 
             // lbxCategories
             // 
@@ -204,7 +204,7 @@
             this.lblCategory.Location = new System.Drawing.Point(2, 1);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(80, 21);
-            this.lblCategory.TabIndex = 1;
+            this.lblCategory.TabIndex = 0;
             this.lblCategory.Text = "Category";
             // 
             // tablessTabControl
@@ -280,7 +280,7 @@
             this.label6.Location = new System.Drawing.Point(3, 169);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 13);
-            this.label6.TabIndex = 10;
+            this.label6.TabIndex = 7;
             this.label6.Text = "Default Download Directory";
             // 
             // txtDefaultDownloadDirectory
@@ -290,7 +290,7 @@
             this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 187);
             this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
             this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
-            this.txtDefaultDownloadDirectory.TabIndex = 9;
+            this.txtDefaultDownloadDirectory.TabIndex = 8;
             // 
             // btnBrowseDownloadDirectory
             // 
@@ -298,7 +298,7 @@
             this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 187);
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
             this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
-            this.btnBrowseDownloadDirectory.TabIndex = 8;
+            this.btnBrowseDownloadDirectory.TabIndex = 9;
             this.btnBrowseDownloadDirectory.Text = "...";
             this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnDefaultDownloadDirectoryBrowse_Click);
@@ -309,7 +309,7 @@
             this.label5.Location = new System.Drawing.Point(3, 112);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 13);
-            this.label5.TabIndex = 7;
+            this.label5.TabIndex = 4;
             this.label5.Text = "Default Download Archive";
             // 
             // txtDefaultDownloadArchive
@@ -319,7 +319,7 @@
             this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 130);
             this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
             this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
-            this.txtDefaultDownloadArchive.TabIndex = 6;
+            this.txtDefaultDownloadArchive.TabIndex = 5;
             // 
             // btnBrowseDownloadArchive
             // 
@@ -327,7 +327,7 @@
             this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 130);
             this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
             this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
-            this.btnBrowseDownloadArchive.TabIndex = 5;
+            this.btnBrowseDownloadArchive.TabIndex = 6;
             this.btnBrowseDownloadArchive.Text = "...";
             this.btnBrowseDownloadArchive.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadArchive.Click += new System.EventHandler(this.btnDefaultDownloadArchiveBrowse_Click);
@@ -356,7 +356,7 @@
             this.lblBlankEmbeddedNote.Location = new System.Drawing.Point(3, 101);
             this.lblBlankEmbeddedNote.Name = "lblBlankEmbeddedNote";
             this.lblBlankEmbeddedNote.Size = new System.Drawing.Size(236, 13);
-            this.lblBlankEmbeddedNote.TabIndex = 8;
+            this.lblBlankEmbeddedNote.TabIndex = 7;
             this.lblBlankEmbeddedNote.Text = "Note: Leave black to use embedded binaries.";
             // 
             // lblRestartNote
@@ -365,7 +365,7 @@
             this.lblRestartNote.Location = new System.Drawing.Point(3, 73);
             this.lblRestartNote.Name = "lblRestartNote";
             this.lblRestartNote.Size = new System.Drawing.Size(301, 13);
-            this.lblRestartNote.TabIndex = 7;
+            this.lblRestartNote.TabIndex = 6;
             this.lblRestartNote.Text = "Changing binary paths requires {ProductName} to restart.";
             // 
             // btnBinaryBrowseYdl
@@ -374,7 +374,7 @@
             this.btnBinaryBrowseYdl.Location = new System.Drawing.Point(420, 5);
             this.btnBinaryBrowseYdl.Name = "btnBinaryBrowseYdl";
             this.btnBinaryBrowseYdl.Size = new System.Drawing.Size(36, 23);
-            this.btnBinaryBrowseYdl.TabIndex = 6;
+            this.btnBinaryBrowseYdl.TabIndex = 2;
             this.btnBinaryBrowseYdl.Text = "...";
             this.btnBinaryBrowseYdl.UseVisualStyleBackColor = true;
             this.btnBinaryBrowseYdl.Click += new System.EventHandler(this.btnBrowseYdl_Click);
@@ -386,7 +386,7 @@
             this.txtBinaryFfmpeg.Location = new System.Drawing.Point(75, 37);
             this.txtBinaryFfmpeg.Name = "txtBinaryFfmpeg";
             this.txtBinaryFfmpeg.Size = new System.Drawing.Size(339, 22);
-            this.txtBinaryFfmpeg.TabIndex = 5;
+            this.txtBinaryFfmpeg.TabIndex = 4;
             // 
             // btnBinaryBrowseFfmpeg
             // 
@@ -394,7 +394,7 @@
             this.btnBinaryBrowseFfmpeg.Location = new System.Drawing.Point(420, 37);
             this.btnBinaryBrowseFfmpeg.Name = "btnBinaryBrowseFfmpeg";
             this.btnBinaryBrowseFfmpeg.Size = new System.Drawing.Size(36, 23);
-            this.btnBinaryBrowseFfmpeg.TabIndex = 4;
+            this.btnBinaryBrowseFfmpeg.TabIndex = 5;
             this.btnBinaryBrowseFfmpeg.Text = "...";
             this.btnBinaryBrowseFfmpeg.UseVisualStyleBackColor = true;
             this.btnBinaryBrowseFfmpeg.Click += new System.EventHandler(this.btnBrowseFfmpeg_Click);
@@ -415,7 +415,7 @@
             this.txtBinaryYdl.Location = new System.Drawing.Point(75, 6);
             this.txtBinaryYdl.Name = "txtBinaryYdl";
             this.txtBinaryYdl.Size = new System.Drawing.Size(339, 22);
-            this.txtBinaryYdl.TabIndex = 2;
+            this.txtBinaryYdl.TabIndex = 1;
             // 
             // label2
             // 
@@ -445,7 +445,7 @@
             this.btnPresetEdit.Location = new System.Drawing.Point(381, 274);
             this.btnPresetEdit.Name = "btnPresetEdit";
             this.btnPresetEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnPresetEdit.TabIndex = 4;
+            this.btnPresetEdit.TabIndex = 2;
             this.btnPresetEdit.Text = "Edit...";
             this.btnPresetEdit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPresetEdit.UseVisualStyleBackColor = true;
@@ -496,7 +496,7 @@
             this.llblFfmpegDirectory.Location = new System.Drawing.Point(3, 65);
             this.llblFfmpegDirectory.Name = "llblFfmpegDirectory";
             this.llblFfmpegDirectory.Size = new System.Drawing.Size(134, 13);
-            this.llblFfmpegDirectory.TabIndex = 5;
+            this.llblFfmpegDirectory.TabIndex = 2;
             this.llblFfmpegDirectory.TabStop = true;
             this.llblFfmpegDirectory.Text = "Open ffmpeg Directory...";
             this.llblFfmpegDirectory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLink_Clicked);
@@ -507,7 +507,7 @@
             this.llblYdlDirectory.Location = new System.Drawing.Point(3, 43);
             this.llblYdlDirectory.Name = "llblYdlDirectory";
             this.llblYdlDirectory.Size = new System.Drawing.Size(154, 13);
-            this.llblYdlDirectory.TabIndex = 4;
+            this.llblYdlDirectory.TabIndex = 1;
             this.llblYdlDirectory.TabStop = true;
             this.llblYdlDirectory.Text = "Open youtube-dl Directory...";
             this.llblYdlDirectory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLink_Clicked);
@@ -518,7 +518,7 @@
             this.llblPreferencesLocation.Location = new System.Drawing.Point(3, 11);
             this.llblPreferencesLocation.Name = "llblPreferencesLocation";
             this.llblPreferencesLocation.Size = new System.Drawing.Size(128, 13);
-            this.llblPreferencesLocation.TabIndex = 3;
+            this.llblPreferencesLocation.TabIndex = 0;
             this.llblPreferencesLocation.TabStop = true;
             this.llblPreferencesLocation.Text = "Open Preferences File...";
             this.llblPreferencesLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLink_Clicked);
@@ -532,7 +532,7 @@
             this.panelActions.Location = new System.Drawing.Point(0, 371);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(654, 40);
-            this.panelActions.TabIndex = 7;
+            this.panelActions.TabIndex = 1;
             // 
             // FormPreferences
             // 

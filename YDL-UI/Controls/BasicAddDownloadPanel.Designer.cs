@@ -45,7 +45,7 @@
             this.cbxAudioOnly.Location = new System.Drawing.Point(92, 86);
             this.cbxAudioOnly.Name = "cbxAudioOnly";
             this.cbxAudioOnly.Size = new System.Drawing.Size(88, 21);
-            this.cbxAudioOnly.TabIndex = 9;
+            this.cbxAudioOnly.TabIndex = 4;
             this.toolTip.SetToolTip(this.cbxAudioOnly, "Convert video file to audio-only file.");
             // 
             // cbAudioOnly
@@ -54,7 +54,7 @@
             this.cbAudioOnly.Location = new System.Drawing.Point(6, 88);
             this.cbAudioOnly.Name = "cbAudioOnly";
             this.cbAudioOnly.Size = new System.Drawing.Size(80, 17);
-            this.cbAudioOnly.TabIndex = 8;
+            this.cbAudioOnly.TabIndex = 3;
             this.cbAudioOnly.Text = "Audio Only:";
             this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
@@ -64,7 +64,7 @@
             this.frameRateSelector1.Location = new System.Drawing.Point(182, 3);
             this.frameRateSelector1.Name = "frameRateSelector1";
             this.frameRateSelector1.Size = new System.Drawing.Size(173, 115);
-            this.frameRateSelector1.TabIndex = 25;
+            this.frameRateSelector1.TabIndex = 1;
             // 
             // gbFileSystem
             // 
@@ -76,7 +76,7 @@
             this.gbFileSystem.Location = new System.Drawing.Point(361, 3);
             this.gbFileSystem.Name = "gbFileSystem";
             this.gbFileSystem.Size = new System.Drawing.Size(188, 115);
-            this.gbFileSystem.TabIndex = 27;
+            this.gbFileSystem.TabIndex = 2;
             this.gbFileSystem.TabStop = false;
             this.gbFileSystem.Text = "Options";
             // 
@@ -88,7 +88,7 @@
             this.cbNoOverwrites.Location = new System.Drawing.Point(6, 65);
             this.cbNoOverwrites.Name = "cbNoOverwrites";
             this.cbNoOverwrites.Size = new System.Drawing.Size(93, 17);
-            this.cbNoOverwrites.TabIndex = 4;
+            this.cbNoOverwrites.TabIndex = 2;
             this.cbNoOverwrites.Text = "No Overwrites";
             this.toolTip.SetToolTip(this.cbNoOverwrites, "Don\'t overwrite files.");
             this.cbNoOverwrites.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             this.cbRestrictFilenames.Location = new System.Drawing.Point(6, 42);
             this.cbRestrictFilenames.Name = "cbRestrictFilenames";
             this.cbRestrictFilenames.Size = new System.Drawing.Size(112, 17);
-            this.cbRestrictFilenames.TabIndex = 3;
+            this.cbRestrictFilenames.TabIndex = 1;
             this.cbRestrictFilenames.Text = "Restrict Filenames";
             this.toolTip.SetToolTip(this.cbRestrictFilenames, "Restrict filenames to only ASCII characters, and avoid \"&\" and spaces in filename" +
         "s.");
@@ -111,7 +111,7 @@
             this.cbWriteThumbnail.Location = new System.Drawing.Point(6, 19);
             this.cbWriteThumbnail.Name = "cbWriteThumbnail";
             this.cbWriteThumbnail.Size = new System.Drawing.Size(103, 17);
-            this.cbWriteThumbnail.TabIndex = 2;
+            this.cbWriteThumbnail.TabIndex = 0;
             this.cbWriteThumbnail.Text = "Write Thumbnail";
             this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail to disk.");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             this.videoQualitySelector1.Location = new System.Drawing.Point(3, 3);
             this.videoQualitySelector1.Name = "videoQualitySelector1";
             this.videoQualitySelector1.Size = new System.Drawing.Size(173, 115);
-            this.videoQualitySelector1.TabIndex = 28;
+            this.videoQualitySelector1.TabIndex = 0;
             // 
             // toolTip
             // 

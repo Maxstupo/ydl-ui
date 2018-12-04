@@ -147,7 +147,8 @@ namespace Maxstupo.YdlUi.Forms {
 
             basicAddDownloadPanel = new BasicAddDownloadPanel {
                 Location = new Point(12, 67),
-                Visible = false
+                Visible = false,
+                TabIndex = 11
             };
             Controls.Add(basicAddDownloadPanel);
 
