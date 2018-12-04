@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlp = new System.Windows.Forms.TableLayoutPanel();
             this.gbDownload = new System.Windows.Forms.GroupBox();
             this.cbxLimitRateUnit = new System.Windows.Forms.ComboBox();
             this.cbRetriesInf = new System.Windows.Forms.CheckBox();
@@ -72,7 +72,7 @@
             this.txtReferer = new System.Windows.Forms.TextBox();
             this.cbReferer = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlp.SuspendLayout();
             this.gbDownload.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFragmentRetries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRetries)).BeginInit();
@@ -89,27 +89,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHeaders)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlp
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tlp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.54546F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.gbDownload, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.gbAuthentication, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gbSleepInterval, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gbNetwork, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.gbHeaders, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 59);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(778, 340);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.tlp.ColumnCount = 3;
+            this.tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.45454F));
+            this.tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.54546F));
+            this.tlp.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlp.Controls.Add(this.gbDownload, 1, 0);
+            this.tlp.Controls.Add(this.gbAuthentication, 0, 1);
+            this.tlp.Controls.Add(this.gbSleepInterval, 1, 1);
+            this.tlp.Controls.Add(this.gbNetwork, 0, 0);
+            this.tlp.Controls.Add(this.gbHeaders, 2, 0);
+            this.tlp.Location = new System.Drawing.Point(3, 59);
+            this.tlp.Name = "tlp";
+            this.tlp.RowCount = 2;
+            this.tlp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlp.Size = new System.Drawing.Size(778, 340);
+            this.tlp.TabIndex = 4;
             // 
             // gbDownload
             // 
@@ -123,7 +123,7 @@
             this.gbDownload.Controls.Add(this.nudLimitRate);
             this.gbDownload.Controls.Add(this.cbLimitRate);
             this.gbDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbDownload.Location = new System.Drawing.Point(232, 3);
+            this.gbDownload.Location = new System.Drawing.Point(231, 3);
             this.gbDownload.MinimumSize = new System.Drawing.Size(259, 125);
             this.gbDownload.Name = "gbDownload";
             this.gbDownload.Size = new System.Drawing.Size(268, 164);
@@ -263,7 +263,7 @@
             this.gbAuthentication.Location = new System.Drawing.Point(3, 173);
             this.gbAuthentication.MinimumSize = new System.Drawing.Size(218, 134);
             this.gbAuthentication.Name = "gbAuthentication";
-            this.gbAuthentication.Size = new System.Drawing.Size(223, 164);
+            this.gbAuthentication.Size = new System.Drawing.Size(222, 164);
             this.gbAuthentication.TabIndex = 2;
             this.gbAuthentication.TabStop = false;
             this.gbAuthentication.Text = "Authentication";
@@ -307,7 +307,7 @@
             this.txtVideoPassword.Location = new System.Drawing.Point(119, 105);
             this.txtVideoPassword.Name = "txtVideoPassword";
             this.txtVideoPassword.PasswordChar = '•';
-            this.txtVideoPassword.Size = new System.Drawing.Size(97, 22);
+            this.txtVideoPassword.Size = new System.Drawing.Size(96, 22);
             this.txtVideoPassword.TabIndex = 7;
             this.toolTip.SetToolTip(this.txtVideoPassword, "Video password (vimeo, smotri, youku)");
             // 
@@ -317,7 +317,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTwoFactorCode.Location = new System.Drawing.Point(119, 77);
             this.txtTwoFactorCode.Name = "txtTwoFactorCode";
-            this.txtTwoFactorCode.Size = new System.Drawing.Size(97, 22);
+            this.txtTwoFactorCode.Size = new System.Drawing.Size(96, 22);
             this.txtTwoFactorCode.TabIndex = 5;
             this.toolTip.SetToolTip(this.txtTwoFactorCode, "Two-factor authentication code.");
             // 
@@ -328,7 +328,7 @@
             this.txtPassword.Location = new System.Drawing.Point(119, 49);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(97, 22);
+            this.txtPassword.Size = new System.Drawing.Size(96, 22);
             this.txtPassword.TabIndex = 3;
             this.toolTip.SetToolTip(this.txtPassword, "Account password.");
             // 
@@ -338,7 +338,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Location = new System.Drawing.Point(119, 21);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(97, 22);
+            this.txtUsername.Size = new System.Drawing.Size(96, 22);
             this.txtUsername.TabIndex = 1;
             this.toolTip.SetToolTip(this.txtUsername, "Login with this account ID.");
             // 
@@ -361,7 +361,7 @@
             this.gbSleepInterval.Controls.Add(this.rbSleepIntervalValue);
             this.gbSleepInterval.Controls.Add(this.rbSleepIntervalDefault);
             this.gbSleepInterval.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbSleepInterval.Location = new System.Drawing.Point(232, 173);
+            this.gbSleepInterval.Location = new System.Drawing.Point(231, 173);
             this.gbSleepInterval.MinimumSize = new System.Drawing.Size(262, 123);
             this.gbSleepInterval.Name = "gbSleepInterval";
             this.gbSleepInterval.Size = new System.Drawing.Size(268, 164);
@@ -497,7 +497,7 @@
             this.gbNetwork.Location = new System.Drawing.Point(3, 3);
             this.gbNetwork.MinimumSize = new System.Drawing.Size(218, 125);
             this.gbNetwork.Name = "gbNetwork";
-            this.gbNetwork.Size = new System.Drawing.Size(223, 164);
+            this.gbNetwork.Size = new System.Drawing.Size(222, 164);
             this.gbNetwork.TabIndex = 0;
             this.gbNetwork.TabStop = false;
             this.gbNetwork.Text = "Network";
@@ -548,7 +548,7 @@
             0,
             0});
             this.nudSocketTimeout.Name = "nudSocketTimeout";
-            this.nudSocketTimeout.Size = new System.Drawing.Size(97, 22);
+            this.nudSocketTimeout.Size = new System.Drawing.Size(96, 22);
             this.nudSocketTimeout.TabIndex = 3;
             this.toolTip.SetToolTip(this.nudSocketTimeout, "Time to wait before giving up, in seconds.");
             // 
@@ -569,7 +569,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSourceAddress.Location = new System.Drawing.Point(119, 75);
             this.txtSourceAddress.Name = "txtSourceAddress";
-            this.txtSourceAddress.Size = new System.Drawing.Size(97, 22);
+            this.txtSourceAddress.Size = new System.Drawing.Size(96, 22);
             this.txtSourceAddress.TabIndex = 5;
             this.toolTip.SetToolTip(this.txtSourceAddress, "Client side IP address to bind to.");
             // 
@@ -590,7 +590,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProxy.Location = new System.Drawing.Point(119, 19);
             this.txtProxy.Name = "txtProxy";
-            this.txtProxy.Size = new System.Drawing.Size(97, 22);
+            this.txtProxy.Size = new System.Drawing.Size(96, 22);
             this.txtProxy.TabIndex = 1;
             this.toolTip.SetToolTip(this.txtProxy, "Use the specified HTTP/HTTPS/SOCKS proxy.\r\nTo enable SOCKS proxy, specify a prope" +
         "r scheme (e.g. socks5://127.0.0.1:1080/).\r\nLeave blank for direct connection.");
@@ -611,10 +611,10 @@
             // 
             this.gbHeaders.Controls.Add(this.dgvHeaders);
             this.gbHeaders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbHeaders.Location = new System.Drawing.Point(506, 3);
+            this.gbHeaders.Location = new System.Drawing.Point(505, 3);
             this.gbHeaders.Name = "gbHeaders";
-            this.tableLayoutPanel1.SetRowSpan(this.gbHeaders, 2);
-            this.gbHeaders.Size = new System.Drawing.Size(269, 334);
+            this.tlp.SetRowSpan(this.gbHeaders, 2);
+            this.gbHeaders.Size = new System.Drawing.Size(270, 334);
             this.gbHeaders.TabIndex = 4;
             this.gbHeaders.TabStop = false;
             this.gbHeaders.Text = "Headers";
@@ -632,7 +632,7 @@
             this.dgvHeaders.Name = "dgvHeaders";
             this.dgvHeaders.RowHeadersVisible = false;
             this.dgvHeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHeaders.Size = new System.Drawing.Size(263, 313);
+            this.dgvHeaders.Size = new System.Drawing.Size(264, 313);
             this.dgvHeaders.TabIndex = 0;
             this.toolTip.SetToolTip(this.dgvHeaders, "Specify custom HTTP headers.");
             // 
@@ -844,7 +844,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlp);
             this.Controls.Add(this.txtUserAgent);
             this.Controls.Add(this.cbUserAgent);
             this.Controls.Add(this.txtReferer);
@@ -853,7 +853,7 @@
             this.Name = "TabWorkarounds";
             this.Size = new System.Drawing.Size(784, 402);
             this.Load += new System.EventHandler(this.TabWorkarounds_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tlp.ResumeLayout(false);
             this.gbDownload.ResumeLayout(false);
             this.gbDownload.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFragmentRetries)).EndInit();
@@ -880,7 +880,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlp;
         private System.Windows.Forms.GroupBox gbDownload;
         private System.Windows.Forms.ComboBox cbxLimitRateUnit;
         private System.Windows.Forms.CheckBox cbRetriesInf;

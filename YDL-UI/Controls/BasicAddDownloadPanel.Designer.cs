@@ -26,12 +26,12 @@
             this.components = new System.ComponentModel.Container();
             this.cbxAudioOnly = new System.Windows.Forms.ComboBox();
             this.cbAudioOnly = new System.Windows.Forms.CheckBox();
-            this.frameRateSelector1 = new Maxstupo.YdlUi.Controls.FrameRateSelector();
+            this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
             this.gbFileSystem = new System.Windows.Forms.GroupBox();
             this.cbNoOverwrites = new System.Windows.Forms.CheckBox();
             this.cbRestrictFilenames = new System.Windows.Forms.CheckBox();
             this.cbWriteThumbnail = new System.Windows.Forms.CheckBox();
-            this.videoQualitySelector1 = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
+            this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gbFileSystem.SuspendLayout();
             this.SuspendLayout();
@@ -59,12 +59,12 @@
             this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
             // 
-            // frameRateSelector1
+            // frameRateSelector
             // 
-            this.frameRateSelector1.Location = new System.Drawing.Point(182, 3);
-            this.frameRateSelector1.Name = "frameRateSelector1";
-            this.frameRateSelector1.Size = new System.Drawing.Size(173, 115);
-            this.frameRateSelector1.TabIndex = 1;
+            this.frameRateSelector.Location = new System.Drawing.Point(182, 3);
+            this.frameRateSelector.Name = "frameRateSelector";
+            this.frameRateSelector.Size = new System.Drawing.Size(173, 115);
+            this.frameRateSelector.TabIndex = 1;
             // 
             // gbFileSystem
             // 
@@ -116,12 +116,12 @@
             this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail to disk.");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
             // 
-            // videoQualitySelector1
+            // videoQualitySelector
             // 
-            this.videoQualitySelector1.Location = new System.Drawing.Point(3, 3);
-            this.videoQualitySelector1.Name = "videoQualitySelector1";
-            this.videoQualitySelector1.Size = new System.Drawing.Size(173, 115);
-            this.videoQualitySelector1.TabIndex = 0;
+            this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
+            this.videoQualitySelector.Name = "videoQualitySelector";
+            this.videoQualitySelector.Size = new System.Drawing.Size(173, 115);
+            this.videoQualitySelector.TabIndex = 0;
             // 
             // toolTip
             // 
@@ -134,8 +134,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.videoQualitySelector1);
-            this.Controls.Add(this.frameRateSelector1);
+            this.Controls.Add(this.videoQualitySelector);
+            this.Controls.Add(this.frameRateSelector);
             this.Controls.Add(this.gbFileSystem);
             this.Name = "BasicAddDownloadPanel";
             this.Size = new System.Drawing.Size(557, 124);
@@ -151,10 +151,10 @@
         private System.Windows.Forms.ToolTip toolTip;
         public System.Windows.Forms.ComboBox cbxAudioOnly;
         public System.Windows.Forms.CheckBox cbAudioOnly;
-        public FrameRateSelector frameRateSelector1;
+        public FrameRateSelector frameRateSelector;
         public System.Windows.Forms.CheckBox cbNoOverwrites;
         public System.Windows.Forms.CheckBox cbRestrictFilenames;
         public System.Windows.Forms.CheckBox cbWriteThumbnail;
-        public VideoQualitySelector videoQualitySelector1;
+        public VideoQualitySelector videoQualitySelector;
     }
 }

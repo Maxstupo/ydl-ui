@@ -24,7 +24,7 @@ namespace Maxstupo.YdlUi.Controls {
             arguments.FileSystem.NoOverwrites = cbNoOverwrites.Checked;
             arguments.Thumbnail.WriteThumbnail = cbWriteThumbnail.Checked;
 
-            FormatSelector formatSelector = new FormatSelector(videoQualitySelector1, frameRateSelector1);
+            FormatSelector formatSelector = new FormatSelector(videoQualitySelector, frameRateSelector);
             arguments.VideoFormat.Format = formatSelector.ToString();
 
             arguments.PostProcessing.AudioFormat = cbxAudioOnly.Enabled ? (AudioFormat?)cbxAudioOnly.SelectedValue : null;

@@ -124,7 +124,7 @@
             this.textBox1.Size = new System.Drawing.Size(438, 20);
             this.textBox1.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox1, "If this regex matches the download URL, this preset will be selected automaticall" +
-        "y.");
+        "y.\r\nLeave blank to disable URL matching.");
             // 
             // label2
             // 
@@ -135,7 +135,7 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "URL Match:";
             this.toolTip.SetToolTip(this.label2, "If this regex matches the download URL, this preset will be selected automaticall" +
-        "y.");
+        "y.\r\nLeave blank to disable URL matching.");
             // 
             // toolTip
             // 

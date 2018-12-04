@@ -38,21 +38,21 @@
             this.btnDownloadArchiveBrowse = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpQuality = new System.Windows.Forms.TabPage();
-            this.tabQuality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
+            this.quality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
             this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.tpVideoSelection = new System.Windows.Forms.TabPage();
-            this.tabVideoSelection1 = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
+            this.videoSelection = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
             this.tpPostProcessing = new System.Windows.Forms.TabPage();
-            this.tabPostProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
+            this.postProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
             this.tpWorkarounds = new System.Windows.Forms.TabPage();
-            this.tabWorkarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
+            this.workarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.cbDownloadArchive = new System.Windows.Forms.CheckBox();
             this.cbFilenameTemplate = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.cbxPreset = new System.Windows.Forms.ComboBox();
             this.panelActions = new System.Windows.Forms.Panel();
-            this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tpQuality.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
@@ -206,7 +206,7 @@
             // tpQuality
             // 
             this.tpQuality.BackColor = System.Drawing.Color.White;
-            this.tpQuality.Controls.Add(this.tabQuality);
+            this.tpQuality.Controls.Add(this.quality);
             this.tpQuality.Controls.Add(this.cbCustomFormatSelector);
             this.tpQuality.Controls.Add(this.txtCustomFormatSelector);
             this.tpQuality.Location = new System.Drawing.Point(4, 22);
@@ -215,14 +215,14 @@
             this.tpQuality.TabIndex = 3;
             this.tpQuality.Text = "Quality";
             // 
-            // tabQuality
+            // quality
             // 
-            this.tabQuality.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabQuality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabQuality.Location = new System.Drawing.Point(0, 0);
-            this.tabQuality.Name = "tabQuality";
-            this.tabQuality.Size = new System.Drawing.Size(766, 376);
-            this.tabQuality.TabIndex = 9;
+            this.quality.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.quality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quality.Location = new System.Drawing.Point(0, 0);
+            this.quality.Name = "quality";
+            this.quality.Size = new System.Drawing.Size(766, 376);
+            this.quality.TabIndex = 9;
             // 
             // cbCustomFormatSelector
             // 
@@ -247,7 +247,7 @@
             // tpVideoSelection
             // 
             this.tpVideoSelection.BackColor = System.Drawing.Color.White;
-            this.tpVideoSelection.Controls.Add(this.tabVideoSelection1);
+            this.tpVideoSelection.Controls.Add(this.videoSelection);
             this.tpVideoSelection.Location = new System.Drawing.Point(4, 22);
             this.tpVideoSelection.Name = "tpVideoSelection";
             this.tpVideoSelection.Padding = new System.Windows.Forms.Padding(3);
@@ -255,19 +255,19 @@
             this.tpVideoSelection.TabIndex = 0;
             this.tpVideoSelection.Text = "Video Selection";
             // 
-            // tabVideoSelection1
+            // videoSelection
             // 
-            this.tabVideoSelection1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabVideoSelection1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabVideoSelection1.Location = new System.Drawing.Point(3, 3);
-            this.tabVideoSelection1.Name = "tabVideoSelection1";
-            this.tabVideoSelection1.Size = new System.Drawing.Size(760, 370);
-            this.tabVideoSelection1.TabIndex = 0;
+            this.videoSelection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoSelection.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.videoSelection.Location = new System.Drawing.Point(3, 3);
+            this.videoSelection.Name = "videoSelection";
+            this.videoSelection.Size = new System.Drawing.Size(760, 370);
+            this.videoSelection.TabIndex = 0;
             // 
             // tpPostProcessing
             // 
             this.tpPostProcessing.BackColor = System.Drawing.Color.White;
-            this.tpPostProcessing.Controls.Add(this.tabPostProcessing);
+            this.tpPostProcessing.Controls.Add(this.postProcessing);
             this.tpPostProcessing.Location = new System.Drawing.Point(4, 22);
             this.tpPostProcessing.Name = "tpPostProcessing";
             this.tpPostProcessing.Padding = new System.Windows.Forms.Padding(3);
@@ -275,33 +275,33 @@
             this.tpPostProcessing.TabIndex = 1;
             this.tpPostProcessing.Text = "Post Processing";
             // 
-            // tabPostProcessing
+            // postProcessing
             // 
-            this.tabPostProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPostProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPostProcessing.Location = new System.Drawing.Point(3, 3);
-            this.tabPostProcessing.Name = "tabPostProcessing";
-            this.tabPostProcessing.Size = new System.Drawing.Size(760, 370);
-            this.tabPostProcessing.TabIndex = 0;
+            this.postProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postProcessing.Location = new System.Drawing.Point(3, 3);
+            this.postProcessing.Name = "postProcessing";
+            this.postProcessing.Size = new System.Drawing.Size(760, 370);
+            this.postProcessing.TabIndex = 0;
             // 
             // tpWorkarounds
             // 
             this.tpWorkarounds.BackColor = System.Drawing.Color.White;
-            this.tpWorkarounds.Controls.Add(this.tabWorkarounds);
+            this.tpWorkarounds.Controls.Add(this.workarounds);
             this.tpWorkarounds.Location = new System.Drawing.Point(4, 22);
             this.tpWorkarounds.Name = "tpWorkarounds";
             this.tpWorkarounds.Size = new System.Drawing.Size(766, 376);
             this.tpWorkarounds.TabIndex = 2;
             this.tpWorkarounds.Text = "Workarounds";
             // 
-            // tabWorkarounds
+            // workarounds
             // 
-            this.tabWorkarounds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabWorkarounds.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabWorkarounds.Location = new System.Drawing.Point(0, 0);
-            this.tabWorkarounds.Name = "tabWorkarounds";
-            this.tabWorkarounds.Size = new System.Drawing.Size(766, 376);
-            this.tabWorkarounds.TabIndex = 0;
+            this.workarounds.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workarounds.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workarounds.Location = new System.Drawing.Point(0, 0);
+            this.workarounds.Name = "workarounds";
+            this.workarounds.Size = new System.Drawing.Size(766, 376);
+            this.workarounds.TabIndex = 0;
             // 
             // cbDownloadArchive
             // 
@@ -333,6 +333,19 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // cbBasicMode
+            // 
+            this.cbBasicMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbBasicMode.AutoSize = true;
+            this.cbBasicMode.Location = new System.Drawing.Point(12, 13);
+            this.cbBasicMode.Name = "cbBasicMode";
+            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
+            this.cbBasicMode.TabIndex = 16;
+            this.cbBasicMode.Text = "Basic Mode";
+            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
+            this.cbBasicMode.UseVisualStyleBackColor = true;
+            this.cbBasicMode.CheckedChanged += new System.EventHandler(this.cbBasicMode_CheckedChanged);
+            // 
             // cbxPreset
             // 
             this.cbxPreset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -357,19 +370,6 @@
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(798, 40);
             this.panelActions.TabIndex = 16;
-            // 
-            // cbBasicMode
-            // 
-            this.cbBasicMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbBasicMode.AutoSize = true;
-            this.cbBasicMode.Location = new System.Drawing.Point(12, 13);
-            this.cbBasicMode.Name = "cbBasicMode";
-            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
-            this.cbBasicMode.TabIndex = 16;
-            this.cbBasicMode.Text = "Basic Mode";
-            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
-            this.cbBasicMode.UseVisualStyleBackColor = true;
-            this.cbBasicMode.CheckedChanged += new System.EventHandler(this.cbBasicMode_CheckedChanged);
             // 
             // FormAddDownload
             // 
@@ -437,10 +437,10 @@
         private System.Windows.Forms.TextBox txtCustomFormatSelector;
         private System.Windows.Forms.CheckBox cbDownloadArchive;
         private System.Windows.Forms.CheckBox cbFilenameTemplate;
-        private Tab.TabVideoSelection tabVideoSelection1;
-        private Tab.TabWorkarounds tabWorkarounds;
-        private Tab.TabPostProcessing tabPostProcessing;
-        private Tab.TabQuality tabQuality;
+        private Tab.TabVideoSelection videoSelection;
+        private Tab.TabWorkarounds workarounds;
+        private Tab.TabPostProcessing postProcessing;
+        private Tab.TabQuality quality;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ComboBox cbxPreset;
         private System.Windows.Forms.Panel panelActions;

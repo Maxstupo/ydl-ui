@@ -24,29 +24,29 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb = new System.Windows.Forms.GroupBox();
             this.nudCustomFrameRate = new System.Windows.Forms.NumericUpDown();
             this.cbxFrameRate = new System.Windows.Forms.ComboBox();
             this.cbFallback = new System.Windows.Forms.CheckBox();
             this.cbPreferred = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox1.SuspendLayout();
+            this.gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCustomFrameRate)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gb
             // 
-            this.groupBox1.Controls.Add(this.nudCustomFrameRate);
-            this.groupBox1.Controls.Add(this.cbxFrameRate);
-            this.groupBox1.Controls.Add(this.cbFallback);
-            this.groupBox1.Controls.Add(this.cbPreferred);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(204, 96);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Frame Rate";
+            this.gb.Controls.Add(this.nudCustomFrameRate);
+            this.gb.Controls.Add(this.cbxFrameRate);
+            this.gb.Controls.Add(this.cbFallback);
+            this.gb.Controls.Add(this.cbPreferred);
+            this.gb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gb.Location = new System.Drawing.Point(0, 0);
+            this.gb.Name = "gb";
+            this.gb.Size = new System.Drawing.Size(204, 96);
+            this.gb.TabIndex = 0;
+            this.gb.TabStop = false;
+            this.gb.Text = "Frame Rate";
             // 
             // nudCustomFrameRate
             // 
@@ -125,12 +125,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb);
             this.Name = "FrameRateSelector";
             this.Size = new System.Drawing.Size(204, 96);
             this.Load += new System.EventHandler(this.FrameRateSelector_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gb.ResumeLayout(false);
+            this.gb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCustomFrameRate)).EndInit();
             this.ResumeLayout(false);
 
@@ -138,7 +138,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gb;
         private System.Windows.Forms.CheckBox cbFallback;
         private System.Windows.Forms.CheckBox cbPreferred;
         private System.Windows.Forms.ComboBox cbxFrameRate;
