@@ -28,6 +28,10 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 Console.WriteLine(e);
             }
 
+            if (download.Status == DownloadStatus.Downloading && line.StartsWith("[ffmpeg]"))
+                download.Status = DownloadStatus.Processing;
+
+
         }
     }
 }

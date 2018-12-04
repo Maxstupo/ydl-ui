@@ -58,7 +58,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 #endif
 
             string arguments = argumentSerializer.Serialize(Arguments, true);
-      
+
             ExecutableProcess process = new ExecutableProcess(ydlPath, arguments, DownloadDirectory);
 
             Log += $"\r\nWorking Directory: {DownloadDirectory}";

@@ -20,7 +20,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public SortableBindingList<Download> Downloads { get; }
 
         public int TotalDownloads { get => downloads.Count; }
-        public int ConcurrentDownloads { get => Downloads.Count(dl => dl.Status == DownloadStatus.Downloading); }
+        public int ConcurrentDownloads { get => Downloads.Count(dl => dl.Status == DownloadStatus.Downloading || dl.Status == DownloadStatus.Processing); }
         public int CompletedDownloads { get => Downloads.Count(dl => dl.Status == DownloadStatus.Completed); }
 
         public string YdlPath { get; set; }
@@ -61,7 +61,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                     return false;
             }
 
-            if (download.Status == DownloadStatus.Downloading)
+            if (download.Status == DownloadStatus.Downloading || download.Status == DownloadStatus.Processing)
                 download.Status = DownloadStatus.Queued;
 
             download.PropertyChanged += Download_PropertyChanged;
@@ -82,11 +82,11 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         }
 
         public bool CanRemoveDownload(Download download) {
-            return download.Status != DownloadStatus.Downloading;
+            return download.Status != DownloadStatus.Downloading && download.Status != DownloadStatus.Processing;
         }
 
         public bool CanQueueDownload(Download download) {
-            return download.Status != DownloadStatus.Downloading && download.Status != DownloadStatus.Completed;
+            return download.Status != DownloadStatus.Downloading && download.Status != DownloadStatus.Completed && download.Status != DownloadStatus.Processing;
         }
 
         public void Queue(Download download) {
