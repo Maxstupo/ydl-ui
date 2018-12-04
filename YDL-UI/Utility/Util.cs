@@ -1,5 +1,6 @@
 ﻿using ByteSizeLib;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -7,7 +8,15 @@ using System.Threading.Tasks;
 
 namespace Maxstupo.YdlUi.Utility {
     public static class Util {
-        
+
+        public static void Replace<T>(this IList<T> src, T oldItem, T newItem) {
+            int idx = src.IndexOf(oldItem);
+            if (idx == -1)
+                throw new ArgumentException(nameof(oldItem));
+            src.RemoveAt(idx);
+            src.Insert(idx, newItem);
+        }
+
         /// <summary>
         /// Removes all text after the <paramref name="lastChar"/> including the last character.
         /// </summary>

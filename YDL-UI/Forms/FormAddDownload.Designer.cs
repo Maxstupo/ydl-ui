@@ -49,20 +49,23 @@
             this.tabWorkarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.cbDownloadArchive = new System.Windows.Forms.CheckBox();
             this.cbFilenameTemplate = new System.Windows.Forms.CheckBox();
-            this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cbxPreset = new System.Windows.Forms.ComboBox();
+            this.panelActions = new System.Windows.Forms.Panel();
+            this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tpQuality.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
             this.tpPostProcessing.SuspendLayout();
             this.tpWorkarounds.SuspendLayout();
+            this.panelActions.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(711, 531);
+            this.btnCancel.Location = new System.Drawing.Point(711, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 13;
@@ -73,7 +76,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(630, 531);
+            this.btnAdd.Location = new System.Drawing.Point(630, 9);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 12;
@@ -87,7 +90,7 @@
             this.cbImmediateStart.AutoSize = true;
             this.cbImmediateStart.Checked = true;
             this.cbImmediateStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbImmediateStart.Location = new System.Drawing.Point(513, 534);
+            this.cbImmediateStart.Location = new System.Drawing.Point(513, 13);
             this.cbImmediateStart.Name = "cbImmediateStart";
             this.cbImmediateStart.Size = new System.Drawing.Size(111, 17);
             this.cbImmediateStart.TabIndex = 11;
@@ -122,7 +125,7 @@
             this.txtDownloadDirectory.Location = new System.Drawing.Point(141, 37);
             this.txtDownloadDirectory.Name = "txtDownloadDirectory";
             this.txtDownloadDirectory.ReadOnly = true;
-            this.txtDownloadDirectory.Size = new System.Drawing.Size(564, 22);
+            this.txtDownloadDirectory.Size = new System.Drawing.Size(603, 22);
             this.txtDownloadDirectory.TabIndex = 3;
             this.toolTip.SetToolTip(this.txtDownloadDirectory, "The directory to download the video to.");
             // 
@@ -139,11 +142,11 @@
             // btnBrowseDownloadDirectory
             // 
             this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(711, 36);
+            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(750, 37);
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
-            this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadDirectory.TabIndex = 4;
-            this.btnBrowseDownloadDirectory.Text = "&Browse";
+            this.btnBrowseDownloadDirectory.Text = "...";
             this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnBrowseDownloadDirectory_Click);
             // 
@@ -169,7 +172,7 @@
             this.txtDownloadArchive.Location = new System.Drawing.Point(141, 93);
             this.txtDownloadArchive.Name = "txtDownloadArchive";
             this.txtDownloadArchive.ReadOnly = true;
-            this.txtDownloadArchive.Size = new System.Drawing.Size(564, 22);
+            this.txtDownloadArchive.Size = new System.Drawing.Size(603, 22);
             this.txtDownloadArchive.TabIndex = 8;
             this.toolTip.SetToolTip(this.txtDownloadArchive, "Download the video only if it\'s not listed in the archive file. \r\nUpon successful" +
         " download, the video ID will be added to the archive file.");
@@ -177,11 +180,11 @@
             // btnDownloadArchiveBrowse
             // 
             this.btnDownloadArchiveBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownloadArchiveBrowse.Location = new System.Drawing.Point(711, 92);
+            this.btnDownloadArchiveBrowse.Location = new System.Drawing.Point(750, 93);
             this.btnDownloadArchiveBrowse.Name = "btnDownloadArchiveBrowse";
-            this.btnDownloadArchiveBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnDownloadArchiveBrowse.Size = new System.Drawing.Size(36, 23);
             this.btnDownloadArchiveBrowse.TabIndex = 9;
-            this.btnDownloadArchiveBrowse.Text = "&Browse";
+            this.btnDownloadArchiveBrowse.Text = "...";
             this.btnDownloadArchiveBrowse.UseVisualStyleBackColor = true;
             this.btnDownloadArchiveBrowse.Click += new System.EventHandler(this.btnDownloadArchiveBrowse_Click);
             // 
@@ -323,19 +326,6 @@
             this.toolTip.SetToolTip(this.cbFilenameTemplate, "Output filename template.");
             this.cbFilenameTemplate.UseVisualStyleBackColor = true;
             // 
-            // cbBasicMode
-            // 
-            this.cbBasicMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbBasicMode.AutoSize = true;
-            this.cbBasicMode.Location = new System.Drawing.Point(12, 534);
-            this.cbBasicMode.Name = "cbBasicMode";
-            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
-            this.cbBasicMode.TabIndex = 14;
-            this.cbBasicMode.Text = "Basic Mode";
-            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
-            this.cbBasicMode.UseVisualStyleBackColor = true;
-            this.cbBasicMode.CheckedChanged += new System.EventHandler(this.cbBasicMode_CheckedChanged);
-            // 
             // toolTip
             // 
             this.toolTip.AutomaticDelay = 700;
@@ -343,14 +333,52 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // cbxPreset
+            // 
+            this.cbxPreset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbxPreset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPreset.FormattingEnabled = true;
+            this.cbxPreset.Location = new System.Drawing.Point(111, 11);
+            this.cbxPreset.Name = "cbxPreset";
+            this.cbxPreset.Size = new System.Drawing.Size(121, 21);
+            this.cbxPreset.TabIndex = 15;
+            this.cbxPreset.Tag = "!_ignore";
+            this.cbxPreset.SelectedIndexChanged += new System.EventHandler(this.cbxPreset_SelectedIndexChanged);
+            // 
+            // panelActions
+            // 
+            this.panelActions.Controls.Add(this.cbBasicMode);
+            this.panelActions.Controls.Add(this.cbxPreset);
+            this.panelActions.Controls.Add(this.btnCancel);
+            this.panelActions.Controls.Add(this.btnAdd);
+            this.panelActions.Controls.Add(this.cbImmediateStart);
+            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelActions.Location = new System.Drawing.Point(0, 526);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.Size = new System.Drawing.Size(798, 40);
+            this.panelActions.TabIndex = 16;
+            // 
+            // cbBasicMode
+            // 
+            this.cbBasicMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbBasicMode.AutoSize = true;
+            this.cbBasicMode.Location = new System.Drawing.Point(12, 13);
+            this.cbBasicMode.Name = "cbBasicMode";
+            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
+            this.cbBasicMode.TabIndex = 16;
+            this.cbBasicMode.Text = "Basic Mode";
+            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
+            this.cbBasicMode.UseVisualStyleBackColor = true;
+            this.cbBasicMode.CheckedChanged += new System.EventHandler(this.cbBasicMode_CheckedChanged);
+            // 
             // FormAddDownload
             // 
             this.AcceptButton = this.btnAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(798, 564);
-            this.Controls.Add(this.cbBasicMode);
+            this.ClientSize = new System.Drawing.Size(798, 566);
+            this.Controls.Add(this.panelActions);
             this.Controls.Add(this.cbFilenameTemplate);
             this.Controls.Add(this.cbDownloadArchive);
             this.Controls.Add(this.tabControl);
@@ -362,13 +390,10 @@
             this.Controls.Add(this.txtDownloadDirectory);
             this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.lblUrl);
-            this.Controls.Add(this.cbImmediateStart);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnCancel);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(814, 603);
+            this.MinimumSize = new System.Drawing.Size(814, 605);
             this.Name = "FormAddDownload";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -383,6 +408,8 @@
             this.tpVideoSelection.ResumeLayout(false);
             this.tpPostProcessing.ResumeLayout(false);
             this.tpWorkarounds.ResumeLayout(false);
+            this.panelActions.ResumeLayout(false);
+            this.panelActions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,7 +441,9 @@
         private Tab.TabWorkarounds tabWorkarounds;
         private Tab.TabPostProcessing tabPostProcessing;
         private Tab.TabQuality tabQuality;
-        private System.Windows.Forms.CheckBox cbBasicMode;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ComboBox cbxPreset;
+        private System.Windows.Forms.Panel panelActions;
+        private System.Windows.Forms.CheckBox cbBasicMode;
     }
 }

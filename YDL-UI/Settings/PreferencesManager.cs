@@ -14,8 +14,9 @@ namespace Maxstupo.YdlUi.Settings {
 
         public T Preferences { get; private set; }
 
-        public EventHandler OnSave { get; set; }
-        public EventHandler OnLoad { get; set; }
+        public EventHandler<T> OnSave { get; set; }
+        public EventHandler<T> OnLoad { get; set; }
+        public EventHandler<T> OnUpdate { get; set; }
 
         public PreferencesManager(string[] filenames, T defaultPreferences = null) {
             if (filenames == null)
@@ -60,14 +61,15 @@ namespace Maxstupo.YdlUi.Settings {
                 string json = sr.ReadToEnd();
                 Preferences = JsonConvert.DeserializeObject<T>(json);
             }
-            OnLoad?.Invoke(this, new EventArgs());
-
+            OnLoad?.Invoke(this, Preferences);
+            OnUpdate?.Invoke(this, Preferences);
             return true;
         }
 
         public void Save() {
             Save(PrefPath, Preferences);
-            OnSave?.Invoke(this, new EventArgs());
+            OnSave?.Invoke(this, Preferences);
+            OnUpdate?.Invoke(this, Preferences);
         }
 
         public static void Save(string filepath, T preferences) {

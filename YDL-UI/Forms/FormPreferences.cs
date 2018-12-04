@@ -2,8 +2,11 @@
 using Maxstupo.YdlUi.Utility;
 using Maxstupo.YdlUi.YoutubeDL;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -13,9 +16,12 @@ namespace Maxstupo.YdlUi.Forms {
 
         public bool RequiresRestart { get; private set; } = false;
 
+        private readonly BindingSource bsPresets = new BindingSource();
+
         public FormPreferences(DownloadManager downloadManager, Preferences preferences, string preferencesLocation = null) {
             InitializeComponent();
             this.preferences = preferences;
+
 
             if (string.IsNullOrWhiteSpace(preferencesLocation)) {
                 llblPreferencesLocation.Visible = false;
@@ -23,41 +29,85 @@ namespace Maxstupo.YdlUi.Forms {
                 llblPreferencesLocation.Tag = preferencesLocation;
                 toolTip.SetToolTip(llblPreferencesLocation, preferencesLocation);
             }
+
+            string ydlPath = new FileInfo(downloadManager.YdlPath).Directory.FullName;
+            string ffmpegPath = new FileInfo(downloadManager.FfmpegPath).Directory.FullName;
+            llblYdlDirectory.Tag = ydlPath;
+            toolTip.SetToolTip(llblYdlDirectory, ydlPath);
+
+            llblFfmpegDirectory.Tag = ffmpegPath;
+            toolTip.SetToolTip(llblFfmpegDirectory, ffmpegPath);
+
         }
 
+
+
         private void FormPreferences_Load(object sender, EventArgs e) {
+            panelActions.BackColor = Color.FromArgb(211, 211, 211);
+            BackColor = Color.FromArgb(238, 238, 238);
 
-            btnUpdateYdl.BindEnabledTo(txtYdl, filepath => !string.IsNullOrWhiteSpace(filepath) && File.Exists(filepath));
+            // Setup tabcontrol.
+            lbxCategories.DisplayMember = "Text";
+            foreach (TabPage page in tablessTabControl.TabPages) {
+                page.BackColor = BackColor;
+                lbxCategories.Items.Add(page);
+            }
+            lbxCategories.SelectedIndex = 0;
 
-            // Bind controls to preferences object.
-            txtYdl.DataBindings.Add(nameof(txtYdl.Text), preferences.Binaries, nameof(preferences.Binaries.YoutubeDl), false, DataSourceUpdateMode.OnPropertyChanged);
-            txtFfmpeg.DataBindings.Add(nameof(txtFfmpeg.Text), preferences.Binaries, nameof(preferences.Binaries.Ffmpeg), false, DataSourceUpdateMode.OnPropertyChanged);
-            nudMaxConcurrentDownloads.DataBindings.Add(nameof(nudMaxConcurrentDownloads.Value), preferences, nameof(preferences.MaxConcurrentDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
-            cbPromptOnClose.DataBindings.Add(nameof(cbPromptOnClose.Checked), preferences, nameof(preferences.PromptDownloadingOnClose), false, DataSourceUpdateMode.OnPropertyChanged);
-            cbxCheckForUpdates.DataBindings.Add(nameof(cbxCheckForUpdates.Checked), preferences, nameof(preferences.CheckForUpdates), false, DataSourceUpdateMode.OnPropertyChanged);
-            txtDefaultDownloadArchive.DataBindings.Add(nameof(txtDefaultDownloadArchive.Text), preferences, nameof(preferences.DefaultDownloadArchive), false, DataSourceUpdateMode.OnPropertyChanged);
+            tablessTabControl.PreloadTabs();
+
+            // Replace common templates in labels.
+            this.ForEachControl<Label>(c => {
+                c.Text = c.Text.Replace("{ProductName}", Application.ProductName)
+                .Replace("{ProductVersion}", Application.ProductVersion.RemoveAfterLast('.'));
+            });
+
+
+            #region Data Bindings
+
+            txtBinaryYdl.DataBindings.Add(nameof(txtBinaryYdl.Text), preferences.Binaries, nameof(preferences.Binaries.YoutubeDl), false, DataSourceUpdateMode.OnPropertyChanged);
+            txtBinaryFfmpeg.DataBindings.Add(nameof(txtBinaryFfmpeg.Text), preferences.Binaries, nameof(preferences.Binaries.Ffmpeg), false, DataSourceUpdateMode.OnPropertyChanged);
             txtDefaultDownloadDirectory.DataBindings.Add(nameof(txtDefaultDownloadDirectory.Text), preferences, nameof(preferences.DefaultDownloadDirectory), false, DataSourceUpdateMode.OnPropertyChanged);
+            txtDefaultDownloadArchive.DataBindings.Add(nameof(txtDefaultDownloadArchive.Text), preferences, nameof(preferences.DefaultDownloadArchive), false, DataSourceUpdateMode.OnPropertyChanged);
+
+            nudMaxConcurrentDownloads.DataBindings.Add(nameof(nudMaxConcurrentDownloads.Value), preferences, nameof(preferences.MaxConcurrentDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
+
+            cbPromptOnClose.DataBindings.Add(nameof(cbPromptOnClose.Checked), preferences, nameof(preferences.PromptDownloadingOnClose), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbCheckForUpdates.DataBindings.Add(nameof(cbCheckForUpdates.Checked), preferences, nameof(preferences.CheckForUpdates), false, DataSourceUpdateMode.OnPropertyChanged);
             cbBasicMode.DataBindings.Add(nameof(cbBasicMode.Checked), preferences, nameof(preferences.BasicMode), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbStayTop.DataBindings.Add(nameof(cbStayTop.Checked), preferences, nameof(preferences.StayOnTop), false, DataSourceUpdateMode.OnPropertyChanged);
 
-            // If our binary paths change, we need to restart YDL-UI
-            txtYdl.TextChanged += BinaryPaths_TextChanged;
-            txtFfmpeg.TextChanged += BinaryPaths_TextChanged;
+            bsPresets.DataSource = preferences.Presets;
+            lbxPresets.DataSource = bsPresets;
+            lbxPresets.DisplayMember = nameof(Preset.DisplayText);
 
-            // Ensure filepaths are valid.
+            #endregion
+
+            lbxPresets.SelectedIndexChanged += LbxPresets_SelectedIndexChanged;
+            LbxPresets_SelectedIndexChanged(this, new EventArgs());
+
+            txtBinaryYdl.TextChanged += BinaryPaths_TextChanged;
+            txtBinaryFfmpeg.TextChanged += BinaryPaths_TextChanged;
+
             this.ForEachControl<TextBox>(control => control.TextChanged += TextBoxes_TextChanged);
 
-            // Hide notes about binaries when running a portable build, as they are required.
 #if PORTABLE
-            lblNote1.Visible = false;
+            // Hide notes about binaries when running a portable build, as they are required.
+            lblBlankEmbeddedNote.Visible = false;
 #endif
+
+        }
+
+        private void LbxPresets_SelectedIndexChanged(object sender, EventArgs e) {
+            btnPresetEdit.Enabled = lbxPresets.SelectedItem as Preset != null;
         }
 
         private void TextBoxes_TextChanged(object sender, EventArgs e) {
             btnOkay.Enabled = false;
 
-            if (!string.IsNullOrWhiteSpace(txtYdl.Text) && !File.Exists(txtYdl.Text))
+            if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(txtBinaryYdl.Text))
                 return;
-            else if (!string.IsNullOrWhiteSpace(txtFfmpeg.Text) && !File.Exists(txtFfmpeg.Text))
+            else if (!string.IsNullOrWhiteSpace(txtBinaryFfmpeg.Text) && !File.Exists(txtBinaryFfmpeg.Text))
                 return;
             else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadArchive.Text) && !File.Exists(txtDefaultDownloadArchive.Text))
                 return;
@@ -71,20 +121,127 @@ namespace Maxstupo.YdlUi.Forms {
             RequiresRestart = true; // TODO: Reset requires restart if we set paths back to the previous value.
         }
 
+        private void btnOkay_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void lbxCategories_SelectedIndexChanged(object sender, EventArgs e) {
+            if (lbxCategories.SelectedItem == null)
+                return;
+            TabPage tp = lbxCategories.SelectedItem as TabPage;
+            tablessTabControl.SelectedIndex = tablessTabControl.TabPages.IndexOf(tp);
+            lblCategory.Text = tp.Text;
+        }
+
+        #region Presets
+
+        private void btnPresetAdd_Click(object sender, EventArgs e) {
+            using (FormPreset dialog = new FormPreset(preferences)) {
+                if (dialog.ShowDialog(this) == DialogResult.OK) {
+
+                    Preset preset = dialog.Preset;
+
+                    Logger.Instance.Fine(nameof(FormPreferences), "Opening preset customizer...");
+                    using (FormAddDownload presetDialog = new FormAddDownload(preferences, null, preset, true)) {
+                        if (presetDialog.ShowDialog(this) == DialogResult.OK) {
+                            preset.State = presetDialog.GetState();
+                            Logger.Instance.Fine(nameof(FormPreferences), "Setting preset state.");
+                        }
+                    }
+
+
+                    UpdatePresets(preset);
+                    preferences.Presets.Add(preset);
+
+                    LbxPresets_SelectedIndexChanged(this, new EventArgs());
+
+                    Logger.Instance.Fine(nameof(FormPreferences), "Added preset.");
+                }
+            }
+        }
+
+        private void btnPresetEdit_Click(object sender, EventArgs e) {
+            Preset preset = lbxPresets.SelectedItem as Preset;
+            if (preset == null)
+                return;
+
+            using (FormPreset dialog = new FormPreset(preferences, preset)) {
+                if (dialog.ShowDialog(this) == DialogResult.OK) {
+
+                    if (dialog.RequestRemoval) {
+                        Logger.Instance.Fine(nameof(FormPreferences), "Removing preset.");
+                        preferences.Presets.Remove(preset);
+                        UpdatePresets(null);
+                    } else {
+                        Preset prs = dialog.Preset;
+
+                        Logger.Instance.Fine(nameof(FormPreferences), "Opening preset customizer...");
+                        using (FormAddDownload presetDialog = new FormAddDownload(preferences, null, prs, true)) {
+
+                            if (presetDialog.ShowDialog(this) == DialogResult.OK) {
+                                prs.State = presetDialog.GetState();
+                                Logger.Instance.Fine(nameof(FormPreferences), "Setting preset state.");
+                            }
+                        }
+
+                        preferences.Presets.Replace(preset, prs);
+                        UpdatePresets(prs);
+                    }
+                }
+            }
+        }
+
+        private void UpdatePresets(Preset preset) {
+            Logger.Instance.Fine(nameof(FormPreferences), "Updating default preset.");
+            if (preset == null || !preset.IsDefault) {
+                if (preferences.Presets.Count > 0 && preferences.Presets.All(p => !p.IsDefault))
+                    preferences.Presets.First().IsDefault = true;
+            } else {
+                foreach (Preset p in preferences.Presets) {
+                    if (p == preset)
+                        continue;
+                    p.IsDefault = false;
+                }
+            }
+            bsPresets.ResetBindings(false);
+
+        }
+
+        #endregion
+
+        private void llblLink_Clicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            Process.Start(((LinkLabel) sender).Tag as string);
+        }
+
+        #region Browse Events
+
         private void btnBrowseYdl_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select youtube-dl.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtYdl.Text);
+            string filepath = GuiUtil.SelectFile(this, "Select youtube-dl.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtBinaryYdl.Text);
 
             if (filepath != null)
-                txtYdl.Text = Util.GetRelativePath(filepath);
+                txtBinaryYdl.Text = Util.GetRelativePath(filepath);
 
             DialogResult = DialogResult.None;
         }
 
         private void btnBrowseFfmpeg_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select ffmpeg.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtFfmpeg.Text);
+            string filepath = GuiUtil.SelectFile(this, "Select ffmpeg.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtBinaryFfmpeg.Text);
 
             if (filepath != null)
-                txtFfmpeg.Text = Util.GetRelativePath(filepath);
+                txtBinaryFfmpeg.Text = Util.GetRelativePath(filepath);
+
+            DialogResult = DialogResult.None;
+        }
+
+        private void btnDefaultDownloadDirectoryBrowse_Click(object sender, EventArgs e) {
+            string filepath = GuiUtil.SelectFolder("Select default download directory...", txtDefaultDownloadArchive.Text);
+
+            if (filepath != null)
+                txtDefaultDownloadDirectory.Text = filepath;
 
             DialogResult = DialogResult.None;
         }
@@ -99,43 +256,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         }
 
-        private void btnDefaultDownloadDirectoryBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFolder("Select default download directory...", txtDefaultDownloadArchive.Text);
-
-            if (filepath != null)
-                txtDefaultDownloadDirectory.Text = filepath;
-
-            DialogResult = DialogResult.None;
-        }
-
-        private void btnOkay_Click(object sender, EventArgs e) {
-            DialogResult = DialogResult.OK;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e) {
-            DialogResult = DialogResult.Cancel;
-        }
-
-        private void llblPreferencesLocation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start(llblPreferencesLocation.Tag as string);
-        }
-
-        private void btnUpdateYdl_Click(object sender, EventArgs e) {
-            if (MessageBox.Show(this, $"Updating the externally defined youtube-dl application can potentially break {Application.ProductName}.\n\nDo you wish to continue?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
-                btnUpdateYdl.Enabled = false;
-
-                ExecutableProcess process = new ExecutableProcess(txtYdl.Text, "-U", null);
-                process.OnExited += (s, a) => {
-                    MessageBox.Show(this, "Youtube-Dl Update Completed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnUpdateYdl.Enabled = true;
-                };
-                process.Start();
-
-
-            }
-            DialogResult = DialogResult.None;
-        }
-
+        #endregion
 
     }
 }

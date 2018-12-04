@@ -33,18 +33,11 @@
             this.cbWriteThumbnail = new System.Windows.Forms.CheckBox();
             this.cbWriteAnnotations = new System.Windows.Forms.CheckBox();
             this.cbWriteDescription = new System.Windows.Forms.CheckBox();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.gbGeneral.SuspendLayout();
             this.gbFileSystem.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbGeneral
@@ -156,6 +149,13 @@
             this.toolTip.SetToolTip(this.cbWriteDescription, "Write video description to a .description file.");
             this.cbWriteDescription.UseVisualStyleBackColor = true;
             // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 700;
+            this.toolTip.AutoPopDelay = 7000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 140;
+            // 
             // videoQualitySelector
             // 
             this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
@@ -169,83 +169,12 @@
             this.frameRateSelector.Name = "frameRateSelector";
             this.frameRateSelector.Size = new System.Drawing.Size(174, 96);
             this.frameRateSelector.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.checkBox5);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.checkBox4);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(3, 104);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 104);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Subtitles";
-            this.groupBox1.Visible = false;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(6, 71);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(123, 17);
-            this.checkBox5.TabIndex = 3;
-            this.checkBox5.Text = "Subtitle Language:";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(135, 69);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(80, 21);
-            this.comboBox2.TabIndex = 4;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(6, 44);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(108, 17);
-            this.checkBox4.TabIndex = 1;
-            this.checkBox4.Text = "Subtitle Format:";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(135, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(80, 21);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(102, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Write Subtitles";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // toolTip
-            // 
-            this.toolTip.AutomaticDelay = 700;
-            this.toolTip.AutoPopDelay = 7000;
-            this.toolTip.InitialDelay = 500;
-            this.toolTip.ReshowDelay = 140;
+            this.frameRateSelector.Tag = "";
             // 
             // TabQuality
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.videoQualitySelector);
             this.Controls.Add(this.gbGeneral);
             this.Controls.Add(this.gbFileSystem);
@@ -258,8 +187,6 @@
             this.gbGeneral.PerformLayout();
             this.gbFileSystem.ResumeLayout(false);
             this.gbFileSystem.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -269,19 +196,13 @@
         private System.Windows.Forms.CheckBox cbIgnoreErrors;
         private System.Windows.Forms.CheckBox cbAbortOnErrors;
         private System.Windows.Forms.GroupBox gbFileSystem;
-        private System.Windows.Forms.CheckBox cbNoOverwrites;
-        private System.Windows.Forms.CheckBox cbRestrictFilenames;
-        private System.Windows.Forms.CheckBox cbWriteThumbnail;
         private System.Windows.Forms.CheckBox cbWriteAnnotations;
         private System.Windows.Forms.CheckBox cbWriteDescription;
         public Controls.FrameRateSelector frameRateSelector;
         public Controls.VideoQualitySelector videoQualitySelector;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.CheckBox cbNoOverwrites;
+        public System.Windows.Forms.CheckBox cbRestrictFilenames;
+        public System.Windows.Forms.CheckBox cbWriteThumbnail;
     }
 }

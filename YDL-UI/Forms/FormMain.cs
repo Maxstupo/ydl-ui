@@ -74,6 +74,10 @@ namespace Maxstupo.YdlUi.Forms {
             queuedDownloadsToolStripMenuItem.Tag = DownloadStatus.Queued;
             failedDownloadsToolStripMenuItem.Tag = DownloadStatus.Failed;
 
+            PreferencesManager.OnUpdate += (sdr, p) => {
+                TopMost = p.StayOnTop;
+            };
+
             // Attempt to load preferences if file exists, else create a new preferences file.
             PreferencesManager.Load(true);
 
@@ -81,9 +85,12 @@ namespace Maxstupo.YdlUi.Forms {
 
             downloadManager.Load(true);
 
+#if !DEBUG
             if (PreferencesManager.Preferences.CheckForUpdates)
                 CheckForUpdates(true);
+#endif
         }
+
 
         // Check if we are closing YDL-UI when we are downloading or haven't saved our changes.
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
@@ -183,7 +190,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void ShowAddDownloadDialog(string url = null) {
-            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, url)) {
+            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, url, null, false)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                     AddDownload(dialog.Download);
             }
@@ -214,9 +221,9 @@ namespace Maxstupo.YdlUi.Forms {
 
         #endregion
 
-        #region Options Menu
+        #region Settings Menu
 
-        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e) {
             ShowPreferencesDialog();
         }
 
@@ -375,6 +382,7 @@ namespace Maxstupo.YdlUi.Forms {
             }
 
         }
+
 
     }
 }

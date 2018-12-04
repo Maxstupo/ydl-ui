@@ -147,14 +147,14 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox cbxAudioOnly;
-        private System.Windows.Forms.CheckBox cbAudioOnly;
-        private FrameRateSelector frameRateSelector1;
         private System.Windows.Forms.GroupBox gbFileSystem;
-        private System.Windows.Forms.CheckBox cbNoOverwrites;
-        private System.Windows.Forms.CheckBox cbRestrictFilenames;
-        private System.Windows.Forms.CheckBox cbWriteThumbnail;
-        private VideoQualitySelector videoQualitySelector1;
         private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.ComboBox cbxAudioOnly;
+        public System.Windows.Forms.CheckBox cbAudioOnly;
+        public FrameRateSelector frameRateSelector1;
+        public System.Windows.Forms.CheckBox cbNoOverwrites;
+        public System.Windows.Forms.CheckBox cbRestrictFilenames;
+        public System.Windows.Forms.CheckBox cbWriteThumbnail;
+        public VideoQualitySelector videoQualitySelector1;
     }
 }

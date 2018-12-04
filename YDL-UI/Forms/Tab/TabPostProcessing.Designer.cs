@@ -28,11 +28,6 @@
             this.cbxRecodeFormat = new System.Windows.Forms.ComboBox();
             this.cbRecodeFormat = new System.Windows.Forms.CheckBox();
             this.cbAudioOnly = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -78,65 +73,6 @@
             this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(2, 96);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(109, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Embed Subtitles";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(2, 142);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(99, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Add Metadata";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.Visible = false;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Enabled = false;
-            this.checkBox3.Location = new System.Drawing.Point(2, 119);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(118, 17);
-            this.checkBox3.TabIndex = 5;
-            this.checkBox3.Text = "Embed Thumbnail";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.Visible = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(125, 163);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(116, 21);
-            this.comboBox1.TabIndex = 8;
-            this.comboBox1.Visible = false;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(2, 165);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(117, 17);
-            this.checkBox4.TabIndex = 7;
-            this.checkBox4.Text = "Convert Subtitles:";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.Visible = false;
-            // 
             // toolTip
             // 
             this.toolTip.AutomaticDelay = 700;
@@ -148,11 +84,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.cbxAudioOnly);
             this.Controls.Add(this.cbxRecodeFormat);
             this.Controls.Add(this.cbRecodeFormat);
@@ -167,16 +98,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cbxAudioOnly;
         private System.Windows.Forms.ComboBox cbxRecodeFormat;
         private System.Windows.Forms.CheckBox cbRecodeFormat;
-        private System.Windows.Forms.CheckBox cbAudioOnly;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.ComboBox cbxAudioOnly;
+        public System.Windows.Forms.CheckBox cbAudioOnly;
     }
 }

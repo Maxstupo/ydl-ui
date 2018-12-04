@@ -11,7 +11,7 @@ namespace Maxstupo.YdlUi.Controls {
                 if (!IsCustomFrameRate) {
                     return (int)cbxFrameRate.SelectedValue;
                 } else {
-                    return (int) nudCustomFrameRate.Value;
+                    return (int)nudCustomFrameRate.Value;
                 }
             }
         }
@@ -19,7 +19,9 @@ namespace Maxstupo.YdlUi.Controls {
         public bool IsFallback { get => cbFallback.Checked; }
         public bool IsPreferred { get => cbPreferred.Checked; }
 
-        public bool IsCustomFrameRate { get => (int)cbxFrameRate.SelectedValue < 0; }
+        public bool IsCustomFrameRate { get => cbxFrameRate.SelectedValue == null ? false : (int)cbxFrameRate.SelectedValue < 0; }
+        private bool isDropDownOpen;
+
 
         public FrameRateSelector() {
             InitializeComponent();
@@ -34,12 +36,28 @@ namespace Maxstupo.YdlUi.Controls {
             };
 
             nudCustomFrameRate.Visible = false;
+            cbxFrameRate.DropDown += delegate { isDropDownOpen = true; };
+            cbxFrameRate.DropDownClosed += delegate { isDropDownOpen = false; };
+            cbxFrameRate.SelectedIndexChanged += CbxFrameRate_SelectedIndexChanged;
 
+        }
+
+        private void CbxFrameRate_SelectedIndexChanged(object sender, EventArgs e) {
+            if (!isDropDownOpen) nudCustomFrameRate.Visible = IsCustomFrameRate;
         }
 
         private void cbxFrameRate_SelectionChangeCommitted(object sender, EventArgs e) {
-            nudCustomFrameRate.Visible = IsCustomFrameRate;
+            if (isDropDownOpen) nudCustomFrameRate.Visible = IsCustomFrameRate;
         }
+
+        public void Set(FrameRateSelector frs) {
+            cbxFrameRate.SelectedIndex = frs.cbxFrameRate.SelectedIndex;
+            cbPreferred.Checked = frs.cbPreferred.Checked;
+            cbFallback.Checked = frs.cbFallback.Checked;
+
+            nudCustomFrameRate.Value = frs.nudCustomFrameRate.Value;
+        }
+
     }
 
 
