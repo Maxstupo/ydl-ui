@@ -95,6 +95,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbxPlaylistItems.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbxPlaylistItems.FormattingEnabled = true;
+            this.lbxPlaylistItems.IntegralHeight = false;
             this.lbxPlaylistItems.ItemHeight = 17;
             this.lbxPlaylistItems.Location = new System.Drawing.Point(12, 12);
             this.lbxPlaylistItems.Name = "lbxPlaylistItems";
