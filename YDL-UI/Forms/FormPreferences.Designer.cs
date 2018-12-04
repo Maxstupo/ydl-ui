@@ -355,9 +355,9 @@
             this.lblBlankEmbeddedNote.AutoSize = true;
             this.lblBlankEmbeddedNote.Location = new System.Drawing.Point(3, 101);
             this.lblBlankEmbeddedNote.Name = "lblBlankEmbeddedNote";
-            this.lblBlankEmbeddedNote.Size = new System.Drawing.Size(236, 13);
+            this.lblBlankEmbeddedNote.Size = new System.Drawing.Size(238, 13);
             this.lblBlankEmbeddedNote.TabIndex = 7;
-            this.lblBlankEmbeddedNote.Text = "Note: Leave black to use embedded binaries.";
+            this.lblBlankEmbeddedNote.Text = "Note: Leave blank to use embedded binaries.";
             // 
             // lblRestartNote
             // 
