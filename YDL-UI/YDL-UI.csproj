@@ -164,6 +164,12 @@
     <Compile Include="Controls\TablessTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\KeywordTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\KeywordTextBox.Designer.cs">
+      <DependentUpon>KeywordTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\VideoQualitySelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +193,12 @@
     </Compile>
     <Compile Include="Forms\FormDownloadLog.Designer.cs">
       <DependentUpon>FormDownloadLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormKeyword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormKeyword.Designer.cs">
+      <DependentUpon>FormKeyword.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMain.cs">
       <SubType>Form</SubType>
@@ -288,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDownloadLog.resx">
       <DependentUpon>FormDownloadLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormKeyword.resx">
+      <DependentUpon>FormKeyword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

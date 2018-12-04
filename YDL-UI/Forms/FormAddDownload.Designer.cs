@@ -33,7 +33,6 @@
             this.txtDownloadDirectory = new System.Windows.Forms.TextBox();
             this.lblDownloadDirectory = new System.Windows.Forms.Label();
             this.btnBrowseDownloadDirectory = new System.Windows.Forms.Button();
-            this.txtFilenameTemplate = new System.Windows.Forms.TextBox();
             this.txtDownloadArchive = new System.Windows.Forms.TextBox();
             this.btnDownloadArchiveBrowse = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -53,6 +52,7 @@
             this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.cbxPreset = new System.Windows.Forms.ComboBox();
             this.panelActions = new System.Windows.Forms.Panel();
+            this.txtFilenameTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
             this.tabControl.SuspendLayout();
             this.tpQuality.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
@@ -149,21 +149,6 @@
             this.btnBrowseDownloadDirectory.Text = "...";
             this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnBrowseDownloadDirectory_Click);
-            // 
-            // txtFilenameTemplate
-            // 
-            this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilenameTemplate.AutoCompleteCustomSource.AddRange(new string[] {
-            "%(title)s - %(id)s.%(ext)s",
-            "%(playlist_title)s\\%(playlist_index)02d - %(title)s - %(id)s.%(ext)s"});
-            this.txtFilenameTemplate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtFilenameTemplate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtFilenameTemplate.Location = new System.Drawing.Point(141, 65);
-            this.txtFilenameTemplate.Name = "txtFilenameTemplate";
-            this.txtFilenameTemplate.Size = new System.Drawing.Size(645, 22);
-            this.txtFilenameTemplate.TabIndex = 6;
-            this.toolTip.SetToolTip(this.txtFilenameTemplate, "Output filename template.");
             // 
             // txtDownloadArchive
             // 
@@ -371,6 +356,23 @@
             this.panelActions.Size = new System.Drawing.Size(798, 40);
             this.panelActions.TabIndex = 16;
             // 
+            // txtFilenameTemplate
+            // 
+            this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilenameTemplate.AutoCompleteCustomSource.AddRange(new string[] {
+            "%(title)s.%(ext)s",
+            "%(title)s - %(id)s.%(ext)s",
+            "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s",
+            "%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"});
+            this.txtFilenameTemplate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtFilenameTemplate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtFilenameTemplate.KeywordMatchingEnabled = true;
+            this.txtFilenameTemplate.Location = new System.Drawing.Point(141, 65);
+            this.txtFilenameTemplate.Name = "txtFilenameTemplate";
+            this.txtFilenameTemplate.Size = new System.Drawing.Size(645, 22);
+            this.txtFilenameTemplate.TabIndex = 10;
+            // 
             // FormAddDownload
             // 
             this.AcceptButton = this.btnAdd;
@@ -378,13 +380,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(798, 566);
+            this.Controls.Add(this.txtFilenameTemplate);
             this.Controls.Add(this.panelActions);
             this.Controls.Add(this.cbFilenameTemplate);
             this.Controls.Add(this.cbDownloadArchive);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnDownloadArchiveBrowse);
             this.Controls.Add(this.txtDownloadArchive);
-            this.Controls.Add(this.txtFilenameTemplate);
             this.Controls.Add(this.btnBrowseDownloadDirectory);
             this.Controls.Add(this.lblDownloadDirectory);
             this.Controls.Add(this.txtDownloadDirectory);
@@ -425,7 +427,6 @@
         private System.Windows.Forms.TextBox txtDownloadDirectory;
         private System.Windows.Forms.Label lblDownloadDirectory;
         private System.Windows.Forms.Button btnBrowseDownloadDirectory;
-        private System.Windows.Forms.TextBox txtFilenameTemplate;
         private System.Windows.Forms.TextBox txtDownloadArchive;
         private System.Windows.Forms.Button btnDownloadArchiveBrowse;
         private System.Windows.Forms.TabControl tabControl;
@@ -445,5 +446,6 @@
         private System.Windows.Forms.ComboBox cbxPreset;
         private System.Windows.Forms.Panel panelActions;
         private System.Windows.Forms.CheckBox cbBasicMode;
+        private Controls.KeywordTextBox txtFilenameTemplate;
     }
 }

@@ -60,7 +60,8 @@ namespace Maxstupo.YdlUi.Settings {
           typeof(NumericUpDown),
           typeof(DateTimePicker),
           typeof(ComboBox),
-          typeof(DataGridView)
+          typeof(DataGridView),
+          typeof(KeywordTextBox)
         };
 
         public UiState() {
@@ -71,6 +72,7 @@ namespace Maxstupo.YdlUi.Settings {
         public virtual UiState DefaultSerializers() {
             Serializers.Clear();
             Serializers.Add(typeof(TextBox), control => control.Text);
+            Serializers.Add(typeof(KeywordTextBox), control => ((KeywordTextBox)control).Text);
             Serializers.Add(typeof(RadioButton), control => ((RadioButton)control).Checked.ToString());
             Serializers.Add(typeof(CheckBox), control => ((CheckBox)control).Checked.ToString());
             Serializers.Add(typeof(NumericUpDown), control => ((NumericUpDown)control).Value.ToString());
@@ -113,6 +115,7 @@ namespace Maxstupo.YdlUi.Settings {
         public virtual UiState DefaultDeserializer() {
             Deserializers.Clear();
             Deserializers.Add(typeof(TextBox), (c, val) => c.Text = val);
+            Deserializers.Add(typeof(KeywordTextBox), (c, val) => ((KeywordTextBox)c).Text = val);
             Deserializers.Add(typeof(CheckBox), (c, val) => ((CheckBox)c).Checked = (val == bool.TrueString)); // TODO: Use bool.TryParse
             Deserializers.Add(typeof(RadioButton), (c, val) => ((RadioButton)c).Checked = (val == bool.TrueString)); // TODO: Use bool.TryParse
             Deserializers.Add(typeof(NumericUpDown), (c, val) => {
@@ -241,7 +244,7 @@ namespace Maxstupo.YdlUi.Settings {
                 controls = new List<KeyControl>();
             else
 
-                path = path == null ?GetKey(control) : $"{path}.{GetKey(control)}";
+                path = path == null ? GetKey(control) : $"{path}.{GetKey(control)}";
 
 
             if (whitelist.Contains(control.GetType())) {
