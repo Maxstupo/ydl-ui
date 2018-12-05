@@ -224,11 +224,18 @@ namespace Maxstupo.YdlUi.Settings {
 
         protected virtual void SortStates(List<ControlState> states) {
             states.Sort((a, b) => {
-                bool av = a.Value == "True" || a.Value == "False" || a.Key.Contains(".rb") || a.Key.Contains(".cb");
-                bool bv = b.Value == "True" || b.Value == "False" || b.Key.Contains(".rb") || a.Key.Contains(".cb");
+
+                bool av = (a.Value == "True" || a.Value == "False");
+                bool bv = (b.Value == "True" || b.Value == "False");
 
                 return (!av && bv) ? 1 : (av && !bv) ? -1 : 0;
             });
+
+            // XXX: Move logic dependant on YDL-UI out of UiState
+            int idx = states.FindIndex(cs => cs.Key.Contains("cbBasicMode"));
+            ControlState state = states[idx];
+            states.RemoveAt(idx);
+            states.Insert(0, state);
         }
 
         protected virtual string GetKey(Control control) {

@@ -278,7 +278,6 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         public void ApplyState(Preset preset) {
-            Console.WriteLine(IsEditMode);
             uiState.Apply(this, preset.State, nameof(txtUrl), nameof(cbxPreset));
         }
 
