@@ -60,6 +60,7 @@
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.removeDownloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDownloads)).BeginInit();
@@ -78,7 +79,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -140,14 +141,14 @@
             // 
             this.addURLToolStripMenuItem.Name = "addURLToolStripMenuItem";
             this.addURLToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.addURLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addURLToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.addURLToolStripMenuItem.Text = "Add URL...";
             this.addURLToolStripMenuItem.Click += new System.EventHandler(this.addURLToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
             // 
             // selectToolStripMenuItem
             // 
@@ -158,7 +159,7 @@
             this.failedDownloadsToolStripMenuItem,
             this.waitingDownloadsToolStripMenuItem});
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.selectToolStripMenuItem.Text = "Select";
             this.selectToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.selectToolStripMenuItem_DropDownItemClicked);
             // 
@@ -311,10 +312,11 @@
             this.toolStripSeparator3,
             this.viewLogToolStripMenuItem,
             this.startToolStripMenuItem,
+            this.stopToolStripMenuItem,
             this.toolStripSeparator4,
             this.removeDownloadToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(264, 126);
+            this.contextMenuStrip.Size = new System.Drawing.Size(264, 170);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // openDownloadDirectoryToolStripMenuItem
@@ -364,6 +366,13 @@
             this.removeDownloadToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.removeDownloadToolStripMenuItem.Text = "Remove";
             this.removeDownloadToolStripMenuItem.Click += new System.EventHandler(this.removeDownloadToolStripMenuItem_Click);
+            // 
+            // stopToolStripMenuItem
+            // 
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.stopToolStripMenuItem.Text = "Stop";
+            this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -431,5 +440,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEta;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
     }
 }

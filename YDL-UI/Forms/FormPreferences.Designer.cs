@@ -32,6 +32,7 @@
             this.cbPromptOnClose = new System.Windows.Forms.CheckBox();
             this.nudMaxConcurrentDownloads = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbResumeDownload = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbxCategories = new System.Windows.Forms.ListBox();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -132,7 +133,7 @@
             // 
             // nudMaxConcurrentDownloads
             // 
-            this.nudMaxConcurrentDownloads.Location = new System.Drawing.Point(163, 56);
+            this.nudMaxConcurrentDownloads.Location = new System.Drawing.Point(163, 82);
             this.nudMaxConcurrentDownloads.Maximum = new decimal(new int[] {
             10,
             0,
@@ -145,7 +146,7 @@
             0});
             this.nudMaxConcurrentDownloads.Name = "nudMaxConcurrentDownloads";
             this.nudMaxConcurrentDownloads.Size = new System.Drawing.Size(79, 22);
-            this.nudMaxConcurrentDownloads.TabIndex = 3;
+            this.nudMaxConcurrentDownloads.TabIndex = 4;
             this.toolTip.SetToolTip(this.nudMaxConcurrentDownloads, "The max simultaneous downloads allowed to download at once.");
             this.nudMaxConcurrentDownloads.Value = new decimal(new int[] {
             1,
@@ -156,12 +157,23 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 59);
+            this.label1.Location = new System.Drawing.Point(3, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Max Concurrent Downloads:";
             this.toolTip.SetToolTip(this.label1, "The max simultaneous downloads allowed to download at once.");
+            // 
+            // cbResumeDownload
+            // 
+            this.cbResumeDownload.AutoSize = true;
+            this.cbResumeDownload.Location = new System.Drawing.Point(6, 52);
+            this.cbResumeDownload.Name = "cbResumeDownload";
+            this.cbResumeDownload.Size = new System.Drawing.Size(186, 17);
+            this.cbResumeDownload.TabIndex = 2;
+            this.cbResumeDownload.Text = "Resume Downloads on Startup";
+            this.toolTip.SetToolTip(this.cbResumeDownload, "Resume incomplete downloads on startup.");
+            this.cbResumeDownload.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -256,6 +268,7 @@
             // 
             // tpDownload
             // 
+            this.tpDownload.Controls.Add(this.cbResumeDownload);
             this.tpDownload.Controls.Add(this.label6);
             this.tpDownload.Controls.Add(this.txtDefaultDownloadDirectory);
             this.tpDownload.Controls.Add(this.btnBrowseDownloadDirectory);
@@ -277,28 +290,28 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 169);
+            this.label6.Location = new System.Drawing.Point(3, 180);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 13);
-            this.label6.TabIndex = 7;
+            this.label6.TabIndex = 8;
             this.label6.Text = "Default Download Directory";
             // 
             // txtDefaultDownloadDirectory
             // 
             this.txtDefaultDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 187);
+            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 198);
             this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
             this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
-            this.txtDefaultDownloadDirectory.TabIndex = 8;
+            this.txtDefaultDownloadDirectory.TabIndex = 9;
             // 
             // btnBrowseDownloadDirectory
             // 
             this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 187);
+            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 198);
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
             this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
-            this.btnBrowseDownloadDirectory.TabIndex = 9;
+            this.btnBrowseDownloadDirectory.TabIndex = 10;
             this.btnBrowseDownloadDirectory.Text = "...";
             this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnDefaultDownloadDirectoryBrowse_Click);
@@ -306,28 +319,28 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 112);
+            this.label5.Location = new System.Drawing.Point(3, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 13);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 5;
             this.label5.Text = "Default Download Archive";
             // 
             // txtDefaultDownloadArchive
             // 
             this.txtDefaultDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 130);
+            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 141);
             this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
             this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
-            this.txtDefaultDownloadArchive.TabIndex = 5;
+            this.txtDefaultDownloadArchive.TabIndex = 6;
             // 
             // btnBrowseDownloadArchive
             // 
             this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 130);
+            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 141);
             this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
             this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
-            this.btnBrowseDownloadArchive.TabIndex = 6;
+            this.btnBrowseDownloadArchive.TabIndex = 7;
             this.btnBrowseDownloadArchive.Text = "...";
             this.btnBrowseDownloadArchive.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadArchive.Click += new System.EventHandler(this.btnDefaultDownloadArchiveBrowse_Click);
@@ -614,5 +627,6 @@
         private System.Windows.Forms.Button btnBrowseDownloadArchive;
         private System.Windows.Forms.Label lblBlankEmbeddedNote;
         private System.Windows.Forms.LinkLabel llblFfmpegDirectory;
+        private System.Windows.Forms.CheckBox cbResumeDownload;
     }
 }

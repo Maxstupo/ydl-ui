@@ -10,6 +10,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         Waiting = 8,
         Failed = 16,
         Processing = 32,
+        Stopped = 64,
         All = Queued | Downloading | Completed | Waiting | Failed | Processing,
     }
 }

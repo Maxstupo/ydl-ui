@@ -76,6 +76,7 @@ namespace Maxstupo.YdlUi.Forms {
             cbCheckForUpdates.DataBindings.Add(nameof(cbCheckForUpdates.Checked), preferences, nameof(preferences.CheckForUpdates), false, DataSourceUpdateMode.OnPropertyChanged);
             cbBasicMode.DataBindings.Add(nameof(cbBasicMode.Checked), preferences, nameof(preferences.BasicMode), false, DataSourceUpdateMode.OnPropertyChanged);
             cbStayTop.DataBindings.Add(nameof(cbStayTop.Checked), preferences, nameof(preferences.StayOnTop), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbResumeDownload.DataBindings.Add(nameof(cbResumeDownload.Checked), preferences, nameof(preferences.ResumeDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
 
             bsPresets.DataSource = preferences.Presets;
             lbxPresets.DataSource = bsPresets;
@@ -214,7 +215,7 @@ namespace Maxstupo.YdlUi.Forms {
         #endregion
 
         private void llblLink_Clicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start(((LinkLabel) sender).Tag as string);
+            Process.Start(((LinkLabel)sender).Tag as string);
         }
 
         #region Browse Events

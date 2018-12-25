@@ -16,6 +16,7 @@ namespace Maxstupo.YdlUi.Settings {
         public bool StayOnTop { get; set; } = false;
 
         public int MaxConcurrentDownloads { get; set; } = 4;
+        public bool ResumeDownloads { get; set; } = true;
 
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;

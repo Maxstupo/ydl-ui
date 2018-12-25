@@ -33,6 +33,9 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         public string DownloadDirectory { get; }
 
+        [JsonIgnore]
+        private ExecutableProcess process;
+
         public Download(string url, string downloadDirectory) {
             this.Arguments.Url = url;
             this.DownloadDirectory = downloadDirectory;
@@ -44,6 +47,16 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         }
 
 
+        public void Stop() {
+            if (Status != DownloadStatus.Downloading && Status != DownloadStatus.Queued)
+                return;
+
+            if (Status == DownloadStatus.Downloading && process != null)
+                process.Stop();
+
+            Status = DownloadStatus.Stopped;
+            Log += $"\r\nDownload Stopped";
+        }
 
         public void Start(string ydlPath, string ffmpegPath) {
             if (Status != DownloadStatus.Queued && Status != DownloadStatus.Waiting)
@@ -59,7 +72,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
             string arguments = argumentSerializer.Serialize(Arguments, true);
 
-            ExecutableProcess process = new ExecutableProcess(ydlPath, arguments, DownloadDirectory);
+            process = new ExecutableProcess(ydlPath, arguments, DownloadDirectory);
 
             Log += $"\r\nWorking Directory: {DownloadDirectory}";
             Log += $"\r\nExecuting: {process.Command}";
@@ -80,7 +93,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             process.Start();
 
         }
-
 
     }
 

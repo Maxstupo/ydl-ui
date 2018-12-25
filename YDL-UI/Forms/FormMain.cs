@@ -275,7 +275,8 @@ namespace Maxstupo.YdlUi.Forms {
             Download[] downloads = dgvDownloads.SelectedRows<Download>();
 
             removeDownloadToolStripMenuItem.Enabled = downloads?.All(d => downloadManager.CanRemoveDownload(d)) ?? false;
-            startToolStripMenuItem.Enabled = downloads?.All(d => downloadManager.CanQueueDownload(d)) ?? false;
+            startToolStripMenuItem.Visible = downloads?.All(d => downloadManager.CanQueueDownload(d)) ?? false;
+            stopToolStripMenuItem.Visible = downloads?.All(d => downloadManager.CanStopDownload(d)) ?? false;
 
             if (!dgvDownloads.HasSelectedRows())
                 e.Cancel = true;
@@ -311,6 +312,14 @@ namespace Maxstupo.YdlUi.Forms {
             if (downloads != null) {
                 foreach (Download download in downloads)
                     downloadManager.Queue(download);
+            }
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e) {
+            Download[] downloads = dgvDownloads.SelectedRows<Download>();
+            if (downloads != null) {
+                foreach (Download download in downloads)
+                    downloadManager.Stop(download);
             }
         }
 

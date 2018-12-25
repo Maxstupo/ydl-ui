@@ -1,6 +1,7 @@
 ﻿using Maxstupo.YdlUi.Settings;
 using Maxstupo.YdlUi.Utility;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -62,7 +63,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             }
 
             if (download.Status == DownloadStatus.Downloading || download.Status == DownloadStatus.Processing)
-                download.Status = DownloadStatus.Queued;
+                download.Status = preferencesManager.Preferences.ResumeDownloads ? DownloadStatus.Queued : DownloadStatus.Stopped;
 
             download.PropertyChanged += Download_PropertyChanged;
             Downloads.Add(download);
@@ -81,6 +82,10 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        public bool CanStopDownload(Download download) {
+            return download.Status == DownloadStatus.Downloading || download.Status == DownloadStatus.Queued;
+        }
+
         public bool CanRemoveDownload(Download download) {
             return download.Status != DownloadStatus.Downloading && download.Status != DownloadStatus.Processing;
         }
@@ -92,6 +97,14 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public void Queue(Download download) {
             if (CanQueueDownload(download))
                 download.Status = DownloadStatus.Queued;
+        }
+
+
+        public void Stop(Download download) {
+            if (!CanStopDownload(download))
+                return;
+
+            download.Stop();
         }
 
         public bool RemoveDownload(Download download) {
@@ -150,7 +163,5 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             }
             return true;
         }
-
-
     }
 }
