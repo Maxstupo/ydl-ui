@@ -1,4 +1,4 @@
-# YDL-UI v2.2.0
+# YDL-UI v2.3.0
 
 A UI for the command-line video downloader "youtube-dl"
 
