@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 namespace Maxstupo.YdlUi.Utility {
     public static class Util {
 
+        /// <summary>
+        /// Replaces the <paramref name="oldItem"/> with the <paramref name="newItem"/>.
+        /// </summary
+        /// <param name="oldItem">The item to replace.</param>
+        /// <param name="newItem">The item to be used as replacement.</param>
+        /// <exception cref="ArgumentException">If the <paramref name="oldItem"/> couldn't be found in the list.</exception>
         public static void Replace<T>(this IList<T> src, T oldItem, T newItem) {
             int idx = src.IndexOf(oldItem);
             if (idx == -1)
@@ -43,10 +49,18 @@ namespace Maxstupo.YdlUi.Utility {
             return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
 
+        /// <summary>
+        /// Returns the <see cref="Environment.SpecialFolder.ApplicationData"/> path for this current system.
+        /// </summary>
+        /// <returns>The <see cref="Environment.SpecialFolder.ApplicationData"/> path for this current system.</returns>
         public static string GetAppDataPath() {
             return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         }
 
+        /// <summary>
+        /// Returns the <see cref="Environment.SpecialFolder.MyVideos"/> path for this current system.
+        /// </summary>
+        /// <returns>The <see cref="Environment.SpecialFolder.MyVideos"/> path for this current system.</returns>
         public static string GetMyVideosPath() {
             return Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
         }

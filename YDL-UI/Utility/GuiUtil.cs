@@ -10,12 +10,21 @@ namespace Maxstupo.YdlUi.Utility {
 
         #region Control Value Getters
 
+        /// <summary>
+        /// Returns a <see cref="ByteSize"/> value of the <see cref="NumericUpDown"/>, or <paramref name="defaultValue"/> if the <see cref="NumericUpDown"/> is disabled.
+        /// </summary>
+        /// <param name="cbxUnit">The filesize unit to convert.</param>
+        /// <param name="defaultValue">The value to return if the <paramref name="cbxUnit"/> doesn't have a selected value, or the <see cref="NumericUpDown"/> is disabled.</param>
+        /// <returns>A <see cref="ByteSize"/> value or <paramref name="defaultValue"/>.</returns>
         public static ByteSize? GetUnitValue(this NumericUpDown src, ComboBox cbxUnit, ByteSize? defaultValue = null) {
             if (cbxUnit.SelectedValue == null) return defaultValue;
 
             return src.Enabled && cbxUnit.Enabled ? (ByteSize?)Util.From((double)src.Value, (FilesizeUnit)cbxUnit.SelectedValue) : defaultValue;
         }
 
+        /// <summary>
+        /// Binds two <see cref="NumericUpDown"/> controls together to create a range selector.</code>
+        /// </summary>
         public static void MakeRangeNumericUpDown(NumericUpDown min, NumericUpDown max, decimal minRange = 1) {
             min.ValueChanged += delegate {
                 if (min.Value > max.Value - minRange)
@@ -27,18 +36,38 @@ namespace Maxstupo.YdlUi.Utility {
             };
         }
 
+        /// <summary>
+        /// Returns the <see cref="ComboBox"/> selected value, or the <paramref name="defaultValue"/> if the control is disabled.
+        /// </summary>
+        /// <param name="defaultValue">The value to return if the control is disabled.</param>
+        /// <returns>The <see cref="ComboBox"/> selected value, or the <paramref name="defaultValue"/> if the control is disabled.</returns>
         public static T GetSelectedValue<T>(this ComboBox src, T defaultValue = default(T)) {
             return src.Enabled ? (T)src.SelectedValue : defaultValue;
         }
 
+        /// <summary>
+        /// Returns the <see cref="NumericUpDown"/> value, or the <paramref name="defaultValue"/> if the control is disabled.
+        /// </summary>
+        /// <param name="defaultValue">The value to return if the control is disabled.</param>
+        /// <returns>The <see cref="NumericUpDown"/> value, or the <paramref name="defaultValue"/> if the control is disabled.</returns>
         public static decimal? GetValue(this NumericUpDown src, decimal? defaultValue = null) {
             return src.Enabled ? src.Value : defaultValue;
         }
 
+        /// <summary>
+        /// Returns the <see cref="TextBox"/> text, or the <paramref name="defaultValue"/> if the control is disabled or the text is whitespace only.
+        /// </summary>
+        /// <param name="defaultValue">The value to return if the control is disabled or text is whitespace.</param>
+        /// <returns>The <see cref="TextBox"/> text, or the <paramref name="defaultValue"/> if the control is disabled or the text is whitespace only.</returns>
         public static string GetText(this TextBox src, string defaultValue = null) {
             return src.Enabled && !string.IsNullOrWhiteSpace(src.Text) ? src.Text : defaultValue;
         }
 
+        /// <summary>
+        /// Returns the <see cref="DateTime"/> value, or the <paramref name="defaultValue"/> if the control is disabled.
+        /// </summary>
+        /// <param name="defaultValue">The value to return if the control is disabled.</param>
+        /// <returns>The <see cref="DateTime"/> value, or the <paramref name="defaultValue"/> if the control is disabled.</returns>
         public static DateTime? GetValue(this DateTimePicker src, DateTime? defaultValue = null) {
             return src.Enabled ? src.Value : defaultValue;
         }
@@ -48,6 +77,9 @@ namespace Maxstupo.YdlUi.Utility {
 
         #region Binding Helpers
 
+        /// <summary>
+        /// Binds <see cref="Control.Enabled"/> to the provided predicate. The predicate is passed the text of the textbox, it's called whenever the text changes.
+        /// </summary>
         public static void BindEnabledTo(this Control control, TextBox textBox, Func<string, bool> predicate) {
             void textChanged(object sender, EventArgs e) {
                 control.Enabled = predicate((sender as TextBox).Text);
@@ -56,10 +88,18 @@ namespace Maxstupo.YdlUi.Utility {
             textChanged(textBox, null);
         }
 
+        /// <summary>
+        /// Binds <see cref="Control.Enabled"/> to the <see cref="CheckBox.Checked"/> property.
+        /// </summary>
+        /// <returns>The <see cref="Binding"/> that was created.</returns>
         public static Binding BindEnabledTo(this Control control, CheckBox checkBox) {
             return control.DataBindings.Add(nameof(control.Enabled), checkBox, nameof(checkBox.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
+        /// <summary>
+        /// Binds <see cref="Control.Enabled"/> to the <see cref="RadioButton.Checked"/> property.
+        /// </summary>
+        /// <returns>The <see cref="Binding"/> that was created.</returns>
         public static Binding BindEnabledTo(this Control control, RadioButton radioButton) {
             return control.DataBindings.Add(nameof(control.Enabled), radioButton, nameof(radioButton.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
         }
@@ -88,6 +128,9 @@ namespace Maxstupo.YdlUi.Utility {
             });
         }
 
+        /// <summary>
+        /// Registers a new event handler that will select the row on right click.
+        /// </summary>
         public static void SelectRowOnRightClick(this DataGridView src) {
             src.CellMouseDown += (sender, e) => {
                 if (e.Button == MouseButtons.Right && e.RowIndex != -1) {
@@ -133,6 +176,10 @@ namespace Maxstupo.YdlUi.Utility {
             return src.HasSingleSelectedRow() ? ((T)src.SelectedRows[0].DataBoundItem) : null;
         }
 
+        /// <summary>
+        /// Returns the selected rows of the <see cref="DataGridView"/>. If zero rows are selected, return null.
+        /// </summary>
+        /// <returns>Returns the selected rows or null if none are selected.</returns>
         public static T[] SelectedRows<T>(this DataGridView src) where T : class {
             if (!src.HasSelectedRows())
                 return null;
@@ -159,6 +206,11 @@ namespace Maxstupo.YdlUi.Utility {
             return src.SelectedRows.Count == 1;
         }
 
+        /// <summary>
+        /// Select any row of the <see cref="DataGridView"/> if the predicate returns true.
+        /// </summary>
+        /// <param name="predicate">The predicate to test each row item with, return true to select row.</param>
+        /// <param name="deselectOnFail">If true and the predicate returns false the row will be unselected.</param>
         public static void SelectRows<T>(this DataGridView src, Func<T, bool> predicate, bool deselectOnFail = true) {
             foreach (DataGridViewRow row in src.Rows) {
                 T item = (T)row.DataBoundItem;
