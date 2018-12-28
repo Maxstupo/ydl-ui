@@ -166,12 +166,21 @@ namespace Maxstupo.YdlUi.Forms {
                 cbDownloadArchive.Checked = false;
                 cbFilenameTemplate.Checked = false;
 
-                Size = MinimumSize = MaximumSize = new Size(basicAddDownloadPanel.Size.Width + 33, 280);
+                Size newSize = new Size(basicAddDownloadPanel.Size.Width + 33, 280);
+
+                Location = new Point(Location.X + (Size.Width / 2 - newSize.Width / 2), Location.Y + (Size.Height / 2 - newSize.Height / 2));
+
+                Size = MinimumSize = MaximumSize = newSize;
                 WindowState = FormWindowState.Normal;
 
             } else {
+
+                Location = new Point(Location.X - (oldMinSize.Width / 2 - Size.Width / 2), Location.Y - (oldMinSize.Height / 2 - Size.Height / 2));
+
                 MaximumSize = oldMaxSize;
                 Size = MinimumSize = oldMinSize;
+
+
             }
 
 
