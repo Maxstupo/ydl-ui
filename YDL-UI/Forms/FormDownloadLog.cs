@@ -1,6 +1,7 @@
 ﻿using Maxstupo.YdlUi.YoutubeDL;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -38,6 +39,13 @@ namespace Maxstupo.YdlUi.Forms {
                 return;
             txtLog.SelectionStart = txtLog.Text.Length;
             txtLog.ScrollToCaret();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e) {
+            if (MessageBox.Show(this, "Are you sure you want to clear this download log?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                return;
+            download.Log = string.Empty;
+            DialogResult = DialogResult.None;
         }
     }
 }

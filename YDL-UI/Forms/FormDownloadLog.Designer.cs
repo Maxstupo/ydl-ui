@@ -26,6 +26,7 @@
             this.txtLog = new System.Windows.Forms.TextBox();
             this.btnOkay = new System.Windows.Forms.Button();
             this.cbAutoScroll = new System.Windows.Forms.CheckBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtLog
@@ -49,7 +50,7 @@
             this.btnOkay.Location = new System.Drawing.Point(602, 351);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
-            this.btnOkay.TabIndex = 2;
+            this.btnOkay.TabIndex = 3;
             this.btnOkay.Text = "&Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -67,6 +68,18 @@
             this.cbAutoScroll.Text = "Auto Scroll";
             this.cbAutoScroll.UseVisualStyleBackColor = true;
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClear.Location = new System.Drawing.Point(512, 351);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 2;
+            this.btnClear.Text = "&Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // FormDownloadLog
             // 
             this.AcceptButton = this.btnOkay;
@@ -74,6 +87,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOkay;
             this.ClientSize = new System.Drawing.Size(689, 386);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.cbAutoScroll);
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.txtLog);
@@ -95,5 +109,6 @@
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.CheckBox cbAutoScroll;
+        private System.Windows.Forms.Button btnClear;
     }
 }
