@@ -1,4 +1,9 @@
 # YDL-UI v2.4.0
+<p float="left" align="left" width="100%">
+ <img src="https://img.shields.io/github/license/Maxstupo/ydl-ui.svg" />
+ <img src="https://img.shields.io/github/release/Maxstupo/ydl-ui.svg" />
+ <img src="https://img.shields.io/github/downloads/Maxstupo/ydl-ui/total.svg" />
+</p>
 
 A UI for the command-line video downloader "youtube-dl"
 
