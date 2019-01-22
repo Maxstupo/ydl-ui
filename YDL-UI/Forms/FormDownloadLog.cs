@@ -42,10 +42,11 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnClear_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.None;
+
             if (MessageBox.Show(this, "Are you sure you want to clear this download log?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
-            download.Log = string.Empty;
-            DialogResult = DialogResult.None;
+            download.Log = string.Empty;     
         }
     }
 }
