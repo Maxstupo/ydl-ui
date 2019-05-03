@@ -1,4 +1,4 @@
-# YDL-UI v2.4.0
+# YDL-UI v2.4.1
 <p float="left" align="left" width="100%">
  <img src="https://img.shields.io/github/license/Maxstupo/ydl-ui.svg" />
  <img src="https://img.shields.io/github/release/Maxstupo/ydl-ui.svg" />
