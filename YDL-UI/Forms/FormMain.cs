@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -303,8 +303,16 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void copyDownloadLinkToolStripMenuItem_Click(object sender, EventArgs e) {
             Download download = dgvDownloads.SelectedRow<Download>();
-            if (download != null)
-                Clipboard.SetText(download.Url);
+            if (download != null && download.Url != null) {
+                try {
+                    Clipboard.SetDataObject(download.Url, true, 5, 200); // Attempt to set clipboard 5 times, every 200ms.
+
+                } catch (ExternalException ex) { // Clipboard is being used by another process.
+
+                    MessageBox.Show(this, "Failed to copy URL to clipboard.\n\nClipboard is being used by another process. Please try again later...", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
         }
 
         private void startToolStripMenuItem_Click(object sender, EventArgs e) {
