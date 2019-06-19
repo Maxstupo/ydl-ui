@@ -252,12 +252,16 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void FormMain_DragDrop(object sender, DragEventArgs e) {
             string url = (string)e.Data.GetData(DataFormats.Text);
-            if (!string.IsNullOrWhiteSpace(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
-                ShowAddDownloadDialog(url);
+            ShowAddDownloadDialogIfValidUrl(url);
         }
 
 
         #endregion
+
+        public void ShowAddDownloadDialogIfValidUrl(string url) {
+            if (!string.IsNullOrWhiteSpace(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
+                ShowAddDownloadDialog(url);
+        }
 
         #region Download Context Menu Strip
 

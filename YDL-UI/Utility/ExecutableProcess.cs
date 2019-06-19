@@ -36,7 +36,7 @@ namespace Maxstupo.YdlUi.Utility {
             process.OutputDataReceived += Process_OutputDataReceived;
             process.Exited += Process_Exited;
             process.ErrorDataReceived += Process_ErrorDataReceived;
-            
+
         }
 
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e) {

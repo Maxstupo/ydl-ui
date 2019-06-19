@@ -106,6 +106,8 @@ namespace Maxstupo.YdlUi.Forms {
         private void TextBoxes_TextChanged(object sender, EventArgs e) {
             btnOkay.Enabled = false;
 
+            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(txtBinaryYdl.Text);
+
             if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(txtBinaryYdl.Text))
                 return;
             else if (!string.IsNullOrWhiteSpace(txtBinaryFfmpeg.Text) && !File.Exists(txtBinaryFfmpeg.Text))
@@ -258,6 +260,31 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         #endregion
+
+        private void btnUpdateYoutubeDl_Click(object sender, EventArgs e) {
+            string path = Util.GetAbsolutePath(txtBinaryYdl.Text);
+
+            if (!File.Exists(path))
+                return;
+
+
+            if (MessageBox.Show(this, "Updating youtube-dl can fix download issues.\n\nDo you want to update now?", "Update Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+                string workingDir = Path.GetDirectoryName(path);
+                
+                using (ExecutableProcess proc = new ExecutableProcess(path, "-U", workingDir)) {
+                    using (FormUpdating dialog = new FormUpdating()) {
+                        proc.OnExited += (ee, code) => {
+                            dialog.Close();
+                            MessageBox.Show(this, $"Successfully updated youtube-dl.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        };
+                        proc.Start();
+                        dialog.ShowDialog(this);
+                    }
+                }
+
+            }
+
+        }
 
     }
 }

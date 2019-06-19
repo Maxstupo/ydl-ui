@@ -65,6 +65,9 @@
             this.llblYdlDirectory = new System.Windows.Forms.LinkLabel();
             this.llblPreferencesLocation = new System.Windows.Forms.LinkLabel();
             this.panelActions = new System.Windows.Forms.Panel();
+            this.gbManualUpdate = new System.Windows.Forms.GroupBox();
+            this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -77,6 +80,7 @@
             this.tpPresets.SuspendLayout();
             this.tpInformation.SuspendLayout();
             this.panelActions.SuspendLayout();
+            this.gbManualUpdate.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -347,6 +351,7 @@
             // 
             // tpBinaries
             // 
+            this.tpBinaries.Controls.Add(this.gbManualUpdate);
             this.tpBinaries.Controls.Add(this.lblBlankEmbeddedNote);
             this.tpBinaries.Controls.Add(this.lblRestartNote);
             this.tpBinaries.Controls.Add(this.btnBinaryBrowseYdl);
@@ -547,6 +552,36 @@
             this.panelActions.Size = new System.Drawing.Size(654, 40);
             this.panelActions.TabIndex = 1;
             // 
+            // gbManualUpdate
+            // 
+            this.gbManualUpdate.Controls.Add(this.label4);
+            this.gbManualUpdate.Controls.Add(this.btnUpdateYoutubeDl);
+            this.gbManualUpdate.Location = new System.Drawing.Point(1, 149);
+            this.gbManualUpdate.Name = "gbManualUpdate";
+            this.gbManualUpdate.Size = new System.Drawing.Size(241, 83);
+            this.gbManualUpdate.TabIndex = 8;
+            this.gbManualUpdate.TabStop = false;
+            this.gbManualUpdate.Text = "Manual Update";
+            // 
+            // btnUpdateYoutubeDl
+            // 
+            this.btnUpdateYoutubeDl.Location = new System.Drawing.Point(79, 20);
+            this.btnUpdateYoutubeDl.Name = "btnUpdateYoutubeDl";
+            this.btnUpdateYoutubeDl.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateYoutubeDl.TabIndex = 0;
+            this.btnUpdateYoutubeDl.Text = "Update";
+            this.btnUpdateYoutubeDl.UseVisualStyleBackColor = true;
+            this.btnUpdateYoutubeDl.Click += new System.EventHandler(this.btnUpdateYoutubeDl_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "youtube-dl:";
+            // 
             // FormPreferences
             // 
             this.AcceptButton = this.btnOkay;
@@ -583,6 +618,8 @@
             this.tpInformation.ResumeLayout(false);
             this.tpInformation.PerformLayout();
             this.panelActions.ResumeLayout(false);
+            this.gbManualUpdate.ResumeLayout(false);
+            this.gbManualUpdate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -628,5 +665,8 @@
         private System.Windows.Forms.Label lblBlankEmbeddedNote;
         private System.Windows.Forms.LinkLabel llblFfmpegDirectory;
         private System.Windows.Forms.CheckBox cbResumeDownload;
+        private System.Windows.Forms.GroupBox gbManualUpdate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnUpdateYoutubeDl;
     }
 }
