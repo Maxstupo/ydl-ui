@@ -34,6 +34,8 @@
             this.cbWriteAnnotations = new System.Windows.Forms.CheckBox();
             this.cbWriteDescription = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
+            this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
             this.gbGeneral.SuspendLayout();
@@ -156,10 +158,31 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // cbCustomFormatSelector
+            // 
+            this.cbCustomFormatSelector.AutoSize = true;
+            this.cbCustomFormatSelector.Location = new System.Drawing.Point(4, 130);
+            this.cbCustomFormatSelector.Name = "cbCustomFormatSelector";
+            this.cbCustomFormatSelector.Size = new System.Drawing.Size(148, 17);
+            this.cbCustomFormatSelector.TabIndex = 4;
+            this.cbCustomFormatSelector.Text = "Custom Format Selector";
+            this.cbCustomFormatSelector.UseVisualStyleBackColor = true;
+            // 
+            // txtCustomFormatSelector
+            // 
+            this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCustomFormatSelector.Location = new System.Drawing.Point(3, 153);
+            this.txtCustomFormatSelector.Name = "txtCustomFormatSelector";
+            this.txtCustomFormatSelector.ReadOnly = true;
+            this.txtCustomFormatSelector.Size = new System.Drawing.Size(708, 22);
+            this.txtCustomFormatSelector.TabIndex = 5;
+            // 
             // videoQualitySelector
             // 
             this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
             this.videoQualitySelector.Name = "videoQualitySelector";
+            this.videoQualitySelector.OnChange = null;
             this.videoQualitySelector.Size = new System.Drawing.Size(170, 95);
             this.videoQualitySelector.TabIndex = 0;
             // 
@@ -175,6 +198,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtCustomFormatSelector);
+            this.Controls.Add(this.cbCustomFormatSelector);
             this.Controls.Add(this.videoQualitySelector);
             this.Controls.Add(this.gbGeneral);
             this.Controls.Add(this.gbFileSystem);
@@ -188,6 +213,7 @@
             this.gbFileSystem.ResumeLayout(false);
             this.gbFileSystem.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -204,5 +230,7 @@
         public System.Windows.Forms.CheckBox cbNoOverwrites;
         public System.Windows.Forms.CheckBox cbRestrictFilenames;
         public System.Windows.Forms.CheckBox cbWriteThumbnail;
+        private System.Windows.Forms.CheckBox cbCustomFormatSelector;
+        private System.Windows.Forms.TextBox txtCustomFormatSelector;
     }
 }

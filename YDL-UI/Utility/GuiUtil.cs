@@ -77,6 +77,16 @@ namespace Maxstupo.YdlUi.Utility {
 
         #region Binding Helpers
 
+        private static void SwitchBool(object s, ConvertEventArgs ee) {
+            ee.Value = !((bool)ee.Value);
+        }
+
+        public static Binding Invert(this Binding src) {
+            src.Format += SwitchBool;
+            src.Parse += SwitchBool;
+            return src;
+        }
+
         /// <summary>
         /// Binds <see cref="Control.Enabled"/> to the provided predicate. The predicate is passed the text of the textbox, it's called whenever the text changes.
         /// </summary>
@@ -102,6 +112,14 @@ namespace Maxstupo.YdlUi.Utility {
         /// <returns>The <see cref="Binding"/> that was created.</returns>
         public static Binding BindEnabledTo(this Control control, RadioButton radioButton) {
             return control.DataBindings.Add(nameof(control.Enabled), radioButton, nameof(radioButton.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        /// <summary>
+        /// Binds <see cref="TextBox.ReadOnly"/> to the <see cref="CheckBox.Checked"/> property.
+        /// </summary>
+        /// <returns>The <see cref="Binding"/> that was created.</returns>
+        public static Binding BindReadonlyTo(this TextBox control, CheckBox checkbox) {
+            return control.DataBindings.Add(nameof(control.ReadOnly), checkbox, nameof(checkbox.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         #endregion

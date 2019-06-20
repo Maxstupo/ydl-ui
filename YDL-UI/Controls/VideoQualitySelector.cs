@@ -27,6 +27,8 @@ namespace Maxstupo.YdlUi.Controls {
             }
         }
 
+        public EventHandler OnChange { get; set; }
+
         public VideoQualitySelector() {
             InitializeComponent();
         }
@@ -39,6 +41,10 @@ namespace Maxstupo.YdlUi.Controls {
             cbxQuality.DropDownClosed += delegate { isDropDownOpen = false; };
             cbxQuality.SelectedIndexChanged += CbxQuality_SelectedIndexChanged;
 
+            nudCustomWidth.ValueChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
+            nudCustomHeight.ValueChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
+            cbPreferred.CheckedChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
+            cbFallback.CheckedChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
         }
 
         private void CbxQuality_SelectedIndexChanged(object sender, EventArgs e) {
@@ -46,7 +52,10 @@ namespace Maxstupo.YdlUi.Controls {
         }
 
         private void cbxQuality_SelectionChangeCommitted(object sender, EventArgs e) {
-            if (isDropDownOpen) label1.Visible = nudCustomWidth.Visible = nudCustomHeight.Visible = IsCustomQuality;
+            if (isDropDownOpen) {
+                label1.Visible = nudCustomWidth.Visible = nudCustomHeight.Visible = IsCustomQuality;
+                OnChange?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public void Set(VideoQualitySelector vqs) {

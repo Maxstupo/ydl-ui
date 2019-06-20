@@ -20,8 +20,10 @@ namespace Maxstupo.YdlUi.Controls {
         public bool IsPreferred { get => cbPreferred.Checked; }
 
         public bool IsCustomFrameRate { get => cbxFrameRate.SelectedValue == null ? false : (int)cbxFrameRate.SelectedValue < 0; }
+
         private bool isDropDownOpen;
 
+        public EventHandler OnChange { get; set; }
 
         public FrameRateSelector() {
             InitializeComponent();
@@ -36,10 +38,14 @@ namespace Maxstupo.YdlUi.Controls {
             };
 
             nudCustomFrameRate.Visible = false;
+            nudCustomFrameRate.ValueChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
+
             cbxFrameRate.DropDown += delegate { isDropDownOpen = true; };
             cbxFrameRate.DropDownClosed += delegate { isDropDownOpen = false; };
             cbxFrameRate.SelectedIndexChanged += CbxFrameRate_SelectedIndexChanged;
 
+            cbPreferred.CheckedChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
+            cbFallback.CheckedChanged += delegate { OnChange?.Invoke(this, EventArgs.Empty); };
         }
 
         private void CbxFrameRate_SelectedIndexChanged(object sender, EventArgs e) {
@@ -47,7 +53,10 @@ namespace Maxstupo.YdlUi.Controls {
         }
 
         private void cbxFrameRate_SelectionChangeCommitted(object sender, EventArgs e) {
-            if (isDropDownOpen) nudCustomFrameRate.Visible = IsCustomFrameRate;
+            if (isDropDownOpen) {
+                nudCustomFrameRate.Visible = IsCustomFrameRate;
+                OnChange?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public void Set(FrameRateSelector frs) {
