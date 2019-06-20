@@ -233,7 +233,8 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void btnBrowseDownloadDirectory_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFolder("Select download directory...", txtDownloadDirectory.Text);
+            
+            string filepath = GuiUtil.SelectFolder(this,"Select download directory...", txtDownloadDirectory.Text);
             if (filepath != null)
                 txtDownloadDirectory.Text = filepath;
         }

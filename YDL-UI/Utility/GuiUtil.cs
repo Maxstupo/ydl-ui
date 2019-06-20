@@ -240,17 +240,18 @@ namespace Maxstupo.YdlUi.Utility {
         /// <summary>
         /// Opens a select folder dialog with no multiselect and filepath validation enabled.
         /// </summary>
+        /// <param name="form">The form that will own the modal dialog.</param>
         /// <param name="title">The title of the dialog.</param>
         /// <param name="initialDirectory">The initial directory that the dialog will display.</param>
         /// <returns>The selected filepath or null if cancel was selected.</returns>
-        public static string SelectFolder(string title, string initialDirectory = null) {
+        public static string SelectFolder(Form form, string title, string initialDirectory = null) {
             using (CommonOpenFileDialog dialog = new CommonOpenFileDialog(title)) {
                 dialog.IsFolderPicker = true;
                 dialog.InitialDirectory = initialDirectory;
                 dialog.Multiselect = false;
                 dialog.EnsurePathExists = true;
 
-                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                if (dialog.ShowDialog(form.Handle) == CommonFileDialogResult.Ok)
                     return dialog.FileName;
             }
             return null;

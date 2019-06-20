@@ -241,7 +241,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnDefaultDownloadDirectoryBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFolder("Select default download directory...", txtDefaultDownloadArchive.Text);
+            string filepath = GuiUtil.SelectFolder(this, "Select default download directory...", txtDefaultDownloadArchive.Text);
 
             if (filepath != null)
                 txtDefaultDownloadDirectory.Text = filepath;
@@ -270,7 +270,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             if (MessageBox.Show(this, "Updating youtube-dl can fix download issues.\n\nDo you want to update now?", "Update Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
                 string workingDir = Path.GetDirectoryName(path);
-                
+
                 using (ExecutableProcess proc = new ExecutableProcess(path, "-U", workingDir)) {
                     using (FormUpdating dialog = new FormUpdating()) {
                         proc.OnExited += (ee, code) => {
