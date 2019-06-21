@@ -95,6 +95,8 @@ namespace Maxstupo.YdlUi.Forms {
                     BeginInvoke((Action<Button>)(btn=> {
                         btn.PerformClick();
                     }), btnAdd);
+            } else {
+                txtUrl.Focus();
             }
         }
 
