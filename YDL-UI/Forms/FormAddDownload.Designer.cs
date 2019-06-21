@@ -38,8 +38,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpQuality = new System.Windows.Forms.TabPage();
             this.quality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
-            this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
-            this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.tpVideoSelection = new System.Windows.Forms.TabPage();
             this.videoSelection = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
             this.tpPostProcessing = new System.Windows.Forms.TabPage();
@@ -68,7 +66,7 @@
             this.btnCancel.Location = new System.Drawing.Point(711, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 13;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -79,7 +77,7 @@
             this.btnAdd.Location = new System.Drawing.Point(630, 9);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 12;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -93,7 +91,7 @@
             this.cbImmediateStart.Location = new System.Drawing.Point(513, 13);
             this.cbImmediateStart.Name = "cbImmediateStart";
             this.cbImmediateStart.Size = new System.Drawing.Size(111, 17);
-            this.cbImmediateStart.TabIndex = 11;
+            this.cbImmediateStart.TabIndex = 2;
             this.cbImmediateStart.Text = "&Immediate Start?";
             this.toolTip.SetToolTip(this.cbImmediateStart, "Start the download immediately upon clicking \"Add\".");
             this.cbImmediateStart.UseVisualStyleBackColor = true;
@@ -192,8 +190,6 @@
             // 
             this.tpQuality.BackColor = System.Drawing.Color.White;
             this.tpQuality.Controls.Add(this.quality);
-            this.tpQuality.Controls.Add(this.cbCustomFormatSelector);
-            this.tpQuality.Controls.Add(this.txtCustomFormatSelector);
             this.tpQuality.Location = new System.Drawing.Point(4, 22);
             this.tpQuality.Name = "tpQuality";
             this.tpQuality.Size = new System.Drawing.Size(766, 376);
@@ -207,27 +203,7 @@
             this.quality.Location = new System.Drawing.Point(0, 0);
             this.quality.Name = "quality";
             this.quality.Size = new System.Drawing.Size(766, 376);
-            this.quality.TabIndex = 9;
-            // 
-            // cbCustomFormatSelector
-            // 
-            this.cbCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbCustomFormatSelector.AutoSize = true;
-            this.cbCustomFormatSelector.Location = new System.Drawing.Point(3, 354);
-            this.cbCustomFormatSelector.Name = "cbCustomFormatSelector";
-            this.cbCustomFormatSelector.Size = new System.Drawing.Size(151, 17);
-            this.cbCustomFormatSelector.TabIndex = 8;
-            this.cbCustomFormatSelector.Text = "Custom Format Selector:";
-            this.cbCustomFormatSelector.UseVisualStyleBackColor = true;
-            // 
-            // txtCustomFormatSelector
-            // 
-            this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomFormatSelector.Location = new System.Drawing.Point(160, 351);
-            this.txtCustomFormatSelector.Name = "txtCustomFormatSelector";
-            this.txtCustomFormatSelector.Size = new System.Drawing.Size(603, 22);
-            this.txtCustomFormatSelector.TabIndex = 7;
+            this.quality.TabIndex = 0;
             // 
             // tpVideoSelection
             // 
@@ -325,7 +301,7 @@
             this.cbBasicMode.Location = new System.Drawing.Point(12, 13);
             this.cbBasicMode.Name = "cbBasicMode";
             this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
-            this.cbBasicMode.TabIndex = 16;
+            this.cbBasicMode.TabIndex = 0;
             this.cbBasicMode.Text = "Basic Mode";
             this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
             this.cbBasicMode.UseVisualStyleBackColor = true;
@@ -339,7 +315,7 @@
             this.cbxPreset.Location = new System.Drawing.Point(111, 11);
             this.cbxPreset.Name = "cbxPreset";
             this.cbxPreset.Size = new System.Drawing.Size(121, 21);
-            this.cbxPreset.TabIndex = 15;
+            this.cbxPreset.TabIndex = 1;
             this.cbxPreset.Tag = "!_ignore";
             this.cbxPreset.SelectedIndexChanged += new System.EventHandler(this.cbxPreset_SelectedIndexChanged);
             // 
@@ -354,7 +330,7 @@
             this.panelActions.Location = new System.Drawing.Point(0, 526);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(798, 40);
-            this.panelActions.TabIndex = 16;
+            this.panelActions.TabIndex = 11;
             // 
             // txtFilenameTemplate
             // 
@@ -371,7 +347,7 @@
             this.txtFilenameTemplate.Location = new System.Drawing.Point(141, 65);
             this.txtFilenameTemplate.Name = "txtFilenameTemplate";
             this.txtFilenameTemplate.Size = new System.Drawing.Size(645, 22);
-            this.txtFilenameTemplate.TabIndex = 10;
+            this.txtFilenameTemplate.TabIndex = 6;
             // 
             // FormAddDownload
             // 
@@ -434,8 +410,6 @@
         private System.Windows.Forms.TabPage tpVideoSelection;
         private System.Windows.Forms.TabPage tpPostProcessing;
         private System.Windows.Forms.TabPage tpWorkarounds;
-        private System.Windows.Forms.CheckBox cbCustomFormatSelector;
-        private System.Windows.Forms.TextBox txtCustomFormatSelector;
         private System.Windows.Forms.CheckBox cbDownloadArchive;
         private System.Windows.Forms.CheckBox cbFilenameTemplate;
         private Tab.TabVideoSelection videoSelection;
