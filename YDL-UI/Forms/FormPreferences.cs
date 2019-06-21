@@ -97,6 +97,8 @@ namespace Maxstupo.YdlUi.Forms {
             lblBlankEmbeddedNote.Visible = false;
 #endif
 
+            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(txtBinaryYdl.Text);
+
         }
 
         private void LbxPresets_SelectedIndexChanged(object sender, EventArgs e) {
