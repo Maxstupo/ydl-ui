@@ -7,12 +7,16 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
     public partial class FormMain : Form {
+        public const string PipeName = "YDL_UI_IO";
         private const string EmbeddedBinariesNamespace = "Maxstupo.YdlUi.Resources";
         private const string EmbeddedYdlName = "youtube-dl.exe";
         private const string EmbeddedFfmpegName = "ffmpeg.exe";
@@ -25,8 +29,16 @@ namespace Maxstupo.YdlUi.Forms {
 
         public string ApplicationVersion { get => Application.ProductVersion.RemoveAfterLast('.'); }
 
-        public FormMain() {
+        private Thread pipeThread;
+        private NamedPipeServerStream pipeServer;
+
+        private string urlToAdd;
+        private bool isSilent;
+
+        public FormMain(string urlToAdd, bool silent) {
             InitializeComponent();
+            this.urlToAdd = urlToAdd;
+            this.isSilent = silent;
 
             // Set the title of the application.
             Text = $"{Application.ProductName}";
@@ -56,7 +68,10 @@ namespace Maxstupo.YdlUi.Forms {
             // XXX: DownloadManager doesn't create or check if the download list directory exists.
             downloadManager = new DownloadManager(PreferencesManager, downloadListFilepath);
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
+
+            Listen();
         }
+
 
         private void DownloadManager_PropertyChanged(object sender, PropertyChangedEventArgs e) {
             tsslStatusLeft.Text = $"Downloaded {downloadManager.CompletedDownloads} of {downloadManager.TotalDownloads}, {downloadManager.ConcurrentDownloads} running.";
@@ -85,12 +100,70 @@ namespace Maxstupo.YdlUi.Forms {
 
             downloadManager.Load(true);
 
+            if (urlToAdd != null) {
+                BeginInvoke((Action<string, bool>)((url, silent) => {
+                    ShowAddDownloadDialogIfValidUrl(url, silent);
+                }), urlToAdd, isSilent);
+            }
+
 #if !DEBUG
             if (PreferencesManager.Preferences.CheckForUpdates)
                 CheckForUpdates(true);
 #endif
+
         }
 
+        #region Named Pipe Server
+
+        // Start a thread to listen for connections from Pipe Clients.
+        private void Listen() {
+            Logger.Instance.Debug("Background", "Starting named pipe server thread...");
+            pipeThread = new Thread(ServerPipeThread) {
+                IsBackground = true
+            };
+            pipeThread.Start();
+        }
+
+        private void ServerPipeThread() {
+            try {
+                pipeServer = new NamedPipeServerStream(PipeName, PipeDirection.In, 1);
+
+                using (StreamReader sr = new StreamReader(pipeServer, new UTF8Encoding(false))) {
+
+                    while (true) { // XXX: Infinite loop, as you can't cancel WaitForConnection, without using BeginWaitForConnection. 
+                                   // The pipe thread will terminate when the main application thread exits, as it's a background thread.
+                        Logger.Instance.Debug("Background", "Waiting for connection...");
+                        pipeServer.WaitForConnection();
+
+                        Logger.Instance.Debug("Background", "Connection Successful!");
+
+                        string data = sr.ReadToEnd();
+                        if (data != null) {
+                            Logger.Instance.Debug("Background", "Received: {0}", data);
+
+                            bool silent = data[0] == '1';
+                            string urlToAdd = data.Substring(2);
+
+
+                            BeginInvoke((Action<string, bool>)((url, isSilent) => {
+                                ShowAddDownloadDialogIfValidUrl(url, isSilent);
+                            }), urlToAdd, silent);
+                        }
+
+                        pipeServer.Disconnect();
+
+                    }
+                }
+
+            } catch (Exception e) {
+                Logger.Instance.Error("Background", "Failed to create named pipe server!\n{0}", e);
+            } finally {
+                if (pipeServer != null)
+                    pipeServer.Dispose();
+            }
+        }
+
+        #endregion
 
         // Check if we are closing YDL-UI when we are downloading or haven't saved our changes.
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
@@ -100,6 +173,9 @@ namespace Maxstupo.YdlUi.Forms {
             }
             if (!e.Cancel)
                 downloadManager.Save();
+
+            if (pipeServer != null)
+                pipeServer.Dispose();
         }
 
         // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise auto-extract
@@ -189,8 +265,8 @@ namespace Maxstupo.YdlUi.Forms {
             }
         }
 
-        private void ShowAddDownloadDialog(string url = null) {
-            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, url, null, false)) {
+        private void ShowAddDownloadDialog(string url = null, bool silent = false) {
+            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, url, null, false, silent)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                     AddDownload(dialog.Download);
             }
@@ -258,9 +334,9 @@ namespace Maxstupo.YdlUi.Forms {
 
         #endregion
 
-        public void ShowAddDownloadDialogIfValidUrl(string url) {
+        public void ShowAddDownloadDialogIfValidUrl(string url, bool silent = false) {
             if (!string.IsNullOrWhiteSpace(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
-                ShowAddDownloadDialog(url);
+                ShowAddDownloadDialog(url, silent);
         }
 
         #region Download Context Menu Strip

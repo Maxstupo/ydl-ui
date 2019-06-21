@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -19,6 +20,7 @@ namespace Maxstupo.YdlUi.Forms {
         private Preset preset;
 
         private bool IsEditMode { get; }
+        private bool IsSilent { get; }
 
         public Download Download { get; private set; }
 
@@ -28,7 +30,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private Size oldMaxSize, oldMinSize;
 
-        public FormAddDownload(Preferences preferences, string url, Preset preset, bool isEditMode) {
+        public FormAddDownload(Preferences preferences, string url, Preset preset, bool isEditMode, bool isSilent = false) {
             InitializeComponent();
             InitializeBasicAdvancedModes(preferences.BasicMode);
 
@@ -36,6 +38,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             this.preset = preset;
             this.IsEditMode = isEditMode;
+            this.IsSilent = isSilent;
 
             if (IsEditMode) {
 
@@ -88,6 +91,11 @@ namespace Maxstupo.YdlUi.Forms {
                 TxtUrl_TextChanged(this, new EventArgs());
             }
 
+            if (IsSilent) {
+                    BeginInvoke((Action<Button>)(btn=> {
+                        btn.PerformClick();
+                    }), btnAdd);
+            }
         }
 
         private void SelectMatchingPreset(string url) {
@@ -233,8 +241,8 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void btnBrowseDownloadDirectory_Click(object sender, EventArgs e) {
-            
-            string filepath = GuiUtil.SelectFolder(this,"Select download directory...", txtDownloadDirectory.Text);
+
+            string filepath = GuiUtil.SelectFolder(this, "Select download directory...", txtDownloadDirectory.Text);
             if (filepath != null)
                 txtDownloadDirectory.Text = filepath;
         }

@@ -43,6 +43,9 @@ namespace Maxstupo.YdlUi.Utility {
         }
 
         public static bool IsValidUrl(string url) {
+            if (string.IsNullOrWhiteSpace(url))
+                return false;
+
             if (!Regex.IsMatch(url, @"^https?:\/\/", RegexOptions.IgnoreCase))
                 url = "http://" + url;
 
