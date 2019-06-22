@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -53,13 +54,13 @@ namespace Maxstupo.YdlUi.Forms {
 
             // Ensure portable build always has a preference file in the same directory as the executable.
 #if PORTABLE
-            if (!File.Exists("ydl-ui.json"))
-                PreferencesManager<Preferences>.Save("ydl-ui.json", new Preferences());
+            if (!File.Exists(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json")))
+                PreferencesManager<Preferences>.Save(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json"), new Preferences());
 #endif
 
             // Create a new preferences manager with multiple preference file locations. (Multiple filepaths are used to make YDL portable).
             PreferencesManager = new PreferencesManager<Preferences>(new string[] {
-              "ydl-ui.json", // ~\ydl-ui.json
+              Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json"), // ~\ydl-ui.json
               Path.Combine(Util.GetAppDataPath(),".ydl-ui", "ydl-ui.json") // %appdata%\.ydl-ui\ydl-ui.json
             });
 
@@ -183,9 +184,9 @@ namespace Maxstupo.YdlUi.Forms {
         // the resource to a temp directory and update the filepath to this temp resource instead.
         private void UpdateResources() {
 
-            string ydlPath = PreferencesManager.Preferences.Binaries.YoutubeDl;
-            string ffmpegPath = PreferencesManager.Preferences.Binaries.Ffmpeg;
-
+            string ydlPath = Util.GetAbsolutePath(PreferencesManager.Preferences.Binaries.YoutubeDl); 
+            string ffmpegPath = Util.GetAbsolutePath(PreferencesManager.Preferences.Binaries.Ffmpeg);
+        
             bool ydlCustomExists = File.Exists(ydlPath);
             bool ffmpegCustomExists = File.Exists(ffmpegPath);
 

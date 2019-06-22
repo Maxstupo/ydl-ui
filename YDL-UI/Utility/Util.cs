@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -74,11 +75,11 @@ namespace Maxstupo.YdlUi.Utility {
         /// <param name="path">The absolute path to make relative to the current working directory.</param>
         /// <returns>A relative path, or the specified absolute <paramref name="path"/> if it can't be relativised.</returns>
         public static string GetRelativePath(string path) {
-            return GetRelativePath(path, Directory.GetCurrentDirectory());
+            return GetRelativePath(path, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
         }
 
         public static string GetAbsolutePath(string path) {
-            return GetAbsolutePath(path, Directory.GetCurrentDirectory());
+            return GetAbsolutePath(path, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
         }
 
         public static string GetAbsolutePath(string path, string folder) {

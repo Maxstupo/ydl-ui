@@ -92,9 +92,9 @@ namespace Maxstupo.YdlUi.Forms {
             }
 
             if (IsSilent) {
-                    BeginInvoke((Action<Button>)(btn=> {
-                        btn.PerformClick();
-                    }), btnAdd);
+                BeginInvoke((Action<Button>)(btn => {
+                    btn.PerformClick();
+                }), btnAdd);
             } else {
                 txtUrl.Focus();
             }
@@ -208,7 +208,7 @@ namespace Maxstupo.YdlUi.Forms {
         private Download CreateDownload() {
             if (IsEditMode)
                 return null;
-            Download download = new Download(txtUrl.Text, txtDownloadDirectory.Text) {
+            Download download = new Download(txtUrl.Text, Util.GetAbsolutePath(txtDownloadDirectory.Text)) {
                 Status = cbImmediateStart.Checked ? DownloadStatus.Queued : DownloadStatus.Waiting
             };
             SetArguments(download.Arguments);
@@ -220,6 +220,9 @@ namespace Maxstupo.YdlUi.Forms {
                 return;
             arguments.FileSystem.OutputTemplate = txtFilenameTemplate.GetText();
             arguments.VideoSelection.DownloadArchive = txtDownloadArchive.GetText();
+            if (arguments.VideoSelection.DownloadArchive != null)
+                arguments.VideoSelection.DownloadArchive = Util.GetAbsolutePath(arguments.VideoSelection.DownloadArchive);
+
 
             if (!BasicMode) {
                 quality.SetArguments(arguments);

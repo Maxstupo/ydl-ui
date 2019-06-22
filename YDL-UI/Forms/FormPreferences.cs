@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -97,7 +98,7 @@ namespace Maxstupo.YdlUi.Forms {
             lblBlankEmbeddedNote.Visible = false;
 #endif
 
-            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(txtBinaryYdl.Text);
+            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(Util.GetAbsolutePath(txtBinaryYdl.Text));
 
         }
 
@@ -108,15 +109,18 @@ namespace Maxstupo.YdlUi.Forms {
         private void TextBoxes_TextChanged(object sender, EventArgs e) {
             btnOkay.Enabled = false;
 
-            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(txtBinaryYdl.Text);
+            string ydlPath = Util.GetAbsolutePath(txtBinaryYdl.Text);
+            string ffmpegPath = Util.GetAbsolutePath(txtBinaryFfmpeg.Text);
 
-            if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(txtBinaryYdl.Text))
+            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(ydlPath);
+
+            if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(ydlPath))
                 return;
-            else if (!string.IsNullOrWhiteSpace(txtBinaryFfmpeg.Text) && !File.Exists(txtBinaryFfmpeg.Text))
+            else if (!string.IsNullOrWhiteSpace(txtBinaryFfmpeg.Text) && !File.Exists(ffmpegPath))
                 return;
-            else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadArchive.Text) && !File.Exists(txtDefaultDownloadArchive.Text))
+            else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadArchive.Text) && !File.Exists(Util.GetAbsolutePath(txtDefaultDownloadArchive.Text)))
                 return;
-            else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadDirectory.Text) && !Directory.Exists(txtDefaultDownloadDirectory.Text))
+            else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadDirectory.Text) && !Directory.Exists(Util.GetAbsolutePath(txtDefaultDownloadDirectory.Text)))
                 return;
 
             btnOkay.Enabled = true;
