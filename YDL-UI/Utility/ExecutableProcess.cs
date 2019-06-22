@@ -44,6 +44,10 @@ namespace Maxstupo.YdlUi.Utility {
             Console.WriteLine("ERR >> " + e.Data);
         }
 
+        public void WaitForExit() {
+            process.WaitForExit();
+        }
+
         private void Process_Exited(object sender, EventArgs e) {
             OnExited?.Invoke(this, process.ExitCode);
             Dispose();

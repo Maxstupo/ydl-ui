@@ -237,11 +237,11 @@
     <Compile Include="Forms\FormUpdateBinaryLocations.Designer.cs">
       <DependentUpon>FormUpdateBinaryLocations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormUpdating.cs">
+    <Compile Include="Forms\FormUpdateYoutubeDl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormUpdating.Designer.cs">
-      <DependentUpon>FormUpdating.cs</DependentUpon>
+    <Compile Include="Forms\FormUpdateYoutubeDl.Designer.cs">
+      <DependentUpon>FormUpdateYoutubeDl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Tab\TabPostProcessing.cs">
       <SubType>UserControl</SubType>
@@ -329,8 +329,8 @@
     <EmbeddedResource Include="Forms\FormUpdateBinaryLocations.resx">
       <DependentUpon>FormUpdateBinaryLocations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormUpdating.resx">
-      <DependentUpon>FormUpdating.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormUpdateYoutubeDl.resx">
+      <DependentUpon>FormUpdateYoutubeDl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\TabPostProcessing.resx">
       <DependentUpon>TabPostProcessing.cs</DependentUpon>

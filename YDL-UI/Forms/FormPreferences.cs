@@ -271,18 +271,9 @@ namespace Maxstupo.YdlUi.Forms {
 
 
             if (MessageBox.Show(this, "Updating youtube-dl can fix download issues.\n\nDo you want to update now?", "Update Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
-                string workingDir = Path.GetDirectoryName(path);
 
-                using (ExecutableProcess proc = new ExecutableProcess(path, "-U", workingDir)) {
-                    using (FormUpdating dialog = new FormUpdating()) {
-                        proc.OnExited += (ee, code) => {
-                            dialog.Close();
-                            MessageBox.Show(this, $"Successfully updated youtube-dl.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        };
-                        proc.Start();
-                        dialog.ShowDialog(this);
-                    }
-                }
+                using (FormUpdateYoutubeDl dialog = new FormUpdateYoutubeDl(path))
+                    dialog.ShowDialog(this);
 
             }
 

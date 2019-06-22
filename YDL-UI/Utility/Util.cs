@@ -134,5 +134,40 @@ namespace Maxstupo.YdlUi.Utility {
                 }
             }
         }
+
+
+        public static void HttpGetFileDownload(string url, string destination, long size, string userAgent = null, Action<float> progress = null) {
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            progress?.Invoke(0);
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Timeout = 15000; // 15 seconds
+
+            if (userAgent != null)
+                request.UserAgent = userAgent;
+
+
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse()) {
+                using (Stream inputStream = response.GetResponseStream()) {
+
+                    using (FileStream fileStream = new FileStream(destination, FileMode.OpenOrCreate, FileAccess.Write)) {
+                        byte[] buffer = new byte[1024];
+                        long received = 0;
+                        int read;
+                        while ((read = inputStream.Read(buffer, 0, buffer.Length)) > 0) {
+                            fileStream.Write(buffer, 0, read);
+                            fileStream.Flush();
+
+                            received += read;
+                            progress?.Invoke((float)received / size);
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
