@@ -7,13 +7,15 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
         public string[] Names { get; }
 
         public static IReadOnlyList<VideoQuality> StandardQualities { get; } = (new List<VideoQuality>() {
-            new VideoQuality(3840, 2160, "4K", "Ultra-HD"),
+            new VideoQuality(7680, 4320, "8K"),
+            new VideoQuality(3840, 2160, "4K"),
             new VideoQuality(2560, 1440),
-            new VideoQuality(1920, 1080, "Full-HD"),
-            new VideoQuality(1280, 720, "Half HD"),
+            new VideoQuality(1920, 1080, "Full HD"),
+            new VideoQuality(1280, 720, "HD"),
             new VideoQuality(854, 480),
             new VideoQuality(640, 360),
             new VideoQuality(426, 240),
+            new VideoQuality(256, 144),
             new VideoQuality(-1, -1)
         }).AsReadOnly();
 
