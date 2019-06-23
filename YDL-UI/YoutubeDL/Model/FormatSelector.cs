@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Maxstupo.YdlUi.YoutubeDL.Model {
     public class FormatSelector {
-        public static readonly int[] DefaultFrameRates = { 144, 120, 60, 30, 25 };
+        public static readonly int[] DefaultFrameRates = { 144, 120, 60, 50, 48, 30, 25, 24 };
      
         public VideoQuality VideoQuality { get; set; }
         public int FrameRate { get; set; }
