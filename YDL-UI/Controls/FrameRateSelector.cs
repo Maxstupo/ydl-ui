@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Maxstupo.YdlUi.YoutubeDL.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Controls {
     public partial class FrameRateSelector : UserControl {
-        private List<int> frameRates = new List<int>() { 144, 120, 60, 30, 25, -1 };
 
         public int FrameRate {
             get {
@@ -30,6 +30,8 @@ namespace Maxstupo.YdlUi.Controls {
         }
 
         private void FrameRateSelector_Load(object sender, EventArgs e) {
+            List<int> frameRates = new List<int>(FormatSelector.DefaultFrameRates);
+            frameRates.Add(-1);
             cbxFrameRate.DataSource = frameRates;
             cbxFrameRate.SelectedIndex = 0;
             cbxFrameRate.Format += (s, ee) => {

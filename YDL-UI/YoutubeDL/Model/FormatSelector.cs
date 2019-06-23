@@ -1,11 +1,13 @@
 ﻿using Maxstupo.YdlUi.Controls;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Maxstupo.YdlUi.YoutubeDL.Model {
     public class FormatSelector {
-        public const string SelectorTemplate = "";
-        public const string MissingMetadata = "?";
-
+        public static readonly int[] DefaultFrameRates = { 144, 120, 60, 30, 25 };
+     
         public VideoQuality VideoQuality { get; set; }
         public int FrameRate { get; set; }
 
@@ -27,15 +29,50 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
             FrameRateFallback = frameRateFallback;
         }
 
+
+
         private string CreateSelector() {
-            string vqFallback = VideoQualityFallback ? MissingMetadata : string.Empty;
-            string vqPreferred = IsVideoQualityPreferred ? "<" : string.Empty;
 
-            string frFallback = FrameRateFallback ? MissingMetadata : string.Empty;
-            string frPreferred = IsFrameRatePreferred ? "<" : string.Empty;
+            List<int> heights = new List<int>();
+            List<int> frameRates = new List<int>(DefaultFrameRates);
+
+            foreach (VideoQuality quality in VideoQuality.StandardQualities) {
+                if (quality.Width > 0 && quality.Height > 0)
+                    heights.Add(quality.Height);
+            }
+            if (!heights.Contains(VideoQuality.Height)) // Custom height.
+                heights.Add(VideoQuality.Height);
+            heights = heights.OrderByDescending(i => i).ToList();
+
+            if (!frameRates.Contains(FrameRate)) // Custom framerate.
+                frameRates.Add(FrameRate);
+            frameRates = frameRates.OrderByDescending(i => i).ToList();
 
 
-            return string.Format("bestvideo[width{4}={3}{0}][height{4}={3}{1}][fps{6}={5}{2}]+bestaudio/best[width{4}={3}{0}][height{4}={3}{1}][fps{6}={5}{2}]", VideoQuality.Width, VideoQuality.Height, FrameRate, vqFallback, vqPreferred, frFallback, frPreferred);
+            int vqIndex = heights.IndexOf(VideoQuality.Height);
+            int frIndex = frameRates.IndexOf(FrameRate);
+
+            string vqFallback = VideoQualityFallback ? "?" : string.Empty;
+            string frFallback = FrameRateFallback ? "?" : string.Empty;
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = vqIndex; i < heights.Count; i++) {
+
+                for (int j = frIndex; j < frameRates.Count; j++) {
+
+                    sb.Append($"bestvideo[height={vqFallback}{heights[i]}][fps={frFallback}{frameRates[j]}]+bestaudio/");
+
+                    if (!IsFrameRatePreferred)
+                        break;
+                }
+
+                if (!IsVideoQualityPreferred)
+                    break;
+            }
+
+
+            sb.Append("best");
+            return sb.ToString();
         }
 
         public override string ToString() {
