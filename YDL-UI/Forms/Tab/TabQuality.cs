@@ -17,6 +17,8 @@ namespace Maxstupo.YdlUi.Forms.Tab {
 
             videoQualitySelector.BindEnabledTo(cbCustomFormatSelector).Invert();
             frameRateSelector.BindEnabledTo(cbCustomFormatSelector).Invert();
+
+            UpdateCustomFormat(this, EventArgs.Empty);
         }
 
         private void UpdateCustomFormat(object sender, EventArgs e) {
