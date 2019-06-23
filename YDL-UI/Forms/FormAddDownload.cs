@@ -96,7 +96,9 @@ namespace Maxstupo.YdlUi.Forms {
                     btn.PerformClick();
                 }), btnAdd);
             } else {
-                txtUrl.Focus();
+                BeginInvoke((Action)delegate {
+                    txtUrl.Focus();
+                });
             }
         }
 
