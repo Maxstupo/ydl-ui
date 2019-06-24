@@ -78,6 +78,7 @@ namespace Maxstupo.YdlUi.Forms {
             cbBasicMode.DataBindings.Add(nameof(cbBasicMode.Checked), preferences, nameof(preferences.BasicMode), false, DataSourceUpdateMode.OnPropertyChanged);
             cbStayTop.DataBindings.Add(nameof(cbStayTop.Checked), preferences, nameof(preferences.StayOnTop), false, DataSourceUpdateMode.OnPropertyChanged);
             cbResumeDownload.DataBindings.Add(nameof(cbResumeDownload.Checked), preferences, nameof(preferences.ResumeDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbRememberDownloadSettings.DataBindings.Add(nameof(cbRememberDownloadSettings.Checked), preferences, nameof(preferences.RememberDownloadSettings), false, DataSourceUpdateMode.OnPropertyChanged);
 
             bsPresets.DataSource = preferences.Presets;
             lbxPresets.DataSource = bsPresets;
@@ -131,6 +132,8 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
+            if(!preferences.RememberDownloadSettings) 
+                preferences.StoredDownloadSettings.State.Clear();            
             DialogResult = DialogResult.OK;
         }
 

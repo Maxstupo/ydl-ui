@@ -44,7 +44,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void txtPresetName_TextChanged(object sender, EventArgs e) {
-            btnOkay.Enabled = !string.IsNullOrWhiteSpace(txtPresetName.Text) && (isEditMode || !preferences.Presets.Any(p => p.Name == txtPresetName.Text));
+            btnOkay.Enabled = !string.IsNullOrWhiteSpace(txtPresetName.Text) && !txtPresetName.Text.Trim().Equals("(PreviousOptions)", StringComparison.OrdinalIgnoreCase) && (isEditMode || !preferences.Presets.Any(p => p.Name == txtPresetName.Text));
         }
 
         private Preset CreatePreset(Preset preset = null) {

@@ -173,8 +173,11 @@ namespace Maxstupo.YdlUi.Forms {
                 if (MessageBox.Show(this, "There are still items downloading! Do you want to quit?", "Are you sure you want to quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                     e.Cancel = true;
             }
-            if (!e.Cancel)
+            if (!e.Cancel) {
                 downloadManager.Save();
+                if (PreferencesManager.Preferences.RememberDownloadSettings)
+                    PreferencesManager.Save();
+            }
 
             if (pipeServer != null)
                 pipeServer.Dispose();
@@ -184,9 +187,9 @@ namespace Maxstupo.YdlUi.Forms {
         // the resource to a temp directory and update the filepath to this temp resource instead.
         private void UpdateResources() {
 
-            string ydlPath = Util.GetAbsolutePath(PreferencesManager.Preferences.Binaries.YoutubeDl); 
+            string ydlPath = Util.GetAbsolutePath(PreferencesManager.Preferences.Binaries.YoutubeDl);
             string ffmpegPath = Util.GetAbsolutePath(PreferencesManager.Preferences.Binaries.Ffmpeg);
-        
+
             bool ydlCustomExists = File.Exists(ydlPath);
             bool ffmpegCustomExists = File.Exists(ffmpegPath);
 

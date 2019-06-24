@@ -17,6 +17,7 @@ namespace Maxstupo.YdlUi.Settings {
 
         public int MaxConcurrentDownloads { get; set; } = 4;
         public bool ResumeDownloads { get; set; } = true;
+        public bool RememberDownloadSettings { get; set; } = false;
 
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;
@@ -26,6 +27,7 @@ namespace Maxstupo.YdlUi.Settings {
 
 
         public PreferencesBinaries Binaries { get; private set; } = new PreferencesBinaries();
+        public Preset StoredDownloadSettings { get; set; } = new Preset("(PreviousOptions)", false);
         public BindingList<Preset> Presets { get; private set; } = new BindingList<Preset>();
 
     }

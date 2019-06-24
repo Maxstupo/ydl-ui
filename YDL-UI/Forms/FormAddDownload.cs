@@ -77,19 +77,33 @@ namespace Maxstupo.YdlUi.Forms {
             if (IsEditMode) {
                 ApplyState(preset);
             } else {
-                cbxPreset.DataSource = preferences.Presets;
                 cbxPreset.DisplayMember = nameof(Preset.DisplayText);
 
+                // If we have a previous remembered options, and the setting is enabled, prepend it to the preset list.
+                if (preferences.RememberDownloadSettings && preferences.StoredDownloadSettings.State.Count > 0) {
+                    List<Preset> presets = new List<Preset>(preferences.Presets);
 
-                if (preferences.Presets.Count > 0) {
-                    cbxPreset.SelectedItem = preferences.Presets.Where(p => p.IsDefault).First();
-                } else {
-                    cbxPreset.Visible = false;
+                    preferences.StoredDownloadSettings.MatchUrl = null;
+                    preferences.StoredDownloadSettings.IsDefault = false;
+                    presets.Insert(0, preferences.StoredDownloadSettings);
+
+                    cbxPreset.DataSource = presets;
+                    cbxPreset.SelectedItem = preferences.StoredDownloadSettings;
+
+                } else { // else function like before.
+                    cbxPreset.DataSource = preferences.Presets;
+
+                    if (preferences.Presets.Count > 0) {
+                        cbxPreset.SelectedItem = preferences.Presets.Where(p => p.IsDefault).First();
+                    } else {
+                        cbxPreset.Visible = false;
+                    }
                 }
 
                 txtUrl.TextChanged += TxtUrl_TextChanged;
                 TxtUrl_TextChanged(this, new EventArgs());
             }
+
 
             if (IsSilent) {
                 BeginInvoke((Action<Button>)(btn => {
@@ -238,6 +252,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void btnAdd_Click(object sender, EventArgs e) {
             Download = CreateDownload();
+            RememberState();
             DialogResult = DialogResult.OK;
         }
 
@@ -306,6 +321,10 @@ namespace Maxstupo.YdlUi.Forms {
             uiState.Apply(this, preset.State, nameof(txtUrl), nameof(cbxPreset));
         }
 
+        public void RememberState() {
+            if (!IsEditMode && preferences.RememberDownloadSettings)
+                preferences.StoredDownloadSettings.State = uiState.CreateFrom(this, nameof(txtUrl), nameof(cbxPreset));
+        }
 
         #region Performance Optimization
 
@@ -318,9 +337,6 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         #endregion
-
-
-
 
     }
 }

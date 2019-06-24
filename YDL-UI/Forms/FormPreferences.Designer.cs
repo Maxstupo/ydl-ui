@@ -41,6 +41,7 @@
             this.cbStayTop = new System.Windows.Forms.CheckBox();
             this.cbCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.tpDownload = new System.Windows.Forms.TabPage();
+            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtDefaultDownloadDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowseDownloadDirectory = new System.Windows.Forms.Button();
@@ -48,6 +49,9 @@
             this.txtDefaultDownloadArchive = new System.Windows.Forms.TextBox();
             this.btnBrowseDownloadArchive = new System.Windows.Forms.Button();
             this.tpBinaries = new System.Windows.Forms.TabPage();
+            this.gbManualUpdate = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
             this.lblBlankEmbeddedNote = new System.Windows.Forms.Label();
             this.lblRestartNote = new System.Windows.Forms.Label();
             this.btnBinaryBrowseYdl = new System.Windows.Forms.Button();
@@ -65,9 +69,6 @@
             this.llblYdlDirectory = new System.Windows.Forms.LinkLabel();
             this.llblPreferencesLocation = new System.Windows.Forms.LinkLabel();
             this.panelActions = new System.Windows.Forms.Panel();
-            this.gbManualUpdate = new System.Windows.Forms.GroupBox();
-            this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -77,10 +78,10 @@
             this.tpGeneral.SuspendLayout();
             this.tpDownload.SuspendLayout();
             this.tpBinaries.SuspendLayout();
+            this.gbManualUpdate.SuspendLayout();
             this.tpPresets.SuspendLayout();
             this.tpInformation.SuspendLayout();
             this.panelActions.SuspendLayout();
-            this.gbManualUpdate.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -137,7 +138,7 @@
             // 
             // nudMaxConcurrentDownloads
             // 
-            this.nudMaxConcurrentDownloads.Location = new System.Drawing.Point(163, 82);
+            this.nudMaxConcurrentDownloads.Location = new System.Drawing.Point(163, 117);
             this.nudMaxConcurrentDownloads.Maximum = new decimal(new int[] {
             10,
             0,
@@ -161,7 +162,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 85);
+            this.label1.Location = new System.Drawing.Point(3, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
             this.label1.TabIndex = 3;
@@ -272,6 +273,7 @@
             // 
             // tpDownload
             // 
+            this.tpDownload.Controls.Add(this.cbRememberDownloadSettings);
             this.tpDownload.Controls.Add(this.cbResumeDownload);
             this.tpDownload.Controls.Add(this.label6);
             this.tpDownload.Controls.Add(this.txtDefaultDownloadDirectory);
@@ -291,10 +293,21 @@
             this.tpDownload.Text = "Download";
             this.tpDownload.UseVisualStyleBackColor = true;
             // 
+            // cbRememberDownloadSettings
+            // 
+            this.cbRememberDownloadSettings.AutoSize = true;
+            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 75);
+            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
+            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
+            this.cbRememberDownloadSettings.TabIndex = 11;
+            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
+            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
+            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 180);
+            this.label6.Location = new System.Drawing.Point(3, 215);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 13);
             this.label6.TabIndex = 8;
@@ -304,7 +317,7 @@
             // 
             this.txtDefaultDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 198);
+            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 233);
             this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
             this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
             this.txtDefaultDownloadDirectory.TabIndex = 9;
@@ -312,7 +325,7 @@
             // btnBrowseDownloadDirectory
             // 
             this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 198);
+            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 233);
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
             this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadDirectory.TabIndex = 10;
@@ -323,7 +336,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 123);
+            this.label5.Location = new System.Drawing.Point(3, 158);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 13);
             this.label5.TabIndex = 5;
@@ -333,7 +346,7 @@
             // 
             this.txtDefaultDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 141);
+            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 176);
             this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
             this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
             this.txtDefaultDownloadArchive.TabIndex = 6;
@@ -341,7 +354,7 @@
             // btnBrowseDownloadArchive
             // 
             this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 141);
+            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 176);
             this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
             this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadArchive.TabIndex = 7;
@@ -367,6 +380,36 @@
             this.tpBinaries.TabIndex = 2;
             this.tpBinaries.Text = "Binaries";
             this.tpBinaries.UseVisualStyleBackColor = true;
+            // 
+            // gbManualUpdate
+            // 
+            this.gbManualUpdate.Controls.Add(this.label4);
+            this.gbManualUpdate.Controls.Add(this.btnUpdateYoutubeDl);
+            this.gbManualUpdate.Location = new System.Drawing.Point(1, 149);
+            this.gbManualUpdate.Name = "gbManualUpdate";
+            this.gbManualUpdate.Size = new System.Drawing.Size(171, 83);
+            this.gbManualUpdate.TabIndex = 8;
+            this.gbManualUpdate.TabStop = false;
+            this.gbManualUpdate.Text = "Manual Update";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "youtube-dl:";
+            // 
+            // btnUpdateYoutubeDl
+            // 
+            this.btnUpdateYoutubeDl.Location = new System.Drawing.Point(79, 20);
+            this.btnUpdateYoutubeDl.Name = "btnUpdateYoutubeDl";
+            this.btnUpdateYoutubeDl.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateYoutubeDl.TabIndex = 0;
+            this.btnUpdateYoutubeDl.Text = "Update";
+            this.btnUpdateYoutubeDl.UseVisualStyleBackColor = true;
+            this.btnUpdateYoutubeDl.Click += new System.EventHandler(this.btnUpdateYoutubeDl_Click);
             // 
             // lblBlankEmbeddedNote
             // 
@@ -552,36 +595,6 @@
             this.panelActions.Size = new System.Drawing.Size(654, 40);
             this.panelActions.TabIndex = 1;
             // 
-            // gbManualUpdate
-            // 
-            this.gbManualUpdate.Controls.Add(this.label4);
-            this.gbManualUpdate.Controls.Add(this.btnUpdateYoutubeDl);
-            this.gbManualUpdate.Location = new System.Drawing.Point(1, 149);
-            this.gbManualUpdate.Name = "gbManualUpdate";
-            this.gbManualUpdate.Size = new System.Drawing.Size(241, 83);
-            this.gbManualUpdate.TabIndex = 8;
-            this.gbManualUpdate.TabStop = false;
-            this.gbManualUpdate.Text = "Manual Update";
-            // 
-            // btnUpdateYoutubeDl
-            // 
-            this.btnUpdateYoutubeDl.Location = new System.Drawing.Point(79, 20);
-            this.btnUpdateYoutubeDl.Name = "btnUpdateYoutubeDl";
-            this.btnUpdateYoutubeDl.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateYoutubeDl.TabIndex = 0;
-            this.btnUpdateYoutubeDl.Text = "Update";
-            this.btnUpdateYoutubeDl.UseVisualStyleBackColor = true;
-            this.btnUpdateYoutubeDl.Click += new System.EventHandler(this.btnUpdateYoutubeDl_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "youtube-dl:";
-            // 
             // FormPreferences
             // 
             this.AcceptButton = this.btnOkay;
@@ -614,12 +627,12 @@
             this.tpDownload.PerformLayout();
             this.tpBinaries.ResumeLayout(false);
             this.tpBinaries.PerformLayout();
+            this.gbManualUpdate.ResumeLayout(false);
+            this.gbManualUpdate.PerformLayout();
             this.tpPresets.ResumeLayout(false);
             this.tpInformation.ResumeLayout(false);
             this.tpInformation.PerformLayout();
             this.panelActions.ResumeLayout(false);
-            this.gbManualUpdate.ResumeLayout(false);
-            this.gbManualUpdate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -668,5 +681,6 @@
         private System.Windows.Forms.GroupBox gbManualUpdate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnUpdateYoutubeDl;
+        private System.Windows.Forms.CheckBox cbRememberDownloadSettings;
     }
 }

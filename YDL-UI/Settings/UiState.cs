@@ -192,6 +192,8 @@ namespace Maxstupo.YdlUi.Settings {
         }
 
         public UiState Apply(Control rootControl, List<ControlState> states, params string[] blacklist) {
+            if (states.Count == 0)
+                return this;
             if (rootControl == null)
                 throw new ArgumentNullException(nameof(rootControl));
 
