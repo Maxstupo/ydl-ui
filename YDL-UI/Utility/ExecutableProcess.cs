@@ -19,14 +19,14 @@ namespace Maxstupo.YdlUi.Utility {
             this.arguments = arguments;
 
             process = new Process();
-            process.StartInfo.FileName = path;
-            process.StartInfo.Arguments = arguments;
-            process.StartInfo.WorkingDirectory = workingDirectory ?? string.Empty;
-
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
 
             process.StartInfo.Verb = "runas";
+            process.StartInfo.FileName = path;
+            process.StartInfo.Arguments = arguments;
+            process.StartInfo.WorkingDirectory = workingDirectory ?? string.Empty;
+
 
             process.EnableRaisingEvents = true;
             process.StartInfo.RedirectStandardOutput = true;
