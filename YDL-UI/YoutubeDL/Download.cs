@@ -63,9 +63,9 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 return;
             Status = DownloadStatus.Downloading;
 
+            Arguments.General.IgnoreConfig = true;
             Arguments.PostProcessing.PreferFFmpeg = true;
             Arguments.PostProcessing.FFmpegLocation = ffmpegPath;
-
 #if DEBUG
             Arguments.Verbosity.Simulate = true;
 #endif
