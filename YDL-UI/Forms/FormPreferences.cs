@@ -115,16 +115,20 @@ namespace Maxstupo.YdlUi.Forms {
 
             btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(ydlPath);
 
-            if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(ydlPath))
-                return;
-            else if (!string.IsNullOrWhiteSpace(txtBinaryFfmpeg.Text) && !File.Exists(ffmpegPath))
-                return;
-            else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadArchive.Text) && !File.Exists(Util.GetAbsolutePath(txtDefaultDownloadArchive.Text)))
-                return;
-            else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadDirectory.Text) && !Directory.Exists(Util.GetAbsolutePath(txtDefaultDownloadDirectory.Text)))
-                return;
+            try {
+                if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(ydlPath))
+                    return;
+                else if (!string.IsNullOrWhiteSpace(txtBinaryFfmpeg.Text) && !File.Exists(ffmpegPath))
+                    return;
+                else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadArchive.Text) && !File.Exists(Util.GetAbsolutePath(txtDefaultDownloadArchive.Text)))
+                    return;
+                else if (!string.IsNullOrWhiteSpace(txtDefaultDownloadDirectory.Text) && !Directory.Exists(Util.GetAbsolutePath(txtDefaultDownloadDirectory.Text)))
+                    return;
 
-            btnOkay.Enabled = true;
+                btnOkay.Enabled = true;
+            } catch (Exception) {
+                // Provided file paths are incorrect. Leave okay button disabled until user fixes the filepath.
+            }
         }
 
         private void BinaryPaths_TextChanged(object sender, EventArgs e) {
@@ -132,8 +136,8 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
-            if(!preferences.RememberDownloadSettings) 
-                preferences.StoredDownloadSettings.State.Clear();            
+            if (!preferences.RememberDownloadSettings)
+                preferences.StoredDownloadSettings.State.Clear();
             DialogResult = DialogResult.OK;
         }
 
