@@ -26,8 +26,11 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void Download_PropertyChanged(object sender, PropertyChangedEventArgs e) {
-            if (e.PropertyName == nameof(Download.Log))
-                txtLog.Text = download.Log;
+            if (e.PropertyName == nameof(Download.Log)) {
+                BeginInvoke((Action)delegate {
+                    txtLog.Text = download.Log;
+                });
+            }
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
@@ -46,7 +49,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             if (MessageBox.Show(this, "Are you sure you want to clear this download log?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
-            download.Log = string.Empty;     
+            download.Log = string.Empty;
         }
     }
 }
