@@ -443,6 +443,16 @@ namespace Maxstupo.YdlUi.Forms {
             }
         }
 
+        // Update download URL tooltip text with the video title.
+        private void dgvDownloads_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e) {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0)
+                return;
+            
+            Download download = (Download)dgvDownloads.Rows[e.RowIndex].DataBoundItem;
+            if (download != null)
+                e.ToolTipText = download?.Title ?? e.ToolTipText;
+        }
+
         /// <summary>
         /// Check for a new release of the application by accessing the github API for the YDL-UI repo.
         /// </summary>

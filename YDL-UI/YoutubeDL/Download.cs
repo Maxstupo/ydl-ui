@@ -11,6 +11,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private string title;
         private int progress;
         private string speed;
         private string size;
@@ -18,6 +19,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         private string log;
         private DownloadStatus status = DownloadStatus.Queued;
 
+        public string Title { get => title; set { title = value; FirePropertyChanged(); } }
         [JsonIgnore] public string Url { get => Arguments.Url; }
         public int Progress { get => progress; set { progress = value; FirePropertyChanged(); } }
         public string Size { get => size; set { size = value; FirePropertyChanged(); } }
@@ -34,7 +36,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public string DownloadDirectory { get; }
 
         [JsonIgnore]
-        private ExecutableProcess process;
+        private ExecutableProcess process, titleProcess;
 
         public Download(string url, string downloadDirectory) {
             this.Arguments.Url = url;
@@ -51,8 +53,10 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             if (Status != DownloadStatus.Downloading && Status != DownloadStatus.Queued)
                 return;
 
-            if (Status == DownloadStatus.Downloading && process != null)
+            if (Status == DownloadStatus.Downloading && process != null) {
                 process.Stop();
+                titleProcess?.Stop();
+            }
 
             Status = DownloadStatus.Stopped;
             Log += $"\r\nDownload Stopped";
@@ -63,6 +67,34 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 return;
             Status = DownloadStatus.Downloading;
 
+            Log += $"Working Directory: {DownloadDirectory}\r\n";
+
+            // Get the video title.
+            // TODO: Maybe add an option to disable video title collection?
+            // Use a regex to extract video title from the process output, instead of starting another one?
+            if (Title == null) {
+                YdlArguments args = new YdlArguments();
+                args.Url = Arguments.Url;
+                args.General.IgnoreConfig = true;
+                args.General.FlatPlaylist = true;
+                args.VideoSelection.NoPlaylist = true;
+                args.Verbosity.Simulate = true;
+                args.Verbosity.GetTitle = true;
+
+                titleProcess = new ExecutableProcess(ydlPath, argumentSerializer.Serialize(args, true), DownloadDirectory);
+                Log += $"\r\nExecuting: {titleProcess.Command}\r\n";
+
+                titleProcess.OnReceived += (sender, data) => {
+                    if (Title == null && !string.IsNullOrWhiteSpace(data?.Trim())) {
+                        Title = data.Trim();
+                        Log += $"\r\nTitle: {Title}";
+                    }
+                };
+                titleProcess.Start();
+            }
+
+
+            // Begin download
             Arguments.General.IgnoreConfig = true;
             Arguments.PostProcessing.PreferFFmpeg = true;
             Arguments.PostProcessing.FFmpegLocation = ffmpegPath;
@@ -74,8 +106,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
             process = new ExecutableProcess(ydlPath, arguments, DownloadDirectory);
 
-            Log += $"\r\nWorking Directory: {DownloadDirectory}";
-            Log += $"\r\nExecuting: {process.Command}";
+            Log += $"\r\nExecuting: {process.Command}\r\n";
 
             process.OnExited += (s, exitCode) => {
                 Status = (exitCode == 0) ? DownloadStatus.Completed : DownloadStatus.Failed;
