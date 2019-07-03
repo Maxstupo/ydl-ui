@@ -198,6 +198,12 @@
     <Compile Include="Forms\FormDownloadLog.Designer.cs">
       <DependentUpon>FormDownloadLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormImportDownloads.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormImportDownloads.Designer.cs">
+      <DependentUpon>FormImportDownloads.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormKeyword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,7 @@
     <Compile Include="Utility\Logger.cs" />
     <Compile Include="Utility\ResourceExtractor.cs" />
     <Compile Include="Utility\SortableBindingList.cs" />
+    <Compile Include="Utility\StringPattern.cs" />
     <Compile Include="Utility\TempDirectory.cs" />
     <Compile Include="Utility\Util.cs" />
     <Compile Include="YoutubeDL\Model\FormatSelector.cs" />
@@ -310,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDownloadLog.resx">
       <DependentUpon>FormDownloadLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormImportDownloads.resx">
+      <DependentUpon>FormImportDownloads.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormKeyword.resx">
       <DependentUpon>FormKeyword.cs</DependentUpon>

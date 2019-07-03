@@ -32,16 +32,20 @@
             this.cbDefaultPreset = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPresetName = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUrlMatch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbModeRegex = new System.Windows.Forms.RadioButton();
+            this.rbModeSimple = new System.Windows.Forms.RadioButton();
             this.panelActions.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOkay
             // 
             this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOkay.Location = new System.Drawing.Point(371, 9);
+            this.btnOkay.Location = new System.Drawing.Point(383, 9);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 1;
@@ -53,7 +57,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(452, 9);
+            this.btnCancel.Location = new System.Drawing.Point(464, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -68,15 +72,15 @@
             this.panelActions.Controls.Add(this.btnOkay);
             this.panelActions.Controls.Add(this.btnCancel);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 66);
+            this.panelActions.Location = new System.Drawing.Point(0, 111);
             this.panelActions.Name = "panelActions";
-            this.panelActions.Size = new System.Drawing.Size(539, 40);
+            this.panelActions.Size = new System.Drawing.Size(551, 40);
             this.panelActions.TabIndex = 4;
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(275, 9);
+            this.btnDelete.Location = new System.Drawing.Point(287, 9);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
@@ -111,19 +115,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPresetName.Location = new System.Drawing.Point(89, 6);
             this.txtPresetName.Name = "txtPresetName";
-            this.txtPresetName.Size = new System.Drawing.Size(438, 20);
+            this.txtPresetName.Size = new System.Drawing.Size(450, 20);
             this.txtPresetName.TabIndex = 1;
             this.toolTip.SetToolTip(this.txtPresetName, "The name of the preset.");
             // 
-            // textBox1
+            // txtUrlMatch
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtUrlMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(89, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(438, 20);
-            this.textBox1.TabIndex = 3;
-            this.toolTip.SetToolTip(this.textBox1, "If this regex matches the download URL, this preset will be selected automaticall" +
+            this.txtUrlMatch.Location = new System.Drawing.Point(89, 32);
+            this.txtUrlMatch.Name = "txtUrlMatch";
+            this.txtUrlMatch.Size = new System.Drawing.Size(450, 20);
+            this.txtUrlMatch.TabIndex = 3;
+            this.toolTip.SetToolTip(this.txtUrlMatch, "If this regex matches the download URL, this preset will be selected automaticall" +
         "y.\r\nLeave blank to disable URL matching.");
             // 
             // label2
@@ -144,28 +148,66 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rbModeSimple);
+            this.groupBox1.Controls.Add(this.rbModeRegex);
+            this.groupBox1.Location = new System.Drawing.Point(12, 58);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(527, 46);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Pattern Matching Mode";
+            // 
+            // rbModeRegex
+            // 
+            this.rbModeRegex.AutoSize = true;
+            this.rbModeRegex.Checked = true;
+            this.rbModeRegex.Location = new System.Drawing.Point(6, 19);
+            this.rbModeRegex.Name = "rbModeRegex";
+            this.rbModeRegex.Size = new System.Drawing.Size(56, 17);
+            this.rbModeRegex.TabIndex = 0;
+            this.rbModeRegex.TabStop = true;
+            this.rbModeRegex.Text = "Regex";
+            this.rbModeRegex.UseVisualStyleBackColor = true;
+            // 
+            // rbModeSimple
+            // 
+            this.rbModeSimple.AutoSize = true;
+            this.rbModeSimple.Location = new System.Drawing.Point(74, 19);
+            this.rbModeSimple.Name = "rbModeSimple";
+            this.rbModeSimple.Size = new System.Drawing.Size(56, 17);
+            this.rbModeSimple.TabIndex = 1;
+            this.rbModeSimple.Text = "Simple";
+            this.rbModeSimple.UseVisualStyleBackColor = true;
+            // 
             // FormPreset
             // 
             this.AcceptButton = this.btnOkay;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(539, 106);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(551, 151);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtUrlMatch);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPresetName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panelActions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(720, 157);
-            this.MinimumSize = new System.Drawing.Size(406, 135);
+            this.MaximumSize = new System.Drawing.Size(720, 200);
+            this.MinimumSize = new System.Drawing.Size(406, 190);
             this.Name = "FormPreset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "New Download Preset";
             this.Load += new System.EventHandler(this.FormPreset_Load);
             this.panelActions.ResumeLayout(false);
             this.panelActions.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,9 +221,12 @@
         private System.Windows.Forms.CheckBox cbDefaultPreset;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPresetName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUrlMatch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbModeSimple;
+        private System.Windows.Forms.RadioButton rbModeRegex;
     }
 }

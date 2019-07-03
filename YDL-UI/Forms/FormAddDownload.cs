@@ -120,10 +120,9 @@ namespace Maxstupo.YdlUi.Forms {
             if (IsEditMode)
                 return;
 
-            Preset preset = preferences.Presets.Where(p => !string.IsNullOrWhiteSpace(p.MatchUrl) && Regex.IsMatch(url, p.MatchUrl)).FirstOrDefault();
-            if (preset != null) {
+            Preset preset = Preset.GetMatchingPreset(preferences.Presets, url);
+            if (preset != null)
                 cbxPreset.SelectedItem = preset;
-            }
         }
 
         private void TxtUrl_TextChanged(object sender, EventArgs e) {
@@ -221,10 +220,10 @@ namespace Maxstupo.YdlUi.Forms {
 
         #endregion
 
-        private Download CreateDownload() {
+        public Download CreateDownload(string overrideUrl = null) {
             if (IsEditMode)
                 return null;
-            Download download = new Download(txtUrl.Text, Util.GetAbsolutePath(txtDownloadDirectory.Text)) {
+            Download download = new Download(overrideUrl ?? txtUrl.Text, Util.GetAbsolutePath(txtDownloadDirectory.Text)) {
                 Status = cbImmediateStart.Checked ? DownloadStatus.Queued : DownloadStatus.Waiting
             };
             SetArguments(download.Arguments);

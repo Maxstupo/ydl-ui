@@ -1,8 +1,10 @@
 ﻿using Maxstupo.YdlUi.Settings;
 using Maxstupo.YdlUi.Utility;
 using Maxstupo.YdlUi.YoutubeDL;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -447,7 +449,7 @@ namespace Maxstupo.YdlUi.Forms {
         private void dgvDownloads_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e) {
             if (e.RowIndex < 0 || e.ColumnIndex != 0)
                 return;
-            
+
             Download download = (Download)dgvDownloads.Rows[e.RowIndex].DataBoundItem;
             if (download != null)
                 e.ToolTipText = download?.Title ?? e.ToolTipText;
@@ -500,6 +502,49 @@ namespace Maxstupo.YdlUi.Forms {
 
         }
 
+        #region Import/Export Downloads
 
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e) {
+            using (SaveFileDialog dialog = new SaveFileDialog()) {
+                dialog.Title = "Export downloads...";
+                dialog.AddExtension = true;
+                dialog.Filter = @"Text Files (*.txt)|*.txt|JSON Files (*.json)|*.json|All Files (*.*)|*.*";
+
+                if (dialog.ShowDialog(this) == DialogResult.OK) {
+                    using (StreamWriter sw = new StreamWriter(dialog.FileName, false, new UTF8Encoding(false))) {
+
+                        if (dialog.FilterIndex == 2) { // Export json file.
+                            string[] urls = dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download)r.DataBoundItem).Url).ToArray();
+                            sw.Write(JsonConvert.SerializeObject(urls, Formatting.Indented));
+
+                        } else { // Export plain text file.
+                            foreach (Download download in dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => (Download)r.DataBoundItem))
+                                sw.WriteLine(download.Url);
+                        }
+
+                        sw.Flush();
+                    }
+                    MessageBox.Show(this, "Successfully exported downloads.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e) {
+            string filepath = GuiUtil.SelectFile(this, "Import downloads...", @"Text Files (*.txt)|*.txt|JSON Files (*.json)|*.json|All Files (*.*)|*.*");
+            if (filepath != null) {
+                bool isJson = Path.GetExtension(filepath).Equals(".json", StringComparison.OrdinalIgnoreCase);
+
+                using (FormImportDownloads dialog = new FormImportDownloads(filepath, isJson, PreferencesManager.Preferences, ContainedInDownloadList, AddDownload)) {
+                    dialog.ShowDialog(this);
+                }
+            }
+        }
+
+        
+        private bool ContainedInDownloadList(string url) {
+            return dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download)r.DataBoundItem).Url).Contains(url);
+        }
+
+        #endregion
     }
 }

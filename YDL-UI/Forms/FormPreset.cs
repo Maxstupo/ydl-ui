@@ -37,8 +37,10 @@ namespace Maxstupo.YdlUi.Forms {
             Preset = CreatePreset(preset);
 
 
+
             txtPresetName.DataBindings.Add(nameof(txtPresetName.Text), Preset, nameof(Preset.Name), false, DataSourceUpdateMode.OnPropertyChanged);
-            textBox1.DataBindings.Add(nameof(textBox1.Text), Preset, nameof(Preset.MatchUrl), false, DataSourceUpdateMode.OnPropertyChanged);
+            txtUrlMatch.DataBindings.Add(nameof(txtUrlMatch.Text), Preset, nameof(Preset.MatchUrl), false, DataSourceUpdateMode.OnPropertyChanged);
+            rbModeSimple.DataBindings.Add(nameof(rbModeSimple.Checked), Preset, nameof(Preset.IsSimpleMode), false, DataSourceUpdateMode.OnPropertyChanged);
             cbDefaultPreset.DataBindings.Add(nameof(cbDefaultPreset.Checked), Preset, nameof(Preset.IsDefault), false, DataSourceUpdateMode.OnPropertyChanged);
 
         }
@@ -48,7 +50,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private Preset CreatePreset(Preset preset = null) {
-            return preset != null ? new Preset(preset) : new Preset(txtPresetName.Text, cbDefaultPreset.Checked) { MatchUrl = textBox1.Text }; ;
+            return preset != null ? new Preset(preset) : new Preset(txtPresetName.Text, cbDefaultPreset.Checked) { MatchUrl = txtUrlMatch.Text, IsSimpleMode = rbModeSimple.Checked }; ;
         }
 
         private void FormPreset_Load(object sender, EventArgs e) {

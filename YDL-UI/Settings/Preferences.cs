@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Maxstupo.YdlUi.Utility;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace Maxstupo.YdlUi.Settings {
     public class Preferences {
@@ -48,6 +51,7 @@ namespace Maxstupo.YdlUi.Settings {
         public bool IsDefault { get; set; }
 
         public string MatchUrl { get; set; }
+        public bool IsSimpleMode { get; set; }
 
 
         [JsonIgnore] public string DisplayText { get => IsDefault ? $"{Name} (Default)" : Name; }
@@ -65,9 +69,28 @@ namespace Maxstupo.YdlUi.Settings {
             Name = preset.Name;
             IsDefault = preset.IsDefault;
             MatchUrl = preset.MatchUrl;
+            IsSimpleMode = preset.IsSimpleMode;
             foreach (ControlState controlState in preset.State)
                 State.Add(controlState.Copy());
         }
+
+        public static bool HasValidPreset(IList<Preset> presets, string url) {
+            return GetMatchingPreset(presets, url) != null;
+        }
+
+        public static Preset GetMatchingPreset(IList<Preset> presets, string url) {
+            return presets.Where(p => {
+                if (string.IsNullOrWhiteSpace(p.MatchUrl))
+                    return false;
+
+                if (p.IsSimpleMode) {
+                    return StringPattern.IsMatch(p.MatchUrl, url);
+                } else {
+                    return Regex.IsMatch(url, p.MatchUrl);
+                }
+            }).FirstOrDefault();
+        }
+
 
         public override bool Equals(object obj) {
             return Equals(obj as Preset);
