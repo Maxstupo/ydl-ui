@@ -262,15 +262,26 @@ namespace Maxstupo.YdlUi.Utility {
         /// <param name="title">The title of the dialog.</param>
         /// <param name="initialDirectory">The initial directory that the dialog will display.</param>
         /// <returns>The selected filepath or null if cancel was selected.</returns>
-        public static string SelectFolder(Form form, string title, string initialDirectory = null) {
-            using (CommonOpenFileDialog dialog = new CommonOpenFileDialog(title)) {
-                dialog.IsFolderPicker = true;
-                dialog.InitialDirectory = initialDirectory;
-                dialog.Multiselect = false;
-                dialog.EnsurePathExists = true;
+        public static string SelectFolder(Form form, string title, string initialDirectory = null, bool useWinformsFolderPicker = false) {
+            if (!useWinformsFolderPicker) {
+                using (CommonOpenFileDialog dialog = new CommonOpenFileDialog(title)) {
+                    dialog.IsFolderPicker = true;
+                    dialog.InitialDirectory = initialDirectory;
+                    dialog.Multiselect = false;
+                    dialog.EnsurePathExists = true;
 
-                if (dialog.ShowDialog(form.Handle) == CommonFileDialogResult.Ok)
-                    return dialog.FileName;
+                    if (dialog.ShowDialog(form.Handle) == CommonFileDialogResult.Ok)
+                        return dialog.FileName;
+                }
+            } else {
+                using (FolderBrowserDialog dialog = new FolderBrowserDialog()) {
+                    dialog.Description = title;
+                    dialog.ShowNewFolderButton = true;
+                    dialog.SelectedPath = initialDirectory;
+
+                    if (dialog.ShowDialog(form) == DialogResult.OK) 
+                        return dialog.SelectedPath;                    
+                }
             }
             return null;
         }
