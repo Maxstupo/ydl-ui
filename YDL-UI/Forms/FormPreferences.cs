@@ -79,6 +79,7 @@ namespace Maxstupo.YdlUi.Forms {
             cbStayTop.DataBindings.Add(nameof(cbStayTop.Checked), preferences, nameof(preferences.StayOnTop), false, DataSourceUpdateMode.OnPropertyChanged);
             cbResumeDownload.DataBindings.Add(nameof(cbResumeDownload.Checked), preferences, nameof(preferences.ResumeDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
             cbRememberDownloadSettings.DataBindings.Add(nameof(cbRememberDownloadSettings.Checked), preferences, nameof(preferences.RememberDownloadSettings), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbUseBasicFolderPicker.DataBindings.Add(nameof(cbUseBasicFolderPicker.Checked), preferences, nameof(preferences.UseBasicFolderPicker), false, DataSourceUpdateMode.OnPropertyChanged);
 
             bsPresets.DataSource = preferences.Presets;
             lbxPresets.DataSource = bsPresets;
@@ -254,7 +255,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnDefaultDownloadDirectoryBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFolder(this, "Select default download directory...", txtDefaultDownloadArchive.Text);
+            string filepath = GuiUtil.SelectFolder(this, "Select default download directory...", txtDefaultDownloadDirectory.Text, preferences.UseBasicFolderPicker);
 
             if (filepath != null)
                 txtDefaultDownloadDirectory.Text = filepath;

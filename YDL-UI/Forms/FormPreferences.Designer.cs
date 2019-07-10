@@ -33,6 +33,7 @@
             this.nudMaxConcurrentDownloads = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.cbResumeDownload = new System.Windows.Forms.CheckBox();
+            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbxCategories = new System.Windows.Forms.ListBox();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.cbStayTop = new System.Windows.Forms.CheckBox();
             this.cbCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.tpDownload = new System.Windows.Forms.TabPage();
-            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtDefaultDownloadDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowseDownloadDirectory = new System.Windows.Forms.Button();
@@ -69,6 +69,7 @@
             this.llblYdlDirectory = new System.Windows.Forms.LinkLabel();
             this.llblPreferencesLocation = new System.Windows.Forms.LinkLabel();
             this.panelActions = new System.Windows.Forms.Panel();
+            this.cbUseBasicFolderPicker = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -180,6 +181,17 @@
             this.toolTip.SetToolTip(this.cbResumeDownload, "Resume incomplete downloads on startup.");
             this.cbResumeDownload.UseVisualStyleBackColor = true;
             // 
+            // cbRememberDownloadSettings
+            // 
+            this.cbRememberDownloadSettings.AutoSize = true;
+            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 75);
+            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
+            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
+            this.cbRememberDownloadSettings.TabIndex = 11;
+            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
+            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
+            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -242,6 +254,7 @@
             // 
             // tpGeneral
             // 
+            this.tpGeneral.Controls.Add(this.cbUseBasicFolderPicker);
             this.tpGeneral.Controls.Add(this.cbStayTop);
             this.tpGeneral.Controls.Add(this.cbCheckForUpdates);
             this.tpGeneral.Location = new System.Drawing.Point(4, 22);
@@ -292,17 +305,6 @@
             this.tpDownload.TabIndex = 1;
             this.tpDownload.Text = "Download";
             this.tpDownload.UseVisualStyleBackColor = true;
-            // 
-            // cbRememberDownloadSettings
-            // 
-            this.cbRememberDownloadSettings.AutoSize = true;
-            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 75);
-            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
-            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
-            this.cbRememberDownloadSettings.TabIndex = 11;
-            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
-            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
-            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -595,6 +597,18 @@
             this.panelActions.Size = new System.Drawing.Size(654, 40);
             this.panelActions.TabIndex = 1;
             // 
+            // cbUseBasicFolderPicker
+            // 
+            this.cbUseBasicFolderPicker.AutoSize = true;
+            this.cbUseBasicFolderPicker.Location = new System.Drawing.Point(6, 62);
+            this.cbUseBasicFolderPicker.Name = "cbUseBasicFolderPicker";
+            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(143, 17);
+            this.cbUseBasicFolderPicker.TabIndex = 2;
+            this.cbUseBasicFolderPicker.Text = "Use Basic Folder Picker";
+            this.toolTip.SetToolTip(this.cbUseBasicFolderPicker, "If checked, the basic folder picker will be used. Potentially fixes certain DPI s" +
+        "caling issues.");
+            this.cbUseBasicFolderPicker.UseVisualStyleBackColor = true;
+            // 
             // FormPreferences
             // 
             this.AcceptButton = this.btnOkay;
@@ -682,5 +696,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnUpdateYoutubeDl;
         private System.Windows.Forms.CheckBox cbRememberDownloadSettings;
+        private System.Windows.Forms.CheckBox cbUseBasicFolderPicker;
     }
 }

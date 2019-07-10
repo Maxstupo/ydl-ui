@@ -21,7 +21,8 @@ namespace Maxstupo.YdlUi.Settings {
         public int MaxConcurrentDownloads { get; set; } = 4;
         public bool ResumeDownloads { get; set; } = true;
         public bool RememberDownloadSettings { get; set; } = false;
-
+        public bool UseBasicFolderPicker { get; set; } = false;
+        
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;
 

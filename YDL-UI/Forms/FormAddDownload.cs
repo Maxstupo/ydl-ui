@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -263,7 +261,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void btnBrowseDownloadDirectory_Click(object sender, EventArgs e) {
 
-            string filepath = GuiUtil.SelectFolder(this, "Select download directory...", txtDownloadDirectory.Text, true);
+            string filepath = GuiUtil.SelectFolder(this, "Select download directory...", txtDownloadDirectory.Text, preferences.UseBasicFolderPicker);
             if (filepath != null)
                 txtDownloadDirectory.Text = filepath;
         }
