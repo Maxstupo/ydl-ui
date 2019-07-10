@@ -9,7 +9,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         // TODO: Add youtube-dl version support checking.
         public static string DownloadStatusRegex { get => @"\[download\]\s+(?<percent>\d{1,3}\.?\d{0,2})%?\s+of\s+\~?(?<filesize>\d{1,4}\.?\d{1,3})(?<filesizeUnit>\w{1,3})\s+at\s+((?<speed>\d{1,3}\.?\d{1,3})(?<speedUnit>\w{1,3}\/s)|Unknown speed)\s+ETA\s+\~?(?<eta>\d{1,3}:\d{1,3})"; }
 
-        private static readonly Regex regex = new Regex(DownloadStatusRegex);
+        private static readonly Regex regex = new Regex(DownloadStatusRegex, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         /// <summary>
         /// Parse the youtube-dl output and update the stats for the provided <paramref name="download"/>.
