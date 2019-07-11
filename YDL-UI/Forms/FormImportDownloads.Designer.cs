@@ -121,6 +121,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(390, 171);
             this.Name = "FormImportDownloads";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Import Downloads";
             this.Load += new System.EventHandler(this.FormImportDownloads_Load);
