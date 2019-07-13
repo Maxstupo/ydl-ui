@@ -95,6 +95,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(370, 220);
             this.Name = "FormDownloadLog";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Download Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDownloadLog_FormClosing);
