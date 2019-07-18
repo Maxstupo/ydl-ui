@@ -83,7 +83,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         }
 
         public bool CanStopDownload(Download download) {
-            return download.Status == DownloadStatus.Downloading || download.Status == DownloadStatus.Queued;
+            return download.Status == DownloadStatus.Downloading || download.Status == DownloadStatus.Queued || download.Status == DownloadStatus.Processing;
         }
 
         public bool CanRemoveDownload(Download download) {
