@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Maxstupo.YdlUi.YoutubeDL {
@@ -7,7 +8,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
     /// </summary>
     public class YdlApi {
         // TODO: Add youtube-dl version support checking.
-        public static string DownloadStatusRegex { get => @"\[download\]\s+(?<percent>\d{1,3}\.?\d{0,2})%?\s+of\s+\~?(?<filesize>\d{1,4}\.?\d{1,3})(?<filesizeUnit>\w{1,3})\s+at\s+((?<speed>\d{1,3}\.?\d{1,3})(?<speedUnit>\w{1,3}\/s)|Unknown speed)\s+ETA\s+\~?(?<eta>\d{1,3}:\d{1,3})"; }
+        public static string DownloadStatusRegex { get => @"\[download\]\s+(?<percent>\d{1,3}\.?\d{0,2})%?\s+of\s+\~?(?<filesize>\d{1,4}\.?\d{1,3})(?<filesizeUnit>\w{1,3})\s+at\s+((?<speed>\d{1,3}\.?\d{1,3})(?<speedUnit>\w{1,3}\/s)|Unknown speed)\s+ETA\s+\~?(?<eta>\d{1,3}:\d{1,3}(?:\:\d{1,3})?)"; }
 
         private static readonly Regex regex = new Regex(DownloadStatusRegex, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
@@ -25,7 +26,12 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 if (match.Success) {
                     download.Progress = (int)float.Parse(match.Groups["percent"].Value);
 
-                    download.Eta = match.Groups["eta"].Value;
+                    // Issue #33
+                    string rawEta = match.Groups["eta"].Value;
+                    if (rawEta.Count(c => c == ':') == 1) // If ETA is "mm:ss"
+                        rawEta = "00:" + rawEta; // Prefix "00:"
+                    download.Eta = rawEta;
+
                     download.Size = match.Groups["filesize"].Value + " " + match.Groups["filesizeUnit"].Value;
 
                     string unit = match.Groups["speedUnit"].Value;
