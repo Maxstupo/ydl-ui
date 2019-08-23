@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDownloadLog));
             this.txtLog = new System.Windows.Forms.TextBox();
             this.btnOkay = new System.Windows.Forms.Button();
             this.cbAutoScroll = new System.Windows.Forms.CheckBox();
@@ -92,10 +93,10 @@
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.txtLog);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(370, 220);
             this.Name = "FormDownloadLog";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Download Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDownloadLog_FormClosing);
