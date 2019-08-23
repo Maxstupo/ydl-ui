@@ -19,6 +19,8 @@ namespace Maxstupo.YdlUi.Forms {
 
         private readonly BindingSource bsPresets = new BindingSource();
 
+        private bool hasConcurrentDownloads = false;
+
         public FormPreferences(DownloadManager downloadManager, Preferences preferences, string preferencesLocation = null) {
             InitializeComponent();
             this.preferences = preferences;
@@ -39,9 +41,20 @@ namespace Maxstupo.YdlUi.Forms {
             llblFfmpegDirectory.Tag = ffmpegPath;
             toolTip.SetToolTip(llblFfmpegDirectory, ffmpegPath);
 
+
+            downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
+            FormClosing += (s, a) => downloadManager.PropertyChanged -= DownloadManager_PropertyChanged;
+
+            DownloadManager_PropertyChanged(downloadManager, new PropertyChangedEventArgs(nameof(DownloadManager.ConcurrentDownloads)));
         }
 
 
+        private void DownloadManager_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+            if (e.PropertyName == nameof(DownloadManager.ConcurrentDownloads)) {
+                hasConcurrentDownloads = (sender as DownloadManager).ConcurrentDownloads > 0;
+                btnUpdateYoutubeDl.Enabled = !hasConcurrentDownloads && !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(Util.GetAbsolutePath(txtBinaryYdl.Text));
+            }
+        }
 
         private void FormPreferences_Load(object sender, EventArgs e) {
             panelActions.BackColor = Color.FromArgb(211, 211, 211);
@@ -100,7 +113,7 @@ namespace Maxstupo.YdlUi.Forms {
             lblBlankEmbeddedNote.Visible = false;
 #endif
 
-            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(Util.GetAbsolutePath(txtBinaryYdl.Text));
+            btnUpdateYoutubeDl.Enabled = !hasConcurrentDownloads && !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(Util.GetAbsolutePath(txtBinaryYdl.Text));
 
         }
 
@@ -114,7 +127,7 @@ namespace Maxstupo.YdlUi.Forms {
             string ydlPath = Util.GetAbsolutePath(txtBinaryYdl.Text);
             string ffmpegPath = Util.GetAbsolutePath(txtBinaryFfmpeg.Text);
 
-            btnUpdateYoutubeDl.Enabled = !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(ydlPath);
+            btnUpdateYoutubeDl.Enabled = !hasConcurrentDownloads && !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(ydlPath);
 
             try {
                 if (!string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && !File.Exists(ydlPath))
