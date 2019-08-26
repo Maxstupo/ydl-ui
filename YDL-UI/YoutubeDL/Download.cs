@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.YoutubeDL {
     public class Download : INotifyPropertyChanged {
@@ -16,7 +18,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         private string speed;
         private string size;
         private string eta;
-        private string log;
         private DownloadStatus status = DownloadStatus.Queued;
 
         public string Title { get => title; set { title = value; FirePropertyChanged(); } }
@@ -31,7 +32,10 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         public YdlArguments Arguments { get; set; } = new YdlArguments();
 
-        public string Log { get => log; set { log = value; FirePropertyChanged(); } }
+        private readonly StringBuilder logBuilder = new StringBuilder();
+        public string Log { get => logBuilder.ToString(); set { logBuilder.Clear().Append(value); FirePropertyChanged(); } }
+
+        public event EventHandler<string> LogUpdate; // Fires for each new log message.
 
         public string DownloadDirectory { get; }
 
@@ -43,6 +47,12 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             this.DownloadDirectory = downloadDirectory;
         }
 
+        private void WriteLog(string msg) {
+            logBuilder.Append(msg);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Log)));
+
+            LogUpdate?.Invoke(this, msg);
+        }
 
         private void FirePropertyChanged([CallerMemberName] string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -59,15 +69,21 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             }
 
             Status = DownloadStatus.Stopped;
-            Log += $"\r\nDownload Stopped";
+            WriteLog("\r\nDownload Stopped");
         }
+
 
         public void Start(string ydlPath, string ffmpegPath) {
             if (Status != DownloadStatus.Queued && Status != DownloadStatus.Waiting)
                 return;
             Status = DownloadStatus.Downloading;
 
-            Log += $"Working Directory: {DownloadDirectory}\r\n";
+            WriteLog($"Working Directory: {DownloadDirectory}\r\nYDL Version: {Application.ProductVersion.RemoveAfterLast('.')}\r\n");
+#if PORTABLE
+            WriteLog("Portable: True\r\n");
+#else
+            WriteLog("Portable: False\r\n");
+#endif
 
             // Get the video title.
             // TODO: Maybe add an option to disable video title collection?
@@ -82,12 +98,12 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 args.Verbosity.GetTitle = true;
 
                 titleProcess = new ExecutableProcess(ydlPath, argumentSerializer.Serialize(args, true), DownloadDirectory);
-                Log += $"\r\nExecuting: {titleProcess.Command}\r\n";
+                WriteLog($"\r\nExecuting: {titleProcess.Command}\r\n");
 
                 titleProcess.OnReceived += (sender, data) => {
                     if (Title == null && !string.IsNullOrWhiteSpace(data?.Trim())) {
                         Title = data.Trim();
-                        Log += $"\r\nTitle: {Title}";
+                        WriteLog($"\r\nTitle: {Title}");
                     }
                 };
                 titleProcess.Start();
@@ -106,7 +122,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
             process = new ExecutableProcess(ydlPath, arguments, DownloadDirectory);
 
-            Log += $"\r\nExecuting: {process.Command}\r\n";
+            WriteLog($"\r\nExecuting: {process.Command}\r\n");
 
             process.OnExited += (s, exitCode) => {
                 Status = (exitCode == 0) ? DownloadStatus.Completed : DownloadStatus.Failed;
@@ -114,11 +130,11 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
             process.OnReceived += (s, e) => {
                 YdlApi.Parse(e, this);
-                Log += $"\r\n{e}";
+                WriteLog($"\r\n{e}");
             };
 
             process.OnError += (s, exitCode) => {
-                Log += $"\r\n{exitCode}";
+                WriteLog($"\r\n{exitCode}");
             };
 
             process.Start();

@@ -13,35 +13,24 @@ namespace Maxstupo.YdlUi.Forms {
             InitializeComponent();
             this.download = download;
 
-            download.PropertyChanged += Download_PropertyChanged;
             txtLog.Text = download.Log;
+            download.LogUpdate += Download_LogUpdate;
         }
 
         private void FormDownloadLog_Load(object sender, EventArgs e) {
-
+      
         }
 
         private void FormDownloadLog_FormClosing(object sender, FormClosingEventArgs e) {
-            download.PropertyChanged -= Download_PropertyChanged;
+            download.LogUpdate -= Download_LogUpdate;
         }
 
-        private void Download_PropertyChanged(object sender, PropertyChangedEventArgs e) {
-            if (e.PropertyName == nameof(Download.Log)) {
-                BeginInvoke((Action)delegate {
-                    txtLog.Text = download.Log;
-                });
-            }
+        private void Download_LogUpdate(object sender, string e) {
+            txtLog.AppendText(e);
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.OK;
-        }
-
-        private void txtLog_TextChanged(object sender, EventArgs e) {
-            if (!cbAutoScroll.Checked)
-                return;
-            txtLog.SelectionStart = txtLog.Text.Length;
-            txtLog.ScrollToCaret();
         }
 
         private void btnClear_Click(object sender, EventArgs e) {
@@ -50,6 +39,7 @@ namespace Maxstupo.YdlUi.Forms {
             if (MessageBox.Show(this, "Are you sure you want to clear this download log?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
             download.Log = string.Empty;
+            txtLog.Text = string.Empty;
         }
     }
 }

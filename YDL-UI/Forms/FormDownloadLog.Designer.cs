@@ -26,7 +26,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDownloadLog));
             this.txtLog = new System.Windows.Forms.TextBox();
             this.btnOkay = new System.Windows.Forms.Button();
-            this.cbAutoScroll = new System.Windows.Forms.CheckBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -42,7 +41,6 @@
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(665, 333);
             this.txtLog.TabIndex = 0;
-            this.txtLog.TextChanged += new System.EventHandler(this.txtLog_TextChanged);
             // 
             // btnOkay
             // 
@@ -55,19 +53,6 @@
             this.btnOkay.Text = "&Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
-            // 
-            // cbAutoScroll
-            // 
-            this.cbAutoScroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbAutoScroll.AutoSize = true;
-            this.cbAutoScroll.Checked = true;
-            this.cbAutoScroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAutoScroll.Location = new System.Drawing.Point(12, 355);
-            this.cbAutoScroll.Name = "cbAutoScroll";
-            this.cbAutoScroll.Size = new System.Drawing.Size(82, 17);
-            this.cbAutoScroll.TabIndex = 1;
-            this.cbAutoScroll.Text = "Auto Scroll";
-            this.cbAutoScroll.UseVisualStyleBackColor = true;
             // 
             // btnClear
             // 
@@ -89,7 +74,6 @@
             this.CancelButton = this.btnOkay;
             this.ClientSize = new System.Drawing.Size(689, 386);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.cbAutoScroll);
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.txtLog);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,7 +94,6 @@
 
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Button btnOkay;
-        private System.Windows.Forms.CheckBox cbAutoScroll;
         private System.Windows.Forms.Button btnClear;
     }
 }
