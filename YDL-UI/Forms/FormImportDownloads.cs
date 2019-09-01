@@ -32,14 +32,19 @@ namespace Maxstupo.YdlUi.Forms {
             this.prefs = prefs;
             this.callback = callback;
 
-            List<string> urls = isJson ?
+            try {
+                List<string> urls = isJson ?
                 JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(filepath, new UTF8Encoding(false)))
                 :
                 File.ReadAllLines(filepath, new UTF8Encoding(false)).ToList();
 
 
-            totalUrls = urls.Count;
-            urlsToAdd = urls.Where(url => !containedInDownloadList(url) && Util.IsValidUrl(url)).ToList();
+                totalUrls = urls.Count;
+                urlsToAdd = urls.Where(url => !containedInDownloadList(url) && Util.IsValidUrl(url)).ToList();
+            } catch (Exception) {
+                totalUrls = 0;
+                urlsToAdd = new List<string>();
+            }
         }
 
 
@@ -67,7 +72,7 @@ namespace Maxstupo.YdlUi.Forms {
 
                 DialogResult = DialogResult.OK;
 
-            } else {
+            } else if (urlsToAdd.Count > 0) {
 
                 using (FormAddDownload dialog = new FormAddDownload(prefs, "sharedsettings.", null, false, false)) {
                     if (dialog.ShowDialog(this) == DialogResult.OK) {

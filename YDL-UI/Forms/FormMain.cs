@@ -532,7 +532,7 @@ namespace Maxstupo.YdlUi.Forms {
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
             string filepath = GuiUtil.SelectFile(this, "Import downloads...", @"Text Files (*.txt)|*.txt|JSON Files (*.json)|*.json|All Files (*.*)|*.*");
             if (filepath != null) {
-                bool isJson = Path.GetExtension(filepath).Equals(".json", StringComparison.OrdinalIgnoreCase);
+                bool isJson = Path.GetExtension(filepath).Equals(".json", StringComparison.InvariantCultureIgnoreCase);
 
                 using (FormImportDownloads dialog = new FormImportDownloads(filepath, isJson, PreferencesManager.Preferences, ContainedInDownloadList, AddDownload)) {
                     dialog.ShowDialog(this);
