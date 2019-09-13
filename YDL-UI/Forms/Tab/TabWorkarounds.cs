@@ -13,10 +13,13 @@ namespace Maxstupo.YdlUi.Forms.Tab {
         private void TabWorkarounds_Load(object sender, EventArgs e) {
             cbxLimitRateUnit.DataSource = Enum.GetValues(typeof(FilesizeUnit));
 
-            GuiUtil.MakeRangeNumericUpDown(nudSleepIntervalMin,nudSleepIntervalMax);
+            GuiUtil.MakeRangeNumericUpDown(nudSleepIntervalMin, nudSleepIntervalMax);
 
             txtReferer.BindEnabledTo(cbReferer);
             txtUserAgent.BindEnabledTo(cbUserAgent);
+
+            txtCookies.BindEnabledTo(cbCookies);
+            btnBrowseCookies.BindEnabledTo(cbCookies);
 
             // Network
             txtProxy.BindEnabledTo(cbProxy);
@@ -61,6 +64,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
 
             arguments.Workarounds.Referer = txtReferer.GetText();
             arguments.Workarounds.UserAgent = txtUserAgent.GetText();
+            arguments.FileSystem.Cookies = txtCookies.GetText();
 
             // Network
             arguments.Network.Proxy = txtProxy.GetText();
@@ -109,6 +113,12 @@ namespace Maxstupo.YdlUi.Forms.Tab {
                 if (!arguments.Workarounds.Headers.ContainsKey(key))
                     arguments.Workarounds.Headers.Add(key, value);
             }
+        }
+
+        private void btnBrowseCookies_Click(object sender, EventArgs e) {
+            string filepath = GuiUtil.SelectFile(this, "Select cookies file...", "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtCookies.Text, false);
+            if (filepath != null)
+                txtCookies.Text = filepath;
         }
     }
 }

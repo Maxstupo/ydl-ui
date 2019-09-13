@@ -72,6 +72,9 @@
             this.txtReferer = new System.Windows.Forms.TextBox();
             this.cbReferer = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.txtCookies = new System.Windows.Forms.TextBox();
+            this.cbCookies = new System.Windows.Forms.CheckBox();
+            this.btnBrowseCookies = new System.Windows.Forms.Button();
             this.tlp.SuspendLayout();
             this.gbDownload.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFragmentRetries)).BeginInit();
@@ -103,12 +106,12 @@
             this.tlp.Controls.Add(this.gbSleepInterval, 1, 1);
             this.tlp.Controls.Add(this.gbNetwork, 0, 0);
             this.tlp.Controls.Add(this.gbHeaders, 2, 0);
-            this.tlp.Location = new System.Drawing.Point(3, 59);
+            this.tlp.Location = new System.Drawing.Point(3, 85);
             this.tlp.Name = "tlp";
             this.tlp.RowCount = 2;
             this.tlp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlp.Size = new System.Drawing.Size(778, 340);
+            this.tlp.Size = new System.Drawing.Size(778, 314);
             this.tlp.TabIndex = 4;
             // 
             // gbDownload
@@ -123,10 +126,10 @@
             this.gbDownload.Controls.Add(this.nudLimitRate);
             this.gbDownload.Controls.Add(this.cbLimitRate);
             this.gbDownload.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbDownload.Location = new System.Drawing.Point(231, 3);
+            this.gbDownload.Location = new System.Drawing.Point(230, 3);
             this.gbDownload.MinimumSize = new System.Drawing.Size(259, 125);
             this.gbDownload.Name = "gbDownload";
-            this.gbDownload.Size = new System.Drawing.Size(268, 164);
+            this.gbDownload.Size = new System.Drawing.Size(267, 151);
             this.gbDownload.TabIndex = 1;
             this.gbDownload.TabStop = false;
             this.gbDownload.Text = "Download";
@@ -136,7 +139,7 @@
             this.cbxLimitRateUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxLimitRateUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLimitRateUnit.FormattingEnabled = true;
-            this.cbxLimitRateUnit.Location = new System.Drawing.Point(200, 20);
+            this.cbxLimitRateUnit.Location = new System.Drawing.Point(199, 20);
             this.cbxLimitRateUnit.Name = "cbxLimitRateUnit";
             this.cbxLimitRateUnit.Size = new System.Drawing.Size(62, 21);
             this.cbxLimitRateUnit.TabIndex = 2;
@@ -145,7 +148,7 @@
             // 
             this.cbRetriesInf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRetriesInf.AutoSize = true;
-            this.cbRetriesInf.Location = new System.Drawing.Point(200, 51);
+            this.cbRetriesInf.Location = new System.Drawing.Point(199, 51);
             this.cbRetriesInf.Name = "cbRetriesInf";
             this.cbRetriesInf.Size = new System.Drawing.Size(63, 17);
             this.cbRetriesInf.TabIndex = 5;
@@ -157,7 +160,7 @@
             // 
             this.cbFragmentRetriesInf.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFragmentRetriesInf.AutoSize = true;
-            this.cbFragmentRetriesInf.Location = new System.Drawing.Point(200, 79);
+            this.cbFragmentRetriesInf.Location = new System.Drawing.Point(199, 79);
             this.cbFragmentRetriesInf.Name = "cbFragmentRetriesInf";
             this.cbFragmentRetriesInf.Size = new System.Drawing.Size(63, 17);
             this.cbFragmentRetriesInf.TabIndex = 8;
@@ -176,7 +179,7 @@
             0,
             0});
             this.nudFragmentRetries.Name = "nudFragmentRetries";
-            this.nudFragmentRetries.Size = new System.Drawing.Size(66, 22);
+            this.nudFragmentRetries.Size = new System.Drawing.Size(65, 22);
             this.nudFragmentRetries.TabIndex = 7;
             this.toolTip.SetToolTip(this.nudFragmentRetries, "Number of retries for a fragment (default is 10) (DASH, hlsnative and ISM)");
             // 
@@ -202,7 +205,7 @@
             0,
             0});
             this.nudRetries.Name = "nudRetries";
-            this.nudRetries.Size = new System.Drawing.Size(66, 22);
+            this.nudRetries.Size = new System.Drawing.Size(65, 22);
             this.nudRetries.TabIndex = 4;
             this.toolTip.SetToolTip(this.nudRetries, "Number of retries (default is 10).");
             // 
@@ -234,7 +237,7 @@
             0,
             0});
             this.nudLimitRate.Name = "nudLimitRate";
-            this.nudLimitRate.Size = new System.Drawing.Size(66, 22);
+            this.nudLimitRate.Size = new System.Drawing.Size(65, 22);
             this.nudLimitRate.TabIndex = 1;
             this.toolTip.SetToolTip(this.nudLimitRate, "Maximum download rate per second.");
             // 
@@ -260,10 +263,10 @@
             this.gbAuthentication.Controls.Add(this.txtUsername);
             this.gbAuthentication.Controls.Add(this.cbUsername);
             this.gbAuthentication.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbAuthentication.Location = new System.Drawing.Point(3, 173);
+            this.gbAuthentication.Location = new System.Drawing.Point(3, 160);
             this.gbAuthentication.MinimumSize = new System.Drawing.Size(218, 134);
             this.gbAuthentication.Name = "gbAuthentication";
-            this.gbAuthentication.Size = new System.Drawing.Size(222, 164);
+            this.gbAuthentication.Size = new System.Drawing.Size(221, 151);
             this.gbAuthentication.TabIndex = 2;
             this.gbAuthentication.TabStop = false;
             this.gbAuthentication.Text = "Authentication";
@@ -307,7 +310,7 @@
             this.txtVideoPassword.Location = new System.Drawing.Point(119, 105);
             this.txtVideoPassword.Name = "txtVideoPassword";
             this.txtVideoPassword.PasswordChar = '•';
-            this.txtVideoPassword.Size = new System.Drawing.Size(96, 22);
+            this.txtVideoPassword.Size = new System.Drawing.Size(95, 22);
             this.txtVideoPassword.TabIndex = 7;
             this.toolTip.SetToolTip(this.txtVideoPassword, "Video password (vimeo, smotri, youku)");
             // 
@@ -317,7 +320,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTwoFactorCode.Location = new System.Drawing.Point(119, 77);
             this.txtTwoFactorCode.Name = "txtTwoFactorCode";
-            this.txtTwoFactorCode.Size = new System.Drawing.Size(96, 22);
+            this.txtTwoFactorCode.Size = new System.Drawing.Size(95, 22);
             this.txtTwoFactorCode.TabIndex = 5;
             this.toolTip.SetToolTip(this.txtTwoFactorCode, "Two-factor authentication code.");
             // 
@@ -328,7 +331,7 @@
             this.txtPassword.Location = new System.Drawing.Point(119, 49);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(96, 22);
+            this.txtPassword.Size = new System.Drawing.Size(95, 22);
             this.txtPassword.TabIndex = 3;
             this.toolTip.SetToolTip(this.txtPassword, "Account password.");
             // 
@@ -338,7 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.Location = new System.Drawing.Point(119, 21);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(96, 22);
+            this.txtUsername.Size = new System.Drawing.Size(95, 22);
             this.txtUsername.TabIndex = 1;
             this.toolTip.SetToolTip(this.txtUsername, "Login with this account ID.");
             // 
@@ -361,10 +364,10 @@
             this.gbSleepInterval.Controls.Add(this.rbSleepIntervalValue);
             this.gbSleepInterval.Controls.Add(this.rbSleepIntervalDefault);
             this.gbSleepInterval.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbSleepInterval.Location = new System.Drawing.Point(231, 173);
+            this.gbSleepInterval.Location = new System.Drawing.Point(230, 160);
             this.gbSleepInterval.MinimumSize = new System.Drawing.Size(262, 123);
             this.gbSleepInterval.Name = "gbSleepInterval";
-            this.gbSleepInterval.Size = new System.Drawing.Size(268, 164);
+            this.gbSleepInterval.Size = new System.Drawing.Size(267, 151);
             this.gbSleepInterval.TabIndex = 3;
             this.gbSleepInterval.TabStop = false;
             this.gbSleepInterval.Text = "Sleep Interval";
@@ -385,7 +388,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(186, 28);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(185, 28);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // nudSleepIntervalMin
@@ -399,7 +402,7 @@
             0,
             0});
             this.nudSleepIntervalMin.Name = "nudSleepIntervalMin";
-            this.nudSleepIntervalMin.Size = new System.Drawing.Size(78, 22);
+            this.nudSleepIntervalMin.Size = new System.Drawing.Size(77, 22);
             this.nudSleepIntervalMin.TabIndex = 0;
             this.toolTip.SetToolTip(this.nudSleepIntervalMin, "Sleep by a random interval before each download, between the specified lower and " +
         "upper bounds.");
@@ -408,7 +411,7 @@
             // 
             this.nudSleepIntervalMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudSleepIntervalMax.Location = new System.Drawing.Point(104, 3);
+            this.nudSleepIntervalMax.Location = new System.Drawing.Point(103, 3);
             this.nudSleepIntervalMax.Maximum = new decimal(new int[] {
             3600,
             0,
@@ -424,7 +427,7 @@
             // 
             this.lblSleepIntervalRangeSeperator.AutoSize = true;
             this.lblSleepIntervalRangeSeperator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSleepIntervalRangeSeperator.Location = new System.Drawing.Point(87, 0);
+            this.lblSleepIntervalRangeSeperator.Location = new System.Drawing.Point(86, 0);
             this.lblSleepIntervalRangeSeperator.Name = "lblSleepIntervalRangeSeperator";
             this.lblSleepIntervalRangeSeperator.Size = new System.Drawing.Size(11, 28);
             this.lblSleepIntervalRangeSeperator.TabIndex = 1;
@@ -442,7 +445,7 @@
             0,
             0});
             this.nudSleepInterval.Name = "nudSleepInterval";
-            this.nudSleepInterval.Size = new System.Drawing.Size(183, 22);
+            this.nudSleepInterval.Size = new System.Drawing.Size(182, 22);
             this.nudSleepInterval.TabIndex = 2;
             this.toolTip.SetToolTip(this.nudSleepInterval, "The number of seconds to sleep before each download.");
             // 
@@ -497,7 +500,7 @@
             this.gbNetwork.Location = new System.Drawing.Point(3, 3);
             this.gbNetwork.MinimumSize = new System.Drawing.Size(218, 125);
             this.gbNetwork.Name = "gbNetwork";
-            this.gbNetwork.Size = new System.Drawing.Size(222, 164);
+            this.gbNetwork.Size = new System.Drawing.Size(221, 151);
             this.gbNetwork.TabIndex = 0;
             this.gbNetwork.TabStop = false;
             this.gbNetwork.Text = "Network";
@@ -548,7 +551,7 @@
             0,
             0});
             this.nudSocketTimeout.Name = "nudSocketTimeout";
-            this.nudSocketTimeout.Size = new System.Drawing.Size(96, 22);
+            this.nudSocketTimeout.Size = new System.Drawing.Size(95, 22);
             this.nudSocketTimeout.TabIndex = 3;
             this.toolTip.SetToolTip(this.nudSocketTimeout, "Time to wait before giving up, in seconds.");
             // 
@@ -569,7 +572,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSourceAddress.Location = new System.Drawing.Point(119, 75);
             this.txtSourceAddress.Name = "txtSourceAddress";
-            this.txtSourceAddress.Size = new System.Drawing.Size(96, 22);
+            this.txtSourceAddress.Size = new System.Drawing.Size(95, 22);
             this.txtSourceAddress.TabIndex = 5;
             this.toolTip.SetToolTip(this.txtSourceAddress, "Client side IP address to bind to.");
             // 
@@ -590,7 +593,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProxy.Location = new System.Drawing.Point(119, 19);
             this.txtProxy.Name = "txtProxy";
-            this.txtProxy.Size = new System.Drawing.Size(96, 22);
+            this.txtProxy.Size = new System.Drawing.Size(95, 22);
             this.txtProxy.TabIndex = 1;
             this.toolTip.SetToolTip(this.txtProxy, "Use the specified HTTP/HTTPS/SOCKS proxy.\r\nTo enable SOCKS proxy, specify a prope" +
         "r scheme (e.g. socks5://127.0.0.1:1080/).\r\nLeave blank for direct connection.");
@@ -611,10 +614,10 @@
             // 
             this.gbHeaders.Controls.Add(this.dgvHeaders);
             this.gbHeaders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbHeaders.Location = new System.Drawing.Point(505, 3);
+            this.gbHeaders.Location = new System.Drawing.Point(503, 3);
             this.gbHeaders.Name = "gbHeaders";
             this.tlp.SetRowSpan(this.gbHeaders, 2);
-            this.gbHeaders.Size = new System.Drawing.Size(270, 334);
+            this.gbHeaders.Size = new System.Drawing.Size(272, 308);
             this.gbHeaders.TabIndex = 4;
             this.gbHeaders.TabStop = false;
             this.gbHeaders.Text = "Headers";
@@ -632,7 +635,7 @@
             this.dgvHeaders.Name = "dgvHeaders";
             this.dgvHeaders.RowHeadersVisible = false;
             this.dgvHeaders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHeaders.Size = new System.Drawing.Size(264, 313);
+            this.dgvHeaders.Size = new System.Drawing.Size(266, 287);
             this.dgvHeaders.TabIndex = 0;
             this.toolTip.SetToolTip(this.dgvHeaders, "Specify custom HTTP headers.");
             // 
@@ -840,10 +843,191 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // txtCookies
+            // 
+            this.txtCookies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCookies.AutoCompleteCustomSource.AddRange(new string[] {
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like" +
+                " Gecko) Version/11.1.2 Safari/605.1.15",
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) C" +
+                "hrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/68.0.3440.84 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61." +
+                "0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134",
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) C" +
+                "hrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68." +
+                "0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) C" +
+                "hrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.84 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) C" +
+                "hrome/68.0.3440.84 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/68.0.3440.75 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
+            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3" +
+                "440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68." +
+                "0.3440.84 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:61.0) Gecko/20100101 Firefox/61." +
+                "0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like" +
+                " Gecko) Version/11.1.2 Safari/605.1.15",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrom" +
+                "e/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like" +
+                " Gecko) Version/11.1.1 Safari/605.1.15",
+            "Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68." +
+                "0.3440.75 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67." +
+                "0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.75 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) C" +
+                "hrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299",
+            "Mozilla/5.0 (iPad; CPU OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like" +
+                " Gecko) Version/11.0 Mobile/15E148 Safari/604.1",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/605.1.15 (KHTML, like" +
+                " Gecko) Version/11.1 Safari/605.1.15",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome" +
+                "/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chr" +
+                "omium/68.0.3440.75 Chrome/68.0.3440.75 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like G" +
+                "ecko) Version/12.0 Safari/605.1.15",
+            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3" +
+                "396.99 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/605.1.15 (KHTML, like" +
+                " Gecko) Version/11.1.2 Safari/605.1.15",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/67.0.3396.87 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:61.0) Gecko/20100101 Firefox/61." +
+                "0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/604.5.6 (KHTML, like " +
+                "Gecko) Version/11.0.3 Safari/604.5.6",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/67.0.3396.87 Safari/537.36 OPR/54.0.2952.64",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:56.0) Gecko/20100101 Firefox/56.0",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51." +
+                "0.2704.106 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like G" +
+                "ecko) Chrome/68.0.3440.84 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0",
+            "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome" +
+                "/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chr" +
+                "omium/68.0.3440.106 Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; rv:61.0) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/67.0.3396.87 Safari/537.36 OPR/54.0.2952.71",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65." +
+                "0.3325.181 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:62.0) Gecko/20100101 Firefox/62." +
+                "0",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrom" +
+                "e/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrom" +
+                "e/68.0.3440.84 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome" +
+                "/67.0.3396.103 YaBrowser/18.7.0.2695 Yowser/2.5 Safari/537.36",
+            "Mozilla/5.0 (X11; CrOS x86_64 10575.58.0) AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67." +
+                "0.3396.87 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0) Gecko/20100101 Firefox/60." +
+                "0",
+            "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0." +
+                "3440.106 Safari/537.36",
+            "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:61.0) Gecko/20100101 Firefox/61.0"});
+            this.txtCookies.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCookies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtCookies.Location = new System.Drawing.Point(95, 59);
+            this.txtCookies.Name = "txtCookies";
+            this.txtCookies.ReadOnly = true;
+            this.txtCookies.Size = new System.Drawing.Size(605, 22);
+            this.txtCookies.TabIndex = 6;
+            this.toolTip.SetToolTip(this.txtCookies, "A filepath to read cookies.");
+            // 
+            // cbCookies
+            // 
+            this.cbCookies.AutoSize = true;
+            this.cbCookies.Location = new System.Drawing.Point(3, 62);
+            this.cbCookies.Name = "cbCookies";
+            this.cbCookies.Size = new System.Drawing.Size(70, 17);
+            this.cbCookies.TabIndex = 5;
+            this.cbCookies.Text = "Cookies:";
+            this.toolTip.SetToolTip(this.cbCookies, "A filepath to read cookies.");
+            this.cbCookies.UseVisualStyleBackColor = true;
+            // 
+            // btnBrowseCookies
+            // 
+            this.btnBrowseCookies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseCookies.Location = new System.Drawing.Point(706, 58);
+            this.btnBrowseCookies.Name = "btnBrowseCookies";
+            this.btnBrowseCookies.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseCookies.TabIndex = 7;
+            this.btnBrowseCookies.Text = "Browse";
+            this.btnBrowseCookies.UseVisualStyleBackColor = true;
+            this.btnBrowseCookies.Click += new System.EventHandler(this.btnBrowseCookies_Click);
+            // 
             // TabWorkarounds
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnBrowseCookies);
+            this.Controls.Add(this.txtCookies);
+            this.Controls.Add(this.cbCookies);
             this.Controls.Add(this.tlp);
             this.Controls.Add(this.txtUserAgent);
             this.Controls.Add(this.cbUserAgent);
@@ -928,5 +1112,8 @@
         private System.Windows.Forms.TextBox txtReferer;
         private System.Windows.Forms.CheckBox cbReferer;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TextBox txtCookies;
+        private System.Windows.Forms.CheckBox cbCookies;
+        private System.Windows.Forms.Button btnBrowseCookies;
     }
 }
