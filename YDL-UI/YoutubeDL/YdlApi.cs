@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -21,10 +22,11 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             if (string.IsNullOrWhiteSpace(line))
                 return;
 
+            // Attempt to update download status, this could break if we are using a user-specified youtube-dl binary.
             try {
                 Match match = regex.Match(line);
                 if (match.Success) {
-                    download.Progress = (int)float.Parse(match.Groups["percent"].Value);
+                    download.Progress = (int)float.Parse(match.Groups["percent"].Value, CultureInfo.InvariantCulture); // Issue #41 - Fix regional decimal separator.
 
                     // Issue #33
                     string rawEta = match.Groups["eta"].Value;
@@ -38,7 +40,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                     download.Speed = match.Groups["speed"].Value + " " + unit;
 
                 }
-            } catch (Exception e) { // Attempt to update status, this could break if we are using a custom youtube-dl application.
+            } catch (Exception e) {
                 Console.WriteLine(e);
             }
 
