@@ -93,6 +93,7 @@ namespace Maxstupo.YdlUi.Forms {
             cbResumeDownload.DataBindings.Add(nameof(cbResumeDownload.Checked), preferences, nameof(preferences.ResumeDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
             cbRememberDownloadSettings.DataBindings.Add(nameof(cbRememberDownloadSettings.Checked), preferences, nameof(preferences.RememberDownloadSettings), false, DataSourceUpdateMode.OnPropertyChanged);
             cbUseBasicFolderPicker.DataBindings.Add(nameof(cbUseBasicFolderPicker.Checked), preferences, nameof(preferences.UseBasicFolderPicker), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbAutoStartDragDropDownloads.DataBindings.Add(nameof(cbAutoStartDragDropDownloads.Checked), preferences, nameof(preferences.AutoConfirmDragDropDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
 
             bsPresets.DataSource = preferences.Presets;
             lbxPresets.DataSource = bsPresets;

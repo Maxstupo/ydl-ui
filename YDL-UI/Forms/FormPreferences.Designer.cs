@@ -28,12 +28,14 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOkay = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.cbPromptOnClose = new System.Windows.Forms.CheckBox();
+            this.cbUseBasicFolderPicker = new System.Windows.Forms.CheckBox();
+            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
+            this.cbResumeDownload = new System.Windows.Forms.CheckBox();
+            this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.nudMaxConcurrentDownloads = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbResumeDownload = new System.Windows.Forms.CheckBox();
-            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
+            this.cbAutoStartDragDropDownloads = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbxCategories = new System.Windows.Forms.ListBox();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -69,7 +71,6 @@
             this.llblYdlDirectory = new System.Windows.Forms.LinkLabel();
             this.llblPreferencesLocation = new System.Windows.Forms.LinkLabel();
             this.panelActions = new System.Windows.Forms.Panel();
-            this.cbUseBasicFolderPicker = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -115,27 +116,61 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // cbPromptOnClose
+            // 
+            this.cbPromptOnClose.AutoSize = true;
+            this.cbPromptOnClose.Location = new System.Drawing.Point(6, 52);
+            this.cbPromptOnClose.Name = "cbPromptOnClose";
+            this.cbPromptOnClose.Size = new System.Drawing.Size(111, 17);
+            this.cbPromptOnClose.TabIndex = 3;
+            this.cbPromptOnClose.Text = "Prompt on Close";
+            this.toolTip.SetToolTip(this.cbPromptOnClose, "If any downloads are still running, prompt for confirmation when closing.");
+            this.cbPromptOnClose.UseVisualStyleBackColor = true;
+            // 
+            // cbUseBasicFolderPicker
+            // 
+            this.cbUseBasicFolderPicker.AutoSize = true;
+            this.cbUseBasicFolderPicker.Location = new System.Drawing.Point(6, 85);
+            this.cbUseBasicFolderPicker.Name = "cbUseBasicFolderPicker";
+            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(143, 17);
+            this.cbUseBasicFolderPicker.TabIndex = 2;
+            this.cbUseBasicFolderPicker.Text = "Use Basic Folder Picker";
+            this.toolTip.SetToolTip(this.cbUseBasicFolderPicker, "If checked, the basic folder picker will be used. Potentially fixes certain DPI s" +
+        "caling issues.");
+            this.cbUseBasicFolderPicker.UseVisualStyleBackColor = true;
+            // 
+            // cbRememberDownloadSettings
+            // 
+            this.cbRememberDownloadSettings.AutoSize = true;
+            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 52);
+            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
+            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
+            this.cbRememberDownloadSettings.TabIndex = 11;
+            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
+            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
+            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
+            // 
+            // cbResumeDownload
+            // 
+            this.cbResumeDownload.AutoSize = true;
+            this.cbResumeDownload.Location = new System.Drawing.Point(6, 29);
+            this.cbResumeDownload.Name = "cbResumeDownload";
+            this.cbResumeDownload.Size = new System.Drawing.Size(186, 17);
+            this.cbResumeDownload.TabIndex = 2;
+            this.cbResumeDownload.Text = "Resume Downloads on Startup";
+            this.toolTip.SetToolTip(this.cbResumeDownload, "Resume incomplete downloads on startup.");
+            this.cbResumeDownload.UseVisualStyleBackColor = true;
+            // 
             // cbBasicMode
             // 
             this.cbBasicMode.AutoSize = true;
-            this.cbBasicMode.Location = new System.Drawing.Point(6, 29);
+            this.cbBasicMode.Location = new System.Drawing.Point(6, 6);
             this.cbBasicMode.Name = "cbBasicMode";
             this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
             this.cbBasicMode.TabIndex = 1;
             this.cbBasicMode.Text = "Basic Mode";
             this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for the Download dialog.");
             this.cbBasicMode.UseVisualStyleBackColor = true;
-            // 
-            // cbPromptOnClose
-            // 
-            this.cbPromptOnClose.AutoSize = true;
-            this.cbPromptOnClose.Location = new System.Drawing.Point(6, 6);
-            this.cbPromptOnClose.Name = "cbPromptOnClose";
-            this.cbPromptOnClose.Size = new System.Drawing.Size(111, 17);
-            this.cbPromptOnClose.TabIndex = 0;
-            this.cbPromptOnClose.Text = "Prompt on Close";
-            this.toolTip.SetToolTip(this.cbPromptOnClose, "If any downloads are still running, prompt for confirmation when closing.");
-            this.cbPromptOnClose.UseVisualStyleBackColor = true;
             // 
             // nudMaxConcurrentDownloads
             // 
@@ -170,27 +205,16 @@
             this.label1.Text = "Max Concurrent Downloads:";
             this.toolTip.SetToolTip(this.label1, "The max simultaneous downloads allowed to download at once.");
             // 
-            // cbResumeDownload
+            // cbAutoStartDragDropDownloads
             // 
-            this.cbResumeDownload.AutoSize = true;
-            this.cbResumeDownload.Location = new System.Drawing.Point(6, 52);
-            this.cbResumeDownload.Name = "cbResumeDownload";
-            this.cbResumeDownload.Size = new System.Drawing.Size(186, 17);
-            this.cbResumeDownload.TabIndex = 2;
-            this.cbResumeDownload.Text = "Resume Downloads on Startup";
-            this.toolTip.SetToolTip(this.cbResumeDownload, "Resume incomplete downloads on startup.");
-            this.cbResumeDownload.UseVisualStyleBackColor = true;
-            // 
-            // cbRememberDownloadSettings
-            // 
-            this.cbRememberDownloadSettings.AutoSize = true;
-            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 75);
-            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
-            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
-            this.cbRememberDownloadSettings.TabIndex = 11;
-            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
-            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
-            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
+            this.cbAutoStartDragDropDownloads.AutoSize = true;
+            this.cbAutoStartDragDropDownloads.Location = new System.Drawing.Point(6, 75);
+            this.cbAutoStartDragDropDownloads.Name = "cbAutoStartDragDropDownloads";
+            this.cbAutoStartDragDropDownloads.Size = new System.Drawing.Size(209, 17);
+            this.cbAutoStartDragDropDownloads.TabIndex = 12;
+            this.cbAutoStartDragDropDownloads.Text = "Auto confirm DragDrop Downloads";
+            this.toolTip.SetToolTip(this.cbAutoStartDragDropDownloads, "Auto-confirms the download dialog for downloads that were dragged and dropped.");
+            this.cbAutoStartDragDropDownloads.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -254,6 +278,7 @@
             // 
             // tpGeneral
             // 
+            this.tpGeneral.Controls.Add(this.cbPromptOnClose);
             this.tpGeneral.Controls.Add(this.cbUseBasicFolderPicker);
             this.tpGeneral.Controls.Add(this.cbStayTop);
             this.tpGeneral.Controls.Add(this.cbCheckForUpdates);
@@ -286,6 +311,7 @@
             // 
             // tpDownload
             // 
+            this.tpDownload.Controls.Add(this.cbAutoStartDragDropDownloads);
             this.tpDownload.Controls.Add(this.cbRememberDownloadSettings);
             this.tpDownload.Controls.Add(this.cbResumeDownload);
             this.tpDownload.Controls.Add(this.label6);
@@ -295,7 +321,6 @@
             this.tpDownload.Controls.Add(this.txtDefaultDownloadArchive);
             this.tpDownload.Controls.Add(this.btnBrowseDownloadArchive);
             this.tpDownload.Controls.Add(this.cbBasicMode);
-            this.tpDownload.Controls.Add(this.cbPromptOnClose);
             this.tpDownload.Controls.Add(this.nudMaxConcurrentDownloads);
             this.tpDownload.Controls.Add(this.label1);
             this.tpDownload.Location = new System.Drawing.Point(4, 22);
@@ -597,18 +622,6 @@
             this.panelActions.Size = new System.Drawing.Size(654, 40);
             this.panelActions.TabIndex = 1;
             // 
-            // cbUseBasicFolderPicker
-            // 
-            this.cbUseBasicFolderPicker.AutoSize = true;
-            this.cbUseBasicFolderPicker.Location = new System.Drawing.Point(6, 62);
-            this.cbUseBasicFolderPicker.Name = "cbUseBasicFolderPicker";
-            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(143, 17);
-            this.cbUseBasicFolderPicker.TabIndex = 2;
-            this.cbUseBasicFolderPicker.Text = "Use Basic Folder Picker";
-            this.toolTip.SetToolTip(this.cbUseBasicFolderPicker, "If checked, the basic folder picker will be used. Potentially fixes certain DPI s" +
-        "caling issues.");
-            this.cbUseBasicFolderPicker.UseVisualStyleBackColor = true;
-            // 
             // FormPreferences
             // 
             this.AcceptButton = this.btnOkay;
@@ -673,7 +686,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnBinaryBrowseYdl;
         private System.Windows.Forms.Label lblRestartNote;
-        private System.Windows.Forms.CheckBox cbPromptOnClose;
         private System.Windows.Forms.TabPage tpPresets;
         private System.Windows.Forms.ListBox lbxPresets;
         private System.Windows.Forms.Button btnPresetAdd;
@@ -697,5 +709,7 @@
         private System.Windows.Forms.Button btnUpdateYoutubeDl;
         private System.Windows.Forms.CheckBox cbRememberDownloadSettings;
         private System.Windows.Forms.CheckBox cbUseBasicFolderPicker;
+        private System.Windows.Forms.CheckBox cbPromptOnClose;
+        private System.Windows.Forms.CheckBox cbAutoStartDragDropDownloads;
     }
 }

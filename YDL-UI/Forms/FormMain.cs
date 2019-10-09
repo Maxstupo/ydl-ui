@@ -340,7 +340,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void FormMain_DragDrop(object sender, DragEventArgs e) {
             string url = (string)e.Data.GetData(DataFormats.Text);
-            ShowAddDownloadDialogIfValidUrl(url);
+            ShowAddDownloadDialogIfValidUrl(url, PreferencesManager.Preferences.AutoConfirmDragDropDownloads);
         }
 
 
@@ -540,7 +540,7 @@ namespace Maxstupo.YdlUi.Forms {
             }
         }
 
-        
+
         private bool ContainedInDownloadList(string url) {
             return dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download)r.DataBoundItem).Url).Contains(url);
         }

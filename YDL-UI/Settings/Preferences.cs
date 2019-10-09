@@ -22,6 +22,7 @@ namespace Maxstupo.YdlUi.Settings {
         public bool ResumeDownloads { get; set; } = true;
         public bool RememberDownloadSettings { get; set; } = false;
         public bool UseBasicFolderPicker { get; set; } = false;
+        public bool AutoConfirmDragDropDownloads { get; set; } = false;
         
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;
