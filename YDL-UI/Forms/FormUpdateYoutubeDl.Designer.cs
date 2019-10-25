@@ -48,6 +48,7 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(73, 13);
             this.lblStatus.TabIndex = 1;
+            this.lblStatus.Tag = "!ignore";
             this.lblStatus.Text = "Please wait...";
             // 
             // txtUpdateLog
@@ -71,6 +72,7 @@
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(75, 23);
             this.btnDone.TabIndex = 3;
+            this.btnDone.Tag = "done";
             this.btnDone.Text = "Done";
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
@@ -93,6 +95,7 @@
             this.MinimumSize = new System.Drawing.Size(443, 183);
             this.Name = "FormUpdateYoutubeDl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "update_dialog";
             this.Text = "Updating youtube-dl...";
             this.Load += new System.EventHandler(this.FormUpdateYoutubeDl_Load);
             this.Shown += new System.EventHandler(this.FormUpdateYoutubeDl_Shown);

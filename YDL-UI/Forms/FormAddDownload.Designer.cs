@@ -67,6 +67,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -78,6 +79,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 3;
+            this.btnAdd.Tag = "add";
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -92,6 +94,7 @@
             this.cbImmediateStart.Name = "cbImmediateStart";
             this.cbImmediateStart.Size = new System.Drawing.Size(111, 17);
             this.cbImmediateStart.TabIndex = 2;
+            this.cbImmediateStart.Tag = "start";
             this.cbImmediateStart.Text = "&Immediate Start?";
             this.toolTip.SetToolTip(this.cbImmediateStart, "Start the download immediately upon clicking \"Add\".");
             this.cbImmediateStart.UseVisualStyleBackColor = true;
@@ -103,6 +106,7 @@
             this.lblUrl.Name = "lblUrl";
             this.lblUrl.Size = new System.Drawing.Size(30, 13);
             this.lblUrl.TabIndex = 0;
+            this.lblUrl.Tag = "url";
             this.lblUrl.Text = "&URL:";
             this.toolTip.SetToolTip(this.lblUrl, "The URL to download.");
             // 
@@ -114,6 +118,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(645, 22);
             this.txtUrl.TabIndex = 1;
+            this.txtUrl.Tag = "url.value";
             this.toolTip.SetToolTip(this.txtUrl, "The URL to download.");
             // 
             // txtDownloadDirectory
@@ -125,6 +130,7 @@
             this.txtDownloadDirectory.ReadOnly = true;
             this.txtDownloadDirectory.Size = new System.Drawing.Size(603, 22);
             this.txtDownloadDirectory.TabIndex = 3;
+            this.txtDownloadDirectory.Tag = "directory.value";
             this.toolTip.SetToolTip(this.txtDownloadDirectory, "The directory to download the video to.");
             // 
             // lblDownloadDirectory
@@ -134,6 +140,7 @@
             this.lblDownloadDirectory.Name = "lblDownloadDirectory";
             this.lblDownloadDirectory.Size = new System.Drawing.Size(113, 13);
             this.lblDownloadDirectory.TabIndex = 2;
+            this.lblDownloadDirectory.Tag = "directory";
             this.lblDownloadDirectory.Text = "&Download Directory:";
             this.toolTip.SetToolTip(this.lblDownloadDirectory, "The directory to download the video to.");
             // 
@@ -144,6 +151,7 @@
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
             this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadDirectory.TabIndex = 4;
+            this.btnBrowseDownloadDirectory.Tag = "@browse";
             this.btnBrowseDownloadDirectory.Text = "...";
             this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnBrowseDownloadDirectory_Click);
@@ -157,6 +165,7 @@
             this.txtDownloadArchive.ReadOnly = true;
             this.txtDownloadArchive.Size = new System.Drawing.Size(603, 22);
             this.txtDownloadArchive.TabIndex = 8;
+            this.txtDownloadArchive.Tag = "download_archive.value";
             this.toolTip.SetToolTip(this.txtDownloadArchive, "Download the video only if it\'s not listed in the archive file. \r\nUpon successful" +
         " download, the video ID will be added to the archive file.");
             // 
@@ -167,6 +176,7 @@
             this.btnDownloadArchiveBrowse.Name = "btnDownloadArchiveBrowse";
             this.btnDownloadArchiveBrowse.Size = new System.Drawing.Size(36, 23);
             this.btnDownloadArchiveBrowse.TabIndex = 9;
+            this.btnDownloadArchiveBrowse.Tag = "@browse";
             this.btnDownloadArchiveBrowse.Text = "...";
             this.btnDownloadArchiveBrowse.UseVisualStyleBackColor = true;
             this.btnDownloadArchiveBrowse.Click += new System.EventHandler(this.btnDownloadArchiveBrowse_Click);
@@ -185,6 +195,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(774, 402);
             this.tabControl.TabIndex = 10;
+            this.tabControl.Tag = "#";
             // 
             // tpQuality
             // 
@@ -194,6 +205,7 @@
             this.tpQuality.Name = "tpQuality";
             this.tpQuality.Size = new System.Drawing.Size(766, 376);
             this.tpQuality.TabIndex = 3;
+            this.tpQuality.Tag = "quality";
             this.tpQuality.Text = "Quality";
             // 
             // quality
@@ -204,6 +216,7 @@
             this.quality.Name = "quality";
             this.quality.Size = new System.Drawing.Size(766, 376);
             this.quality.TabIndex = 0;
+            this.quality.Tag = "#";
             // 
             // tpVideoSelection
             // 
@@ -214,6 +227,7 @@
             this.tpVideoSelection.Padding = new System.Windows.Forms.Padding(3);
             this.tpVideoSelection.Size = new System.Drawing.Size(766, 376);
             this.tpVideoSelection.TabIndex = 0;
+            this.tpVideoSelection.Tag = "video_selection";
             this.tpVideoSelection.Text = "Video Selection";
             // 
             // videoSelection
@@ -224,6 +238,7 @@
             this.videoSelection.Name = "videoSelection";
             this.videoSelection.Size = new System.Drawing.Size(760, 370);
             this.videoSelection.TabIndex = 0;
+            this.videoSelection.Tag = "#";
             // 
             // tpPostProcessing
             // 
@@ -234,6 +249,7 @@
             this.tpPostProcessing.Padding = new System.Windows.Forms.Padding(3);
             this.tpPostProcessing.Size = new System.Drawing.Size(766, 376);
             this.tpPostProcessing.TabIndex = 1;
+            this.tpPostProcessing.Tag = "post_processing";
             this.tpPostProcessing.Text = "Post Processing";
             // 
             // postProcessing
@@ -244,6 +260,7 @@
             this.postProcessing.Name = "postProcessing";
             this.postProcessing.Size = new System.Drawing.Size(760, 370);
             this.postProcessing.TabIndex = 0;
+            this.postProcessing.Tag = "#";
             // 
             // tpWorkarounds
             // 
@@ -253,6 +270,7 @@
             this.tpWorkarounds.Name = "tpWorkarounds";
             this.tpWorkarounds.Size = new System.Drawing.Size(766, 376);
             this.tpWorkarounds.TabIndex = 2;
+            this.tpWorkarounds.Tag = "workarounds";
             this.tpWorkarounds.Text = "Workarounds";
             // 
             // workarounds
@@ -263,6 +281,7 @@
             this.workarounds.Name = "workarounds";
             this.workarounds.Size = new System.Drawing.Size(766, 376);
             this.workarounds.TabIndex = 0;
+            this.workarounds.Tag = "#";
             // 
             // cbDownloadArchive
             // 
@@ -271,6 +290,7 @@
             this.cbDownloadArchive.Name = "cbDownloadArchive";
             this.cbDownloadArchive.Size = new System.Drawing.Size(123, 17);
             this.cbDownloadArchive.TabIndex = 7;
+            this.cbDownloadArchive.Tag = "download_archive";
             this.cbDownloadArchive.Text = "Download Archive:";
             this.toolTip.SetToolTip(this.cbDownloadArchive, "Download the video only if it\'s not listed in the archive file. \r\nUpon successful" +
         " download, the video ID will be added to the archive file.");
@@ -283,6 +303,7 @@
             this.cbFilenameTemplate.Name = "cbFilenameTemplate";
             this.cbFilenameTemplate.Size = new System.Drawing.Size(123, 17);
             this.cbFilenameTemplate.TabIndex = 5;
+            this.cbFilenameTemplate.Tag = "filename_template";
             this.cbFilenameTemplate.Text = "Filename Template:";
             this.toolTip.SetToolTip(this.cbFilenameTemplate, "Output filename template.");
             this.cbFilenameTemplate.UseVisualStyleBackColor = true;
@@ -302,6 +323,7 @@
             this.cbBasicMode.Name = "cbBasicMode";
             this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
             this.cbBasicMode.TabIndex = 0;
+            this.cbBasicMode.Tag = "mode";
             this.cbBasicMode.Text = "Basic Mode";
             this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for simple downloads.");
             this.cbBasicMode.UseVisualStyleBackColor = true;
@@ -331,6 +353,7 @@
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(798, 40);
             this.panelActions.TabIndex = 11;
+            this.panelActions.Tag = "#";
             // 
             // txtFilenameTemplate
             // 
@@ -348,6 +371,8 @@
             this.txtFilenameTemplate.Name = "txtFilenameTemplate";
             this.txtFilenameTemplate.Size = new System.Drawing.Size(645, 22);
             this.txtFilenameTemplate.TabIndex = 6;
+            this.txtFilenameTemplate.Tag = "filename_template.value";
+            this.toolTip.SetToolTip(this.txtFilenameTemplate, "Output filename template.");
             // 
             // FormAddDownload
             // 
@@ -375,6 +400,7 @@
             this.Name = "FormAddDownload";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "download_dialog";
             this.Text = "Add Download...";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormAddDownload_FormClosing);
             this.Load += new System.EventHandler(this.FormAddDownload_Load);
@@ -382,7 +408,6 @@
             this.ResizeEnd += new System.EventHandler(this.FormAddDownload_ResizeEnd);
             this.tabControl.ResumeLayout(false);
             this.tpQuality.ResumeLayout(false);
-            this.tpQuality.PerformLayout();
             this.tpVideoSelection.ResumeLayout(false);
             this.tpPostProcessing.ResumeLayout(false);
             this.tpWorkarounds.ResumeLayout(false);

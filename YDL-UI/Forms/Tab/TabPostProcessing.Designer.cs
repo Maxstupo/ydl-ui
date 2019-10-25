@@ -39,6 +39,7 @@
             this.cbxAudioOnly.Name = "cbxAudioOnly";
             this.cbxAudioOnly.Size = new System.Drawing.Size(116, 21);
             this.cbxAudioOnly.TabIndex = 1;
+            this.cbxAudioOnly.Tag = "audio_only.dropdown";
             this.toolTip.SetToolTip(this.cbxAudioOnly, "Convert video file to audio-only file.");
             // 
             // cbxRecodeFormat
@@ -49,6 +50,7 @@
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(116, 21);
             this.cbxRecodeFormat.TabIndex = 3;
+            this.cbxRecodeFormat.Tag = "recode_format.value";
             this.toolTip.SetToolTip(this.cbxRecodeFormat, "Encode the video to another format if necessary.");
             // 
             // cbRecodeFormat
@@ -58,6 +60,7 @@
             this.cbRecodeFormat.Name = "cbRecodeFormat";
             this.cbRecodeFormat.Size = new System.Drawing.Size(106, 17);
             this.cbRecodeFormat.TabIndex = 2;
+            this.cbRecodeFormat.Tag = "recode_format";
             this.cbRecodeFormat.Text = "Recode Format:";
             this.toolTip.SetToolTip(this.cbRecodeFormat, "Encode the video to another format if necessary.");
             this.cbRecodeFormat.UseVisualStyleBackColor = true;
@@ -69,6 +72,7 @@
             this.cbAudioOnly.Name = "cbAudioOnly";
             this.cbAudioOnly.Size = new System.Drawing.Size(87, 17);
             this.cbAudioOnly.TabIndex = 0;
+            this.cbAudioOnly.Tag = "audio_only";
             this.cbAudioOnly.Text = "Audio Only:";
             this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
@@ -91,6 +95,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabPostProcessing";
             this.Size = new System.Drawing.Size(712, 287);
+            this.Tag = "#";
             this.Load += new System.EventHandler(this.TabPostProcessing_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -100,8 +105,8 @@
         #endregion
         private System.Windows.Forms.ComboBox cbxRecodeFormat;
         private System.Windows.Forms.CheckBox cbRecodeFormat;
-        private System.Windows.Forms.ToolTip toolTip;
         public System.Windows.Forms.ComboBox cbxAudioOnly;
         public System.Windows.Forms.CheckBox cbAudioOnly;
+        public System.Windows.Forms.ToolTip toolTip;
     }
 }

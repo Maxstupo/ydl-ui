@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -29,21 +30,22 @@ namespace Maxstupo.YdlUi.Forms {
             if (string.IsNullOrWhiteSpace(preferencesLocation)) {
                 llblPreferencesLocation.Visible = false;
             } else {
-                llblPreferencesLocation.Tag = preferencesLocation;
                 toolTip.SetToolTip(llblPreferencesLocation, preferencesLocation);
             }
 
             string ydlPath = new FileInfo(downloadManager.YdlPath).Directory.FullName;
             string ffmpegPath = new FileInfo(downloadManager.FfmpegPath).Directory.FullName;
-            llblYdlDirectory.Tag = ydlPath;
-            toolTip.SetToolTip(llblYdlDirectory, ydlPath);
 
-            llblFfmpegDirectory.Tag = ffmpegPath;
+            toolTip.SetToolTip(llblYdlDirectory, ydlPath);
             toolTip.SetToolTip(llblFfmpegDirectory, ffmpegPath);
 
 
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
-            FormClosing += (s, a) => downloadManager.PropertyChanged -= DownloadManager_PropertyChanged;
+            FormClosing += delegate {
+                Localization.OnLanguageChanged -= OnLanguageChanged;
+                downloadManager.PropertyChanged -= DownloadManager_PropertyChanged;
+            };
+
 
             DownloadManager_PropertyChanged(downloadManager, new PropertyChangedEventArgs(nameof(DownloadManager.ConcurrentDownloads)));
         }
@@ -60,24 +62,23 @@ namespace Maxstupo.YdlUi.Forms {
             panelActions.BackColor = Color.FromArgb(211, 211, 211);
             BackColor = Color.FromArgb(238, 238, 238);
 
+
             // Setup tabcontrol.
             lbxCategories.DisplayMember = "Text";
-            foreach (TabPage page in tablessTabControl.TabPages) {
-                page.BackColor = BackColor;
-                lbxCategories.Items.Add(page);
-            }
+            UpdateCategoryList();
             lbxCategories.SelectedIndex = 0;
 
             tablessTabControl.PreloadTabs();
 
-            // Replace common templates in labels.
-            this.ForEachControl<Label>(c => {
-                c.Text = c.Text.Replace("{ProductName}", Application.ProductName)
-                .Replace("{ProductVersion}", Application.ProductVersion.RemoveAfterLast('.'));
-            });
-
 
             #region Data Bindings
+
+            cbxLanguage.DataSource = Localization.AvailableLanguages;
+            cbxLanguage.DisplayMember = nameof(Language.DisplayName);
+            cbxLanguage.ValueMember = nameof(Language.Code);
+
+            cbxLanguage.SelectedValue = preferences.Language;
+            cbxLanguage.SelectionChangeCommitted += delegate { Localization.Language = (string)cbxLanguage.SelectedValue; };
 
             txtBinaryYdl.DataBindings.Add(nameof(txtBinaryYdl.Text), preferences.Binaries, nameof(preferences.Binaries.YoutubeDl), false, DataSourceUpdateMode.OnPropertyChanged);
             txtBinaryFfmpeg.DataBindings.Add(nameof(txtBinaryFfmpeg.Text), preferences.Binaries, nameof(preferences.Binaries.Ffmpeg), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -116,6 +117,31 @@ namespace Maxstupo.YdlUi.Forms {
 
             btnUpdateYoutubeDl.Enabled = !hasConcurrentDownloads && !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(Util.GetAbsolutePath(txtBinaryYdl.Text));
 
+            Localization.OnLanguageChanged += OnLanguageChanged;
+            OnLanguageChanged(null, EventArgs.Empty);
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs args) {
+            Localization.ApplyLocaleText(this, toolTip);
+            UpdateCategoryList();
+
+
+
+            // Replace common templates in labels.
+            this.ForEachControl<Label>(c => {
+                c.Text = c.Text.Replace("{ProductName}", Application.ProductName)
+                .Replace("{ProductVersion}", Application.ProductVersion.RemoveAfterLast('.'));
+            });
+        }
+
+        private void UpdateCategoryList() {
+            int selectedIndex = lbxCategories.SelectedIndex;
+            lbxCategories.Items.Clear();
+            foreach (TabPage page in tablessTabControl.TabPages) {
+                page.BackColor = BackColor;
+                lbxCategories.Items.Add(page);
+            }
+            lbxCategories.SelectedIndex = selectedIndex;
         }
 
         private void LbxPresets_SelectedIndexChanged(object sender, EventArgs e) {
@@ -245,13 +271,14 @@ namespace Maxstupo.YdlUi.Forms {
         #endregion
 
         private void llblLink_Clicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start(((LinkLabel)sender).Tag as string);
+            string url = toolTip.GetToolTip((LinkLabel)sender);
+            Process.Start(url);
         }
 
         #region Browse Events
 
         private void btnBrowseYdl_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select youtube-dl.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtBinaryYdl.Text);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_youtube-dl.title", "Select youtube-dl.exe file..."), "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtBinaryYdl.Text);
 
             if (filepath != null)
                 txtBinaryYdl.Text = Util.GetRelativePath(filepath);
@@ -260,7 +287,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnBrowseFfmpeg_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select ffmpeg.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtBinaryFfmpeg.Text);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_ffmpeg.title", "Select ffmpeg.exe file..."), "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtBinaryFfmpeg.Text);
 
             if (filepath != null)
                 txtBinaryFfmpeg.Text = Util.GetRelativePath(filepath);
@@ -269,7 +296,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnDefaultDownloadDirectoryBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFolder(this, "Select default download directory...", txtDefaultDownloadDirectory.Text, preferences.UseBasicFolderPicker);
+            string filepath = GuiUtil.SelectFolder(this, Localization.GetString("msg.select_default_download_directory.title", "Select default download directory..."), txtDefaultDownloadDirectory.Text, preferences.UseBasicFolderPicker);
 
             if (filepath != null)
                 txtDefaultDownloadDirectory.Text = filepath;
@@ -278,7 +305,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnDefaultDownloadArchiveBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select default download archive file...", "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDefaultDownloadArchive.Text, false);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_default_download_archive_file.title", "Select default download archive file..."), "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDefaultDownloadArchive.Text, false);
 
             if (filepath != null)
                 txtDefaultDownloadArchive.Text = Util.GetRelativePath(filepath);
@@ -296,7 +323,7 @@ namespace Maxstupo.YdlUi.Forms {
                 return;
 
 
-            if (MessageBox.Show(this, "Updating youtube-dl can fix download issues.\n\nDo you want to update now?", "Update Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+            if (MessageBox.Show(this, Localization.GetString("msg.update_youtube-dl", "Updating youtube-dl can fix download issues.\n\nDo you want to update now?"), Localization.GetString("msg.update_youtube-dl.title", "Update Confirmation"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
 
                 using (FormUpdateYoutubeDl dialog = new FormUpdateYoutubeDl(path))
                     dialog.ShowDialog(this);

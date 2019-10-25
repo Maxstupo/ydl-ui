@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 namespace Maxstupo.YdlUi.Settings {
     public class Preferences {
         public int Version { get; set; } = 1;
+        public string Language { get; set; } = "";
 
         public bool CheckForUpdates { get; set; } = true;
 

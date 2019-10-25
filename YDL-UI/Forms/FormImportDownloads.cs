@@ -50,8 +50,11 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void FormImportDownloads_Load(object sender, EventArgs e) {
-            lblTotal.Text = lblTotal.Text.Replace("{0}", totalUrls.ToString());
-            lblTotalDupes.Text = lblTotalDupes.Text.Replace("{0}", (totalUrls - urlsToAdd.Count).ToString());
+            Localization.ApplyLocaleText(this, toolTip1);
+
+            int duplicateUrlCount = totalUrls - urlsToAdd.Count;
+            lblTotal.Text = lblTotal.Text.Replace("{UrlCount}", totalUrls.ToString()).Replace("{DuplicateCount}", duplicateUrlCount.ToString());
+            lblTotalDupes.Text = lblTotalDupes.Text.Replace("{UrlCount}", totalUrls.ToString()).Replace("{DuplicateCount}", duplicateUrlCount.ToString());
         }
 
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -31,6 +32,20 @@ namespace Maxstupo.YdlUi.Utility {
         public static string RemoveAfterLast(this string str, char lastChar) {
             int idx = str.LastIndexOf(lastChar);
             return idx > 0 ? str.Substring(0, idx) : str;
+        }
+
+        /// <summary>
+        /// Returns the first filepath that exists from <paramref name="filenames"/>, if none exist the last element is returned.
+        /// </summary>
+        /// <param name="filenames">An array contain filepaths.</param>
+        /// <param name="defaultFile">The value to return if <paramref name="filenames"/> is empty.</param>
+        /// <returns>The first filepath that exists from <paramref name="filenames"/>, if none exist the last element is returned.</returns>
+        public static string FindExistingFile(string[] filenames, string defaultFile) {
+            foreach (string file in filenames) {
+                if (File.Exists(file))
+                    return file;
+            }
+            return filenames.Length > 0 ? filenames.Last() : defaultFile;
         }
 
         public static ByteSize From(double value, FilesizeUnit unit) {
@@ -109,6 +124,15 @@ namespace Maxstupo.YdlUi.Utility {
                 return Uri.UnescapeDataString(folderUri.MakeRelativeUri(fileUri).ToString().Replace('/', Path.DirectorySeparatorChar));
             } catch (InvalidOperationException e) {
                 return path;
+            }
+        }
+
+        public static TValue TryGetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> src, TKey key, TValue addNotExists) {
+            if(src.TryGetValue(key, out TValue result)) {
+                return result;
+            } else {
+                src.Add(key, addNotExists);
+                return addNotExists;
             }
         }
 

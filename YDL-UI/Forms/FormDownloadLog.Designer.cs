@@ -50,6 +50,7 @@
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 3;
+            this.btnOkay.Tag = "okay";
             this.btnOkay.Text = "&Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -62,6 +63,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 23);
             this.btnClear.TabIndex = 2;
+            this.btnClear.Tag = "clear";
             this.btnClear.Text = "&Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -82,6 +84,7 @@
             this.MinimumSize = new System.Drawing.Size(370, 220);
             this.Name = "FormDownloadLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "download_log";
             this.Text = "Download Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDownloadLog_FormClosing);
             this.Load += new System.EventHandler(this.FormDownloadLog_Load);

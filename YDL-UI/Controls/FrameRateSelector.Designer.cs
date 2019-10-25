@@ -46,6 +46,7 @@
             this.gb.Size = new System.Drawing.Size(204, 96);
             this.gb.TabIndex = 0;
             this.gb.TabStop = false;
+            this.gb.Tag = "fr";
             this.gb.Text = "Frame Rate";
             // 
             // nudCustomFrameRate
@@ -96,6 +97,7 @@
             this.cbFallback.Name = "cbFallback";
             this.cbFallback.Size = new System.Drawing.Size(72, 17);
             this.cbFallback.TabIndex = 3;
+            this.cbFallback.Tag = "fallback";
             this.cbFallback.Text = "Fallback?";
             this.toolTip.SetToolTip(this.cbFallback, "If frame rate metadata isn\'t available, ignore frame rate check.");
             this.cbFallback.UseVisualStyleBackColor = true;
@@ -110,6 +112,7 @@
             this.cbPreferred.Name = "cbPreferred";
             this.cbPreferred.Size = new System.Drawing.Size(75, 17);
             this.cbPreferred.TabIndex = 2;
+            this.cbPreferred.Tag = "preferred";
             this.cbPreferred.Text = "Preferred?";
             this.toolTip.SetToolTip(this.cbPreferred, "Select video with the highest frame rate up to the selected frame rate.");
             this.cbPreferred.UseVisualStyleBackColor = true;
@@ -128,6 +131,7 @@
             this.Controls.Add(this.gb);
             this.Name = "FrameRateSelector";
             this.Size = new System.Drawing.Size(204, 96);
+            this.Tag = "#";
             this.Load += new System.EventHandler(this.FrameRateSelector_Load);
             this.gb.ResumeLayout(false);
             this.gb.PerformLayout();
@@ -143,6 +147,6 @@
         private System.Windows.Forms.CheckBox cbPreferred;
         private System.Windows.Forms.ComboBox cbxFrameRate;
         private System.Windows.Forms.NumericUpDown nudCustomFrameRate;
-        private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.ToolTip toolTip;
     }
 }

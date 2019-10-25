@@ -36,8 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbModeRegex = new System.Windows.Forms.RadioButton();
             this.rbModeSimple = new System.Windows.Forms.RadioButton();
+            this.rbModeRegex = new System.Windows.Forms.RadioButton();
             this.panelActions.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,7 @@
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 1;
+            this.btnOkay.Tag = "okay";
             this.btnOkay.Text = "Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -61,6 +62,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -76,6 +78,7 @@
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(551, 40);
             this.panelActions.TabIndex = 4;
+            this.panelActions.Tag = "#";
             // 
             // btnDelete
             // 
@@ -84,6 +87,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
+            this.btnDelete.Tag = "delete";
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -95,6 +99,7 @@
             this.cbDefaultPreset.Name = "cbDefaultPreset";
             this.cbDefaultPreset.Size = new System.Drawing.Size(93, 17);
             this.cbDefaultPreset.TabIndex = 0;
+            this.cbDefaultPreset.Tag = "default_preset";
             this.cbDefaultPreset.Text = "Default Preset";
             this.toolTip.SetToolTip(this.cbDefaultPreset, "Selected by default in the Download dialog.");
             this.cbDefaultPreset.UseVisualStyleBackColor = true;
@@ -106,6 +111,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 0;
+            this.label1.Tag = "name";
             this.label1.Text = "Preset Name:";
             this.toolTip.SetToolTip(this.label1, "The name of the preset.");
             // 
@@ -117,6 +123,7 @@
             this.txtPresetName.Name = "txtPresetName";
             this.txtPresetName.Size = new System.Drawing.Size(450, 20);
             this.txtPresetName.TabIndex = 1;
+            this.txtPresetName.Tag = "name.value";
             this.toolTip.SetToolTip(this.txtPresetName, "The name of the preset.");
             // 
             // txtUrlMatch
@@ -127,6 +134,7 @@
             this.txtUrlMatch.Name = "txtUrlMatch";
             this.txtUrlMatch.Size = new System.Drawing.Size(450, 20);
             this.txtUrlMatch.TabIndex = 3;
+            this.txtUrlMatch.Tag = "url_match.value";
             this.toolTip.SetToolTip(this.txtUrlMatch, "If this regex matches the download URL, this preset will be selected automaticall" +
         "y.\r\nLeave blank to disable URL matching.");
             // 
@@ -137,6 +145,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 2;
+            this.label2.Tag = "url_match";
             this.label2.Text = "URL Match:";
             this.toolTip.SetToolTip(this.label2, "If this regex matches the download URL, this preset will be selected automaticall" +
         "y.\r\nLeave blank to disable URL matching.");
@@ -159,7 +168,19 @@
             this.groupBox1.Size = new System.Drawing.Size(527, 46);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Tag = "mode";
             this.groupBox1.Text = "Pattern Matching Mode";
+            // 
+            // rbModeSimple
+            // 
+            this.rbModeSimple.AutoSize = true;
+            this.rbModeSimple.Location = new System.Drawing.Point(74, 19);
+            this.rbModeSimple.Name = "rbModeSimple";
+            this.rbModeSimple.Size = new System.Drawing.Size(56, 17);
+            this.rbModeSimple.TabIndex = 1;
+            this.rbModeSimple.Tag = "simple";
+            this.rbModeSimple.Text = "Simple";
+            this.rbModeSimple.UseVisualStyleBackColor = true;
             // 
             // rbModeRegex
             // 
@@ -170,18 +191,9 @@
             this.rbModeRegex.Size = new System.Drawing.Size(56, 17);
             this.rbModeRegex.TabIndex = 0;
             this.rbModeRegex.TabStop = true;
+            this.rbModeRegex.Tag = "regex";
             this.rbModeRegex.Text = "Regex";
             this.rbModeRegex.UseVisualStyleBackColor = true;
-            // 
-            // rbModeSimple
-            // 
-            this.rbModeSimple.AutoSize = true;
-            this.rbModeSimple.Location = new System.Drawing.Point(74, 19);
-            this.rbModeSimple.Name = "rbModeSimple";
-            this.rbModeSimple.Size = new System.Drawing.Size(56, 17);
-            this.rbModeSimple.TabIndex = 1;
-            this.rbModeSimple.Text = "Simple";
-            this.rbModeSimple.UseVisualStyleBackColor = true;
             // 
             // FormPreset
             // 
@@ -202,6 +214,7 @@
             this.MinimumSize = new System.Drawing.Size(406, 190);
             this.Name = "FormPreset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "preset_dialog";
             this.Text = "New Download Preset";
             this.Load += new System.EventHandler(this.FormPreset_Load);
             this.panelActions.ResumeLayout(false);

@@ -27,6 +27,8 @@ namespace Maxstupo.YdlUi.Forms {
             dgvKeywords.AutoResizeColumn(2, DataGridViewAutoSizeColumnMode.AllCells);
 
             dgvKeywords.Sort(dgvKeywords.Columns[0], ListSortDirection.Ascending);
+
+            Localization.ApplyLocaleText(this);
         }
 
 

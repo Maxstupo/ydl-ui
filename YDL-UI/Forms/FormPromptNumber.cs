@@ -15,13 +15,16 @@ namespace Maxstupo.YdlUi.Forms {
         public int Value1 { get => (int)nud1.Value; }
         public int Value2 { get => (int)nud2.Value; }
 
-        public FormPromptNumber(string title, string lbl1, string lbl2 = null) {
-            InitializeComponent();
+        private bool RangeMode { get; }
 
-            Text = title;
-            label1.Text = $"{lbl1}:";
-            
-            if (lbl2 == null) {
+        public FormPromptNumber(bool rangeMode) {
+            InitializeComponent();
+            RangeMode = rangeMode;
+
+            Text = rangeMode ? "Add Range Index..." : "Add Index...";
+            label1.Text = Localization.GetString($"{Tag}.{(rangeMode ? "range.start" : "index")}", rangeMode ? "Start:" : "Index:");
+
+            if (!rangeMode) {
                 MinimumSize = new Size(MinimumSize.Width, MinimumSize.Height - nud2.Height);
 
                 tableLayoutPanel1.Controls.Remove(label2);
@@ -29,7 +32,7 @@ namespace Maxstupo.YdlUi.Forms {
                 tableLayoutPanel1.RowStyles.RemoveAt(1);
 
             } else {
-                label2.Text = $"{lbl2}:";
+                label2.Text = Localization.GetString($"{Tag}.range.end", "End:");
 
                 GuiUtil.MakeRangeNumericUpDown(nud1, nud2, 1);
             }
@@ -41,6 +44,10 @@ namespace Maxstupo.YdlUi.Forms {
             nud1.Enter += NumericUpDown_Enter;
             nud2.Enter += NumericUpDown_Enter;
             Size = new Size(Size.Width, MinimumSize.Height);
+
+            Localization.ApplyLocaleText(this);
+            if (RangeMode)
+                Text = Localization.GetString($"{Tag}.range", Text);
         }
 
         private void NumericUpDown_Enter(object sender, EventArgs e) {

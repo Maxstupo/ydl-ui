@@ -38,6 +38,7 @@
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(75, 23);
             this.btnInsert.TabIndex = 1;
+            this.btnInsert.Tag = "insert";
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -50,6 +51,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -75,6 +77,7 @@
             this.dgvKeywords.Size = new System.Drawing.Size(789, 394);
             this.dgvKeywords.StandardTab = true;
             this.dgvKeywords.TabIndex = 0;
+            this.dgvKeywords.Tag = "keywords";
             this.dgvKeywords.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvKeywords_CellMouseDoubleClick);
             this.dgvKeywords.SelectionChanged += new System.EventHandler(this.dgvKeywords_SelectionChanged);
             // 
@@ -86,6 +89,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(627, 49);
             this.label1.TabIndex = 3;
+            this.label1.Tag = "note";
             this.label1.Text = "Some keywords are not guaranteed to be present since they depend on the metadata " +
     "obtained by a particular extractor. Such keywords will be replaced with \"NA\".";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -109,6 +113,7 @@
             this.Name = "FormKeyword";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "keyword_dialog";
             this.Text = "Insert Keyword...";
             this.Load += new System.EventHandler(this.FormKeyword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvKeywords)).EndInit();

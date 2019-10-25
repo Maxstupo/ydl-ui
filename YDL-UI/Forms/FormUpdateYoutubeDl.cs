@@ -25,6 +25,8 @@ namespace Maxstupo.YdlUi.Forms {
             btnDone.Enabled = false;
             progressBar.Maximum = 1000;
             progressBar.Minimum = 0;
+
+            Localization.ApplyLocaleText(this);
         }
 
         private void FormUpdateYoutubeDl_Shown(object sender, EventArgs e) {
@@ -40,8 +42,8 @@ namespace Maxstupo.YdlUi.Forms {
 
             string currentVersion = GetYdlVersion(BinaryLocation);
 
-            WriteLogLine($"Current version: {currentVersion}");
-            WriteLogLine("Finding latest release...");
+            WriteLogLine(Localization.GetString("update_dialog.log.current_version", "Current version: {CurrentVersion}").Replace("{CurrentVersion}", currentVersion));
+            WriteLogLine(Localization.GetString("update_dialog.log.check", "Finding latest release..."));
 
             // Make HTTP Get request from api.github.com to find the latest version of youtube-dl available.
             string userAgent = $"YDL-UI v{Application.ProductVersion}";
@@ -50,17 +52,17 @@ namespace Maxstupo.YdlUi.Forms {
                 string data = await NetUtil.HttpGetAsync(FormMain.YoutubeDlLatest, userAgent);
                 json = JObject.Parse(data);
             } catch (Exception) {
-                WriteLogLine("Failed to find latest release!");
+                WriteLogLine(Localization.GetString("update_dialog.log.check.failed", "Failed to find latest release!"));
                 UpdateCompleted(false);
                 return;
             }
 
             string latestVersion = json["tag_name"].Value<string>().ToLower();
-            WriteLogLine($"Found {latestVersion}");
+            WriteLogLine(Localization.GetString("update_dialog.log.check.found", "Found {Version}").Replace("{Version}", latestVersion));
 
             // Compare versions.
             if (latestVersion.Equals(currentVersion, StringComparison.OrdinalIgnoreCase)) {
-                WriteLogLine($"youtube-dl is up-to-date ({currentVersion})");
+                WriteLogLine(Localization.GetString("update_dialog.log.check.no_new_versions", "youtube-dl is up-to-date ({CurrentVersion})").Replace("{CurrentVersion}", currentVersion));
                 UpdateCompleted(true);
 
             } else { // Begin Update
@@ -80,16 +82,16 @@ namespace Maxstupo.YdlUi.Forms {
 
                 // Unable to find youtube-dl binary download URL from latest release assets.
                 if (latestBinaryDownloadUrl == null) {
-                    WriteLogLine("Download failed! Latest release is missing download link!");
+                    WriteLogLine(Localization.GetString("update_dialog.log.download.failed.missing", "Download failed! Latest release is missing download link!"));
                     UpdateCompleted(false);
 
                 } else {
 
-                    WriteLogLine($"Downloading: {latestBinaryDownloadUrl}");
+                    WriteLogLine(Localization.GetString("update_dialog.log.download.start", "Downloading: {DownloadUrl}").Replace("{DownloadUrl}", latestBinaryDownloadUrl));
 
                     BeginInvoke((Action)delegate {
                         progressBar.Style = ProgressBarStyle.Continuous;
-                        lblStatus.Text = "Downloading...";
+                        lblStatus.Text = Localization.GetString("update_dialog.status.downloading", "Downloading...");
                     });
 
                     // Begin downloading file.
@@ -100,22 +102,22 @@ namespace Maxstupo.YdlUi.Forms {
                             }), (int)(progress * 1000));
                         });
                     } catch (Exception) {
-                        WriteLogLine("Download failed!");
+                        WriteLogLine(Localization.GetString("update_dialog.log.download.failed", "Download failed!"));
                         UpdateCompleted(false);
                         return;
                     }
 
                     BeginInvoke((Action)delegate {
                         progressBar.Style = ProgressBarStyle.Marquee;
-                        lblStatus.Text = "Please wait...";
+                        lblStatus.Text = Localization.GetString("update_dialog.status.waiting", "Please wait...");
                     });
 
-                    WriteLogLine("Download complete.\r\nVerifying download...");
+                    WriteLogLine(Localization.GetString("update_dialog.log.download.complete", "Download complete.\r\nVerifying download..."));
 
                     // Display the new downloaded version of youtube-dl.
                     string newCurrentVersion = GetYdlVersion(BinaryLocation);
 
-                    WriteLogLine($"New version: {newCurrentVersion}\r\nUpdate complete!");
+                    WriteLogLine(Localization.GetString("update_dialog.log.new_version", "New version: {NewVersion}\r\nUpdate complete!").Replace("{NewVersion}", newCurrentVersion));
                     UpdateCompleted(true);
                 }
 
@@ -140,14 +142,14 @@ namespace Maxstupo.YdlUi.Forms {
             BeginInvoke((Action)delegate {
                 progressBar.Style = ProgressBarStyle.Continuous;
                 progressBar.Value = 1000;
-                lblStatus.Text = success ? "Update Completed." : "Update Failed.";
+                lblStatus.Text = success ? Localization.GetString("update_dialog.completed", "Update Completed.") : Localization.GetString("update_dialog.failed", "Update Failed.");
                 btnDone.Enabled = true;
             });
         }
 
         private void WriteLogLine(string data) {
             BeginInvoke((Action)delegate {
-                txtUpdateLog.Text += (txtUpdateLog.Text.Length == 0) ? data : $"\r\n{data}";
+                txtUpdateLog.Text += (txtUpdateLog.Text.Length == 0) ? data : $"{Environment.NewLine}{data}";
             });
         }
 

@@ -51,6 +51,7 @@
             this.gbGeneral.Size = new System.Drawing.Size(131, 96);
             this.gbGeneral.TabIndex = 2;
             this.gbGeneral.TabStop = false;
+            this.gbGeneral.Tag = "general";
             this.gbGeneral.Text = "General";
             // 
             // cbIgnoreErrors
@@ -62,6 +63,7 @@
             this.cbIgnoreErrors.Name = "cbIgnoreErrors";
             this.cbIgnoreErrors.Size = new System.Drawing.Size(93, 17);
             this.cbIgnoreErrors.TabIndex = 0;
+            this.cbIgnoreErrors.Tag = "ignore_errors";
             this.cbIgnoreErrors.Text = "Ignore Errors";
             this.toolTip.SetToolTip(this.cbIgnoreErrors, "Continue downloading on download errors (e.g. Skip unavailable videos in a playli" +
         "st).");
@@ -74,6 +76,7 @@
             this.cbAbortOnErrors.Name = "cbAbortOnErrors";
             this.cbAbortOnErrors.Size = new System.Drawing.Size(107, 17);
             this.cbAbortOnErrors.TabIndex = 1;
+            this.cbAbortOnErrors.Tag = "abort_on_errors";
             this.cbAbortOnErrors.Text = "Abort On Errors";
             this.toolTip.SetToolTip(this.cbAbortOnErrors, "Abort downloading of further videos (in a playlist) if an error occurs.");
             this.cbAbortOnErrors.UseVisualStyleBackColor = true;
@@ -91,6 +94,7 @@
             this.gbFileSystem.Size = new System.Drawing.Size(131, 138);
             this.gbFileSystem.TabIndex = 3;
             this.gbFileSystem.TabStop = false;
+            this.gbFileSystem.Tag = "file_system";
             this.gbFileSystem.Text = "File System";
             // 
             // cbNoOverwrites
@@ -102,6 +106,7 @@
             this.cbNoOverwrites.Name = "cbNoOverwrites";
             this.cbNoOverwrites.Size = new System.Drawing.Size(99, 17);
             this.cbNoOverwrites.TabIndex = 4;
+            this.cbNoOverwrites.Tag = "no_overwrites";
             this.cbNoOverwrites.Text = "No Overwrites";
             this.toolTip.SetToolTip(this.cbNoOverwrites, "Don\'t overwrite files.");
             this.cbNoOverwrites.UseVisualStyleBackColor = true;
@@ -113,6 +118,7 @@
             this.cbRestrictFilenames.Name = "cbRestrictFilenames";
             this.cbRestrictFilenames.Size = new System.Drawing.Size(118, 17);
             this.cbRestrictFilenames.TabIndex = 3;
+            this.cbRestrictFilenames.Tag = "restrict_filenames";
             this.cbRestrictFilenames.Text = "Restrict Filenames";
             this.toolTip.SetToolTip(this.cbRestrictFilenames, "Restrict filenames to only ASCII characters, and avoid \"&\" and spaces in filename" +
         "s.");
@@ -125,6 +131,7 @@
             this.cbWriteThumbnail.Name = "cbWriteThumbnail";
             this.cbWriteThumbnail.Size = new System.Drawing.Size(111, 17);
             this.cbWriteThumbnail.TabIndex = 2;
+            this.cbWriteThumbnail.Tag = "write_thumbnail";
             this.cbWriteThumbnail.Text = "Write Thumbnail";
             this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail to disk.");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
@@ -136,6 +143,7 @@
             this.cbWriteAnnotations.Name = "cbWriteAnnotations";
             this.cbWriteAnnotations.Size = new System.Drawing.Size(121, 17);
             this.cbWriteAnnotations.TabIndex = 1;
+            this.cbWriteAnnotations.Tag = "write_annotations";
             this.cbWriteAnnotations.Text = "Write Annotations";
             this.toolTip.SetToolTip(this.cbWriteAnnotations, "Write video annotations to a .annotations.xml file.");
             this.cbWriteAnnotations.UseVisualStyleBackColor = true;
@@ -147,6 +155,7 @@
             this.cbWriteDescription.Name = "cbWriteDescription";
             this.cbWriteDescription.Size = new System.Drawing.Size(116, 17);
             this.cbWriteDescription.TabIndex = 0;
+            this.cbWriteDescription.Tag = "write_description";
             this.cbWriteDescription.Text = "Write Description";
             this.toolTip.SetToolTip(this.cbWriteDescription, "Write video description to a .description file.");
             this.cbWriteDescription.UseVisualStyleBackColor = true;
@@ -165,6 +174,7 @@
             this.cbCustomFormatSelector.Name = "cbCustomFormatSelector";
             this.cbCustomFormatSelector.Size = new System.Drawing.Size(148, 17);
             this.cbCustomFormatSelector.TabIndex = 4;
+            this.cbCustomFormatSelector.Tag = "selector";
             this.cbCustomFormatSelector.Text = "Custom Format Selector";
             this.cbCustomFormatSelector.UseVisualStyleBackColor = true;
             // 
@@ -177,6 +187,7 @@
             this.txtCustomFormatSelector.ReadOnly = true;
             this.txtCustomFormatSelector.Size = new System.Drawing.Size(708, 22);
             this.txtCustomFormatSelector.TabIndex = 5;
+            this.txtCustomFormatSelector.Tag = "selector.value";
             // 
             // videoQualitySelector
             // 
@@ -185,14 +196,16 @@
             this.videoQualitySelector.OnChange = null;
             this.videoQualitySelector.Size = new System.Drawing.Size(170, 95);
             this.videoQualitySelector.TabIndex = 0;
+            this.videoQualitySelector.Tag = "#";
             // 
             // frameRateSelector
             // 
             this.frameRateSelector.Location = new System.Drawing.Point(179, 3);
             this.frameRateSelector.Name = "frameRateSelector";
+            this.frameRateSelector.OnChange = null;
             this.frameRateSelector.Size = new System.Drawing.Size(174, 96);
             this.frameRateSelector.TabIndex = 1;
-            this.frameRateSelector.Tag = "";
+            this.frameRateSelector.Tag = "#";
             // 
             // TabQuality
             // 
@@ -207,6 +220,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabQuality";
             this.Size = new System.Drawing.Size(718, 276);
+            this.Tag = "#";
             this.Load += new System.EventHandler(this.TabQuality_Load);
             this.gbGeneral.ResumeLayout(false);
             this.gbGeneral.PerformLayout();
@@ -226,7 +240,7 @@
         private System.Windows.Forms.CheckBox cbWriteDescription;
         public Controls.FrameRateSelector frameRateSelector;
         public Controls.VideoQualitySelector videoQualitySelector;
-        private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.ToolTip toolTip;
         public System.Windows.Forms.CheckBox cbNoOverwrites;
         public System.Windows.Forms.CheckBox cbRestrictFilenames;
         public System.Windows.Forms.CheckBox cbWriteThumbnail;

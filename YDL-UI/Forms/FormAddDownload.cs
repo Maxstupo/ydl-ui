@@ -41,7 +41,7 @@ namespace Maxstupo.YdlUi.Forms {
             if (IsEditMode) {
 
                 Text = $"Customize Preset - {preset.Name}";
-
+                btnAdd.Tag = "add.preset";
                 btnAdd.Text = "Okay";
                 txtUrl.Enabled = false;
                 lblUrl.Enabled = false;
@@ -102,6 +102,21 @@ namespace Maxstupo.YdlUi.Forms {
                 TxtUrl_TextChanged(this, new EventArgs());
             }
 
+
+            Localization.RegisterTooltip(quality, quality.toolTip);
+            Localization.RegisterTooltip(quality.frameRateSelector, quality.frameRateSelector.toolTip);
+            Localization.RegisterTooltip(quality.videoQualitySelector, quality.videoQualitySelector.toolTip);
+
+            Localization.RegisterTooltip(postProcessing, postProcessing.toolTip);
+            Localization.RegisterTooltip(workarounds, workarounds.toolTip);
+            Localization.RegisterTooltip(videoSelection, videoSelection.toolTip);
+
+            Localization.ApplyLocaleText(this, toolTip);
+
+            if (IsEditMode) {
+                Text = Localization.GetString($"{Tag}.preset", "Customize Preset - {PresetName}");
+                Text = Text.Replace("{PresetName}", preset.Name);
+            }
 
             if (IsSilent) {
                 BeginInvoke((Action<Button>)(btn => {
@@ -261,13 +276,13 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void btnBrowseDownloadDirectory_Click(object sender, EventArgs e) {
 
-            string filepath = GuiUtil.SelectFolder(this, "Select download directory...", txtDownloadDirectory.Text, preferences.UseBasicFolderPicker);
+            string filepath = GuiUtil.SelectFolder(this, Localization.GetString("msg.select_download_directory.title", "Select download directory..."), txtDownloadDirectory.Text, preferences.UseBasicFolderPicker);
             if (filepath != null)
                 txtDownloadDirectory.Text = filepath;
         }
 
         private void btnDownloadArchiveBrowse_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select download archive...", "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDownloadArchive.Text, false);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_download_archive_file.title", "Select download archive..."), "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDownloadArchive.Text, false);
             if (filepath != null)
                 txtDownloadArchive.Text = filepath;
         }

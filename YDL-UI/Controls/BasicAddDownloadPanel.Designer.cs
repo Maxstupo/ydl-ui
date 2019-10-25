@@ -55,6 +55,7 @@
             this.cbAudioOnly.Name = "cbAudioOnly";
             this.cbAudioOnly.Size = new System.Drawing.Size(80, 17);
             this.cbAudioOnly.TabIndex = 3;
+            this.cbAudioOnly.Tag = "@download_dialog.post_processing.audio_only";
             this.cbAudioOnly.Text = "Audio Only:";
             this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
             this.cbAudioOnly.UseVisualStyleBackColor = true;
@@ -63,8 +64,10 @@
             // 
             this.frameRateSelector.Location = new System.Drawing.Point(182, 3);
             this.frameRateSelector.Name = "frameRateSelector";
+            this.frameRateSelector.OnChange = null;
             this.frameRateSelector.Size = new System.Drawing.Size(173, 115);
             this.frameRateSelector.TabIndex = 1;
+            this.frameRateSelector.Tag = "quality";
             // 
             // gbFileSystem
             // 
@@ -78,6 +81,7 @@
             this.gbFileSystem.Size = new System.Drawing.Size(188, 115);
             this.gbFileSystem.TabIndex = 2;
             this.gbFileSystem.TabStop = false;
+            this.gbFileSystem.Tag = "@download_dialog.options";
             this.gbFileSystem.Text = "Options";
             // 
             // cbNoOverwrites
@@ -89,6 +93,7 @@
             this.cbNoOverwrites.Name = "cbNoOverwrites";
             this.cbNoOverwrites.Size = new System.Drawing.Size(93, 17);
             this.cbNoOverwrites.TabIndex = 2;
+            this.cbNoOverwrites.Tag = "@download_dialog.quality.file_system.no_overwrites";
             this.cbNoOverwrites.Text = "No Overwrites";
             this.toolTip.SetToolTip(this.cbNoOverwrites, "Don\'t overwrite files.");
             this.cbNoOverwrites.UseVisualStyleBackColor = true;
@@ -100,6 +105,7 @@
             this.cbRestrictFilenames.Name = "cbRestrictFilenames";
             this.cbRestrictFilenames.Size = new System.Drawing.Size(112, 17);
             this.cbRestrictFilenames.TabIndex = 1;
+            this.cbRestrictFilenames.Tag = "@download_dialog.quality.file_system.restrict_filenames";
             this.cbRestrictFilenames.Text = "Restrict Filenames";
             this.toolTip.SetToolTip(this.cbRestrictFilenames, "Restrict filenames to only ASCII characters, and avoid \"&\" and spaces in filename" +
         "s.");
@@ -112,6 +118,7 @@
             this.cbWriteThumbnail.Name = "cbWriteThumbnail";
             this.cbWriteThumbnail.Size = new System.Drawing.Size(103, 17);
             this.cbWriteThumbnail.TabIndex = 0;
+            this.cbWriteThumbnail.Tag = "@download_dialog.quality.file_system.write_thumbnail";
             this.cbWriteThumbnail.Text = "Write Thumbnail";
             this.toolTip.SetToolTip(this.cbWriteThumbnail, "Write thumbnail to disk.");
             this.cbWriteThumbnail.UseVisualStyleBackColor = true;
@@ -120,8 +127,10 @@
             // 
             this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
             this.videoQualitySelector.Name = "videoQualitySelector";
+            this.videoQualitySelector.OnChange = null;
             this.videoQualitySelector.Size = new System.Drawing.Size(173, 115);
             this.videoQualitySelector.TabIndex = 0;
+            this.videoQualitySelector.Tag = "quality";
             // 
             // toolTip
             // 
@@ -139,6 +148,7 @@
             this.Controls.Add(this.gbFileSystem);
             this.Name = "BasicAddDownloadPanel";
             this.Size = new System.Drawing.Size(557, 124);
+            this.Tag = "#";
             this.Load += new System.EventHandler(this.BasicAddDownloadPanel_Load);
             this.gbFileSystem.ResumeLayout(false);
             this.gbFileSystem.PerformLayout();

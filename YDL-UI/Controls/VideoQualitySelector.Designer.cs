@@ -51,6 +51,7 @@
             this.gb.Size = new System.Drawing.Size(170, 95);
             this.gb.TabIndex = 0;
             this.gb.TabStop = false;
+            this.gb.Tag = "vq";
             this.gb.Text = "Video Quality";
             // 
             // label1
@@ -62,6 +63,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(12, 13);
             this.label1.TabIndex = 2;
+            this.label1.Tag = "!ignore";
             this.label1.Text = "x";
             // 
             // nudCustomHeight
@@ -131,6 +133,7 @@
             this.cbPreferred.Name = "cbPreferred";
             this.cbPreferred.Size = new System.Drawing.Size(75, 17);
             this.cbPreferred.TabIndex = 4;
+            this.cbPreferred.Tag = "preferred";
             this.cbPreferred.Text = "Preferred?";
             this.toolTip.SetToolTip(this.cbPreferred, "Select video with the highest resolution up to the selected resolution.");
             this.cbPreferred.UseVisualStyleBackColor = true;
@@ -145,6 +148,7 @@
             this.cbFallback.Name = "cbFallback";
             this.cbFallback.Size = new System.Drawing.Size(72, 17);
             this.cbFallback.TabIndex = 5;
+            this.cbFallback.Tag = "fallback";
             this.cbFallback.Text = "Fallback?";
             this.toolTip.SetToolTip(this.cbFallback, "If resolution metadata isn\'t available, ignore resolution check.");
             this.cbFallback.UseVisualStyleBackColor = true;
@@ -163,6 +167,7 @@
             this.Controls.Add(this.gb);
             this.Name = "VideoQualitySelector";
             this.Size = new System.Drawing.Size(170, 95);
+            this.Tag = "#";
             this.Load += new System.EventHandler(this.VideoQualitySelector_Load);
             this.gb.ResumeLayout(false);
             this.gb.PerformLayout();
@@ -181,6 +186,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudCustomHeight;
         private System.Windows.Forms.NumericUpDown nudCustomWidth;
-        private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.ToolTip toolTip;
     }
 }

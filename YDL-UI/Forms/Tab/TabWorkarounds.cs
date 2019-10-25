@@ -55,6 +55,10 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             nudSleepInterval.BindEnabledTo(rbSleepIntervalValue);
             nudSleepIntervalMin.BindEnabledTo(rbSleepIntervalRange);
             nudSleepIntervalMax.BindEnabledTo(rbSleepIntervalRange);
+
+
+            dgvHeaders.Columns["colKey"].Tag = "key";
+            dgvHeaders.Columns["colValue"].Tag = "value";
         }
 
         public void SetArguments(YdlArguments arguments) {
@@ -116,7 +120,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
         }
 
         private void btnBrowseCookies_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select cookies file...", "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtCookies.Text, false);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_cookies_file.title", "Select cookies file..."), "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtCookies.Text, false);
             if (filepath != null)
                 txtCookies.Text = filepath;
         }

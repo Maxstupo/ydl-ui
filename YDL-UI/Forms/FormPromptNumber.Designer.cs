@@ -47,6 +47,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 24);
             this.label1.TabIndex = 0;
+            this.label1.Tag = "!ignore";
             this.label1.Text = "label1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -82,8 +83,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(337, 109);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(337, 86);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Tag = "#";
             // 
             // nud2
             // 
@@ -109,6 +111,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 24);
             this.label2.TabIndex = 2;
+            this.label2.Tag = "!ignore";
             this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -119,17 +122,19 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(46, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(286, 53);
+            this.panel1.Size = new System.Drawing.Size(286, 30);
             this.panel1.TabIndex = 4;
+            this.panel1.Tag = "#";
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(208, 27);
+            this.btnCancel.Location = new System.Drawing.Point(208, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -138,10 +143,11 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAdd.Location = new System.Drawing.Point(127, 27);
+            this.btnAdd.Location = new System.Drawing.Point(127, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 0;
+            this.btnAdd.Tag = "add";
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -152,13 +158,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnAdd;
-            this.ClientSize = new System.Drawing.Size(337, 109);
+            this.ClientSize = new System.Drawing.Size(337, 86);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.MinimumSize = new System.Drawing.Size(224, 125);
+            this.MaximumSize = new System.Drawing.Size(1024, 125);
+            this.MinimumSize = new System.Drawing.Size(234, 125);
             this.Name = "FormPromptNumber";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "add_index_dialog";
             this.Text = "FormPromptNumber";
             this.Load += new System.EventHandler(this.FormPromptNumber_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).EndInit();

@@ -39,6 +39,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 1;
+            this.btnAdd.Tag = "add";
             this.btnAdd.Text = "&Add...";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -51,6 +52,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -62,6 +64,7 @@
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 4;
+            this.btnOkay.Tag = "okay";
             this.btnOkay.Text = "&Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -73,6 +76,7 @@
             this.btnAddRange.Name = "btnAddRange";
             this.btnAddRange.Size = new System.Drawing.Size(84, 23);
             this.btnAddRange.TabIndex = 2;
+            this.btnAddRange.Tag = "add_range";
             this.btnAddRange.Text = "Add &Range...";
             this.btnAddRange.UseVisualStyleBackColor = true;
             this.btnAddRange.Click += new System.EventHandler(this.btnAddRange_Click);
@@ -84,6 +88,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
+            this.btnDelete.Tag = "delete";
             this.btnDelete.Text = "&Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -99,7 +104,7 @@
             this.lbxPlaylistItems.ItemHeight = 17;
             this.lbxPlaylistItems.Location = new System.Drawing.Point(12, 12);
             this.lbxPlaylistItems.Name = "lbxPlaylistItems";
-            this.lbxPlaylistItems.Size = new System.Drawing.Size(490, 174);
+            this.lbxPlaylistItems.Size = new System.Drawing.Size(490, 178);
             this.lbxPlaylistItems.TabIndex = 0;
             this.lbxPlaylistItems.SelectedValueChanged += new System.EventHandler(this.lbxPlaylistItems_SelectedValueChanged);
             // 
@@ -122,6 +127,7 @@
             this.MinimumSize = new System.Drawing.Size(446, 167);
             this.Name = "FormPlaylistRangeEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "playlist_item_dialog";
             this.Text = "Playlist Items Editor";
             this.Load += new System.EventHandler(this.FormPlaylistRangeEditor_Load);
             this.ResumeLayout(false);

@@ -41,8 +41,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtYdlPath.Location = new System.Drawing.Point(77, 12);
             this.txtYdlPath.Name = "txtYdlPath";
-            this.txtYdlPath.Size = new System.Drawing.Size(393, 20);
+            this.txtYdlPath.Size = new System.Drawing.Size(432, 20);
             this.txtYdlPath.TabIndex = 1;
+            this.txtYdlPath.Tag = "youtube-dl.value";
             // 
             // txtFfmpegPath
             // 
@@ -50,16 +51,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFfmpegPath.Location = new System.Drawing.Point(77, 38);
             this.txtFfmpegPath.Name = "txtFfmpegPath";
-            this.txtFfmpegPath.Size = new System.Drawing.Size(393, 20);
+            this.txtFfmpegPath.Size = new System.Drawing.Size(432, 20);
             this.txtFfmpegPath.TabIndex = 4;
+            this.txtFfmpegPath.Tag = "ffmpeg.value";
             // 
             // btnOkay
             // 
             this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOkay.Location = new System.Drawing.Point(395, 82);
+            this.btnOkay.Location = new System.Drawing.Point(395, 80);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 6;
+            this.btnOkay.Tag = "okay";
             this.btnOkay.Text = "&Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
@@ -68,10 +71,11 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(476, 82);
+            this.btnCancel.Location = new System.Drawing.Point(476, 80);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -79,22 +83,24 @@
             // btnBrowseFfmpeg
             // 
             this.btnBrowseFfmpeg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseFfmpeg.Location = new System.Drawing.Point(476, 37);
+            this.btnBrowseFfmpeg.Location = new System.Drawing.Point(515, 37);
             this.btnBrowseFfmpeg.Name = "btnBrowseFfmpeg";
-            this.btnBrowseFfmpeg.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseFfmpeg.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseFfmpeg.TabIndex = 5;
-            this.btnBrowseFfmpeg.Text = "B&rowse";
+            this.btnBrowseFfmpeg.Tag = "@browse";
+            this.btnBrowseFfmpeg.Text = "...";
             this.btnBrowseFfmpeg.UseVisualStyleBackColor = true;
             this.btnBrowseFfmpeg.Click += new System.EventHandler(this.btnBrowseFfmpeg_Click);
             // 
             // btnBrowseYdl
             // 
             this.btnBrowseYdl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseYdl.Location = new System.Drawing.Point(476, 10);
+            this.btnBrowseYdl.Location = new System.Drawing.Point(515, 10);
             this.btnBrowseYdl.Name = "btnBrowseYdl";
-            this.btnBrowseYdl.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseYdl.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseYdl.TabIndex = 2;
-            this.btnBrowseYdl.Text = "&Browse";
+            this.btnBrowseYdl.Tag = "@browse";
+            this.btnBrowseYdl.Text = "...";
             this.btnBrowseYdl.UseVisualStyleBackColor = true;
             this.btnBrowseYdl.Click += new System.EventHandler(this.btnBrowseYdl_Click);
             // 
@@ -105,6 +111,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
+            this.label1.Tag = "youtube-dl";
             this.label1.Text = "youtube-dl:";
             // 
             // label2
@@ -114,6 +121,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 3;
+            this.label2.Tag = "ffmpeg";
             this.label2.Text = "ffmpeg:";
             // 
             // lblNote
@@ -121,10 +129,11 @@
             this.lblNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNote.Location = new System.Drawing.Point(12, 61);
+            this.lblNote.Location = new System.Drawing.Point(12, 70);
             this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(377, 64);
+            this.lblNote.Size = new System.Drawing.Size(377, 41);
             this.lblNote.TabIndex = 8;
+            this.lblNote.Tag = "note";
             this.lblNote.Text = "Cancelling this dialog will close the application, as these binaries are required" +
     " for {ProductName} to run.";
             this.lblNote.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,6 +163,7 @@
             this.Name = "FormUpdateBinaryLocations";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "binary_location_dialog";
             this.Text = "Specify binary locations...";
             this.Load += new System.EventHandler(this.FormUpdateBinaryLocations_Load);
             this.ResumeLayout(false);

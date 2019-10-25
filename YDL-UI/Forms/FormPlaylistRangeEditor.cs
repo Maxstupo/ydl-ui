@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Maxstupo.YdlUi.Utility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -58,6 +59,8 @@ namespace Maxstupo.YdlUi.Forms {
         private void FormPlaylistRangeEditor_Load(object sender, EventArgs e) {
             lbxPlaylistItems.DataSource = list;
             lbxPlaylistItems.DisplayMember = nameof(PlaylistItem.Formatted);
+
+            Localization.ApplyLocaleText(this);
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
@@ -69,7 +72,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnAdd_Click(object sender, EventArgs e) {
-            using (FormPromptNumber dialog = new FormPromptNumber("Add Index...", "Index")) {
+            using (FormPromptNumber dialog = new FormPromptNumber( false)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK) {
                     PlaylistItem item = new PlaylistItem(dialog.Value1);
 
@@ -82,7 +85,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnAddRange_Click(object sender, EventArgs e) {
-            using (FormPromptNumber dialog = new FormPromptNumber("Add Index Range...", "Start", "End")) {
+            using (FormPromptNumber dialog = new FormPromptNumber(true)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK) {
                     PlaylistItem item = new PlaylistItem(dialog.Value1, dialog.Value2);
 

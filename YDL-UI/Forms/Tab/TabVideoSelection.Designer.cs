@@ -94,6 +94,7 @@
             this.gbRegexFilters.Size = new System.Drawing.Size(401, 105);
             this.gbRegexFilters.TabIndex = 5;
             this.gbRegexFilters.TabStop = false;
+            this.gbRegexFilters.Tag = "text_regex_filters";
             this.gbRegexFilters.Text = "Text / Regex Filters";
             // 
             // txtMatchFilter
@@ -104,6 +105,7 @@
             this.txtMatchFilter.Name = "txtMatchFilter";
             this.txtMatchFilter.Size = new System.Drawing.Size(298, 22);
             this.txtMatchFilter.TabIndex = 5;
+            this.txtMatchFilter.Tag = "match_filter.value";
             this.toolTip.SetToolTip(this.txtMatchFilter, "Generic video filter (Refer to Help > Wiki).");
             // 
             // cbMatchFilter
@@ -113,6 +115,7 @@
             this.cbMatchFilter.Name = "cbMatchFilter";
             this.cbMatchFilter.Size = new System.Drawing.Size(90, 17);
             this.cbMatchFilter.TabIndex = 4;
+            this.cbMatchFilter.Tag = "match_filter";
             this.cbMatchFilter.Text = "Match Filter:";
             this.toolTip.SetToolTip(this.cbMatchFilter, "Generic video filter (Refer to Help > Wiki).");
             this.cbMatchFilter.UseVisualStyleBackColor = true;
@@ -125,6 +128,7 @@
             this.txtRejectTitle.Name = "txtRejectTitle";
             this.txtRejectTitle.Size = new System.Drawing.Size(298, 22);
             this.txtRejectTitle.TabIndex = 3;
+            this.txtRejectTitle.Tag = "reject_title.value";
             this.toolTip.SetToolTip(this.txtRejectTitle, "Skip download for matching titles (regex or caseless sub-string)");
             // 
             // cbRejectTitle
@@ -134,6 +138,7 @@
             this.cbRejectTitle.Name = "cbRejectTitle";
             this.cbRejectTitle.Size = new System.Drawing.Size(84, 17);
             this.cbRejectTitle.TabIndex = 2;
+            this.cbRejectTitle.Tag = "reject_title";
             this.cbRejectTitle.Text = "Reject Title:";
             this.toolTip.SetToolTip(this.cbRejectTitle, "Skip download for matching titles (regex or caseless sub-string)");
             this.cbRejectTitle.UseVisualStyleBackColor = true;
@@ -146,6 +151,7 @@
             this.txtMatchTitle.Name = "txtMatchTitle";
             this.txtMatchTitle.Size = new System.Drawing.Size(298, 22);
             this.txtMatchTitle.TabIndex = 1;
+            this.txtMatchTitle.Tag = "match_title.value";
             this.toolTip.SetToolTip(this.txtMatchTitle, "Download only matching titles (regex or caseless sub-string)");
             // 
             // cbMatchTitle
@@ -155,6 +161,7 @@
             this.cbMatchTitle.Name = "cbMatchTitle";
             this.cbMatchTitle.Size = new System.Drawing.Size(85, 17);
             this.cbMatchTitle.TabIndex = 0;
+            this.cbMatchTitle.Tag = "match_title";
             this.cbMatchTitle.Text = "Match Title:";
             this.toolTip.SetToolTip(this.cbMatchTitle, "Download only matching titles (regex or caseless sub-string)");
             this.cbMatchTitle.UseVisualStyleBackColor = true;
@@ -177,6 +184,7 @@
             this.gbPlaylistFilters.Size = new System.Drawing.Size(401, 134);
             this.gbPlaylistFilters.TabIndex = 4;
             this.gbPlaylistFilters.TabStop = false;
+            this.gbPlaylistFilters.Tag = "playlist_filters";
             this.gbPlaylistFilters.Text = "Playlist Filters";
             // 
             // btnPlaylistRangeEditor
@@ -186,6 +194,7 @@
             this.btnPlaylistRangeEditor.Name = "btnPlaylistRangeEditor";
             this.btnPlaylistRangeEditor.Size = new System.Drawing.Size(34, 22);
             this.btnPlaylistRangeEditor.TabIndex = 6;
+            this.btnPlaylistRangeEditor.Tag = "@browse";
             this.btnPlaylistRangeEditor.Text = "...";
             this.btnPlaylistRangeEditor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolTip.SetToolTip(this.btnPlaylistRangeEditor, "Playlist items editor.");
@@ -200,6 +209,7 @@
             this.txtPlaylistRange.Name = "txtPlaylistRange";
             this.txtPlaylistRange.Size = new System.Drawing.Size(281, 22);
             this.txtPlaylistRange.TabIndex = 5;
+            this.txtPlaylistRange.Tag = "range.value";
             this.toolTip.SetToolTip(this.txtPlaylistRange, "Playlist video items to download.\r\nComma seperated indices and/or ranges using hy" +
         "pen.");
             this.txtPlaylistRange.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlaylistRange_KeyPress);
@@ -217,6 +227,7 @@
             this.nudPlaylistEnd.Name = "nudPlaylistEnd";
             this.nudPlaylistEnd.Size = new System.Drawing.Size(321, 22);
             this.nudPlaylistEnd.TabIndex = 3;
+            this.nudPlaylistEnd.Tag = "end.value";
             this.toolTip.SetToolTip(this.nudPlaylistEnd, "Playlist video to end at (default is last).");
             // 
             // nudPlaylistStart
@@ -232,6 +243,7 @@
             this.nudPlaylistStart.Name = "nudPlaylistStart";
             this.nudPlaylistStart.Size = new System.Drawing.Size(321, 22);
             this.nudPlaylistStart.TabIndex = 1;
+            this.nudPlaylistStart.Tag = "start.value";
             this.toolTip.SetToolTip(this.nudPlaylistStart, "Playlist video to start at (default is 1).");
             // 
             // cbPlaylistRandom
@@ -241,6 +253,7 @@
             this.cbPlaylistRandom.Name = "cbPlaylistRandom";
             this.cbPlaylistRandom.Size = new System.Drawing.Size(69, 17);
             this.cbPlaylistRandom.TabIndex = 8;
+            this.cbPlaylistRandom.Tag = "random";
             this.cbPlaylistRandom.Text = "Random";
             this.toolTip.SetToolTip(this.cbPlaylistRandom, "Download playlist videos in a random order.");
             this.cbPlaylistRandom.UseVisualStyleBackColor = true;
@@ -252,6 +265,7 @@
             this.cbPlaylistReversed.Name = "cbPlaylistReversed";
             this.cbPlaylistReversed.Size = new System.Drawing.Size(72, 17);
             this.cbPlaylistReversed.TabIndex = 7;
+            this.cbPlaylistReversed.Tag = "reversed";
             this.cbPlaylistReversed.Text = "Reversed";
             this.toolTip.SetToolTip(this.cbPlaylistReversed, "Download playlist videos in a reversed order.");
             this.cbPlaylistReversed.UseVisualStyleBackColor = true;
@@ -263,6 +277,7 @@
             this.cbPlaylistRange.Name = "cbPlaylistRange";
             this.cbPlaylistRange.Size = new System.Drawing.Size(62, 17);
             this.cbPlaylistRange.TabIndex = 4;
+            this.cbPlaylistRange.Tag = "range";
             this.cbPlaylistRange.Text = "Range:";
             this.toolTip.SetToolTip(this.cbPlaylistRange, "Playlist video items to download.\r\nComma seperated indices and/or ranges using hy" +
         "pen.");
@@ -275,6 +290,7 @@
             this.cbPlaylistEnd.Name = "cbPlaylistEnd";
             this.cbPlaylistEnd.Size = new System.Drawing.Size(49, 17);
             this.cbPlaylistEnd.TabIndex = 2;
+            this.cbPlaylistEnd.Tag = "end";
             this.cbPlaylistEnd.Text = "End:";
             this.toolTip.SetToolTip(this.cbPlaylistEnd, "Playlist video to end at (default is last).");
             this.cbPlaylistEnd.UseVisualStyleBackColor = true;
@@ -286,6 +302,7 @@
             this.cbPlaylistStart.Name = "cbPlaylistStart";
             this.cbPlaylistStart.Size = new System.Drawing.Size(53, 17);
             this.cbPlaylistStart.TabIndex = 0;
+            this.cbPlaylistStart.Tag = "start";
             this.cbPlaylistStart.Text = "Start:";
             this.toolTip.SetToolTip(this.cbPlaylistStart, "Playlist video to start at (default is 1).");
             this.cbPlaylistStart.UseVisualStyleBackColor = true;
@@ -300,6 +317,7 @@
             this.gbSelectionType.Size = new System.Drawing.Size(223, 93);
             this.gbSelectionType.TabIndex = 0;
             this.gbSelectionType.TabStop = false;
+            this.gbSelectionType.Tag = "selection_type";
             this.gbSelectionType.Text = "Selection Type";
             // 
             // rbSelectionVideo
@@ -309,6 +327,7 @@
             this.rbSelectionVideo.Name = "rbSelectionVideo";
             this.rbSelectionVideo.Size = new System.Drawing.Size(82, 17);
             this.rbSelectionVideo.TabIndex = 2;
+            this.rbSelectionVideo.Tag = "video_only";
             this.rbSelectionVideo.Text = "Video Only";
             this.toolTip.SetToolTip(this.rbSelectionVideo, "Download only the video, if the URL refers to a video and a playlist.");
             this.rbSelectionVideo.UseVisualStyleBackColor = true;
@@ -320,6 +339,7 @@
             this.rbSelectionPlaylist.Name = "rbSelectionPlaylist";
             this.rbSelectionPlaylist.Size = new System.Drawing.Size(87, 17);
             this.rbSelectionPlaylist.TabIndex = 1;
+            this.rbSelectionPlaylist.Tag = "playlist_only";
             this.rbSelectionPlaylist.Text = "Playlist Only";
             this.toolTip.SetToolTip(this.rbSelectionPlaylist, "Download the playlist, if the URL refers to a video and a playlist.");
             this.rbSelectionPlaylist.UseVisualStyleBackColor = true;
@@ -333,6 +353,7 @@
             this.rbSelectionBoth.Size = new System.Drawing.Size(50, 17);
             this.rbSelectionBoth.TabIndex = 0;
             this.rbSelectionBoth.TabStop = true;
+            this.rbSelectionBoth.Tag = "both";
             this.rbSelectionBoth.Text = "Both";
             this.toolTip.SetToolTip(this.rbSelectionBoth, "Download both the video and playlist, if the URL refers to a video and a playlist" +
         ".");
@@ -349,6 +370,7 @@
             this.gbViewCountFilters.Size = new System.Drawing.Size(220, 77);
             this.gbViewCountFilters.TabIndex = 3;
             this.gbViewCountFilters.TabStop = false;
+            this.gbViewCountFilters.Tag = "view_count_filters";
             this.gbViewCountFilters.Text = "View Count Filters";
             // 
             // nudMaxViews
@@ -369,6 +391,7 @@
             this.nudMaxViews.Name = "nudMaxViews";
             this.nudMaxViews.Size = new System.Drawing.Size(121, 22);
             this.nudMaxViews.TabIndex = 3;
+            this.nudMaxViews.Tag = "max_views.value";
             this.nudMaxViews.ThousandsSeparator = true;
             this.toolTip.SetToolTip(this.nudMaxViews, "Don\'t download any videos with more than # views.");
             // 
@@ -379,6 +402,7 @@
             this.cbMaxViews.Name = "cbMaxViews";
             this.cbMaxViews.Size = new System.Drawing.Size(83, 17);
             this.cbMaxViews.TabIndex = 2;
+            this.cbMaxViews.Tag = "max_views";
             this.cbMaxViews.Text = "Max Views:";
             this.toolTip.SetToolTip(this.cbMaxViews, "Don\'t download any videos with more than # views.");
             this.cbMaxViews.UseVisualStyleBackColor = true;
@@ -401,6 +425,7 @@
             this.nudMinViews.Name = "nudMinViews";
             this.nudMinViews.Size = new System.Drawing.Size(121, 22);
             this.nudMinViews.TabIndex = 1;
+            this.nudMinViews.Tag = "min_views.value";
             this.nudMinViews.ThousandsSeparator = true;
             this.toolTip.SetToolTip(this.nudMinViews, "Don\'t download any videos with less than # views.");
             // 
@@ -411,6 +436,7 @@
             this.cbMinViews.Name = "cbMinViews";
             this.cbMinViews.Size = new System.Drawing.Size(82, 17);
             this.cbMinViews.TabIndex = 0;
+            this.cbMinViews.Tag = "min_views";
             this.cbMinViews.Text = "Min Views:";
             this.toolTip.SetToolTip(this.cbMinViews, "Don\'t download any videos with less than # views.");
             this.cbMinViews.UseVisualStyleBackColor = true;
@@ -428,6 +454,7 @@
             this.gbFilesizeFilters.Size = new System.Drawing.Size(220, 77);
             this.gbFilesizeFilters.TabIndex = 2;
             this.gbFilesizeFilters.TabStop = false;
+            this.gbFilesizeFilters.Tag = "filesize_filters";
             this.gbFilesizeFilters.Text = "Filesize Filters";
             // 
             // cbxMaxSizeUnit
@@ -459,6 +486,7 @@
             this.nudMaxSize.Name = "nudMaxSize";
             this.nudMaxSize.Size = new System.Drawing.Size(62, 22);
             this.nudMaxSize.TabIndex = 4;
+            this.nudMaxSize.Tag = "max_size.value";
             this.toolTip.SetToolTip(this.nudMaxSize, "Don\'t download any videos larger than # size.");
             // 
             // cbMaxSize
@@ -468,6 +496,7 @@
             this.cbMaxSize.Name = "cbMaxSize";
             this.cbMaxSize.Size = new System.Drawing.Size(73, 17);
             this.cbMaxSize.TabIndex = 3;
+            this.cbMaxSize.Tag = "max_size";
             this.cbMaxSize.Text = "Max Size:";
             this.toolTip.SetToolTip(this.cbMaxSize, "Don\'t download any videos larger than # size.");
             this.cbMaxSize.UseVisualStyleBackColor = true;
@@ -501,6 +530,7 @@
             this.nudMinSize.Name = "nudMinSize";
             this.nudMinSize.Size = new System.Drawing.Size(62, 22);
             this.nudMinSize.TabIndex = 1;
+            this.nudMinSize.Tag = "min_size.value";
             this.toolTip.SetToolTip(this.nudMinSize, "Don\'t download any videos smaller than # size.");
             // 
             // cbMinSize
@@ -510,6 +540,7 @@
             this.cbMinSize.Name = "cbMinSize";
             this.cbMinSize.Size = new System.Drawing.Size(72, 17);
             this.cbMinSize.TabIndex = 0;
+            this.cbMinSize.Tag = "min_size";
             this.cbMinSize.Text = "Min Size:";
             this.toolTip.SetToolTip(this.cbMinSize, "Don\'t download any videos smaller than # size.");
             this.cbMinSize.UseVisualStyleBackColor = true;
@@ -527,6 +558,7 @@
             this.gbDateFilters.Size = new System.Drawing.Size(220, 102);
             this.gbDateFilters.TabIndex = 1;
             this.gbDateFilters.TabStop = false;
+            this.gbDateFilters.Tag = "date_filters";
             this.gbDateFilters.Text = "Date Filters";
             // 
             // dtpDateBefore
@@ -539,6 +571,7 @@
             this.dtpDateBefore.Name = "dtpDateBefore";
             this.dtpDateBefore.Size = new System.Drawing.Size(112, 22);
             this.dtpDateBefore.TabIndex = 5;
+            this.dtpDateBefore.Tag = "date_before.value";
             this.toolTip.SetToolTip(this.dtpDateBefore, "Download videos uploaded before or on this date.");
             // 
             // cbDateBefore
@@ -548,6 +581,7 @@
             this.cbDateBefore.Name = "cbDateBefore";
             this.cbDateBefore.Size = new System.Drawing.Size(90, 17);
             this.cbDateBefore.TabIndex = 4;
+            this.cbDateBefore.Tag = "date_before";
             this.cbDateBefore.Text = "Date Before:";
             this.toolTip.SetToolTip(this.cbDateBefore, "Download videos uploaded before or on this date.");
             this.cbDateBefore.UseVisualStyleBackColor = true;
@@ -562,6 +596,7 @@
             this.dtpDateAfter.Name = "dtpDateAfter";
             this.dtpDateAfter.Size = new System.Drawing.Size(112, 22);
             this.dtpDateAfter.TabIndex = 3;
+            this.dtpDateAfter.Tag = "date_after.value";
             this.toolTip.SetToolTip(this.dtpDateAfter, "Download videos uploaded after or on this date.");
             // 
             // cbDateAfter
@@ -571,6 +606,7 @@
             this.cbDateAfter.Name = "cbDateAfter";
             this.cbDateAfter.Size = new System.Drawing.Size(81, 17);
             this.cbDateAfter.TabIndex = 2;
+            this.cbDateAfter.Tag = "date_after";
             this.cbDateAfter.Text = "Date After:";
             this.toolTip.SetToolTip(this.cbDateAfter, "Download videos uploaded after or on this date.");
             this.cbDateAfter.UseVisualStyleBackColor = true;
@@ -585,6 +621,7 @@
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(112, 22);
             this.dtpDate.TabIndex = 1;
+            this.dtpDate.Tag = "date.value";
             this.toolTip.SetToolTip(this.dtpDate, "Download videos uploaded on this date.");
             // 
             // cbDate
@@ -594,6 +631,7 @@
             this.cbDate.Name = "cbDate";
             this.cbDate.Size = new System.Drawing.Size(53, 17);
             this.cbDate.TabIndex = 0;
+            this.cbDate.Tag = "date";
             this.cbDate.Text = "Date:";
             this.toolTip.SetToolTip(this.cbDate, "Download videos uploaded on this date.");
             this.cbDate.UseVisualStyleBackColor = true;
@@ -618,6 +656,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabVideoSelection";
             this.Size = new System.Drawing.Size(638, 373);
+            this.Tag = "#";
             this.Load += new System.EventHandler(this.TabVideoSelection_Load);
             this.gbRegexFilters.ResumeLayout(false);
             this.gbRegexFilters.PerformLayout();
@@ -683,6 +722,6 @@
         private System.Windows.Forms.CheckBox cbDateAfter;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.CheckBox cbDate;
-        private System.Windows.Forms.ToolTip toolTip;
+        public System.Windows.Forms.ToolTip toolTip;
     }
 }

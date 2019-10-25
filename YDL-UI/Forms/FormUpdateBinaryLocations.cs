@@ -21,14 +21,15 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void FormUpdateBinaryLocations_Load(object sender, EventArgs e) {
-            lblNote.Text = lblNote.Text.Replace("{ProductName}", Application.ProductName);
-
             txtYdlPath.DataBindings.Add(nameof(txtYdlPath.Text), preferences.Binaries, nameof(preferences.Binaries.YoutubeDl), false, DataSourceUpdateMode.OnPropertyChanged);
             txtFfmpegPath.DataBindings.Add(nameof(txtFfmpegPath.Text), preferences.Binaries, nameof(preferences.Binaries.Ffmpeg), false, DataSourceUpdateMode.OnPropertyChanged);
 
             txtYdlPath.TextChanged += txtPath_TextChanged;
             txtFfmpegPath.TextChanged += txtPath_TextChanged;
             txtPath_TextChanged(this, new EventArgs());
+
+            Localization.ApplyLocaleText(this);
+            lblNote.Text = lblNote.Text.Replace("{ProductName}", Application.ProductName);
         }
 
         private void txtPath_TextChanged(object sender, EventArgs e) {
@@ -44,7 +45,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnBrowseYdl_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select youtube-dl.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtYdlPath.Text);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_youtube-dl.title", "Select youtube-dl.exe file..."), "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtYdlPath.Text);
 
             if (filepath != null)
                 txtYdlPath.Text = Util.GetRelativePath(filepath);
@@ -53,12 +54,12 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnBrowseFfmpeg_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Select ffmpeg.exe file...", "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtFfmpegPath.Text);
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_ffmpeg.title", "Select ffmpeg.exe file..."), "Executable Files (*.exe)|*.exe|All Files (*.*)|*.*", txtFfmpegPath.Text);
 
             if (filepath != null)
                 txtFfmpegPath.Text = Util.GetRelativePath(filepath);
 
             DialogResult = DialogResult.None;
-        }        
+        }
     }
 }

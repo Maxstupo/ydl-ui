@@ -41,6 +41,7 @@
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(75, 23);
             this.btnGo.TabIndex = 0;
+            this.btnGo.Tag = "okay";
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
@@ -53,6 +54,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
+            this.btnCancel.Tag = "@dialog.cancel";
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -65,6 +67,7 @@
             this.cbSeparateOptions.Name = "cbSeparateOptions";
             this.cbSeparateOptions.Size = new System.Drawing.Size(116, 17);
             this.cbSeparateOptions.TabIndex = 2;
+            this.cbSeparateOptions.Tag = "separate_options";
             this.cbSeparateOptions.Text = "Separate Options";
             this.toolTip1.SetToolTip(this.cbSeparateOptions, "If checked, download options will be available for each url.");
             this.cbSeparateOptions.UseVisualStyleBackColor = true;
@@ -79,6 +82,7 @@
             this.cbAllowPresets.Name = "cbAllowPresets";
             this.cbAllowPresets.Size = new System.Drawing.Size(122, 17);
             this.cbAllowPresets.TabIndex = 3;
+            this.cbAllowPresets.Tag = "allow_auto_presets";
             this.cbAllowPresets.Text = "Allow Auto Presets";
             this.toolTip1.SetToolTip(this.cbAllowPresets, "If checked, urls that match a preset will be added automatically.");
             this.cbAllowPresets.UseVisualStyleBackColor = true;
@@ -88,18 +92,20 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(9, 9);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(93, 13);
+            this.lblTotal.Size = new System.Drawing.Size(134, 13);
             this.lblTotal.TabIndex = 5;
-            this.lblTotal.Text = "Found {0} url(s)...";
+            this.lblTotal.Tag = "details1";
+            this.lblTotal.Text = "Found {UrlCount} url(s)...";
             // 
             // lblTotalDupes
             // 
             this.lblTotalDupes.AutoSize = true;
             this.lblTotalDupes.Location = new System.Drawing.Point(9, 33);
             this.lblTotalDupes.Name = "lblTotalDupes";
-            this.lblTotalDupes.Size = new System.Drawing.Size(140, 13);
+            this.lblTotalDupes.Size = new System.Drawing.Size(215, 13);
             this.lblTotalDupes.TabIndex = 6;
-            this.lblTotalDupes.Text = "{0} url(s) already imported.";
+            this.lblTotalDupes.Tag = "details2";
+            this.lblTotalDupes.Text = "{DuplicateCount} url(s) already imported.";
             // 
             // FormImportDownloads
             // 
@@ -123,6 +129,7 @@
             this.Name = "FormImportDownloads";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "import_downloads_dialog";
             this.Text = "Import Downloads";
             this.Load += new System.EventHandler(this.FormImportDownloads_Load);
             this.ResumeLayout(false);

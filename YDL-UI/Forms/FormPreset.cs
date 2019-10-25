@@ -1,4 +1,5 @@
 ﻿using Maxstupo.YdlUi.Settings;
+using Maxstupo.YdlUi.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         public Preset Preset { get; private set; }
         public bool RequestRemoval { get; private set; } = false;
-        private bool isEditMode { get; }
+        private bool IsEditMode { get; }
 
         public FormPreset(Preferences preferences, Preset preset = null) {
             InitializeComponent();
@@ -24,7 +25,8 @@ namespace Maxstupo.YdlUi.Forms {
             if (preset != null) {
                 Text = $"Edit Download Preset - {preset.Name}";
                 btnOkay.Text = "Edit";
-                isEditMode = true;
+                btnOkay.Tag = "okay.edit";
+                IsEditMode = true;
                 btnDelete.Visible = true;
             } else {
                 btnDelete.Visible = false;
@@ -46,7 +48,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void txtPresetName_TextChanged(object sender, EventArgs e) {
-            btnOkay.Enabled = !string.IsNullOrWhiteSpace(txtPresetName.Text) && !txtPresetName.Text.Trim().Equals("(PreviousOptions)", StringComparison.OrdinalIgnoreCase) && (isEditMode || !preferences.Presets.Any(p => p.Name == txtPresetName.Text));
+            btnOkay.Enabled = !string.IsNullOrWhiteSpace(txtPresetName.Text) && !txtPresetName.Text.Trim().Equals("(PreviousOptions)", StringComparison.OrdinalIgnoreCase) && (IsEditMode || !preferences.Presets.Any(p => p.Name == txtPresetName.Text));
         }
 
         private Preset CreatePreset(Preset preset = null) {
@@ -57,6 +59,11 @@ namespace Maxstupo.YdlUi.Forms {
             BackColor = Color.FromArgb(238, 238, 238);
             panelActions.BackColor = Color.FromArgb(211, 211, 211);
 
+            Localization.ApplyLocaleText(this, toolTip);
+            if (IsEditMode) {
+                Text = Localization.GetString($"{Tag}.edit", "Edit Download Preset - {PresetName}");
+                Text = Text.Replace("{PresetName}", Preset.Name);
+            }
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {

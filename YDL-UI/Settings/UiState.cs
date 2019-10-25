@@ -241,10 +241,6 @@ namespace Maxstupo.YdlUi.Settings {
         }
 
         protected virtual string GetKey(Control control) {
-
-            if (control.Tag is string tg && !string.IsNullOrWhiteSpace(tg)) // Ignore controls that have a tag starting with "!"
-                return tg;
-
             return control.Name;
         }
 
@@ -252,7 +248,6 @@ namespace Maxstupo.YdlUi.Settings {
             if (controls == null)
                 controls = new List<KeyControl>();
             else
-
                 path = path == null ? GetKey(control) : $"{path}.{GetKey(control)}";
 
 

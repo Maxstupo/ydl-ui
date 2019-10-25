@@ -51,7 +51,7 @@ namespace Maxstupo.YdlUi.Settings {
             if (filenames == null)
                 throw new ArgumentNullException(nameof(filenames));
 
-            PrefPath = FindExistingFile(filenames, "preferences.json");
+            PrefPath = Util.FindExistingFile(filenames, "preferences.json");
             Logger.Instance.Debug(nameof(PreferencesManager<T>), "Found preferences filepath: {0}", PrefPath);
 
             string directory = PrefDirectory;
@@ -65,20 +65,6 @@ namespace Maxstupo.YdlUi.Settings {
             }
 
             this.Preferences = defaultPreferences ?? Activator.CreateInstance<T>();
-        }
-
-        /// <summary>
-        /// Returns the first filepath that exists from <paramref name="filenames"/>, if none exist the last element is returned.
-        /// </summary>
-        /// <param name="filenames">An array contain filepaths.</param>
-        /// <param name="defaultFile">The value to return if <paramref name="filenames"/> is empty.</param>
-        /// <returns>The first filepath that exists from <paramref name="filenames"/>, if none exist the last element is returned.</returns>
-        private static string FindExistingFile(string[] filenames, string defaultFile) {
-            foreach (string file in filenames) {
-                if (File.Exists(file))
-                    return file;
-            }
-            return filenames.Length > 0 ? filenames.Last() : defaultFile;
         }
 
         /// <summary>

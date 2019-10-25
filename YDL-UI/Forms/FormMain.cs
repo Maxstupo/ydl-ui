@@ -31,7 +31,7 @@ namespace Maxstupo.YdlUi.Forms {
         public PreferencesManager<Preferences> PreferencesManager { get; }
         private readonly DownloadManager downloadManager;
 
-        public string ApplicationVersion { get => Application.ProductVersion.RemoveAfterLast('.'); }
+        public string ApplicationVersion => Application.ProductVersion.RemoveAfterLast('.');
 
         private Thread pipeThread;
         private NamedPipeServerStream pipeServer;
@@ -78,15 +78,27 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void DownloadManager_PropertyChanged(object sender, PropertyChangedEventArgs e) {
-            tsslStatusLeft.Text = $"Downloaded {downloadManager.CompletedDownloads} of {downloadManager.TotalDownloads}, {downloadManager.ConcurrentDownloads} running.";
+            string template = Localization.GetString("status", "Downloading {CompletedDownloads} of {TotalDownloads}, {ConcurrentDownloads} running.");
+
+            tsslStatusLeft.Text = template.Replace("{CompletedDownloads}", downloadManager.CompletedDownloads.ToString())
+                                          .Replace("{TotalDownloads}", downloadManager.TotalDownloads.ToString())
+                                          .Replace("{ConcurrentDownloads}", downloadManager.ConcurrentDownloads.ToString());
         }
 
         private void FormMain_Load(object sender, EventArgs e) {
+
             // Bind our downloads from the download manager to the datagridview.
             dgvDownloads.AutoGenerateColumns = false;
             dgvDownloads.OpenCellLinkOnClick();
             dgvDownloads.SelectRowOnRightClick();
             dgvDownloads.DataSource = downloadManager.Downloads;
+
+            dgvDownloads.Columns[0].Tag = "url";
+            dgvDownloads.Columns[1].Tag = "progress";
+            dgvDownloads.Columns[2].Tag = "size";
+            dgvDownloads.Columns[3].Tag = "speed";
+            dgvDownloads.Columns[4].Tag = "eta";
+            dgvDownloads.Columns[5].Tag = "status";
 
             completedDownloadsToolStripMenuItem.Tag = DownloadStatus.Completed;
             waitingDownloadsToolStripMenuItem.Tag = DownloadStatus.Waiting;
@@ -99,6 +111,10 @@ namespace Maxstupo.YdlUi.Forms {
 
             // Attempt to load preferences if file exists, else create a new preferences file.
             PreferencesManager.Load(true);
+
+            Localization.Load(Path.Combine(PreferencesManager.PrefDirectory, "locales"));
+            Localization.OnLanguageChanged += OnLanguageChanged;
+            Localization.Language = PreferencesManager.Preferences.Language;
 
             UpdateResources();
 
@@ -114,6 +130,18 @@ namespace Maxstupo.YdlUi.Forms {
             if (PreferencesManager.Preferences.CheckForUpdates)
                 CheckForUpdates(true);
 #endif
+
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs args) {
+            // Update preferences manually instead of using data binding, as the language property can change from what you set it to.
+            // (e.g. Language = 'en-US', resolves to 'en' if 'en-US' locale doesnt exist)
+            PreferencesManager.Preferences.Language = Localization.Language;
+
+            Localization.ApplyLocaleText(this);
+
+            // Status text at the bottom left.
+            DownloadManager_PropertyChanged(null, null);
 
         }
 
@@ -172,7 +200,7 @@ namespace Maxstupo.YdlUi.Forms {
         // Check if we are closing YDL-UI when we are downloading or haven't saved our changes.
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
             if (downloadManager.ConcurrentDownloads > 0 && PreferencesManager.Preferences.PromptDownloadingOnClose) {
-                if (MessageBox.Show(this, "There are still items downloading! Do you want to quit?", "Are you sure you want to quit?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                if (MessageBox.Show(this, Localization.GetString("msg.prompt_on_close", "There are still items downloading! Do you want to quit?"), Localization.GetString("msg.prompt_on_close.title", "Are you sure you want to quit?"), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                     e.Cancel = true;
             }
             if (!e.Cancel) {
@@ -183,6 +211,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             if (pipeServer != null)
                 pipeServer.Dispose();
+            
         }
 
         // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise auto-extract
@@ -235,9 +264,8 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void AddDownload(Download download) {
-            if (!downloadManager.AddDownload(download)) {
-                MessageBox.Show(this, "The video URL is already added to the download list!", "Failed to queue download!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            if (!downloadManager.AddDownload(download))
+                MessageBox.Show(this, Localization.GetString("msg.url_already_added", "The video URL is already added to the download list!"), Localization.GetString("msg.url_already_added.title", "Failed to queue download!"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
 
@@ -262,7 +290,7 @@ namespace Maxstupo.YdlUi.Forms {
                     PreferencesManager.Save();
 
                     if (dialog.RequiresRestart) {
-                        if (MessageBox.Show(this, $"{Application.ProductName} requires a restart for changes to take effect.\n\nWould you like to restart {Application.ProductName} now?", "Restart required", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                        if (MessageBox.Show(this, Localization.GetString("msg.restart_required", "{ProductName} requires a restart for changes to take effect.\n\nWould you like to restart {ProductName} now?").Replace("{ProductName}", Application.ProductName), Localization.GetString("msg.restart_required.title", "Restart Required"), MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                             Application.Restart();
                     }
 
@@ -355,8 +383,6 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e) {
 
-            //YdlDownload download = dgvDownloads.SelectedRow<YdlDownload>();
-
             bool singleRowSelected = dgvDownloads.HasSingleSelectedRow();
 
             // download will be null if multiple rows are selected.
@@ -378,7 +404,7 @@ namespace Maxstupo.YdlUi.Forms {
             Download[] downloads = dgvDownloads.SelectedRows<Download>();
             if (downloads != null && downloads.Length > 0) {
 
-                if (MessageBox.Show(this, $"Are you sure you want to remove {downloads.Length} download(s)?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show(this, Localization.GetString("msg.confirm_download_removal", "Are you sure you want to remove {Count} download(s)?").Replace("{Count}", downloads.Length.ToString()), Localization.GetString("msg.confirm_download_removal.title", "Are you sure?"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
                 foreach (Download download in downloads)
@@ -399,9 +425,9 @@ namespace Maxstupo.YdlUi.Forms {
                 try {
                     Clipboard.SetDataObject(download.Url, true, 5, 200); // Attempt to set clipboard 5 times, every 200ms.
 
-                } catch (ExternalException ex) { // Clipboard is being used by another process.
+                } catch (ExternalException) { // Clipboard is being used by another process.
 
-                    MessageBox.Show(this, "Failed to copy URL to clipboard.\n\nClipboard is being used by another process. Please try again later...", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, Localization.GetString("msg.failed_clipboard_copy", "Failed to copy URL to clipboard.\n\nClipboard is being used by another process. Please try again later..."), Localization.GetString("msg.failed_clipboard_copy.title", Text).Replace("{ProductName}", Application.ProductName), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -483,21 +509,21 @@ namespace Maxstupo.YdlUi.Forms {
                 int delta = releaseVersion.CompareTo(currentVersion);
                 if (delta > 0) {
                     Logger.Instance.Info("Updater", "New version available: {0} -> {1} ({2})", currentVersion, releaseVersion, delta);
-                    if (MessageBox.Show(this, $"{Application.ProductName} v{releaseTagName} is available! Do you want to go to the download page?", "An Update is Available!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
+                    if (MessageBox.Show(this, Localization.GetString("msg.update.new_update", "{ProductName} v{UpdateVersion} is available! Do you want to go to the download page?").Replace("{ProductName}", Application.ProductName).Replace("{UpdateVersion}", releaseTagName), Localization.GetString("msg.update.new_update.title", "An Update is Available!"), MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes) {
                         Process.Start(releasePageUrl);
                     }
                 } else {
                     Logger.Instance.Info("Updater", "Up to date.");
 
                     if (!silent)
-                        MessageBox.Show(this, "No new updates found.", "Check For Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, Localization.GetString("msg.update.no_updates", "No new updates found."), Localization.GetString("msg.update", "Check For Updates"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             } catch (Exception e) {
                 Logger.Instance.Error("Updater", "Failed to check for updates!\n{0}", e.ToString());
 
                 if (!silent)
-                    MessageBox.Show(this, "Failed to check for updates!", "Check For Updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, Localization.GetString("msg.update.failed", "Failed to check for updates!"), Localization.GetString("msg.update", "Check For Updates"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -506,7 +532,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e) {
             using (SaveFileDialog dialog = new SaveFileDialog()) {
-                dialog.Title = "Export downloads...";
+                dialog.Title = Localization.GetString("export_dialog.title", "Export downloads...");
                 dialog.AddExtension = true;
                 dialog.Filter = @"Text Files (*.txt)|*.txt|JSON Files (*.json)|*.json|All Files (*.*)|*.*";
 
@@ -524,13 +550,13 @@ namespace Maxstupo.YdlUi.Forms {
 
                         sw.Flush();
                     }
-                    MessageBox.Show(this, "Successfully exported downloads.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Localization.GetString("msg.successful_export", "Successfully exported downloads."), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
-            string filepath = GuiUtil.SelectFile(this, "Import downloads...", @"Text Files (*.txt)|*.txt|JSON Files (*.json)|*.json|All Files (*.*)|*.*");
+            string filepath = GuiUtil.SelectFile(this, Localization.GetString("import_dialog.title", "Import downloads..."), @"Text Files (*.txt)|*.txt|JSON Files (*.json)|*.json|All Files (*.*)|*.*");
             if (filepath != null) {
                 bool isJson = Path.GetExtension(filepath).Equals(".json", StringComparison.InvariantCultureIgnoreCase);
 
@@ -546,5 +572,11 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         #endregion
+
+        private void dgvDownloads_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+            if (e.ColumnIndex == 5 && e.Value != null)
+                e.Value = Localization.GetString($"download_list.status.{e.Value.ToString().ToLower()}", e.Value.ToString()); // Localize status column.
+
+        }
     }
 }
