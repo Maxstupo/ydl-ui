@@ -365,7 +365,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Locales\*.*" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -392,6 +391,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' Or '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Content Include="FodyWeavers.xml" />
+    <EmbeddedResource Include="Locales\*.*" />
     <EmbeddedResource Include="Resources\youtube-dl.exe" />
     <EmbeddedResource Include="Resources\swscale-5.dll" />
     <EmbeddedResource Include="Resources\swresample-3.dll" />
@@ -407,7 +407,8 @@
     <None Include="ydl-ui_1.ico" />
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleasePortable|AnyCPU' Or '$(Configuration)|$(Platform)' == 'DebugPortable|AnyCPU' ">
-    <Content Include="FodyWeavers.xml" />
+    <Content Include="FodyWeavers.xml" />    
+    <None Include="Locales\*.*" />
     <None Include="Resources\youtube-dl.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
