@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# YDL-UI Files
+YDL-UI/Locales
+
 # User-specific files
 *.suo
 *.user

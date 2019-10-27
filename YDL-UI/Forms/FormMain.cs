@@ -21,6 +21,7 @@ namespace Maxstupo.YdlUi.Forms {
     public partial class FormMain : Form {
         public const string PipeName = "YDL_UI_IO";
         private const string EmbeddedBinariesNamespace = "Maxstupo.YdlUi.Resources";
+        private const string EmbeddedLocalesNamespace = "Maxstupo.YdlUi.Locales";
         private const string EmbeddedYdlName = "youtube-dl.exe";
         private const string EmbeddedFfmpegName = "ffmpeg.exe";
 
@@ -38,6 +39,8 @@ namespace Maxstupo.YdlUi.Forms {
 
         private string urlToAdd;
         private bool isSilent;
+
+        private readonly string localesDirectory;
 
         public FormMain(string urlToAdd, bool silent) {
             InitializeComponent();
@@ -65,6 +68,28 @@ namespace Maxstupo.YdlUi.Forms {
               Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json"), // ~\ydl-ui.json
               Path.Combine(Util.GetAppDataPath(),".ydl-ui", "ydl-ui.json") // %appdata%\.ydl-ui\ydl-ui.json
             });
+
+
+            // The directory path to locale files.
+            localesDirectory = Path.Combine(PreferencesManager.PrefDirectory, "locales");
+#if !PORTABLE
+            // If this is a standalone release, extract default locale files into the locale directory.
+            //      -  %appdata%\.ydl-ui\locales
+            //      -  ~\locales
+            DirectoryInfo localesDir = Directory.CreateDirectory(localesDirectory);
+
+            ResourceDescriptor[] descriptors = ResourceExtractor.ExtractTo(localesDir, EmbeddedLocalesNamespace, null);
+
+            // Embedded locale files dont have the .json file extension as it seems to prevent them
+            // from being listed by Assembly.GetManifestResourceNames() so we must add it back.
+            foreach (ResourceDescriptor descriptor in descriptors) {
+                string newFilepath = Path.Combine(localesDirectory, $"{descriptor.File.Name}.json");
+                if (File.Exists(newFilepath))
+                    File.Delete(newFilepath);
+
+                descriptor.File.MoveTo(newFilepath);
+            }
+#endif
 
             // The filepath to the download list, it's within the same folder as the preferences file.
             string downloadListFilepath = Path.Combine(PreferencesManager.PrefDirectory, "download-list.json");
@@ -112,7 +137,7 @@ namespace Maxstupo.YdlUi.Forms {
             // Attempt to load preferences if file exists, else create a new preferences file.
             PreferencesManager.Load(true);
 
-            Localization.Load(Path.Combine(PreferencesManager.PrefDirectory, "locales"));
+            Localization.Load(localesDirectory);
             Localization.OnLanguageChanged += OnLanguageChanged;
             Localization.Language = PreferencesManager.Preferences.Language;
 
@@ -211,7 +236,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             if (pipeServer != null)
                 pipeServer.Dispose();
-            
+
         }
 
         // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise auto-extract
