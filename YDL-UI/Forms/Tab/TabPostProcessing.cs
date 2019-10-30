@@ -11,6 +11,10 @@ namespace Maxstupo.YdlUi.Forms.Tab {
 
         private void TabPostProcessing_Load(object sender, EventArgs e) {
             cbxAudioOnly.DataSource = Enum.GetValues(typeof(AudioFormat));
+            cbxAudioOnly.Format += (s, ee) => {
+                if (((AudioFormat)ee.ListItem) == AudioFormat.Best)
+                    ee.Value = Localization.GetString("download_dialog.post_processing.audio_only.best", AudioFormat.Best.ToString());
+            };
             cbxAudioOnly.SelectedItem = AudioFormat.Mp3;
 
             cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));

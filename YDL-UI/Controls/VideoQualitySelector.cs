@@ -9,7 +9,7 @@ namespace Maxstupo.YdlUi.Controls {
                 if (!IsCustomQuality) {
                     return cbxQuality.SelectedValue as VideoQuality;
                 } else {
-                    return new VideoQuality((int)nudCustomWidth.Value, (int)nudCustomHeight.Value, "Custom");
+                    return new VideoQuality((int)nudCustomWidth.Value, (int)nudCustomHeight.Value, "Custom"); //  Name "Custom" not used.
                 }
             }
         }

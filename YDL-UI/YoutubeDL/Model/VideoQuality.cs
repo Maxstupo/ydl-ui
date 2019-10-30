@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Maxstupo.YdlUi.Utility;
+using System.Collections.Generic;
 
 namespace Maxstupo.YdlUi.YoutubeDL.Model {
     public class VideoQuality {
@@ -27,7 +28,7 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
         public override string ToString() {
             if (Width < 0 && Height < 0)
-                return "Custom";
+                return Localization.GetString("download_dialog.quality.vq.custom", "Custom");
 
             string nicknames = string.Empty;
             if (Names != null && Names.Length > 0) {

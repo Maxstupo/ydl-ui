@@ -1,4 +1,5 @@
-﻿using Maxstupo.YdlUi.YoutubeDL.Model;
+﻿using Maxstupo.YdlUi.Utility;
+using Maxstupo.YdlUi.YoutubeDL.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -36,7 +37,7 @@ namespace Maxstupo.YdlUi.Controls {
             cbxFrameRate.SelectedIndex = 0;
             cbxFrameRate.Format += (s, ee) => {
                 int value = (int)ee.ListItem;
-                ee.Value = value < 0 ? "Custom" : value.ToString();
+                ee.Value = value < 0 ? Localization.GetString("download_dialog.quality.fr.custom", "Custom") : value.ToString();
             };
 
             nudCustomFrameRate.Visible = false;
