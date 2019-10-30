@@ -79,11 +79,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             Status = DownloadStatus.Downloading;
 
             WriteLog($"Working Directory: {DownloadDirectory}\r\nYDL Version: {Application.ProductVersion.RemoveAfterLast('.')}\r\n");
-#if PORTABLE
-            WriteLog("Portable: True\r\n");
-#else
-            WriteLog("Portable: False\r\n");
-#endif
 
             // Get the video title.
             // TODO: Maybe add an option to disable video title collection?

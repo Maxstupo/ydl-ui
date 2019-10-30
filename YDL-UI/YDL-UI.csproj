@@ -35,36 +35,6 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <OutputType>Exe</OutputType>
-    <Optimize>false</Optimize>
-    <OutputPath>build\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
-    <DocumentationFile>
-    </DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>none</DebugType>
-    <OutputType>WinExe</OutputType>
-    <Optimize>true</Optimize>
-    <OutputPath>build\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowedReferenceRelatedFileExtensions>
-      <!-- Prevent default XML and PDB files copied to output in RELEASE. 
-           Only *.json files will be included
-       -->
-      .json
-    </AllowedReferenceRelatedFileExtensions>
-  </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Maxstupo.YdlUi.Program</StartupObject>
   </PropertyGroup>
@@ -281,10 +251,8 @@
     <Compile Include="Utility\GuiUtil.cs" />
     <Compile Include="Utility\Localization.cs" />
     <Compile Include="Utility\Logger.cs" />
-    <Compile Include="Utility\ResourceExtractor.cs" />
     <Compile Include="Utility\SortableBindingList.cs" />
     <Compile Include="Utility\StringPattern.cs" />
-    <Compile Include="Utility\TempDirectory.cs" />
     <Compile Include="Utility\Util.cs" />
     <Compile Include="YoutubeDL\Model\FormatSelector.cs" />
     <Compile Include="YoutubeDL\Download.cs" />
@@ -389,63 +357,47 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' Or '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleasePortable|AnyCPU' Or '$(Configuration)|$(Platform)' == 'DebugPortable|AnyCPU' ">
     <Content Include="FodyWeavers.xml" />
-    <EmbeddedResource Include="Locales\*.*" />
-    <EmbeddedResource Include="Resources\youtube-dl.exe" />
-    <EmbeddedResource Include="Resources\swscale-5.dll" />
-    <EmbeddedResource Include="Resources\swresample-3.dll" />
-    <EmbeddedResource Include="Resources\postproc-55.dll" />
-    <EmbeddedResource Include="Resources\ffprobe.exe" />
-    <EmbeddedResource Include="Resources\ffplay.exe" />
-    <EmbeddedResource Include="Resources\ffmpeg.exe" />
-    <EmbeddedResource Include="Resources\avutil-56.dll" />
-    <EmbeddedResource Include="Resources\avformat-58.dll" />
-    <EmbeddedResource Include="Resources\avfilter-7.dll" />
-    <EmbeddedResource Include="Resources\avdevice-58.dll" />
-    <EmbeddedResource Include="Resources\avcodec-58.dll" />
     <None Include="ydl-ui_1.ico" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleasePortable|AnyCPU' Or '$(Configuration)|$(Platform)' == 'DebugPortable|AnyCPU' ">
-    <Content Include="FodyWeavers.xml" />    
-    <None Include="Locales\*.*" />
-    <None Include="Resources\youtube-dl.exe">
+  <ItemGroup>
+    <Content Include="bin\avcodec-58.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\swscale-5.dll">
+    </Content>
+    <Content Include="bin\avdevice-58.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\swresample-3.dll">
+    </Content>
+    <Content Include="bin\avfilter-7.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\postproc-55.dll">
+    </Content>
+    <Content Include="bin\avformat-58.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ffprobe.exe">
+    </Content>
+    <Content Include="bin\avutil-56.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ffplay.exe">
+    </Content>
+    <Content Include="bin\ffmpeg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\ffmpeg.exe">
+    </Content>
+    <Content Include="bin\ffplay.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\avutil-56.dll">
+    </Content>
+    <Content Include="bin\ffprobe.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\avformat-58.dll">
+    </Content>
+    <Content Include="bin\postproc-55.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\avfilter-7.dll">
+    </Content>
+    <Content Include="bin\swresample-3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\avdevice-58.dll">
+    </Content>
+    <Content Include="bin\swscale-5.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\avcodec-58.dll">
+    </Content>
+    <Content Include="bin\youtube-dl.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ydl-ui_1.ico" />
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.2.17\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.17\build\Fody.targets')" />

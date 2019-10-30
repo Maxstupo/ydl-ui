@@ -60,7 +60,6 @@
             this.gbManualUpdate = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
-            this.lblBlankEmbeddedNote = new System.Windows.Forms.Label();
             this.lblRestartNote = new System.Windows.Forms.Label();
             this.btnBinaryBrowseYdl = new System.Windows.Forms.Button();
             this.btnBinaryBrowseFfmpeg = new System.Windows.Forms.Button();
@@ -68,10 +67,6 @@
             this.btnPresetEdit = new System.Windows.Forms.Button();
             this.btnPresetAdd = new System.Windows.Forms.Button();
             this.lbxPresets = new System.Windows.Forms.ListBox();
-            this.tpInformation = new System.Windows.Forms.TabPage();
-            this.llblFfmpegDirectory = new System.Windows.Forms.LinkLabel();
-            this.llblYdlDirectory = new System.Windows.Forms.LinkLabel();
-            this.llblPreferencesLocation = new System.Windows.Forms.LinkLabel();
             this.panelActions = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -84,7 +79,6 @@
             this.tpBinaries.SuspendLayout();
             this.gbManualUpdate.SuspendLayout();
             this.tpPresets.SuspendLayout();
-            this.tpInformation.SuspendLayout();
             this.panelActions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -419,7 +413,6 @@
             this.tablessTabControl.Controls.Add(this.tpDownload);
             this.tablessTabControl.Controls.Add(this.tpBinaries);
             this.tablessTabControl.Controls.Add(this.tpPresets);
-            this.tablessTabControl.Controls.Add(this.tpInformation);
             this.tablessTabControl.Location = new System.Drawing.Point(2, 25);
             this.tablessTabControl.Name = "tablessTabControl";
             this.tablessTabControl.SelectedIndex = 0;
@@ -493,7 +486,6 @@
             // tpBinaries
             // 
             this.tpBinaries.Controls.Add(this.gbManualUpdate);
-            this.tpBinaries.Controls.Add(this.lblBlankEmbeddedNote);
             this.tpBinaries.Controls.Add(this.lblRestartNote);
             this.tpBinaries.Controls.Add(this.btnBinaryBrowseYdl);
             this.tpBinaries.Controls.Add(this.txtBinaryFfmpeg);
@@ -542,16 +534,6 @@
             this.btnUpdateYoutubeDl.Text = "Update";
             this.btnUpdateYoutubeDl.UseVisualStyleBackColor = true;
             this.btnUpdateYoutubeDl.Click += new System.EventHandler(this.btnUpdateYoutubeDl_Click);
-            // 
-            // lblBlankEmbeddedNote
-            // 
-            this.lblBlankEmbeddedNote.AutoSize = true;
-            this.lblBlankEmbeddedNote.Location = new System.Drawing.Point(3, 101);
-            this.lblBlankEmbeddedNote.Name = "lblBlankEmbeddedNote";
-            this.lblBlankEmbeddedNote.Size = new System.Drawing.Size(238, 13);
-            this.lblBlankEmbeddedNote.TabIndex = 7;
-            this.lblBlankEmbeddedNote.Tag = "note_embedded_binaries";
-            this.lblBlankEmbeddedNote.Text = "Note: Leave blank to use embedded binaries.";
             // 
             // lblRestartNote
             // 
@@ -641,56 +623,6 @@
             this.lbxPresets.Size = new System.Drawing.Size(456, 268);
             this.lbxPresets.TabIndex = 0;
             // 
-            // tpInformation
-            // 
-            this.tpInformation.Controls.Add(this.llblFfmpegDirectory);
-            this.tpInformation.Controls.Add(this.llblYdlDirectory);
-            this.tpInformation.Controls.Add(this.llblPreferencesLocation);
-            this.tpInformation.Location = new System.Drawing.Point(4, 22);
-            this.tpInformation.Name = "tpInformation";
-            this.tpInformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tpInformation.Size = new System.Drawing.Size(456, 296);
-            this.tpInformation.TabIndex = 4;
-            this.tpInformation.Tag = "information";
-            this.tpInformation.Text = "Information";
-            this.tpInformation.UseVisualStyleBackColor = true;
-            // 
-            // llblFfmpegDirectory
-            // 
-            this.llblFfmpegDirectory.AutoSize = true;
-            this.llblFfmpegDirectory.Location = new System.Drawing.Point(3, 65);
-            this.llblFfmpegDirectory.Name = "llblFfmpegDirectory";
-            this.llblFfmpegDirectory.Size = new System.Drawing.Size(134, 13);
-            this.llblFfmpegDirectory.TabIndex = 2;
-            this.llblFfmpegDirectory.TabStop = true;
-            this.llblFfmpegDirectory.Tag = "open_ffmpeg_directory";
-            this.llblFfmpegDirectory.Text = "Open ffmpeg Directory...";
-            this.llblFfmpegDirectory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLink_Clicked);
-            // 
-            // llblYdlDirectory
-            // 
-            this.llblYdlDirectory.AutoSize = true;
-            this.llblYdlDirectory.Location = new System.Drawing.Point(3, 43);
-            this.llblYdlDirectory.Name = "llblYdlDirectory";
-            this.llblYdlDirectory.Size = new System.Drawing.Size(154, 13);
-            this.llblYdlDirectory.TabIndex = 1;
-            this.llblYdlDirectory.TabStop = true;
-            this.llblYdlDirectory.Tag = "open_youtube-dl_directory";
-            this.llblYdlDirectory.Text = "Open youtube-dl Directory...";
-            this.llblYdlDirectory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLink_Clicked);
-            // 
-            // llblPreferencesLocation
-            // 
-            this.llblPreferencesLocation.AutoSize = true;
-            this.llblPreferencesLocation.Location = new System.Drawing.Point(3, 11);
-            this.llblPreferencesLocation.Name = "llblPreferencesLocation";
-            this.llblPreferencesLocation.Size = new System.Drawing.Size(128, 13);
-            this.llblPreferencesLocation.TabIndex = 0;
-            this.llblPreferencesLocation.TabStop = true;
-            this.llblPreferencesLocation.Tag = "open_preferences_file";
-            this.llblPreferencesLocation.Text = "Open Preferences File...";
-            this.llblPreferencesLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblLink_Clicked);
-            // 
             // panelActions
             // 
             this.panelActions.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -739,8 +671,6 @@
             this.gbManualUpdate.ResumeLayout(false);
             this.gbManualUpdate.PerformLayout();
             this.tpPresets.ResumeLayout(false);
-            this.tpInformation.ResumeLayout(false);
-            this.tpInformation.PerformLayout();
             this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -749,7 +679,6 @@
         #endregion
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOkay;
-        private System.Windows.Forms.LinkLabel llblPreferencesLocation;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListBox lbxCategories;
@@ -772,8 +701,6 @@
         private System.Windows.Forms.ListBox lbxPresets;
         private System.Windows.Forms.Button btnPresetAdd;
         private System.Windows.Forms.Button btnPresetEdit;
-        private System.Windows.Forms.TabPage tpInformation;
-        private System.Windows.Forms.LinkLabel llblYdlDirectory;
         private System.Windows.Forms.CheckBox cbBasicMode;
         private System.Windows.Forms.CheckBox cbCheckForUpdates;
         private System.Windows.Forms.CheckBox cbStayTop;
@@ -783,8 +710,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDefaultDownloadArchive;
         private System.Windows.Forms.Button btnBrowseDownloadArchive;
-        private System.Windows.Forms.Label lblBlankEmbeddedNote;
-        private System.Windows.Forms.LinkLabel llblFfmpegDirectory;
         private System.Windows.Forms.CheckBox cbResumeDownload;
         private System.Windows.Forms.GroupBox gbManualUpdate;
         private System.Windows.Forms.Label label4;

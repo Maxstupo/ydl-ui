@@ -25,21 +25,7 @@ namespace Maxstupo.YdlUi.Forms {
         public FormPreferences(DownloadManager downloadManager, Preferences preferences, string preferencesLocation = null) {
             InitializeComponent();
             this.preferences = preferences;
-
-
-            if (string.IsNullOrWhiteSpace(preferencesLocation)) {
-                llblPreferencesLocation.Visible = false;
-            } else {
-                toolTip.SetToolTip(llblPreferencesLocation, preferencesLocation);
-            }
-
-            string ydlPath = new FileInfo(downloadManager.YdlPath).Directory.FullName;
-            string ffmpegPath = new FileInfo(downloadManager.FfmpegPath).Directory.FullName;
-
-            toolTip.SetToolTip(llblYdlDirectory, ydlPath);
-            toolTip.SetToolTip(llblFfmpegDirectory, ffmpegPath);
-
-
+                       
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
             FormClosing += delegate {
                 Localization.OnLanguageChanged -= OnLanguageChanged;
@@ -109,11 +95,6 @@ namespace Maxstupo.YdlUi.Forms {
             txtBinaryFfmpeg.TextChanged += BinaryPaths_TextChanged;
 
             this.ForEachControl<TextBox>(control => control.TextChanged += TextBoxes_TextChanged);
-
-#if PORTABLE
-            // Hide notes about binaries when running a portable build, as they are required.
-            lblBlankEmbeddedNote.Visible = false;
-#endif
 
             btnUpdateYoutubeDl.Enabled = !hasConcurrentDownloads && !string.IsNullOrWhiteSpace(txtBinaryYdl.Text) && File.Exists(Util.GetAbsolutePath(txtBinaryYdl.Text));
 
@@ -269,12 +250,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         #endregion
-
-        private void llblLink_Clicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            string url = toolTip.GetToolTip((LinkLabel)sender);
-            Process.Start(url);
-        }
-
+               
         #region Browse Events
 
         private void btnBrowseYdl_Click(object sender, EventArgs e) {

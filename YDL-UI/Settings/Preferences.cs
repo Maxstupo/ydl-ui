@@ -41,10 +41,10 @@ namespace Maxstupo.YdlUi.Settings {
     public class PreferencesBinaries {
 
         [JsonProperty(PropertyName = "youtube-dl")]
-        public string YoutubeDl { get; set; } = string.Empty;
+        public string YoutubeDl { get; set; } = "bin\\youtube-dl.exe";
 
         [JsonProperty(PropertyName = "ffmpeg")]
-        public string Ffmpeg { get; set; } = string.Empty;
+        public string Ffmpeg { get; set; } = "bin\\ffmpeg.exe";
 
     }
 

@@ -34,20 +34,6 @@ namespace Maxstupo.YdlUi.Utility {
             return idx > 0 ? str.Substring(0, idx) : str;
         }
 
-        /// <summary>
-        /// Returns the first filepath that exists from <paramref name="filenames"/>, if none exist the last element is returned.
-        /// </summary>
-        /// <param name="filenames">An array contain filepaths.</param>
-        /// <param name="defaultFile">The value to return if <paramref name="filenames"/> is empty.</param>
-        /// <returns>The first filepath that exists from <paramref name="filenames"/>, if none exist the last element is returned.</returns>
-        public static string FindExistingFile(string[] filenames, string defaultFile) {
-            foreach (string file in filenames) {
-                if (File.Exists(file))
-                    return file;
-            }
-            return filenames.Length > 0 ? filenames.Last() : defaultFile;
-        }
-
         public static ByteSize From(double value, FilesizeUnit unit) {
             switch (unit) {
                 case FilesizeUnit.KB: return ByteSize.FromKiloBytes(value);

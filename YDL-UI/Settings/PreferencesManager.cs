@@ -20,7 +20,7 @@ namespace Maxstupo.YdlUi.Settings {
         /// <summary>
         /// The directory containing the preference file.
         /// </summary>
-        public string PrefDirectory { get => new FileInfo(PrefPath).DirectoryName; }
+        public string PrefDirectory => new FileInfo(PrefPath).DirectoryName;
 
         /// <summary>
         /// The preferences object, this object will be serialized/deserialized to the <see cref="PrefPath"/>.
@@ -43,28 +43,27 @@ namespace Maxstupo.YdlUi.Settings {
         public EventHandler<T> OnUpdate { get; set; }
 
         /// <summary>
-        /// Create a new preferences manager. If a preferences file already exists in one of the provided filepaths use that path, otherwise use the last filepath from <paramref name="filenames"/>.
+        /// Create a new preferences manager.
         /// </summary>
-        /// <param name="filenames">An array of potential filepaths representing the preference file.</param>
+        /// <param name="filepath">The filepath to the preference file.</param>
         /// <param name="defaultPreferences">The default preference object, set null to use <see cref="Activator.CreateInstance{T}"/></param>
-        public PreferencesManager(string[] filenames, T defaultPreferences = null) {
-            if (filenames == null)
-                throw new ArgumentNullException(nameof(filenames));
+        public PreferencesManager(string filepath, T defaultPreferences = null) {
+            PrefPath = filepath ?? throw new ArgumentNullException(nameof(filepath));
 
-            PrefPath = Util.FindExistingFile(filenames, "preferences.json");
             Logger.Instance.Debug(nameof(PreferencesManager<T>), "Found preferences filepath: {0}", PrefPath);
 
-            string directory = PrefDirectory;
+            string directory = string.Empty;
             try {
+                directory = PrefDirectory;
                 if (!Directory.Exists(directory)) {
                     Logger.Instance.Debug(nameof(PreferencesManager<T>), "Creating application directory: {0}", directory);
                     Directory.CreateDirectory(directory);
                 }
-            } catch (Exception e) {
+            } catch (Exception) {
                 Logger.Instance.Error(nameof(PreferencesManager<T>), "Failed to create application directory: {0}", directory);
             }
 
-            this.Preferences = defaultPreferences ?? Activator.CreateInstance<T>();
+            Preferences = defaultPreferences ?? Activator.CreateInstance<T>();
         }
 
         /// <summary>
@@ -83,10 +82,8 @@ namespace Maxstupo.YdlUi.Settings {
                 return false;
             }
 
-            using (StreamReader sr = new StreamReader(PrefPath, Encoding.UTF8)) {
-                string json = sr.ReadToEnd();
-                Preferences = JsonConvert.DeserializeObject<T>(json);
-            }
+            Preferences = JsonConvert.DeserializeObject<T>(File.ReadAllText(PrefPath, Encoding.UTF8));
+
             OnLoad?.Invoke(this, Preferences);
             OnUpdate?.Invoke(this, Preferences);
             return true;
@@ -109,12 +106,7 @@ namespace Maxstupo.YdlUi.Settings {
         public static void Save(string filepath, T preferences) {
             Logger.Instance.Debug(nameof(PreferencesManager<T>), "Saving preferences to disk...");
 
-            string json = JsonConvert.SerializeObject(preferences, Formatting.Indented);
-
-            using (StreamWriter sw = new StreamWriter(filepath, false, Encoding.UTF8))
-                sw.WriteLine(json);
+            File.WriteAllText(filepath, JsonConvert.SerializeObject(preferences, Formatting.Indented), Encoding.UTF8);
         }
-
-
     }
 }

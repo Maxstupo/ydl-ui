@@ -20,10 +20,6 @@ using System.Windows.Forms;
 namespace Maxstupo.YdlUi.Forms {
     public partial class FormMain : Form {
         public const string PipeName = "YDL_UI_IO";
-        private const string EmbeddedBinariesNamespace = "Maxstupo.YdlUi.Resources";
-        private const string EmbeddedLocalesNamespace = "Maxstupo.YdlUi.Locales";
-        private const string EmbeddedYdlName = "youtube-dl.exe";
-        private const string EmbeddedFfmpegName = "ffmpeg.exe";
 
         private const string UrlWiki = @"https://github.com/Maxstupo/ydl-ui/wiki";
         private const string UpdateUrl = @"https://api.github.com/repos/Maxstupo/ydl-ui/releases/latest";
@@ -48,53 +44,22 @@ namespace Maxstupo.YdlUi.Forms {
             this.isSilent = silent;
 
             // Set the title of the application.
-            Text = $"{Application.ProductName}";
-#if PORTABLE
-            Text += " Portable";
-#endif
-            Text += $" v{ ApplicationVersion}";
+            Text = $"{Application.ProductName} Portable v{ApplicationVersion}";
+
 #if DEBUG
             Text += "  -  Debug Build";
 #endif
+            string prefFilepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json");
 
-            // Ensure portable build always has a preference file in the same directory as the executable.
-#if PORTABLE
-            if (!File.Exists(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json")))
-                PreferencesManager<Preferences>.Save(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json"), new Preferences());
-#endif
-
-            // Create a new preferences manager with multiple preference file locations. (Multiple filepaths are used to make YDL portable).
-            PreferencesManager = new PreferencesManager<Preferences>(new string[] {
-              Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ydl-ui.json"), // ~\ydl-ui.json
-              Path.Combine(Util.GetAppDataPath(),".ydl-ui", "ydl-ui.json") // %appdata%\.ydl-ui\ydl-ui.json
-            });
-
+            // Create a new preferences manager.
+            PreferencesManager = new PreferencesManager<Preferences>(prefFilepath);
 
             // The directory path to locale files.
             localesDirectory = Path.Combine(PreferencesManager.PrefDirectory, "locales");
-#if !PORTABLE
-            // If this is a standalone release, extract default locale files into the locale directory.
-            //      -  %appdata%\.ydl-ui\locales
-            //      -  ~\locales
-            DirectoryInfo localesDir = Directory.CreateDirectory(localesDirectory);
-
-            ResourceDescriptor[] descriptors = ResourceExtractor.ExtractTo(localesDir, EmbeddedLocalesNamespace, null);
-
-            // Embedded locale files dont have the .json file extension as it seems to prevent them
-            // from being listed by Assembly.GetManifestResourceNames() so we must add it back.
-            foreach (ResourceDescriptor descriptor in descriptors) {
-                string newFilepath = Path.Combine(localesDirectory, $"{descriptor.File.Name}.json");
-                if (File.Exists(newFilepath))
-                    File.Delete(newFilepath);
-
-                descriptor.File.MoveTo(newFilepath);
-            }
-#endif
 
             // The filepath to the download list, it's within the same folder as the preferences file.
             string downloadListFilepath = Path.Combine(PreferencesManager.PrefDirectory, "download-list.json");
 
-            // XXX: DownloadManager doesn't create or check if the download list directory exists.
             downloadManager = new DownloadManager(PreferencesManager, downloadListFilepath);
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
 
@@ -239,8 +204,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         }
 
-        // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise auto-extract
-        // the resource to a temp directory and update the filepath to this temp resource instead.
+        // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise prompt for locations.
         private void UpdateResources() {
 
             string ydlPath = Util.GetAbsolutePath(PreferencesManager.Preferences.Binaries.YoutubeDl);
@@ -249,36 +213,12 @@ namespace Maxstupo.YdlUi.Forms {
             bool ydlCustomExists = File.Exists(ydlPath);
             bool ffmpegCustomExists = File.Exists(ffmpegPath);
 
-            // If this is a portable build, disable auto-extraction as we don't have the binaries embedded within the application.
-#if !PORTABLE
-            TempDirectory tempDirectory = null;
-
-            // Create temp directory only if needed, and mark it for deletion on application exit.
-            if (!ydlCustomExists || !ffmpegCustomExists)
-                tempDirectory = new TempDirectory("YDL-UI", true).DeleteOnExit();
-
-
-            // Only extract youtube-dl if we need it.
-            if (!ydlCustomExists) {
-                ResourceDescriptor[] descriptors = ResourceExtractor.ExtractTo(tempDirectory, EmbeddedBinariesNamespace, EmbeddedYdlName);
-
-                ydlPath = ResourceExtractor.GetFullPath(descriptors, EmbeddedYdlName); // Get the full filepath of our extracted binary.
-            }
-
-            // Only extract ffmpeg if we need it.
-            if (!ffmpegCustomExists) {
-                ResourceDescriptor[] descriptors = ResourceExtractor.ExtractTo(tempDirectory, EmbeddedBinariesNamespace, $"|{EmbeddedYdlName}"); // Pipe used to negate name (extract everything but this name).
-
-                ffmpegPath = ResourceExtractor.GetFullPath(descriptors, EmbeddedFfmpegName); // Get the full filepath of our extracted binary.
-            }
-#else
-            // If this is a portable build and our custom binary paths don't exist, ask for their location in a dialog.
+            // If our custom binary paths don't exist, ask for their location in a dialog.
             if (!ydlCustomExists || !ffmpegCustomExists) {
                 ShowUpdateBinaryLocationsDialog(true);
                 ydlPath = PreferencesManager.Preferences.Binaries.YoutubeDl;
                 ffmpegPath = PreferencesManager.Preferences.Binaries.Ffmpeg;
             }
-#endif
 
             // Apply the ydl and ffmpeg paths to our download manager.
             downloadManager.YdlPath = Util.GetAbsolutePath(ydlPath);
