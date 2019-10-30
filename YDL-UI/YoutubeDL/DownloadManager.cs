@@ -136,15 +136,12 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public void Save() {
             Logger.Instance.Debug(nameof(DownloadManager), "Saving downloads to disk...");
 
-            using (StreamWriter sw = new StreamWriter(downloadListFilepath, false, Encoding.UTF8)) {
 #if DEBUG
-                string json = JsonConvert.SerializeObject(downloads, Formatting.Indented);
+            File.WriteAllText(downloadListFilepath, JsonConvert.SerializeObject(downloads, Formatting.Indented), Encoding.UTF8);
 #else
-                string json = JsonConvert.SerializeObject(downloads, Formatting.None);
+            File.WriteAllText(downloadListFilepath, JsonConvert.SerializeObject(downloads, Formatting.None), Encoding.UTF8);
 #endif
 
-                sw.WriteLine(json);
-            }
         }
 
         public bool Load(bool createIfNotExists = true) {
@@ -158,12 +155,10 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 return false;
             }
 
-            using (StreamReader sw = new StreamReader(downloadListFilepath, Encoding.UTF8)) {
-                string json = sw.ReadToEnd();
 
-                List<Download> downloads = JsonConvert.DeserializeObject<List<Download>>(json);
-                downloads.ForEach(d => AddDownload(d));
-            }
+            List<Download> downloads = JsonConvert.DeserializeObject<List<Download>>(File.ReadAllText(downloadListFilepath, Encoding.UTF8));
+            downloads.ForEach(d => AddDownload(d));
+
             return true;
         }
     }
