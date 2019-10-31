@@ -42,15 +42,22 @@ namespace Maxstupo.YdlUi.Utility {
         public static string Language {
             get => language;
             set {
-
-                
-
                 string lang = ResolveLanguageCode(value);
                 if (lang != language) {
                     language = lang.ToLower();
 
                     OnLanguageChanged?.Invoke(null, EventArgs.Empty);
                     Logger.Instance.Info(nameof(Localization), "Setting language to: '{0}'", language);
+                }
+            }
+        }
+
+        public static string DefaultLanguage {
+            get {
+                try {
+                    return CultureInfo.CurrentUICulture.Name;
+                } catch (ArgumentException) {
+                    return null; // ArgumentNullException/ArgumentException - CurrentUICulture is null, or culture name is invalid.
                 }
             }
         }
@@ -90,7 +97,7 @@ namespace Maxstupo.YdlUi.Utility {
                     // Deserialize json file and store it in a dictionary for later use.
                     Dictionary<string, string> translation = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(filepath));
                     locales.Add(localeCode, translation);
-                } catch (JsonException e) {
+                } catch (Exception e) {
                     Logger.Instance.Warn(nameof(Localization), "Failed to load locale: ({1}) '{0}'\n{2}", filepath, localeCode, e);
                 }
 
@@ -103,18 +110,24 @@ namespace Maxstupo.YdlUi.Utility {
 
         // Convert language code (e.g. en-US) to neutral varient (e.g. en) if it doesn't exist, if the provided code is null or whitespace use the default system language.
         private static string ResolveLanguageCode(string code, bool fallback = false) {
-            Logger.Instance.Debug(nameof(Localization), "Resolve language code: '{0}'", code);
+            Logger.Instance.Debug(nameof(Localization), "Resolve language code: '{0}' {1}", code,fallback);
 
             if (string.IsNullOrWhiteSpace(code)) { // Return the system language if no code was provided.
-                return ResolveLanguageCode(CultureInfo.CurrentUICulture.Name, true);
+                string defaultLanguage = DefaultLanguage;
+
+                if (defaultLanguage != null && !fallback)
+                    return ResolveLanguageCode(defaultLanguage, true);
+
+                fallback = true; 
 
             } else if (locales.ContainsKey(code)) { // If we have a valid translation loaded use the provided code.
                 return code;
 
             } else if (code.Contains("-") || code.Contains("_")) { // else try fallback (e.g. en-US -> en)
-                return ResolveLanguageCode(code.Split('-', '_')[0]);
+                return ResolveLanguageCode(code.Split('-', '_')[0], fallback);
 
             }
+            
             return fallback ? DefaultCode : ResolveLanguageCode(null, true);
         }
 
@@ -125,15 +138,19 @@ namespace Maxstupo.YdlUi.Utility {
         // Returns a locale specific value for a given key based off the Language property.
         public static string GetString(string key, string defaultValue = "") {
             if (!locales.TryGetValue(Language, out Dictionary<string, string> translations)) {
+#if DEBUG
                 Logger.Instance.Warn(nameof(Localization), "Failed to find language for '{0}'", Language);
+#endif
                 return defaultValue;
             }
 
             if (translations.TryGetValue(key, out string value)) {
                 return value;
             } else {
-              //  Logger.Instance.Warn(nameof(Localization), "Failed to find translation for '{0}'", key);
-                //Console.WriteLine($"\"{key}\": \"{defaultValue}\",");
+#if DEBUG
+                Logger.Instance.Warn(nameof(Localization), "Failed to find translation for '{0}'", key);
+                Logger.Instance.Debug(nameof(Localization), "\"{0}\": \"{1}\",", key, defaultValue);
+#endif
                 return defaultValue;
             }
         }
