@@ -36,20 +36,24 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
-            this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
+            this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
             this.gbGeneral.SuspendLayout();
             this.gbFileSystem.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbGeneral
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.gbGeneral, 2);
             this.gbGeneral.Controls.Add(this.cbIgnoreErrors);
             this.gbGeneral.Controls.Add(this.cbAbortOnErrors);
-            this.gbGeneral.Location = new System.Drawing.Point(359, 3);
+            this.gbGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbGeneral.Location = new System.Drawing.Point(3, 105);
             this.gbGeneral.Name = "gbGeneral";
-            this.gbGeneral.Size = new System.Drawing.Size(131, 96);
-            this.gbGeneral.TabIndex = 2;
+            this.gbGeneral.Size = new System.Drawing.Size(620, 68);
+            this.gbGeneral.TabIndex = 3;
             this.gbGeneral.TabStop = false;
             this.gbGeneral.Tag = "general";
             this.gbGeneral.Text = "General";
@@ -83,16 +87,19 @@
             // 
             // gbFileSystem
             // 
-            this.gbFileSystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbFileSystem.AutoSize = true;
+            this.gbFileSystem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gbFileSystem.Controls.Add(this.cbNoOverwrites);
             this.gbFileSystem.Controls.Add(this.cbRestrictFilenames);
             this.gbFileSystem.Controls.Add(this.cbWriteThumbnail);
             this.gbFileSystem.Controls.Add(this.cbWriteAnnotations);
             this.gbFileSystem.Controls.Add(this.cbWriteDescription);
-            this.gbFileSystem.Location = new System.Drawing.Point(584, 3);
+            this.gbFileSystem.Location = new System.Drawing.Point(629, 3);
+            this.gbFileSystem.MinimumSize = new System.Drawing.Size(100, 170);
             this.gbFileSystem.Name = "gbFileSystem";
-            this.gbFileSystem.Size = new System.Drawing.Size(131, 138);
-            this.gbFileSystem.TabIndex = 3;
+            this.tableLayoutPanel1.SetRowSpan(this.gbFileSystem, 2);
+            this.gbFileSystem.Size = new System.Drawing.Size(133, 170);
+            this.gbFileSystem.TabIndex = 2;
             this.gbFileSystem.TabStop = false;
             this.gbFileSystem.Tag = "file_system";
             this.gbFileSystem.Text = "File System";
@@ -169,63 +176,89 @@
             // 
             // cbCustomFormatSelector
             // 
+            this.cbCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbCustomFormatSelector.AutoSize = true;
-            this.cbCustomFormatSelector.Location = new System.Drawing.Point(4, 130);
+            this.cbCustomFormatSelector.Location = new System.Drawing.Point(6, 222);
             this.cbCustomFormatSelector.Name = "cbCustomFormatSelector";
             this.cbCustomFormatSelector.Size = new System.Drawing.Size(148, 17);
-            this.cbCustomFormatSelector.TabIndex = 4;
+            this.cbCustomFormatSelector.TabIndex = 1;
             this.cbCustomFormatSelector.Tag = "selector";
             this.cbCustomFormatSelector.Text = "Custom Format Selector";
             this.cbCustomFormatSelector.UseVisualStyleBackColor = true;
             // 
             // txtCustomFormatSelector
             // 
-            this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomFormatSelector.Location = new System.Drawing.Point(3, 153);
+            this.txtCustomFormatSelector.Location = new System.Drawing.Point(6, 245);
             this.txtCustomFormatSelector.Name = "txtCustomFormatSelector";
             this.txtCustomFormatSelector.ReadOnly = true;
-            this.txtCustomFormatSelector.Size = new System.Drawing.Size(708, 22);
-            this.txtCustomFormatSelector.TabIndex = 5;
+            this.txtCustomFormatSelector.Size = new System.Drawing.Size(760, 22);
+            this.txtCustomFormatSelector.TabIndex = 2;
             this.txtCustomFormatSelector.Tag = "selector.value";
             // 
-            // videoQualitySelector
+            // tableLayoutPanel1
             // 
-            this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
-            this.videoQualitySelector.Name = "videoQualitySelector";
-            this.videoQualitySelector.OnChange = null;
-            this.videoQualitySelector.Size = new System.Drawing.Size(170, 95);
-            this.videoQualitySelector.TabIndex = 0;
-            this.videoQualitySelector.Tag = "#";
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.frameRateSelector, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.videoQualitySelector, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gbGeneral, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.gbFileSystem, 2, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(766, 176);
+            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Tag = "#$";
             // 
             // frameRateSelector
             // 
-            this.frameRateSelector.Location = new System.Drawing.Point(179, 3);
+            this.frameRateSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.frameRateSelector.Location = new System.Drawing.Point(316, 3);
             this.frameRateSelector.Name = "frameRateSelector";
             this.frameRateSelector.OnChange = null;
-            this.frameRateSelector.Size = new System.Drawing.Size(174, 96);
+            this.frameRateSelector.Size = new System.Drawing.Size(307, 96);
             this.frameRateSelector.TabIndex = 1;
             this.frameRateSelector.Tag = "#";
+            // 
+            // videoQualitySelector
+            // 
+            this.videoQualitySelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
+            this.videoQualitySelector.MinimumSize = new System.Drawing.Size(150, 50);
+            this.videoQualitySelector.Name = "videoQualitySelector";
+            this.videoQualitySelector.OnChange = null;
+            this.videoQualitySelector.Size = new System.Drawing.Size(307, 96);
+            this.videoQualitySelector.TabIndex = 0;
+            this.videoQualitySelector.Tag = "#";
             // 
             // TabQuality
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.txtCustomFormatSelector);
             this.Controls.Add(this.cbCustomFormatSelector);
-            this.Controls.Add(this.videoQualitySelector);
-            this.Controls.Add(this.gbGeneral);
-            this.Controls.Add(this.gbFileSystem);
-            this.Controls.Add(this.frameRateSelector);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabQuality";
-            this.Size = new System.Drawing.Size(718, 276);
+            this.Size = new System.Drawing.Size(772, 276);
             this.Tag = "#";
             this.Load += new System.EventHandler(this.TabQuality_Load);
             this.gbGeneral.ResumeLayout(false);
             this.gbGeneral.PerformLayout();
             this.gbFileSystem.ResumeLayout(false);
             this.gbFileSystem.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,5 +279,6 @@
         public System.Windows.Forms.CheckBox cbWriteThumbnail;
         private System.Windows.Forms.CheckBox cbCustomFormatSelector;
         private System.Windows.Forms.TextBox txtCustomFormatSelector;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

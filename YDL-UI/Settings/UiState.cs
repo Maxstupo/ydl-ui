@@ -241,17 +241,24 @@ namespace Maxstupo.YdlUi.Settings {
         }
 
         protected virtual string GetKey(Control control) {
+            if (control.Tag != null) {
+                if (control.Tag is string tag && tag.Contains("$"))
+                    return null;
+            }
             return control.Name;
         }
 
         public List<KeyControl> GetAll(Control control, Type[] whitelist, string path = null, List<KeyControl> controls = null) {
-            if (controls == null)
+            string key = null;
+            if (controls == null) {
                 controls = new List<KeyControl>();
-            else
-                path = path == null ? GetKey(control) : $"{path}.{GetKey(control)}";
+            } else {
+                key = GetKey(control);
+                if (key != null)
+                    path = path == null ? key : $"{path}.{key}";
+            }
 
-
-            if (whitelist.Contains(control.GetType())) {
+            if (key != null && whitelist.Contains(control.GetType())) {
                 if (control.Tag is string tag) {
                     if (!tag.StartsWith("!"))
                         controls.Add(new KeyControl(path, control));
