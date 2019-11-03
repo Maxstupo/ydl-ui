@@ -26,7 +26,9 @@ namespace Maxstupo.YdlUi.Forms {
 
         private BasicAddDownloadPanel basicAddDownloadPanel;
 
-        private Size oldMaxSize, oldMinSize;
+        private Size previousSizeAdvancedMode;
+        private Size minimumSizeAdvancedMode;
+        private Size previousSizeBasicMode;
 
         public FormAddDownload(Preferences preferences, string url, Preset preset, bool isEditMode, bool isSilent = false) {
             InitializeComponent();
@@ -180,16 +182,21 @@ namespace Maxstupo.YdlUi.Forms {
         #region Basic/Advanced Mode Logic
 
         private void InitializeBasicAdvancedModes(bool basicMode) {
-            oldMaxSize = MaximumSize;
-            oldMinSize = MinimumSize;
+            previousSizeAdvancedMode = minimumSizeAdvancedMode = Size;
+            previousSizeBasicMode = new Size(650, 280);
+
 
             basicAddDownloadPanel = new BasicAddDownloadPanel {
                 Location = new Point(12, 67),
                 Visible = false,
                 TabIndex = 11,
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
                 Name = "basicAddDownloadPanel"
             };
+
             Controls.Add(basicAddDownloadPanel);
+            basicAddDownloadPanel.Size = new Size(774, basicAddDownloadPanel.Height);
+
 
             cbBasicMode.Checked = basicMode;
         }
@@ -198,27 +205,32 @@ namespace Maxstupo.YdlUi.Forms {
             txtFilenameTemplate.Visible = cbFilenameTemplate.Visible = !BasicMode;
             btnDownloadArchiveBrowse.Visible = cbDownloadArchive.Visible = txtDownloadArchive.Visible = !BasicMode;
 
-            FormBorderStyle = BasicMode ? FormBorderStyle.FixedSingle : FormBorderStyle.Sizable;
-
             if (BasicMode) {
                 cbDownloadArchive.Checked = false;
                 cbFilenameTemplate.Checked = false;
 
-                Size newSize = new Size(basicAddDownloadPanel.Size.Width + 33, 280);
 
-                Location = new Point(Location.X + (Size.Width / 2 - newSize.Width / 2), Location.Y + (Size.Height / 2 - newSize.Height / 2));
+                previousSizeAdvancedMode = Size;
 
-                Size = MinimumSize = MaximumSize = newSize;
+                Location = new Point(Location.X + ((Size.Width - previousSizeBasicMode.Width) / 2), Location.Y);
+
                 WindowState = FormWindowState.Normal;
+
+                MinimumSize = new Size(635, previousSizeBasicMode.Height);
+                MaximumSize = new Size(9999, previousSizeBasicMode.Height);
+
+                Size = previousSizeBasicMode;
+
 
             } else {
 
-                Location = new Point(Location.X - (oldMinSize.Width / 2 - Size.Width / 2), Location.Y - (oldMinSize.Height / 2 - Size.Height / 2));
+                Location = new Point(Location.X - ((previousSizeAdvancedMode.Width - Size.Width) / 2), Location.Y);
 
-                MaximumSize = oldMaxSize;
-                Size = MinimumSize = oldMinSize;
+                previousSizeBasicMode = Size;
 
-
+                MaximumSize = Size.Empty;
+                MinimumSize = minimumSizeAdvancedMode;
+                Size = previousSizeAdvancedMode;
             }
 
 

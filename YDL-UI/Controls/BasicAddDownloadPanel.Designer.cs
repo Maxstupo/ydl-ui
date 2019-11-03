@@ -28,12 +28,16 @@
             this.cbAudioOnly = new System.Windows.Forms.CheckBox();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
             this.gbFileSystem = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cbNoOverwrites = new System.Windows.Forms.CheckBox();
             this.cbRestrictFilenames = new System.Windows.Forms.CheckBox();
             this.cbWriteThumbnail = new System.Windows.Forms.CheckBox();
             this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gbFileSystem.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbxAudioOnly
@@ -42,16 +46,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxAudioOnly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAudioOnly.FormattingEnabled = true;
-            this.cbxAudioOnly.Location = new System.Drawing.Point(92, 86);
+            this.cbxAudioOnly.Location = new System.Drawing.Point(83, 2);
+            this.cbxAudioOnly.Margin = new System.Windows.Forms.Padding(0, 2, 0, 3);
             this.cbxAudioOnly.Name = "cbxAudioOnly";
-            this.cbxAudioOnly.Size = new System.Drawing.Size(88, 21);
+            this.cbxAudioOnly.Size = new System.Drawing.Size(93, 21);
             this.cbxAudioOnly.TabIndex = 4;
             this.toolTip.SetToolTip(this.cbxAudioOnly, "Convert video file to audio-only file.");
             // 
             // cbAudioOnly
             // 
             this.cbAudioOnly.AutoSize = true;
-            this.cbAudioOnly.Location = new System.Drawing.Point(6, 88);
+            this.cbAudioOnly.Location = new System.Drawing.Point(0, 3);
+            this.cbAudioOnly.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.cbAudioOnly.Name = "cbAudioOnly";
             this.cbAudioOnly.Size = new System.Drawing.Size(80, 17);
             this.cbAudioOnly.TabIndex = 3;
@@ -62,27 +68,49 @@
             // 
             // frameRateSelector
             // 
-            this.frameRateSelector.Location = new System.Drawing.Point(182, 3);
+            this.frameRateSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.frameRateSelector.Location = new System.Drawing.Point(247, 3);
             this.frameRateSelector.Name = "frameRateSelector";
             this.frameRateSelector.OnChange = null;
-            this.frameRateSelector.Size = new System.Drawing.Size(173, 115);
+            this.frameRateSelector.Size = new System.Drawing.Size(238, 118);
             this.frameRateSelector.TabIndex = 1;
             this.frameRateSelector.Tag = "quality";
             // 
             // gbFileSystem
             // 
-            this.gbFileSystem.Controls.Add(this.cbxAudioOnly);
+            this.gbFileSystem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbFileSystem.Controls.Add(this.tableLayoutPanel2);
             this.gbFileSystem.Controls.Add(this.cbNoOverwrites);
-            this.gbFileSystem.Controls.Add(this.cbAudioOnly);
             this.gbFileSystem.Controls.Add(this.cbRestrictFilenames);
             this.gbFileSystem.Controls.Add(this.cbWriteThumbnail);
-            this.gbFileSystem.Location = new System.Drawing.Point(361, 3);
+            this.gbFileSystem.Location = new System.Drawing.Point(491, 3);
             this.gbFileSystem.Name = "gbFileSystem";
-            this.gbFileSystem.Size = new System.Drawing.Size(188, 115);
+            this.gbFileSystem.Size = new System.Drawing.Size(188, 118);
             this.gbFileSystem.TabIndex = 2;
             this.gbFileSystem.TabStop = false;
             this.gbFileSystem.Tag = "@download_dialog.options";
             this.gbFileSystem.Text = "Options";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.cbxAudioOnly, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbAudioOnly, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 85);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(176, 24);
+            this.tableLayoutPanel2.TabIndex = 5;
+            this.tableLayoutPanel2.Tag = "#$";
             // 
             // cbNoOverwrites
             // 
@@ -125,10 +153,14 @@
             // 
             // videoQualitySelector
             // 
+            this.videoQualitySelector.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.videoQualitySelector.Location = new System.Drawing.Point(3, 3);
+            this.videoQualitySelector.MinimumSize = new System.Drawing.Size(150, 20);
             this.videoQualitySelector.Name = "videoQualitySelector";
             this.videoQualitySelector.OnChange = null;
-            this.videoQualitySelector.Size = new System.Drawing.Size(173, 115);
+            this.videoQualitySelector.Size = new System.Drawing.Size(238, 118);
             this.videoQualitySelector.TabIndex = 0;
             this.videoQualitySelector.Tag = "quality";
             // 
@@ -139,19 +171,38 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.videoQualitySelector, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gbFileSystem, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.frameRateSelector, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(682, 124);
+            this.tableLayoutPanel1.TabIndex = 3;
+            this.tableLayoutPanel1.Tag = "#$";
+            // 
             // BasicAddDownloadPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.videoQualitySelector);
-            this.Controls.Add(this.frameRateSelector);
-            this.Controls.Add(this.gbFileSystem);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BasicAddDownloadPanel";
-            this.Size = new System.Drawing.Size(557, 124);
+            this.Size = new System.Drawing.Size(682, 124);
             this.Tag = "#";
             this.Load += new System.EventHandler(this.BasicAddDownloadPanel_Load);
             this.gbFileSystem.ResumeLayout(false);
             this.gbFileSystem.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -166,5 +217,7 @@
         public System.Windows.Forms.CheckBox cbRestrictFilenames;
         public System.Windows.Forms.CheckBox cbWriteThumbnail;
         public VideoQualitySelector videoQualitySelector;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     }
 }
