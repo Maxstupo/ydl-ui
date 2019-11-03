@@ -71,6 +71,7 @@
             this.dtpDateAfter = new System.Windows.Forms.DateTimePicker();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.gbRegexFilters.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.gbPlaylistFilters.SuspendLayout();
@@ -89,6 +90,7 @@
             this.gbDateFilters.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbRegexFilters
@@ -201,6 +203,7 @@
             this.gbPlaylistFilters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbPlaylistFilters.Controls.Add(this.tableLayoutPanel7);
             this.gbPlaylistFilters.Controls.Add(this.tableLayoutPanel3);
             this.gbPlaylistFilters.Location = new System.Drawing.Point(272, 3);
             this.gbPlaylistFilters.MaximumSize = new System.Drawing.Size(9999, 134);
@@ -214,6 +217,8 @@
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 4;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -226,17 +231,14 @@
             this.tableLayoutPanel3.Controls.Add(this.cbPlaylistRange, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.nudPlaylistEnd, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.nudPlaylistStart, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.cbPlaylistReversed, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.cbPlaylistRandom, 2, 3);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 18);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(490, 113);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(490, 84);
             this.tableLayoutPanel3.TabIndex = 0;
             this.tableLayoutPanel3.Tag = "#$";
             // 
@@ -282,8 +284,7 @@
             // 
             // txtPlaylistRange
             // 
-            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaylistRange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.SetColumnSpan(this.txtPlaylistRange, 2);
             this.txtPlaylistRange.Location = new System.Drawing.Point(71, 59);
             this.txtPlaylistRange.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
@@ -311,8 +312,7 @@
             // 
             // nudPlaylistEnd
             // 
-            this.nudPlaylistEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudPlaylistEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.SetColumnSpan(this.nudPlaylistEnd, 3);
             this.nudPlaylistEnd.Location = new System.Drawing.Point(71, 31);
             this.nudPlaylistEnd.Maximum = new decimal(new int[] {
@@ -328,8 +328,7 @@
             // 
             // nudPlaylistStart
             // 
-            this.nudPlaylistStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudPlaylistStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.SetColumnSpan(this.nudPlaylistStart, 3);
             this.nudPlaylistStart.Location = new System.Drawing.Point(71, 3);
             this.nudPlaylistStart.Maximum = new decimal(new int[] {
@@ -347,8 +346,7 @@
             // 
             this.cbPlaylistReversed.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbPlaylistReversed.AutoSize = true;
-            this.tableLayoutPanel3.SetColumnSpan(this.cbPlaylistReversed, 2);
-            this.cbPlaylistReversed.Location = new System.Drawing.Point(3, 90);
+            this.cbPlaylistReversed.Location = new System.Drawing.Point(3, 3);
             this.cbPlaylistReversed.Name = "cbPlaylistReversed";
             this.cbPlaylistReversed.Size = new System.Drawing.Size(72, 17);
             this.cbPlaylistReversed.TabIndex = 7;
@@ -361,7 +359,7 @@
             // 
             this.cbPlaylistRandom.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbPlaylistRandom.AutoSize = true;
-            this.cbPlaylistRandom.Location = new System.Drawing.Point(81, 90);
+            this.cbPlaylistRandom.Location = new System.Drawing.Point(81, 3);
             this.cbPlaylistRandom.Name = "cbPlaylistRandom";
             this.cbPlaylistRandom.Size = new System.Drawing.Size(69, 17);
             this.cbPlaylistRandom.TabIndex = 8;
@@ -797,6 +795,23 @@
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.cbPlaylistReversed, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.cbPlaylistRandom, 1, 0);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 105);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(490, 23);
+            this.tableLayoutPanel7.TabIndex = 9;
+            this.tableLayoutPanel7.Tag = "#$";
+            // 
             // TabVideoSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -831,6 +846,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -884,5 +901,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
     }
 }
