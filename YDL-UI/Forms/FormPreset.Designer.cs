@@ -38,14 +38,20 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbModeSimple = new System.Windows.Forms.RadioButton();
             this.rbModeRegex = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panelActions.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOkay
             // 
-            this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOkay.Location = new System.Drawing.Point(383, 9);
+            this.btnOkay.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnOkay.Location = new System.Drawing.Point(370, 8);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 1;
@@ -56,9 +62,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(464, 9);
+            this.btnCancel.Location = new System.Drawing.Point(456, 8);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -69,12 +75,9 @@
             // 
             // panelActions
             // 
-            this.panelActions.Controls.Add(this.btnDelete);
-            this.panelActions.Controls.Add(this.cbDefaultPreset);
-            this.panelActions.Controls.Add(this.btnOkay);
-            this.panelActions.Controls.Add(this.btnCancel);
+            this.panelActions.Controls.Add(this.tableLayoutPanel3);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 111);
+            this.panelActions.Location = new System.Drawing.Point(0, 121);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(551, 40);
             this.panelActions.TabIndex = 4;
@@ -82,8 +85,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(287, 9);
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDelete.Location = new System.Drawing.Point(270, 8);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
@@ -94,8 +97,9 @@
             // 
             // cbDefaultPreset
             // 
+            this.cbDefaultPreset.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbDefaultPreset.AutoSize = true;
-            this.cbDefaultPreset.Location = new System.Drawing.Point(12, 13);
+            this.cbDefaultPreset.Location = new System.Drawing.Point(3, 11);
             this.cbDefaultPreset.Name = "cbDefaultPreset";
             this.cbDefaultPreset.Size = new System.Drawing.Size(93, 17);
             this.cbDefaultPreset.TabIndex = 0;
@@ -106,8 +110,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 13);
             this.label1.TabIndex = 0;
@@ -117,22 +122,22 @@
             // 
             // txtPresetName
             // 
-            this.txtPresetName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPresetName.Location = new System.Drawing.Point(89, 6);
+            this.txtPresetName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPresetName.Location = new System.Drawing.Point(80, 3);
+            this.txtPresetName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.txtPresetName.Name = "txtPresetName";
-            this.txtPresetName.Size = new System.Drawing.Size(450, 20);
+            this.txtPresetName.Size = new System.Drawing.Size(447, 20);
             this.txtPresetName.TabIndex = 1;
             this.txtPresetName.Tag = "name.value";
             this.toolTip.SetToolTip(this.txtPresetName, "The name of the preset.");
             // 
             // txtUrlMatch
             // 
-            this.txtUrlMatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUrlMatch.Location = new System.Drawing.Point(89, 32);
+            this.txtUrlMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUrlMatch.Location = new System.Drawing.Point(80, 29);
+            this.txtUrlMatch.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.txtUrlMatch.Name = "txtUrlMatch";
-            this.txtUrlMatch.Size = new System.Drawing.Size(450, 20);
+            this.txtUrlMatch.Size = new System.Drawing.Size(447, 20);
             this.txtUrlMatch.TabIndex = 3;
             this.txtUrlMatch.Tag = "url_match.value";
             this.toolTip.SetToolTip(this.txtUrlMatch, "If this regex matches the download URL, this preset will be selected automaticall" +
@@ -140,8 +145,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 35);
+            this.label2.Location = new System.Drawing.Point(3, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 2;
@@ -161,9 +167,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.rbModeSimple);
-            this.groupBox1.Controls.Add(this.rbModeRegex);
-            this.groupBox1.Location = new System.Drawing.Point(12, 58);
+            this.groupBox1.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 65);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(527, 46);
             this.groupBox1.TabIndex = 5;
@@ -173,8 +178,9 @@
             // 
             // rbModeSimple
             // 
+            this.rbModeSimple.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.rbModeSimple.AutoSize = true;
-            this.rbModeSimple.Location = new System.Drawing.Point(74, 19);
+            this.rbModeSimple.Location = new System.Drawing.Point(65, 3);
             this.rbModeSimple.Name = "rbModeSimple";
             this.rbModeSimple.Size = new System.Drawing.Size(56, 17);
             this.rbModeSimple.TabIndex = 1;
@@ -184,9 +190,10 @@
             // 
             // rbModeRegex
             // 
+            this.rbModeRegex.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.rbModeRegex.AutoSize = true;
             this.rbModeRegex.Checked = true;
-            this.rbModeRegex.Location = new System.Drawing.Point(6, 19);
+            this.rbModeRegex.Location = new System.Drawing.Point(3, 3);
             this.rbModeRegex.Name = "rbModeRegex";
             this.rbModeRegex.Size = new System.Drawing.Size(56, 17);
             this.rbModeRegex.TabIndex = 0;
@@ -195,34 +202,95 @@
             this.rbModeRegex.Text = "Regex";
             this.rbModeRegex.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtPresetName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtUrlMatch, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 5);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(527, 50);
+            this.tableLayoutPanel1.TabIndex = 6;
+            this.tableLayoutPanel1.Tag = "#$";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.rbModeSimple, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.rbModeRegex, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 17);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(515, 21);
+            this.tableLayoutPanel2.TabIndex = 2;
+            this.tableLayoutPanel2.Tag = "#$";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 7;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.5F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.5F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.cbDefaultPreset, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnDelete, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnCancel, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnOkay, 4, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(9, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(534, 40);
+            this.tableLayoutPanel3.TabIndex = 4;
+            this.tableLayoutPanel3.Tag = "#$";
+            // 
             // FormPreset
             // 
             this.AcceptButton = this.btnOkay;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(551, 151);
+            this.ClientSize = new System.Drawing.Size(551, 161);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtUrlMatch);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtPresetName);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.panelActions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(720, 200);
-            this.MinimumSize = new System.Drawing.Size(406, 190);
+            this.MinimumSize = new System.Drawing.Size(406, 200);
             this.Name = "FormPreset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "preset_dialog";
             this.Text = "New Download Preset";
             this.Load += new System.EventHandler(this.FormPreset_Load);
             this.panelActions.ResumeLayout(false);
-            this.panelActions.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -241,5 +309,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbModeSimple;
         private System.Windows.Forms.RadioButton rbModeRegex;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }

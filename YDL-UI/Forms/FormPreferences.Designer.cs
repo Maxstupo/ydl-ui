@@ -28,58 +28,64 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOkay = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.cbPromptOnClose = new System.Windows.Forms.CheckBox();
-            this.cbUseBasicFolderPicker = new System.Windows.Forms.CheckBox();
-            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
-            this.cbResumeDownload = new System.Windows.Forms.CheckBox();
-            this.cbBasicMode = new System.Windows.Forms.CheckBox();
-            this.nudMaxConcurrentDownloads = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbAutoStartDragDropDownloads = new System.Windows.Forms.CheckBox();
-            this.lblLanguage = new System.Windows.Forms.Label();
-            this.cbxLanguage = new System.Windows.Forms.ComboBox();
-            this.cbStayTop = new System.Windows.Forms.CheckBox();
-            this.cbCheckForUpdates = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtDefaultDownloadDirectory = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtDefaultDownloadArchive = new System.Windows.Forms.TextBox();
-            this.txtBinaryFfmpeg = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtBinaryYdl = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbxCategories = new System.Windows.Forms.ListBox();
             this.lblCategory = new System.Windows.Forms.Label();
+            this.panelActions = new System.Windows.Forms.Panel();
             this.tablessTabControl = new Maxstupo.YdlUi.Controls.TablessTabControl();
             this.tpGeneral = new System.Windows.Forms.TabPage();
+            this.lblLanguage = new System.Windows.Forms.Label();
+            this.cbxLanguage = new System.Windows.Forms.ComboBox();
+            this.cbPromptOnClose = new System.Windows.Forms.CheckBox();
+            this.cbUseBasicFolderPicker = new System.Windows.Forms.CheckBox();
+            this.cbStayTop = new System.Windows.Forms.CheckBox();
+            this.cbCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.tpDownload = new System.Windows.Forms.TabPage();
+            this.cbAutoStartDragDropDownloads = new System.Windows.Forms.CheckBox();
+            this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
+            this.cbResumeDownload = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDefaultDownloadDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowseDownloadDirectory = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDefaultDownloadArchive = new System.Windows.Forms.TextBox();
             this.btnBrowseDownloadArchive = new System.Windows.Forms.Button();
+            this.cbBasicMode = new System.Windows.Forms.CheckBox();
+            this.nudMaxConcurrentDownloads = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.tpBinaries = new System.Windows.Forms.TabPage();
             this.gbManualUpdate = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
             this.lblRestartNote = new System.Windows.Forms.Label();
             this.btnBinaryBrowseYdl = new System.Windows.Forms.Button();
+            this.txtBinaryFfmpeg = new System.Windows.Forms.TextBox();
             this.btnBinaryBrowseFfmpeg = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtBinaryYdl = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tpPresets = new System.Windows.Forms.TabPage();
             this.btnPresetEdit = new System.Windows.Forms.Button();
             this.btnPresetAdd = new System.Windows.Forms.Button();
             this.lbxPresets = new System.Windows.Forms.ListBox();
-            this.panelActions = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelActions.SuspendLayout();
             this.tablessTabControl.SuspendLayout();
             this.tpGeneral.SuspendLayout();
             this.tpDownload.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             this.tpBinaries.SuspendLayout();
             this.gbManualUpdate.SuspendLayout();
             this.tpPresets.SuspendLayout();
-            this.panelActions.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -113,248 +119,6 @@
             this.toolTip.AutoPopDelay = 7000;
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
-            // 
-            // cbPromptOnClose
-            // 
-            this.cbPromptOnClose.AutoSize = true;
-            this.cbPromptOnClose.Location = new System.Drawing.Point(6, 90);
-            this.cbPromptOnClose.Name = "cbPromptOnClose";
-            this.cbPromptOnClose.Size = new System.Drawing.Size(111, 17);
-            this.cbPromptOnClose.TabIndex = 3;
-            this.cbPromptOnClose.Tag = "prompt_on_close";
-            this.cbPromptOnClose.Text = "Prompt on Close";
-            this.toolTip.SetToolTip(this.cbPromptOnClose, "If any downloads are still running, prompt for confirmation when closing.");
-            this.cbPromptOnClose.UseVisualStyleBackColor = true;
-            // 
-            // cbUseBasicFolderPicker
-            // 
-            this.cbUseBasicFolderPicker.AutoSize = true;
-            this.cbUseBasicFolderPicker.Location = new System.Drawing.Point(6, 123);
-            this.cbUseBasicFolderPicker.Name = "cbUseBasicFolderPicker";
-            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(143, 17);
-            this.cbUseBasicFolderPicker.TabIndex = 2;
-            this.cbUseBasicFolderPicker.Tag = "use_basic_folder_picker";
-            this.cbUseBasicFolderPicker.Text = "Use Basic Folder Picker";
-            this.toolTip.SetToolTip(this.cbUseBasicFolderPicker, "If checked, the basic folder picker will be used. Potentially fixes certain DPI s" +
-        "caling issues.");
-            this.cbUseBasicFolderPicker.UseVisualStyleBackColor = true;
-            // 
-            // cbRememberDownloadSettings
-            // 
-            this.cbRememberDownloadSettings.AutoSize = true;
-            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 52);
-            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
-            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
-            this.cbRememberDownloadSettings.TabIndex = 11;
-            this.cbRememberDownloadSettings.Tag = "remember_download_settings";
-            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
-            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
-            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
-            // 
-            // cbResumeDownload
-            // 
-            this.cbResumeDownload.AutoSize = true;
-            this.cbResumeDownload.Location = new System.Drawing.Point(6, 29);
-            this.cbResumeDownload.Name = "cbResumeDownload";
-            this.cbResumeDownload.Size = new System.Drawing.Size(186, 17);
-            this.cbResumeDownload.TabIndex = 2;
-            this.cbResumeDownload.Tag = "resume_downloads_on_startup";
-            this.cbResumeDownload.Text = "Resume Downloads on Startup";
-            this.toolTip.SetToolTip(this.cbResumeDownload, "Resume incomplete downloads on startup.");
-            this.cbResumeDownload.UseVisualStyleBackColor = true;
-            // 
-            // cbBasicMode
-            // 
-            this.cbBasicMode.AutoSize = true;
-            this.cbBasicMode.Location = new System.Drawing.Point(6, 6);
-            this.cbBasicMode.Name = "cbBasicMode";
-            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
-            this.cbBasicMode.TabIndex = 1;
-            this.cbBasicMode.Tag = "mode";
-            this.cbBasicMode.Text = "Basic Mode";
-            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for the Download dialog.");
-            this.cbBasicMode.UseVisualStyleBackColor = true;
-            // 
-            // nudMaxConcurrentDownloads
-            // 
-            this.nudMaxConcurrentDownloads.Location = new System.Drawing.Point(163, 117);
-            this.nudMaxConcurrentDownloads.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudMaxConcurrentDownloads.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudMaxConcurrentDownloads.Name = "nudMaxConcurrentDownloads";
-            this.nudMaxConcurrentDownloads.Size = new System.Drawing.Size(79, 22);
-            this.nudMaxConcurrentDownloads.TabIndex = 4;
-            this.nudMaxConcurrentDownloads.Tag = "max_concurrent_downloads.value";
-            this.toolTip.SetToolTip(this.nudMaxConcurrentDownloads, "The max simultaneous downloads allowed to download at once.");
-            this.nudMaxConcurrentDownloads.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 120);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Tag = "max_concurrent_downloads";
-            this.label1.Text = "Max Concurrent Downloads:";
-            this.toolTip.SetToolTip(this.label1, "The max simultaneous downloads allowed to download at once.");
-            // 
-            // cbAutoStartDragDropDownloads
-            // 
-            this.cbAutoStartDragDropDownloads.AutoSize = true;
-            this.cbAutoStartDragDropDownloads.Location = new System.Drawing.Point(6, 75);
-            this.cbAutoStartDragDropDownloads.Name = "cbAutoStartDragDropDownloads";
-            this.cbAutoStartDragDropDownloads.Size = new System.Drawing.Size(209, 17);
-            this.cbAutoStartDragDropDownloads.TabIndex = 12;
-            this.cbAutoStartDragDropDownloads.Tag = "auto_dragdrop_downloads";
-            this.cbAutoStartDragDropDownloads.Text = "Auto confirm DragDrop Downloads";
-            this.toolTip.SetToolTip(this.cbAutoStartDragDropDownloads, "Auto-confirms the download dialog for downloads that were dragged and dropped.");
-            this.cbAutoStartDragDropDownloads.UseVisualStyleBackColor = true;
-            // 
-            // lblLanguage
-            // 
-            this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(3, 13);
-            this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(61, 13);
-            this.lblLanguage.TabIndex = 5;
-            this.lblLanguage.Tag = "language";
-            this.lblLanguage.Text = "Language:";
-            this.toolTip.SetToolTip(this.lblLanguage, "The user interface language.");
-            // 
-            // cbxLanguage
-            // 
-            this.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxLanguage.FormattingEnabled = true;
-            this.cbxLanguage.Location = new System.Drawing.Point(70, 10);
-            this.cbxLanguage.Name = "cbxLanguage";
-            this.cbxLanguage.Size = new System.Drawing.Size(148, 21);
-            this.cbxLanguage.TabIndex = 4;
-            this.cbxLanguage.Tag = "language.dropdown";
-            this.toolTip.SetToolTip(this.cbxLanguage, "The user interface language.");
-            // 
-            // cbStayTop
-            // 
-            this.cbStayTop.AutoSize = true;
-            this.cbStayTop.Location = new System.Drawing.Point(6, 67);
-            this.cbStayTop.Name = "cbStayTop";
-            this.cbStayTop.Size = new System.Drawing.Size(85, 17);
-            this.cbStayTop.TabIndex = 1;
-            this.cbStayTop.Tag = "stay_on_top";
-            this.cbStayTop.Text = "Stay on top";
-            this.toolTip.SetToolTip(this.cbStayTop, "Keep application in front of other windows.");
-            this.cbStayTop.UseVisualStyleBackColor = true;
-            // 
-            // cbCheckForUpdates
-            // 
-            this.cbCheckForUpdates.AutoSize = true;
-            this.cbCheckForUpdates.Location = new System.Drawing.Point(6, 44);
-            this.cbCheckForUpdates.Name = "cbCheckForUpdates";
-            this.cbCheckForUpdates.Size = new System.Drawing.Size(121, 17);
-            this.cbCheckForUpdates.TabIndex = 0;
-            this.cbCheckForUpdates.Tag = "updates";
-            this.cbCheckForUpdates.Text = "Check for Updates";
-            this.toolTip.SetToolTip(this.cbCheckForUpdates, "Check for updates on start, prompt only if new updates are available.");
-            this.cbCheckForUpdates.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 215);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Tag = "default_download_directory";
-            this.label6.Text = "Default Download Directory";
-            this.toolTip.SetToolTip(this.label6, "The default download directory path when adding a download.");
-            // 
-            // txtDefaultDownloadDirectory
-            // 
-            this.txtDefaultDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 233);
-            this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
-            this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
-            this.txtDefaultDownloadDirectory.TabIndex = 9;
-            this.txtDefaultDownloadDirectory.Tag = "default_download_directory.value";
-            this.toolTip.SetToolTip(this.txtDefaultDownloadDirectory, "The default download directory path when adding a download.");
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 158);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Tag = "default_download_archive";
-            this.label5.Text = "Default Download Archive";
-            this.toolTip.SetToolTip(this.label5, "The default download archive filepath when adding a download.");
-            // 
-            // txtDefaultDownloadArchive
-            // 
-            this.txtDefaultDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 176);
-            this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
-            this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
-            this.txtDefaultDownloadArchive.TabIndex = 6;
-            this.txtDefaultDownloadArchive.Tag = "default_download_archive.value";
-            this.toolTip.SetToolTip(this.txtDefaultDownloadArchive, "The default download archive filepath when adding a download.");
-            // 
-            // txtBinaryFfmpeg
-            // 
-            this.txtBinaryFfmpeg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBinaryFfmpeg.Location = new System.Drawing.Point(75, 37);
-            this.txtBinaryFfmpeg.Name = "txtBinaryFfmpeg";
-            this.txtBinaryFfmpeg.Size = new System.Drawing.Size(339, 22);
-            this.txtBinaryFfmpeg.TabIndex = 4;
-            this.txtBinaryFfmpeg.Tag = "ffmpeg.value";
-            this.toolTip.SetToolTip(this.txtBinaryFfmpeg, "The filepath to ffmpeg.");
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Tag = "ffmpeg";
-            this.label3.Text = "ffmpeg:";
-            this.toolTip.SetToolTip(this.label3, "The filepath to ffmpeg.");
-            // 
-            // txtBinaryYdl
-            // 
-            this.txtBinaryYdl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBinaryYdl.Location = new System.Drawing.Point(75, 6);
-            this.txtBinaryYdl.Name = "txtBinaryYdl";
-            this.txtBinaryYdl.Size = new System.Drawing.Size(339, 22);
-            this.txtBinaryYdl.TabIndex = 1;
-            this.txtBinaryYdl.Tag = "youtube-dl.value";
-            this.toolTip.SetToolTip(this.txtBinaryYdl, "The filepath to youtube-dl.");
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Tag = "youtube-dl";
-            this.label2.Text = "youtube-dl:";
-            this.toolTip.SetToolTip(this.label2, "The filepath to youtube-dl.");
             // 
             // splitContainer1
             // 
@@ -404,6 +168,18 @@
             this.lblCategory.Tag = "!ignore";
             this.lblCategory.Text = "Category";
             // 
+            // panelActions
+            // 
+            this.panelActions.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelActions.Controls.Add(this.btnOkay);
+            this.panelActions.Controls.Add(this.btnCancel);
+            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelActions.Location = new System.Drawing.Point(0, 371);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.Size = new System.Drawing.Size(654, 40);
+            this.panelActions.TabIndex = 1;
+            this.panelActions.Tag = "#";
+            // 
             // tablessTabControl
             // 
             this.tablessTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -422,8 +198,7 @@
             // 
             // tpGeneral
             // 
-            this.tpGeneral.Controls.Add(this.lblLanguage);
-            this.tpGeneral.Controls.Add(this.cbxLanguage);
+            this.tpGeneral.Controls.Add(this.tableLayoutPanel1);
             this.tpGeneral.Controls.Add(this.cbPromptOnClose);
             this.tpGeneral.Controls.Add(this.cbUseBasicFolderPicker);
             this.tpGeneral.Controls.Add(this.cbStayTop);
@@ -436,8 +211,84 @@
             this.tpGeneral.Tag = "general";
             this.tpGeneral.Text = "General";
             // 
+            // lblLanguage
+            // 
+            this.lblLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.Location = new System.Drawing.Point(0, 7);
+            this.lblLanguage.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(61, 13);
+            this.lblLanguage.TabIndex = 5;
+            this.lblLanguage.Tag = "language";
+            this.lblLanguage.Text = "Language:";
+            this.toolTip.SetToolTip(this.lblLanguage, "The user interface language.");
+            // 
+            // cbxLanguage
+            // 
+            this.cbxLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxLanguage.FormattingEnabled = true;
+            this.cbxLanguage.Location = new System.Drawing.Point(64, 3);
+            this.cbxLanguage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.cbxLanguage.Name = "cbxLanguage";
+            this.cbxLanguage.Size = new System.Drawing.Size(148, 21);
+            this.cbxLanguage.TabIndex = 4;
+            this.cbxLanguage.Tag = "language.dropdown";
+            this.toolTip.SetToolTip(this.cbxLanguage, "The user interface language.");
+            // 
+            // cbPromptOnClose
+            // 
+            this.cbPromptOnClose.AutoSize = true;
+            this.cbPromptOnClose.Location = new System.Drawing.Point(6, 90);
+            this.cbPromptOnClose.Name = "cbPromptOnClose";
+            this.cbPromptOnClose.Size = new System.Drawing.Size(111, 17);
+            this.cbPromptOnClose.TabIndex = 3;
+            this.cbPromptOnClose.Tag = "prompt_on_close";
+            this.cbPromptOnClose.Text = "Prompt on Close";
+            this.toolTip.SetToolTip(this.cbPromptOnClose, "If any downloads are still running, prompt for confirmation when closing.");
+            this.cbPromptOnClose.UseVisualStyleBackColor = true;
+            // 
+            // cbUseBasicFolderPicker
+            // 
+            this.cbUseBasicFolderPicker.AutoSize = true;
+            this.cbUseBasicFolderPicker.Location = new System.Drawing.Point(6, 123);
+            this.cbUseBasicFolderPicker.Name = "cbUseBasicFolderPicker";
+            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(143, 17);
+            this.cbUseBasicFolderPicker.TabIndex = 2;
+            this.cbUseBasicFolderPicker.Tag = "use_basic_folder_picker";
+            this.cbUseBasicFolderPicker.Text = "Use Basic Folder Picker";
+            this.toolTip.SetToolTip(this.cbUseBasicFolderPicker, "If checked, the basic folder picker will be used. Potentially fixes certain DPI s" +
+        "caling issues.");
+            this.cbUseBasicFolderPicker.UseVisualStyleBackColor = true;
+            // 
+            // cbStayTop
+            // 
+            this.cbStayTop.AutoSize = true;
+            this.cbStayTop.Location = new System.Drawing.Point(6, 67);
+            this.cbStayTop.Name = "cbStayTop";
+            this.cbStayTop.Size = new System.Drawing.Size(85, 17);
+            this.cbStayTop.TabIndex = 1;
+            this.cbStayTop.Tag = "stay_on_top";
+            this.cbStayTop.Text = "Stay on top";
+            this.toolTip.SetToolTip(this.cbStayTop, "Keep application in front of other windows.");
+            this.cbStayTop.UseVisualStyleBackColor = true;
+            // 
+            // cbCheckForUpdates
+            // 
+            this.cbCheckForUpdates.AutoSize = true;
+            this.cbCheckForUpdates.Location = new System.Drawing.Point(6, 44);
+            this.cbCheckForUpdates.Name = "cbCheckForUpdates";
+            this.cbCheckForUpdates.Size = new System.Drawing.Size(121, 17);
+            this.cbCheckForUpdates.TabIndex = 0;
+            this.cbCheckForUpdates.Tag = "updates";
+            this.cbCheckForUpdates.Text = "Check for Updates";
+            this.toolTip.SetToolTip(this.cbCheckForUpdates, "Check for updates on start, prompt only if new updates are available.");
+            this.cbCheckForUpdates.UseVisualStyleBackColor = true;
+            // 
             // tpDownload
             // 
+            this.tpDownload.Controls.Add(this.tableLayoutPanel2);
             this.tpDownload.Controls.Add(this.cbAutoStartDragDropDownloads);
             this.tpDownload.Controls.Add(this.cbRememberDownloadSettings);
             this.tpDownload.Controls.Add(this.cbResumeDownload);
@@ -448,8 +299,6 @@
             this.tpDownload.Controls.Add(this.txtDefaultDownloadArchive);
             this.tpDownload.Controls.Add(this.btnBrowseDownloadArchive);
             this.tpDownload.Controls.Add(this.cbBasicMode);
-            this.tpDownload.Controls.Add(this.nudMaxConcurrentDownloads);
-            this.tpDownload.Controls.Add(this.label1);
             this.tpDownload.Location = new System.Drawing.Point(4, 22);
             this.tpDownload.Name = "tpDownload";
             this.tpDownload.Padding = new System.Windows.Forms.Padding(3);
@@ -458,6 +307,64 @@
             this.tpDownload.Tag = "download";
             this.tpDownload.Text = "Download";
             this.tpDownload.UseVisualStyleBackColor = true;
+            // 
+            // cbAutoStartDragDropDownloads
+            // 
+            this.cbAutoStartDragDropDownloads.AutoSize = true;
+            this.cbAutoStartDragDropDownloads.Location = new System.Drawing.Point(6, 75);
+            this.cbAutoStartDragDropDownloads.Name = "cbAutoStartDragDropDownloads";
+            this.cbAutoStartDragDropDownloads.Size = new System.Drawing.Size(209, 17);
+            this.cbAutoStartDragDropDownloads.TabIndex = 12;
+            this.cbAutoStartDragDropDownloads.Tag = "auto_dragdrop_downloads";
+            this.cbAutoStartDragDropDownloads.Text = "Auto confirm DragDrop Downloads";
+            this.toolTip.SetToolTip(this.cbAutoStartDragDropDownloads, "Auto-confirms the download dialog for downloads that were dragged and dropped.");
+            this.cbAutoStartDragDropDownloads.UseVisualStyleBackColor = true;
+            // 
+            // cbRememberDownloadSettings
+            // 
+            this.cbRememberDownloadSettings.AutoSize = true;
+            this.cbRememberDownloadSettings.Location = new System.Drawing.Point(6, 52);
+            this.cbRememberDownloadSettings.Name = "cbRememberDownloadSettings";
+            this.cbRememberDownloadSettings.Size = new System.Drawing.Size(182, 17);
+            this.cbRememberDownloadSettings.TabIndex = 11;
+            this.cbRememberDownloadSettings.Tag = "remember_download_settings";
+            this.cbRememberDownloadSettings.Text = "Remember Download Settings";
+            this.toolTip.SetToolTip(this.cbRememberDownloadSettings, "Provides access to a preset that remembers the previous download settings.");
+            this.cbRememberDownloadSettings.UseVisualStyleBackColor = true;
+            // 
+            // cbResumeDownload
+            // 
+            this.cbResumeDownload.AutoSize = true;
+            this.cbResumeDownload.Location = new System.Drawing.Point(6, 29);
+            this.cbResumeDownload.Name = "cbResumeDownload";
+            this.cbResumeDownload.Size = new System.Drawing.Size(186, 17);
+            this.cbResumeDownload.TabIndex = 2;
+            this.cbResumeDownload.Tag = "resume_downloads_on_startup";
+            this.cbResumeDownload.Text = "Resume Downloads on Startup";
+            this.toolTip.SetToolTip(this.cbResumeDownload, "Resume incomplete downloads on startup.");
+            this.cbResumeDownload.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 215);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Tag = "default_download_directory";
+            this.label6.Text = "Default Download Directory";
+            this.toolTip.SetToolTip(this.label6, "The default download directory path when adding a download.");
+            // 
+            // txtDefaultDownloadDirectory
+            // 
+            this.txtDefaultDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 233);
+            this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
+            this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
+            this.txtDefaultDownloadDirectory.TabIndex = 9;
+            this.txtDefaultDownloadDirectory.Tag = "default_download_directory.value";
+            this.toolTip.SetToolTip(this.txtDefaultDownloadDirectory, "The default download directory path when adding a download.");
             // 
             // btnBrowseDownloadDirectory
             // 
@@ -471,6 +378,28 @@
             this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnDefaultDownloadDirectoryBrowse_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 158);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(142, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Tag = "default_download_archive";
+            this.label5.Text = "Default Download Archive";
+            this.toolTip.SetToolTip(this.label5, "The default download archive filepath when adding a download.");
+            // 
+            // txtDefaultDownloadArchive
+            // 
+            this.txtDefaultDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 176);
+            this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
+            this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
+            this.txtDefaultDownloadArchive.TabIndex = 6;
+            this.txtDefaultDownloadArchive.Tag = "default_download_archive.value";
+            this.toolTip.SetToolTip(this.txtDefaultDownloadArchive, "The default download archive filepath when adding a download.");
+            // 
             // btnBrowseDownloadArchive
             // 
             this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -483,16 +412,61 @@
             this.btnBrowseDownloadArchive.UseVisualStyleBackColor = true;
             this.btnBrowseDownloadArchive.Click += new System.EventHandler(this.btnDefaultDownloadArchiveBrowse_Click);
             // 
+            // cbBasicMode
+            // 
+            this.cbBasicMode.AutoSize = true;
+            this.cbBasicMode.Location = new System.Drawing.Point(6, 6);
+            this.cbBasicMode.Name = "cbBasicMode";
+            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
+            this.cbBasicMode.TabIndex = 1;
+            this.cbBasicMode.Tag = "mode";
+            this.cbBasicMode.Text = "Basic Mode";
+            this.toolTip.SetToolTip(this.cbBasicMode, "Use a basic interface for the Download dialog.");
+            this.cbBasicMode.UseVisualStyleBackColor = true;
+            // 
+            // nudMaxConcurrentDownloads
+            // 
+            this.nudMaxConcurrentDownloads.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.nudMaxConcurrentDownloads.Location = new System.Drawing.Point(157, 3);
+            this.nudMaxConcurrentDownloads.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.nudMaxConcurrentDownloads.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudMaxConcurrentDownloads.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudMaxConcurrentDownloads.Name = "nudMaxConcurrentDownloads";
+            this.nudMaxConcurrentDownloads.Size = new System.Drawing.Size(79, 22);
+            this.nudMaxConcurrentDownloads.TabIndex = 4;
+            this.nudMaxConcurrentDownloads.Tag = "max_concurrent_downloads.value";
+            this.toolTip.SetToolTip(this.nudMaxConcurrentDownloads, "The max simultaneous downloads allowed to download at once.");
+            this.nudMaxConcurrentDownloads.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(154, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Tag = "max_concurrent_downloads";
+            this.label1.Text = "Max Concurrent Downloads:";
+            this.toolTip.SetToolTip(this.label1, "The max simultaneous downloads allowed to download at once.");
+            // 
             // tpBinaries
             // 
+            this.tpBinaries.Controls.Add(this.tableLayoutPanel3);
             this.tpBinaries.Controls.Add(this.gbManualUpdate);
-            this.tpBinaries.Controls.Add(this.lblRestartNote);
-            this.tpBinaries.Controls.Add(this.btnBinaryBrowseYdl);
-            this.tpBinaries.Controls.Add(this.txtBinaryFfmpeg);
-            this.tpBinaries.Controls.Add(this.btnBinaryBrowseFfmpeg);
-            this.tpBinaries.Controls.Add(this.label3);
-            this.tpBinaries.Controls.Add(this.txtBinaryYdl);
-            this.tpBinaries.Controls.Add(this.label2);
             this.tpBinaries.Location = new System.Drawing.Point(4, 22);
             this.tpBinaries.Name = "tpBinaries";
             this.tpBinaries.Padding = new System.Windows.Forms.Padding(3);
@@ -538,7 +512,9 @@
             // lblRestartNote
             // 
             this.lblRestartNote.AutoSize = true;
-            this.lblRestartNote.Location = new System.Drawing.Point(3, 73);
+            this.tableLayoutPanel3.SetColumnSpan(this.lblRestartNote, 3);
+            this.lblRestartNote.Location = new System.Drawing.Point(2, 64);
+            this.lblRestartNote.Margin = new System.Windows.Forms.Padding(2, 6, 3, 0);
             this.lblRestartNote.Name = "lblRestartNote";
             this.lblRestartNote.Size = new System.Drawing.Size(301, 13);
             this.lblRestartNote.TabIndex = 6;
@@ -547,8 +523,8 @@
             // 
             // btnBinaryBrowseYdl
             // 
-            this.btnBinaryBrowseYdl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBinaryBrowseYdl.Location = new System.Drawing.Point(420, 5);
+            this.btnBinaryBrowseYdl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBinaryBrowseYdl.Location = new System.Drawing.Point(419, 3);
             this.btnBinaryBrowseYdl.Name = "btnBinaryBrowseYdl";
             this.btnBinaryBrowseYdl.Size = new System.Drawing.Size(36, 23);
             this.btnBinaryBrowseYdl.TabIndex = 2;
@@ -557,10 +533,20 @@
             this.btnBinaryBrowseYdl.UseVisualStyleBackColor = true;
             this.btnBinaryBrowseYdl.Click += new System.EventHandler(this.btnBrowseYdl_Click);
             // 
+            // txtBinaryFfmpeg
+            // 
+            this.txtBinaryFfmpeg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBinaryFfmpeg.Location = new System.Drawing.Point(76, 32);
+            this.txtBinaryFfmpeg.Name = "txtBinaryFfmpeg";
+            this.txtBinaryFfmpeg.Size = new System.Drawing.Size(337, 22);
+            this.txtBinaryFfmpeg.TabIndex = 4;
+            this.txtBinaryFfmpeg.Tag = "ffmpeg.value";
+            this.toolTip.SetToolTip(this.txtBinaryFfmpeg, "The filepath to ffmpeg.");
+            // 
             // btnBinaryBrowseFfmpeg
             // 
-            this.btnBinaryBrowseFfmpeg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBinaryBrowseFfmpeg.Location = new System.Drawing.Point(420, 37);
+            this.btnBinaryBrowseFfmpeg.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBinaryBrowseFfmpeg.Location = new System.Drawing.Point(419, 32);
             this.btnBinaryBrowseFfmpeg.Name = "btnBinaryBrowseFfmpeg";
             this.btnBinaryBrowseFfmpeg.Size = new System.Drawing.Size(36, 23);
             this.btnBinaryBrowseFfmpeg.TabIndex = 5;
@@ -568,6 +554,40 @@
             this.btnBinaryBrowseFfmpeg.Text = "...";
             this.btnBinaryBrowseFfmpeg.UseVisualStyleBackColor = true;
             this.btnBinaryBrowseFfmpeg.Click += new System.EventHandler(this.btnBrowseFfmpeg_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 37);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Tag = "ffmpeg";
+            this.label3.Text = "ffmpeg:";
+            this.toolTip.SetToolTip(this.label3, "The filepath to ffmpeg.");
+            // 
+            // txtBinaryYdl
+            // 
+            this.txtBinaryYdl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBinaryYdl.Location = new System.Drawing.Point(76, 3);
+            this.txtBinaryYdl.Name = "txtBinaryYdl";
+            this.txtBinaryYdl.Size = new System.Drawing.Size(337, 22);
+            this.txtBinaryYdl.TabIndex = 1;
+            this.txtBinaryYdl.Tag = "youtube-dl.value";
+            this.toolTip.SetToolTip(this.txtBinaryYdl, "The filepath to youtube-dl.");
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Tag = "youtube-dl";
+            this.label2.Text = "youtube-dl:";
+            this.toolTip.SetToolTip(this.label2, "The filepath to youtube-dl.");
             // 
             // tpPresets
             // 
@@ -623,17 +643,64 @@
             this.lbxPresets.Size = new System.Drawing.Size(456, 268);
             this.lbxPresets.TabIndex = 0;
             // 
-            // panelActions
+            // tableLayoutPanel1
             // 
-            this.panelActions.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelActions.Controls.Add(this.btnOkay);
-            this.panelActions.Controls.Add(this.btnCancel);
-            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 371);
-            this.panelActions.Name = "panelActions";
-            this.panelActions.Size = new System.Drawing.Size(654, 40);
-            this.panelActions.TabIndex = 1;
-            this.panelActions.Tag = "#";
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.lblLanguage, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbxLanguage, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 7);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(444, 27);
+            this.tableLayoutPanel1.TabIndex = 6;
+            this.tableLayoutPanel1.Tag = "#$";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.nudMaxConcurrentDownloads, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 110);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(444, 28);
+            this.tableLayoutPanel2.TabIndex = 13;
+            this.tableLayoutPanel2.Tag = "#$";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblRestartNote, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.txtBinaryFfmpeg, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnBinaryBrowseFfmpeg, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnBinaryBrowseYdl, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtBinaryYdl, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(458, 124);
+            this.tableLayoutPanel3.TabIndex = 9;
+            this.tableLayoutPanel3.Tag = "#$";
             // 
             // FormPreferences
             // 
@@ -655,23 +722,28 @@
             this.Tag = "settings_dialog";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FormPreferences_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panelActions.ResumeLayout(false);
             this.tablessTabControl.ResumeLayout(false);
             this.tpGeneral.ResumeLayout(false);
             this.tpGeneral.PerformLayout();
             this.tpDownload.ResumeLayout(false);
             this.tpDownload.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).EndInit();
             this.tpBinaries.ResumeLayout(false);
-            this.tpBinaries.PerformLayout();
             this.gbManualUpdate.ResumeLayout(false);
             this.gbManualUpdate.PerformLayout();
             this.tpPresets.ResumeLayout(false);
-            this.panelActions.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -720,5 +792,8 @@
         private System.Windows.Forms.CheckBox cbAutoStartDragDropDownloads;
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.ComboBox cbxLanguage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
