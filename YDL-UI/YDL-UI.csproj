@@ -414,6 +414,7 @@
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)locales\" mkdir "$(TargetDir)locales\"
 del /Q "$(TargetDir)locales\*.json"
-for /r "$(SolutionDir)..\ydl-ui_i18n\locales" %25%25f in (*.json) do @copy "%25%25f" "$(TargetDir)locales\"</PostBuildEvent>
+for /r "$(SolutionDir)..\ydl-ui_i18n\locales" %25%25f in (*.json) do @copy "%25%25f" "$(TargetDir)locales\"
+copy /Y "$(SolutionDir)LICENSE.md" "$(TargetDir)LICENSE.md"</PostBuildEvent>
   </PropertyGroup>
 </Project>
