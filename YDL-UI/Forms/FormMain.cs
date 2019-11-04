@@ -98,13 +98,16 @@ namespace Maxstupo.YdlUi.Forms {
             PreferencesManager.OnUpdate += (sdr, p) => {
                 TopMost = p.StayOnTop;
             };
+            PreferencesManager.OnLoad += (sdr, p) => {
+                Localization.Language = p.Language;
+                p.Language = Localization.Language;
+            };
+
+            Localization.OnLanguageChanged += OnLanguageChanged;
+            Localization.Load(localesDirectory);
 
             // Attempt to load preferences if file exists, else create a new preferences file.
             PreferencesManager.Load(true);
-
-            Localization.Load(localesDirectory);
-            Localization.OnLanguageChanged += OnLanguageChanged;
-            Localization.Language = PreferencesManager.Preferences.Language;
 
             UpdateResources();
 
