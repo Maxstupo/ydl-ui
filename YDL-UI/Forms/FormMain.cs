@@ -133,6 +133,7 @@ namespace Maxstupo.YdlUi.Forms {
             // Status text at the bottom left.
             DownloadManager_PropertyChanged(null, null);
 
+            dgvDownloads.AutoResizeColumns();
         }
 
         #region Named Pipe Server
