@@ -29,6 +29,11 @@ Ensure you have installed the prerequisites listed below in order to run YDL-UI.
 ## Wiki 
 To learn how to use YDL-UI check out the [wiki](https://github.com/Maxstupo/ydl-ui/wiki). Please be aware the Wiki might not be updated for the latest release of YDL-UI.
 
+## Translation
+Wanting to contribute by translating YDL-UI to your language, or fix a typo?
+<br><br>
+Locales for YDL-UI are available in the [ydl-ui_i18n](https://github.com/Maxstupo/ydl-ui_i18n) repository.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
