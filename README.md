@@ -27,7 +27,7 @@ Ensure you have installed the prerequisites listed below in order to run YDL-UI.
  - .NET Framework 4.5
 
 ## Wiki 
-To learn how to use YDL-UI check out the [wiki](https://github.com/Maxstupo/ydl-ui/wiki). Please be aware the Wiki might not be updated for the latest release of YDL-UI.
+To learn how to use YDL-UI check out the [wiki](https://github.com/Maxstupo/ydl-ui/wiki).<br>Please be aware the Wiki might not be updated for the latest release of YDL-UI.
 
 ## Translation
 Wanting to contribute by translating YDL-UI to your language, or fix a typo?
