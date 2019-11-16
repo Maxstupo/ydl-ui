@@ -26,21 +26,26 @@ namespace Maxstupo.YdlUi.Settings {
         /// The preferences object, this object will be serialized/deserialized to the <see cref="PrefPath"/>.
         /// </summary>
         public T Preferences { get; private set; }
+       
+        /// <summary>
+        /// Invoked before the preferences have been saved from calling <see cref="Save"/>. 
+        /// </summary>
+        public event EventHandler<T> OnPreSave;
 
         /// <summary>
         /// Invoked after the preferences have been saved from calling <see cref="Save"/>. Called before <see cref="OnUpdate"/>.
         /// </summary>
-        public EventHandler<T> OnSave { get; set; }
+        public event EventHandler<T> OnSave;
 
         /// <summary>
         /// Invoked after the preferences have been loaded from calling <see cref="Load(bool)"/>. Called before <see cref="OnUpdate"/>.
         /// </summary>
-        public EventHandler<T> OnLoad { get; set; }
+        public event EventHandler<T> OnLoad;
 
         /// <summary>
         /// Invoked when <see cref="Load(bool)"/> or <see cref="Save"/> is called.
         /// </summary>
-        public EventHandler<T> OnUpdate { get; set; }
+        public event EventHandler<T> OnUpdate;
 
         /// <summary>
         /// Create a new preferences manager.
@@ -93,6 +98,7 @@ namespace Maxstupo.YdlUi.Settings {
         /// Save the preferences object and invoke the required event handlers.
         /// </summary>
         public void Save() {
+            OnPreSave?.Invoke(this, Preferences);
             Save(PrefPath, Preferences);
             OnSave?.Invoke(this, Preferences);
             OnUpdate?.Invoke(this, Preferences);

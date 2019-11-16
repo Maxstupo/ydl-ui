@@ -24,7 +24,7 @@ namespace Maxstupo.YdlUi.Settings {
         public bool RememberDownloadSettings { get; set; } = false;
         public bool UseBasicFolderPicker { get; set; } = false;
         public bool AutoConfirmDragDropDownloads { get; set; } = false;
-        
+
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;
 
@@ -33,9 +33,22 @@ namespace Maxstupo.YdlUi.Settings {
 
 
         public PreferencesBinaries Binaries { get; private set; } = new PreferencesBinaries();
+
+        public Dictionary<string, ColumnDef> Columns { get; private set; } = new Dictionary<string, ColumnDef>();
+
         public Preset StoredDownloadSettings { get; set; } = new Preset("(PreviousOptions)", false);
         public BindingList<Preset> Presets { get; private set; } = new BindingList<Preset>();
 
+    }
+
+    public class ColumnDef {
+        public int Index { get; private set; }
+        public float Width { get; private set; }
+
+        public ColumnDef(int index, float width) {
+            Index = index;
+            Width = width;
+        }
     }
 
     public class PreferencesBinaries {

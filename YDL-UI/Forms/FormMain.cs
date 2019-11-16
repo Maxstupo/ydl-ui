@@ -35,6 +35,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private string urlToAdd;
         private bool isSilent;
+        private bool isInitLanguageChange = true;
 
         private readonly string localesDirectory;
 
@@ -101,6 +102,19 @@ namespace Maxstupo.YdlUi.Forms {
             PreferencesManager.OnLoad += (sdr, p) => {
                 Localization.Language = p.Language;
                 p.Language = Localization.Language;
+
+                foreach (DataGridViewColumn column in dgvDownloads.Columns) {
+                    if (p.Columns.TryGetValue(column.Name, out ColumnDef def)) {
+                        column.DisplayIndex = Math.Min(Math.Max(def.Index, 0), dgvDownloads.ColumnCount - 1);
+                        column.Width = (int)(dgvDownloads.Width * Math.Min(Math.Max(def.Width, 0), 1));
+                    }
+                }
+            };
+
+            PreferencesManager.OnPreSave += (sdr, p) => {
+                p.Columns.Clear();
+                foreach (DataGridViewColumn column in dgvDownloads.Columns)
+                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, (float)column.Width / dgvDownloads.Width));
             };
 
             Localization.OnLanguageChanged += OnLanguageChanged;
@@ -136,7 +150,9 @@ namespace Maxstupo.YdlUi.Forms {
             // Status text at the bottom left.
             DownloadManager_PropertyChanged(null, null);
 
-            dgvDownloads.AutoResizeColumns();
+            if (!isInitLanguageChange)
+                dgvDownloads.AutoResizeColumns();
+            isInitLanguageChange = false;
         }
 
         #region Named Pipe Server
@@ -199,13 +215,11 @@ namespace Maxstupo.YdlUi.Forms {
             }
             if (!e.Cancel) {
                 downloadManager.Save();
-                if (PreferencesManager.Preferences.RememberDownloadSettings)
-                    PreferencesManager.Save();
+                PreferencesManager.Save();
+
+                if (pipeServer != null)
+                    pipeServer.Dispose();
             }
-
-            if (pipeServer != null)
-                pipeServer.Dispose();
-
         }
 
         // Updates resource filepaths, based on preferences. If a binary filepath is defined in preferences and exists use that, otherwise prompt for locations.
