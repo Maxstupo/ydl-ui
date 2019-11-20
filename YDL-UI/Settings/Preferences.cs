@@ -44,9 +44,11 @@ namespace Maxstupo.YdlUi.Settings {
     public class ColumnDef {
         public int Index { get; private set; }
         public float Width { get; private set; }
+        public bool Visible { get; private set; }
 
-        public ColumnDef(int index, float width) {
+        public ColumnDef(int index, bool visible, float width) {
             Index = index;
+            Visible = visible;
             Width = width;
         }
     }

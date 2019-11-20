@@ -181,7 +181,7 @@ namespace Maxstupo.YdlUi.Utility {
         }
 
         // Iterate through all controls within the provided control and localize their text.
-        private static void ApplyLocaleText(Control src, ToolTip tooltip, string path, int level) {
+        public static void ApplyLocaleText(Control src, ToolTip tooltip, string path, int level) {
             string key = GetKey(src.Tag, src.Name);
             if (string.IsNullOrWhiteSpace(key))
                 return;

@@ -90,6 +90,8 @@ namespace Maxstupo.YdlUi.Forms {
             dgvDownloads.Columns[3].Tag = "speed";
             dgvDownloads.Columns[4].Tag = "eta";
             dgvDownloads.Columns[5].Tag = "status";
+            dgvDownloads.Columns[6].Tag = "download_directory";
+            dgvDownloads.Columns[7].Tag = "title";
 
             completedDownloadsToolStripMenuItem.Tag = DownloadStatus.Completed;
             waitingDownloadsToolStripMenuItem.Tag = DownloadStatus.Waiting;
@@ -106,6 +108,7 @@ namespace Maxstupo.YdlUi.Forms {
                 foreach (DataGridViewColumn column in dgvDownloads.Columns) {
                     if (p.Columns.TryGetValue(column.Name, out ColumnDef def)) {
                         column.DisplayIndex = Math.Min(Math.Max(def.Index, 0), dgvDownloads.ColumnCount - 1);
+                        column.Visible = (column.Name == "colUrl") ? true : def.Visible;
                         column.Width = (int)(dgvDownloads.Width * Math.Min(Math.Max(def.Width, 0), 1));
                     }
                 }
@@ -114,7 +117,7 @@ namespace Maxstupo.YdlUi.Forms {
             PreferencesManager.OnPreSave += (sdr, p) => {
                 p.Columns.Clear();
                 foreach (DataGridViewColumn column in dgvDownloads.Columns)
-                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, (float)column.Width / dgvDownloads.Width));
+                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible, (float)column.Width / dgvDownloads.Width));
             };
 
             Localization.OnLanguageChanged += OnLanguageChanged;
@@ -146,6 +149,7 @@ namespace Maxstupo.YdlUi.Forms {
             PreferencesManager.Preferences.Language = Localization.Language;
 
             Localization.ApplyLocaleText(this);
+            Localization.ApplyLocaleText(contextMenuStripView, null, (string)dgvDownloads.Tag, 1);
 
             // Status text at the bottom left.
             DownloadManager_PropertyChanged(null, null);
@@ -560,6 +564,48 @@ namespace Maxstupo.YdlUi.Forms {
             if (e.ColumnIndex == 5 && e.Value != null)
                 e.Value = Localization.GetString($"download_list.status.{e.Value.ToString().ToLower()}", e.Value.ToString()); // Localize status column.
 
+        }
+
+        // Switch between context menus depending on location of right click (column header vs anywhere else)
+        private void dgvDownloads_MouseDown(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            DataGridView.HitTestInfo hitTest = dgvDownloads.HitTest(e.X, e.Y);
+
+            if (hitTest.Type == DataGridViewHitTestType.ColumnHeader) {
+                dgvDownloads.ContextMenuStrip = contextMenuStripView;
+            } else {
+                dgvDownloads.ContextMenuStrip = contextMenuStrip;
+            }
+        }
+
+        private void contextMenuStripView_Opening(object sender, CancelEventArgs e) {
+            foreach (ToolStripMenuItem tsmi in contextMenuStripView.Items) {
+
+                if (!(tsmi.Tag is string tsmiTag))
+                    continue;
+
+                foreach (DataGridViewColumn column in dgvDownloads.Columns) {
+                    if (column.Tag is string columnTag && columnTag == tsmiTag) {
+                        tsmi.Checked = column.Visible;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void viewMenuItem_Click(object sender, EventArgs e) {
+            if (sender is ToolStripMenuItem tsmi && tsmi.Tag is string tsmiTag) {
+                tsmi.Checked = !tsmi.Checked;
+
+                foreach (DataGridViewColumn column in dgvDownloads.Columns) {
+                    if (column.Tag is string columnTag && columnTag == tsmiTag) {
+                        column.Visible = tsmi.Checked;
+                        break;
+                    }
+                }
+            }
         }
     }
 }
