@@ -69,6 +69,9 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             }
 
             Status = DownloadStatus.Stopped;
+            Speed = string.Empty;
+            Eta = string.Empty;
+
             WriteLog("\r\nDownload Stopped");
         }
 

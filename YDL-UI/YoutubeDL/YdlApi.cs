@@ -19,7 +19,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         /// <param name="line">A line from youtube-dl.</param>
         /// <param name="download">The download to update.</param>
         public static void Parse(string line, Download download) {
-            if (string.IsNullOrWhiteSpace(line))
+            if ((download.Status != DownloadStatus.Downloading && download.Status != DownloadStatus.Processing) ||string.IsNullOrWhiteSpace(line))
                 return;
 
             // Attempt to update download status, this could break if we are using a user-specified youtube-dl binary.
