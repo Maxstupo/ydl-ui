@@ -164,7 +164,9 @@ namespace Maxstupo.YdlUi.Utility {
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse()) {
                 using (Stream inputStream = response.GetResponseStream()) {
 
-                    using (FileStream fileStream = new FileStream(destination, FileMode.OpenOrCreate, FileAccess.Write)) {
+                    File.Delete(destination);
+
+                    using (FileStream fileStream = new FileStream(destination, FileMode.CreateNew, FileAccess.Write)) {
                         byte[] buffer = new byte[1024];
                         long received = 0;
                         int read;
