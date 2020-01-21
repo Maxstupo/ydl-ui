@@ -60,21 +60,20 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
 
         public void Stop() {
-            if (Status != DownloadStatus.Downloading && Status != DownloadStatus.Queued)
-                return;
+            if (Status == DownloadStatus.Downloading || Status == DownloadStatus.Queued || Status == DownloadStatus.Processing) {
 
-            if (Status == DownloadStatus.Downloading && process != null) {
-                process.Stop();
-                titleProcess?.Stop();
+                if ((Status == DownloadStatus.Downloading || Status == DownloadStatus.Processing) && process != null) {
+                    process.Stop();
+                    titleProcess?.Stop();
+                }
+
+                Status = DownloadStatus.Stopped;
+                Speed = string.Empty;
+                Eta = string.Empty;
+
+                WriteLog("\r\nDownload Stopped");
             }
-
-            Status = DownloadStatus.Stopped;
-            Speed = string.Empty;
-            Eta = string.Empty;
-
-            WriteLog("\r\nDownload Stopped");
         }
-
 
         public void Start(string ydlPath, string ffmpegPath) {
             if (Status != DownloadStatus.Queued && Status != DownloadStatus.Waiting)
