@@ -27,7 +27,9 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void Download_LogUpdate(object sender, string e) {
-            txtLog.AppendText(e);
+            BeginInvoke((Action)(() => {
+                txtLog.AppendText(e);
+            }));
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
