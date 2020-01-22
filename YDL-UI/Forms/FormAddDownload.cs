@@ -17,7 +17,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private Preset preset;
 
-        private bool IsEditMode { get; }
+        private bool IsPresetEditMode { get; }
         private bool IsSilent { get; }
 
         public Download Download { get; private set; }
@@ -30,17 +30,17 @@ namespace Maxstupo.YdlUi.Forms {
         private Size minimumSizeAdvancedMode;
         private Size previousSizeBasicMode;
 
-        public FormAddDownload(Preferences preferences, string url, Preset preset, bool isEditMode, bool isSilent = false) {
+        public FormAddDownload(Preferences preferences, string url, Preset preset, bool isPresetEditMode, bool isSilent = false) {
             InitializeComponent();
             InitializeBasicAdvancedModes(preferences.BasicMode);
 
             this.preferences = preferences;
 
             this.preset = preset;
-            this.IsEditMode = isEditMode;
+            this.IsPresetEditMode = isPresetEditMode;
             this.IsSilent = isSilent;
 
-            if (IsEditMode) {
+            if (IsPresetEditMode) {
 
                 Text = $"Customize Preset - {preset.Name}";
                 btnAdd.Tag = "add.preset";
@@ -74,7 +74,7 @@ namespace Maxstupo.YdlUi.Forms {
             UpdateDownloadArchive();
 
 
-            if (IsEditMode) {
+            if (IsPresetEditMode) {
                 ApplyState(preset);
             } else {
                 cbxPreset.DisplayMember = nameof(Preset.DisplayText);
@@ -115,7 +115,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             Localization.ApplyLocaleText(this, toolTip);
 
-            if (IsEditMode) {
+            if (IsPresetEditMode) {
                 Text = Localization.GetString($"{Tag}.preset", "Customize Preset - {PresetName}");
                 Text = Text.Replace("{PresetName}", preset.Name);
             }
@@ -132,7 +132,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void SelectMatchingPreset(string url) {
-            if (IsEditMode)
+            if (IsPresetEditMode)
                 return;
 
             Preset preset = Preset.GetMatchingPreset(preferences.Presets, url);
@@ -246,7 +246,7 @@ namespace Maxstupo.YdlUi.Forms {
         #endregion
 
         public Download CreateDownload(string overrideUrl = null) {
-            if (IsEditMode)
+            if (IsPresetEditMode)
                 return null;
             Download download = new Download(overrideUrl ?? txtUrl.Text, Util.GetAbsolutePath(txtDownloadDirectory.Text)) {
                 Status = cbImmediateStart.Checked ? DownloadStatus.Queued : DownloadStatus.Waiting
@@ -300,7 +300,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void cbxPreset_SelectedIndexChanged(object sender, EventArgs e) {
-            if (IsEditMode)
+            if (IsPresetEditMode)
                 return;
             Preset preset = cbxPreset.GetSelectedValue<Preset>();
             if (preset != null) {
@@ -346,7 +346,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         public void RememberState() {
-            if (!IsEditMode && preferences.RememberDownloadSettings)
+            if (!IsPresetEditMode && preferences.RememberDownloadSettings)
                 preferences.StoredDownloadSettings.State = uiState.CreateFrom(this, nameof(txtUrl), nameof(cbxPreset));
         }
 
