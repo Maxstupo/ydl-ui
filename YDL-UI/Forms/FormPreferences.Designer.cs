@@ -28,64 +28,65 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOkay = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.lbxCategories = new System.Windows.Forms.ListBox();
-            this.lblCategory = new System.Windows.Forms.Label();
-            this.panelActions = new System.Windows.Forms.Panel();
-            this.tablessTabControl = new Maxstupo.YdlUi.Controls.TablessTabControl();
-            this.tpGeneral = new System.Windows.Forms.TabPage();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cbxLanguage = new System.Windows.Forms.ComboBox();
             this.cbPromptOnClose = new System.Windows.Forms.CheckBox();
             this.cbUseBasicFolderPicker = new System.Windows.Forms.CheckBox();
             this.cbStayTop = new System.Windows.Forms.CheckBox();
-            this.cbCheckForUpdates = new System.Windows.Forms.CheckBox();
-            this.tpDownload = new System.Windows.Forms.TabPage();
             this.cbAutoStartDragDropDownloads = new System.Windows.Forms.CheckBox();
             this.cbRememberDownloadSettings = new System.Windows.Forms.CheckBox();
             this.cbResumeDownload = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtDefaultDownloadDirectory = new System.Windows.Forms.TextBox();
-            this.btnBrowseDownloadDirectory = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDefaultDownloadArchive = new System.Windows.Forms.TextBox();
-            this.btnBrowseDownloadArchive = new System.Windows.Forms.Button();
             this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.nudMaxConcurrentDownloads = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.tpBinaries = new System.Windows.Forms.TabPage();
-            this.gbManualUpdate = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
-            this.lblRestartNote = new System.Windows.Forms.Label();
-            this.btnBinaryBrowseYdl = new System.Windows.Forms.Button();
             this.txtBinaryFfmpeg = new System.Windows.Forms.TextBox();
-            this.btnBinaryBrowseFfmpeg = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBinaryYdl = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbxUpdateInterval = new System.Windows.Forms.ComboBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lbxCategories = new System.Windows.Forms.ListBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.tablessTabControl = new Maxstupo.YdlUi.Controls.TablessTabControl();
+            this.tpGeneral = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tpDownload = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBrowseDownloadDirectory = new System.Windows.Forms.Button();
+            this.btnBrowseDownloadArchive = new System.Windows.Forms.Button();
+            this.tpBinaries = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblRestartNote = new System.Windows.Forms.Label();
+            this.btnBinaryBrowseFfmpeg = new System.Windows.Forms.Button();
+            this.btnBinaryBrowseYdl = new System.Windows.Forms.Button();
+            this.gbManualUpdate = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnUpdateYoutubeDl = new System.Windows.Forms.Button();
             this.tpPresets = new System.Windows.Forms.TabPage();
             this.btnPresetEdit = new System.Windows.Forms.Button();
             this.btnPresetAdd = new System.Windows.Forms.Button();
             this.lbxPresets = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.panelActions = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panelActions.SuspendLayout();
             this.tablessTabControl.SuspendLayout();
             this.tpGeneral.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.tpDownload.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tpBinaries.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.gbManualUpdate.SuspendLayout();
             this.tpPresets.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.panelActions.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -120,97 +121,6 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 12);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.lbxCategories);
-            this.splitContainer1.Panel1.Tag = "!ignore";
-            this.splitContainer1.Panel1MinSize = 75;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.lblCategory);
-            this.splitContainer1.Panel2.Controls.Add(this.tablessTabControl);
-            this.splitContainer1.Panel2.Tag = "#";
-            this.splitContainer1.Size = new System.Drawing.Size(642, 347);
-            this.splitContainer1.SplitterDistance = 169;
-            this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.Tag = "#";
-            // 
-            // lbxCategories
-            // 
-            this.lbxCategories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbxCategories.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbxCategories.FormattingEnabled = true;
-            this.lbxCategories.IntegralHeight = false;
-            this.lbxCategories.ItemHeight = 20;
-            this.lbxCategories.Location = new System.Drawing.Point(0, 0);
-            this.lbxCategories.Name = "lbxCategories";
-            this.lbxCategories.Size = new System.Drawing.Size(169, 347);
-            this.lbxCategories.TabIndex = 0;
-            this.lbxCategories.SelectedIndexChanged += new System.EventHandler(this.lbxCategories_SelectedIndexChanged);
-            // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(2, 1);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(80, 21);
-            this.lblCategory.TabIndex = 0;
-            this.lblCategory.Tag = "!ignore";
-            this.lblCategory.Text = "Category";
-            // 
-            // panelActions
-            // 
-            this.panelActions.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelActions.Controls.Add(this.btnOkay);
-            this.panelActions.Controls.Add(this.btnCancel);
-            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 371);
-            this.panelActions.Name = "panelActions";
-            this.panelActions.Size = new System.Drawing.Size(654, 40);
-            this.panelActions.TabIndex = 1;
-            this.panelActions.Tag = "#";
-            // 
-            // tablessTabControl
-            // 
-            this.tablessTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tablessTabControl.Controls.Add(this.tpGeneral);
-            this.tablessTabControl.Controls.Add(this.tpDownload);
-            this.tablessTabControl.Controls.Add(this.tpBinaries);
-            this.tablessTabControl.Controls.Add(this.tpPresets);
-            this.tablessTabControl.Location = new System.Drawing.Point(2, 25);
-            this.tablessTabControl.Name = "tablessTabControl";
-            this.tablessTabControl.SelectedIndex = 0;
-            this.tablessTabControl.Size = new System.Drawing.Size(464, 322);
-            this.tablessTabControl.TabIndex = 0;
-            this.tablessTabControl.Tag = "#";
-            // 
-            // tpGeneral
-            // 
-            this.tpGeneral.Controls.Add(this.tableLayoutPanel1);
-            this.tpGeneral.Controls.Add(this.cbPromptOnClose);
-            this.tpGeneral.Controls.Add(this.cbUseBasicFolderPicker);
-            this.tpGeneral.Controls.Add(this.cbStayTop);
-            this.tpGeneral.Controls.Add(this.cbCheckForUpdates);
-            this.tpGeneral.Location = new System.Drawing.Point(4, 22);
-            this.tpGeneral.Name = "tpGeneral";
-            this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGeneral.Size = new System.Drawing.Size(456, 296);
-            this.tpGeneral.TabIndex = 0;
-            this.tpGeneral.Tag = "general";
-            this.tpGeneral.Text = "General";
-            // 
             // lblLanguage
             // 
             this.lblLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -229,7 +139,7 @@
             this.cbxLanguage.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLanguage.FormattingEnabled = true;
-            this.cbxLanguage.Location = new System.Drawing.Point(64, 3);
+            this.cbxLanguage.Location = new System.Drawing.Point(92, 3);
             this.cbxLanguage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.cbxLanguage.Name = "cbxLanguage";
             this.cbxLanguage.Size = new System.Drawing.Size(148, 21);
@@ -273,40 +183,6 @@
             this.cbStayTop.Text = "Stay on top";
             this.toolTip.SetToolTip(this.cbStayTop, "Keep application in front of other windows.");
             this.cbStayTop.UseVisualStyleBackColor = true;
-            // 
-            // cbCheckForUpdates
-            // 
-            this.cbCheckForUpdates.AutoSize = true;
-            this.cbCheckForUpdates.Location = new System.Drawing.Point(6, 44);
-            this.cbCheckForUpdates.Name = "cbCheckForUpdates";
-            this.cbCheckForUpdates.Size = new System.Drawing.Size(121, 17);
-            this.cbCheckForUpdates.TabIndex = 0;
-            this.cbCheckForUpdates.Tag = "updates";
-            this.cbCheckForUpdates.Text = "Check for Updates";
-            this.toolTip.SetToolTip(this.cbCheckForUpdates, "Check for updates on start, prompt only if new updates are available.");
-            this.cbCheckForUpdates.UseVisualStyleBackColor = true;
-            // 
-            // tpDownload
-            // 
-            this.tpDownload.Controls.Add(this.tableLayoutPanel2);
-            this.tpDownload.Controls.Add(this.cbAutoStartDragDropDownloads);
-            this.tpDownload.Controls.Add(this.cbRememberDownloadSettings);
-            this.tpDownload.Controls.Add(this.cbResumeDownload);
-            this.tpDownload.Controls.Add(this.label6);
-            this.tpDownload.Controls.Add(this.txtDefaultDownloadDirectory);
-            this.tpDownload.Controls.Add(this.btnBrowseDownloadDirectory);
-            this.tpDownload.Controls.Add(this.label5);
-            this.tpDownload.Controls.Add(this.txtDefaultDownloadArchive);
-            this.tpDownload.Controls.Add(this.btnBrowseDownloadArchive);
-            this.tpDownload.Controls.Add(this.cbBasicMode);
-            this.tpDownload.Location = new System.Drawing.Point(4, 22);
-            this.tpDownload.Name = "tpDownload";
-            this.tpDownload.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDownload.Size = new System.Drawing.Size(456, 296);
-            this.tpDownload.TabIndex = 1;
-            this.tpDownload.Tag = "download";
-            this.tpDownload.Text = "Download";
-            this.tpDownload.UseVisualStyleBackColor = true;
             // 
             // cbAutoStartDragDropDownloads
             // 
@@ -366,18 +242,6 @@
             this.txtDefaultDownloadDirectory.Tag = "default_download_directory.value";
             this.toolTip.SetToolTip(this.txtDefaultDownloadDirectory, "The default download directory path when adding a download.");
             // 
-            // btnBrowseDownloadDirectory
-            // 
-            this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 233);
-            this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
-            this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
-            this.btnBrowseDownloadDirectory.TabIndex = 10;
-            this.btnBrowseDownloadDirectory.Tag = "@browse";
-            this.btnBrowseDownloadDirectory.Text = "...";
-            this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
-            this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnDefaultDownloadDirectoryBrowse_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -399,18 +263,6 @@
             this.txtDefaultDownloadArchive.TabIndex = 6;
             this.txtDefaultDownloadArchive.Tag = "default_download_archive.value";
             this.toolTip.SetToolTip(this.txtDefaultDownloadArchive, "The default download archive filepath when adding a download.");
-            // 
-            // btnBrowseDownloadArchive
-            // 
-            this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 176);
-            this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
-            this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
-            this.btnBrowseDownloadArchive.TabIndex = 7;
-            this.btnBrowseDownloadArchive.Tag = "@browse";
-            this.btnBrowseDownloadArchive.Text = "...";
-            this.btnBrowseDownloadArchive.UseVisualStyleBackColor = true;
-            this.btnBrowseDownloadArchive.Click += new System.EventHandler(this.btnDefaultDownloadArchiveBrowse_Click);
             // 
             // cbBasicMode
             // 
@@ -463,76 +315,6 @@
             this.label1.Text = "Max Concurrent Downloads:";
             this.toolTip.SetToolTip(this.label1, "The max simultaneous downloads allowed to download at once.");
             // 
-            // tpBinaries
-            // 
-            this.tpBinaries.Controls.Add(this.tableLayoutPanel3);
-            this.tpBinaries.Controls.Add(this.gbManualUpdate);
-            this.tpBinaries.Location = new System.Drawing.Point(4, 22);
-            this.tpBinaries.Name = "tpBinaries";
-            this.tpBinaries.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBinaries.Size = new System.Drawing.Size(456, 296);
-            this.tpBinaries.TabIndex = 2;
-            this.tpBinaries.Tag = "binaries";
-            this.tpBinaries.Text = "Binaries";
-            this.tpBinaries.UseVisualStyleBackColor = true;
-            // 
-            // gbManualUpdate
-            // 
-            this.gbManualUpdate.Controls.Add(this.label4);
-            this.gbManualUpdate.Controls.Add(this.btnUpdateYoutubeDl);
-            this.gbManualUpdate.Location = new System.Drawing.Point(1, 149);
-            this.gbManualUpdate.Name = "gbManualUpdate";
-            this.gbManualUpdate.Size = new System.Drawing.Size(171, 83);
-            this.gbManualUpdate.TabIndex = 8;
-            this.gbManualUpdate.TabStop = false;
-            this.gbManualUpdate.Tag = "manual_update";
-            this.gbManualUpdate.Text = "Manual Update";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Tag = "youtube-dl";
-            this.label4.Text = "youtube-dl:";
-            // 
-            // btnUpdateYoutubeDl
-            // 
-            this.btnUpdateYoutubeDl.Location = new System.Drawing.Point(79, 20);
-            this.btnUpdateYoutubeDl.Name = "btnUpdateYoutubeDl";
-            this.btnUpdateYoutubeDl.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdateYoutubeDl.TabIndex = 0;
-            this.btnUpdateYoutubeDl.Tag = "update";
-            this.btnUpdateYoutubeDl.Text = "Update";
-            this.btnUpdateYoutubeDl.UseVisualStyleBackColor = true;
-            this.btnUpdateYoutubeDl.Click += new System.EventHandler(this.btnUpdateYoutubeDl_Click);
-            // 
-            // lblRestartNote
-            // 
-            this.lblRestartNote.AutoSize = true;
-            this.tableLayoutPanel3.SetColumnSpan(this.lblRestartNote, 3);
-            this.lblRestartNote.Location = new System.Drawing.Point(2, 64);
-            this.lblRestartNote.Margin = new System.Windows.Forms.Padding(2, 6, 3, 0);
-            this.lblRestartNote.Name = "lblRestartNote";
-            this.lblRestartNote.Size = new System.Drawing.Size(301, 13);
-            this.lblRestartNote.TabIndex = 6;
-            this.lblRestartNote.Tag = "note_restart";
-            this.lblRestartNote.Text = "Changing binary paths requires {ProductName} to restart.";
-            // 
-            // btnBinaryBrowseYdl
-            // 
-            this.btnBinaryBrowseYdl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBinaryBrowseYdl.Location = new System.Drawing.Point(419, 3);
-            this.btnBinaryBrowseYdl.Name = "btnBinaryBrowseYdl";
-            this.btnBinaryBrowseYdl.Size = new System.Drawing.Size(36, 23);
-            this.btnBinaryBrowseYdl.TabIndex = 2;
-            this.btnBinaryBrowseYdl.Tag = "@browse";
-            this.btnBinaryBrowseYdl.Text = "...";
-            this.btnBinaryBrowseYdl.UseVisualStyleBackColor = true;
-            this.btnBinaryBrowseYdl.Click += new System.EventHandler(this.btnBrowseYdl_Click);
-            // 
             // txtBinaryFfmpeg
             // 
             this.txtBinaryFfmpeg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -542,18 +324,6 @@
             this.txtBinaryFfmpeg.TabIndex = 4;
             this.txtBinaryFfmpeg.Tag = "ffmpeg.value";
             this.toolTip.SetToolTip(this.txtBinaryFfmpeg, "The filepath to ffmpeg.");
-            // 
-            // btnBinaryBrowseFfmpeg
-            // 
-            this.btnBinaryBrowseFfmpeg.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBinaryBrowseFfmpeg.Location = new System.Drawing.Point(419, 32);
-            this.btnBinaryBrowseFfmpeg.Name = "btnBinaryBrowseFfmpeg";
-            this.btnBinaryBrowseFfmpeg.Size = new System.Drawing.Size(36, 23);
-            this.btnBinaryBrowseFfmpeg.TabIndex = 5;
-            this.btnBinaryBrowseFfmpeg.Tag = "@browse";
-            this.btnBinaryBrowseFfmpeg.Text = "...";
-            this.btnBinaryBrowseFfmpeg.UseVisualStyleBackColor = true;
-            this.btnBinaryBrowseFfmpeg.Click += new System.EventHandler(this.btnBrowseFfmpeg_Click);
             // 
             // label3
             // 
@@ -588,6 +358,302 @@
             this.label2.Tag = "youtube-dl";
             this.label2.Text = "youtube-dl:";
             this.toolTip.SetToolTip(this.label2, "The filepath to youtube-dl.");
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(0, 34);
+            this.label7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Tag = "update_interval";
+            this.label7.Text = "Update Interval:";
+            this.toolTip.SetToolTip(this.label7, "The frequency of checking for updates, if a new update is found a prompt will a a" +
+        "ppear.");
+            // 
+            // cbxUpdateInterval
+            // 
+            this.cbxUpdateInterval.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbxUpdateInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxUpdateInterval.FormattingEnabled = true;
+            this.cbxUpdateInterval.Location = new System.Drawing.Point(92, 30);
+            this.cbxUpdateInterval.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.cbxUpdateInterval.Name = "cbxUpdateInterval";
+            this.cbxUpdateInterval.Size = new System.Drawing.Size(148, 21);
+            this.cbxUpdateInterval.TabIndex = 4;
+            this.cbxUpdateInterval.Tag = "update_interval.dropdown";
+            this.toolTip.SetToolTip(this.cbxUpdateInterval, "The frequency of checking for updates, if a new update is found a prompt will a a" +
+        "ppear.");
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(12, 12);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.lbxCategories);
+            this.splitContainer1.Panel1.Tag = "!ignore";
+            this.splitContainer1.Panel1MinSize = 75;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblCategory);
+            this.splitContainer1.Panel2.Controls.Add(this.tablessTabControl);
+            this.splitContainer1.Panel2.Tag = "#";
+            this.splitContainer1.Size = new System.Drawing.Size(642, 347);
+            this.splitContainer1.SplitterDistance = 169;
+            this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.Tag = "#";
+            // 
+            // lbxCategories
+            // 
+            this.lbxCategories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbxCategories.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbxCategories.FormattingEnabled = true;
+            this.lbxCategories.IntegralHeight = false;
+            this.lbxCategories.ItemHeight = 20;
+            this.lbxCategories.Location = new System.Drawing.Point(0, 0);
+            this.lbxCategories.Name = "lbxCategories";
+            this.lbxCategories.Size = new System.Drawing.Size(169, 347);
+            this.lbxCategories.TabIndex = 0;
+            this.lbxCategories.SelectedIndexChanged += new System.EventHandler(this.lbxCategories_SelectedIndexChanged);
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(2, 1);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(80, 21);
+            this.lblCategory.TabIndex = 0;
+            this.lblCategory.Tag = "!ignore";
+            this.lblCategory.Text = "Category";
+            // 
+            // tablessTabControl
+            // 
+            this.tablessTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tablessTabControl.Controls.Add(this.tpGeneral);
+            this.tablessTabControl.Controls.Add(this.tpDownload);
+            this.tablessTabControl.Controls.Add(this.tpBinaries);
+            this.tablessTabControl.Controls.Add(this.tpPresets);
+            this.tablessTabControl.Location = new System.Drawing.Point(2, 25);
+            this.tablessTabControl.Name = "tablessTabControl";
+            this.tablessTabControl.SelectedIndex = 0;
+            this.tablessTabControl.Size = new System.Drawing.Size(464, 322);
+            this.tablessTabControl.TabIndex = 0;
+            this.tablessTabControl.Tag = "#";
+            // 
+            // tpGeneral
+            // 
+            this.tpGeneral.Controls.Add(this.tableLayoutPanel1);
+            this.tpGeneral.Controls.Add(this.cbPromptOnClose);
+            this.tpGeneral.Controls.Add(this.cbUseBasicFolderPicker);
+            this.tpGeneral.Controls.Add(this.cbStayTop);
+            this.tpGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tpGeneral.Name = "tpGeneral";
+            this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGeneral.Size = new System.Drawing.Size(456, 296);
+            this.tpGeneral.TabIndex = 0;
+            this.tpGeneral.Tag = "general";
+            this.tpGeneral.Text = "General";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblLanguage, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbxUpdateInterval, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbxLanguage, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 7);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(444, 54);
+            this.tableLayoutPanel1.TabIndex = 6;
+            this.tableLayoutPanel1.Tag = "#$";
+            // 
+            // tpDownload
+            // 
+            this.tpDownload.Controls.Add(this.tableLayoutPanel2);
+            this.tpDownload.Controls.Add(this.cbAutoStartDragDropDownloads);
+            this.tpDownload.Controls.Add(this.cbRememberDownloadSettings);
+            this.tpDownload.Controls.Add(this.cbResumeDownload);
+            this.tpDownload.Controls.Add(this.label6);
+            this.tpDownload.Controls.Add(this.txtDefaultDownloadDirectory);
+            this.tpDownload.Controls.Add(this.btnBrowseDownloadDirectory);
+            this.tpDownload.Controls.Add(this.label5);
+            this.tpDownload.Controls.Add(this.txtDefaultDownloadArchive);
+            this.tpDownload.Controls.Add(this.btnBrowseDownloadArchive);
+            this.tpDownload.Controls.Add(this.cbBasicMode);
+            this.tpDownload.Location = new System.Drawing.Point(4, 22);
+            this.tpDownload.Name = "tpDownload";
+            this.tpDownload.Padding = new System.Windows.Forms.Padding(3);
+            this.tpDownload.Size = new System.Drawing.Size(456, 296);
+            this.tpDownload.TabIndex = 1;
+            this.tpDownload.Tag = "download";
+            this.tpDownload.Text = "Download";
+            this.tpDownload.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.nudMaxConcurrentDownloads, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 110);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(444, 28);
+            this.tableLayoutPanel2.TabIndex = 13;
+            this.tableLayoutPanel2.Tag = "#$";
+            // 
+            // btnBrowseDownloadDirectory
+            // 
+            this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 233);
+            this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
+            this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
+            this.btnBrowseDownloadDirectory.TabIndex = 10;
+            this.btnBrowseDownloadDirectory.Tag = "@browse";
+            this.btnBrowseDownloadDirectory.Text = "...";
+            this.btnBrowseDownloadDirectory.UseVisualStyleBackColor = true;
+            this.btnBrowseDownloadDirectory.Click += new System.EventHandler(this.btnDefaultDownloadDirectoryBrowse_Click);
+            // 
+            // btnBrowseDownloadArchive
+            // 
+            this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 176);
+            this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
+            this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
+            this.btnBrowseDownloadArchive.TabIndex = 7;
+            this.btnBrowseDownloadArchive.Tag = "@browse";
+            this.btnBrowseDownloadArchive.Text = "...";
+            this.btnBrowseDownloadArchive.UseVisualStyleBackColor = true;
+            this.btnBrowseDownloadArchive.Click += new System.EventHandler(this.btnDefaultDownloadArchiveBrowse_Click);
+            // 
+            // tpBinaries
+            // 
+            this.tpBinaries.Controls.Add(this.tableLayoutPanel3);
+            this.tpBinaries.Controls.Add(this.gbManualUpdate);
+            this.tpBinaries.Location = new System.Drawing.Point(4, 22);
+            this.tpBinaries.Name = "tpBinaries";
+            this.tpBinaries.Padding = new System.Windows.Forms.Padding(3);
+            this.tpBinaries.Size = new System.Drawing.Size(456, 296);
+            this.tpBinaries.TabIndex = 2;
+            this.tpBinaries.Tag = "binaries";
+            this.tpBinaries.Text = "Binaries";
+            this.tpBinaries.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblRestartNote, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.txtBinaryFfmpeg, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnBinaryBrowseFfmpeg, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnBinaryBrowseYdl, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtBinaryYdl, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(458, 124);
+            this.tableLayoutPanel3.TabIndex = 9;
+            this.tableLayoutPanel3.Tag = "#$";
+            // 
+            // lblRestartNote
+            // 
+            this.lblRestartNote.AutoSize = true;
+            this.tableLayoutPanel3.SetColumnSpan(this.lblRestartNote, 3);
+            this.lblRestartNote.Location = new System.Drawing.Point(2, 64);
+            this.lblRestartNote.Margin = new System.Windows.Forms.Padding(2, 6, 3, 0);
+            this.lblRestartNote.Name = "lblRestartNote";
+            this.lblRestartNote.Size = new System.Drawing.Size(301, 13);
+            this.lblRestartNote.TabIndex = 6;
+            this.lblRestartNote.Tag = "note_restart";
+            this.lblRestartNote.Text = "Changing binary paths requires {ProductName} to restart.";
+            // 
+            // btnBinaryBrowseFfmpeg
+            // 
+            this.btnBinaryBrowseFfmpeg.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBinaryBrowseFfmpeg.Location = new System.Drawing.Point(419, 32);
+            this.btnBinaryBrowseFfmpeg.Name = "btnBinaryBrowseFfmpeg";
+            this.btnBinaryBrowseFfmpeg.Size = new System.Drawing.Size(36, 23);
+            this.btnBinaryBrowseFfmpeg.TabIndex = 5;
+            this.btnBinaryBrowseFfmpeg.Tag = "@browse";
+            this.btnBinaryBrowseFfmpeg.Text = "...";
+            this.btnBinaryBrowseFfmpeg.UseVisualStyleBackColor = true;
+            this.btnBinaryBrowseFfmpeg.Click += new System.EventHandler(this.btnBrowseFfmpeg_Click);
+            // 
+            // btnBinaryBrowseYdl
+            // 
+            this.btnBinaryBrowseYdl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBinaryBrowseYdl.Location = new System.Drawing.Point(419, 3);
+            this.btnBinaryBrowseYdl.Name = "btnBinaryBrowseYdl";
+            this.btnBinaryBrowseYdl.Size = new System.Drawing.Size(36, 23);
+            this.btnBinaryBrowseYdl.TabIndex = 2;
+            this.btnBinaryBrowseYdl.Tag = "@browse";
+            this.btnBinaryBrowseYdl.Text = "...";
+            this.btnBinaryBrowseYdl.UseVisualStyleBackColor = true;
+            this.btnBinaryBrowseYdl.Click += new System.EventHandler(this.btnBrowseYdl_Click);
+            // 
+            // gbManualUpdate
+            // 
+            this.gbManualUpdate.Controls.Add(this.label4);
+            this.gbManualUpdate.Controls.Add(this.btnUpdateYoutubeDl);
+            this.gbManualUpdate.Location = new System.Drawing.Point(1, 149);
+            this.gbManualUpdate.Name = "gbManualUpdate";
+            this.gbManualUpdate.Size = new System.Drawing.Size(171, 83);
+            this.gbManualUpdate.TabIndex = 8;
+            this.gbManualUpdate.TabStop = false;
+            this.gbManualUpdate.Tag = "manual_update";
+            this.gbManualUpdate.Text = "Manual Update";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Tag = "youtube-dl";
+            this.label4.Text = "youtube-dl:";
+            // 
+            // btnUpdateYoutubeDl
+            // 
+            this.btnUpdateYoutubeDl.Location = new System.Drawing.Point(79, 20);
+            this.btnUpdateYoutubeDl.Name = "btnUpdateYoutubeDl";
+            this.btnUpdateYoutubeDl.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateYoutubeDl.TabIndex = 0;
+            this.btnUpdateYoutubeDl.Tag = "update";
+            this.btnUpdateYoutubeDl.Text = "Update";
+            this.btnUpdateYoutubeDl.UseVisualStyleBackColor = true;
+            this.btnUpdateYoutubeDl.Click += new System.EventHandler(this.btnUpdateYoutubeDl_Click);
             // 
             // tpPresets
             // 
@@ -643,64 +709,17 @@
             this.lbxPresets.Size = new System.Drawing.Size(456, 268);
             this.lbxPresets.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // panelActions
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.lblLanguage, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cbxLanguage, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 7);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(444, 27);
-            this.tableLayoutPanel1.TabIndex = 6;
-            this.tableLayoutPanel1.Tag = "#$";
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.nudMaxConcurrentDownloads, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 110);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(444, 28);
-            this.tableLayoutPanel2.TabIndex = 13;
-            this.tableLayoutPanel2.Tag = "#$";
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.lblRestartNote, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.txtBinaryFfmpeg, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.btnBinaryBrowseFfmpeg, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.btnBinaryBrowseYdl, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtBinaryYdl, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(458, 124);
-            this.tableLayoutPanel3.TabIndex = 9;
-            this.tableLayoutPanel3.Tag = "#$";
+            this.panelActions.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelActions.Controls.Add(this.btnOkay);
+            this.panelActions.Controls.Add(this.btnCancel);
+            this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelActions.Location = new System.Drawing.Point(0, 371);
+            this.panelActions.Name = "panelActions";
+            this.panelActions.Size = new System.Drawing.Size(654, 40);
+            this.panelActions.TabIndex = 1;
+            this.panelActions.Tag = "#";
             // 
             // FormPreferences
             // 
@@ -722,28 +741,28 @@
             this.Tag = "settings_dialog";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FormPreferences_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panelActions.ResumeLayout(false);
             this.tablessTabControl.ResumeLayout(false);
             this.tpGeneral.ResumeLayout(false);
             this.tpGeneral.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tpDownload.ResumeLayout(false);
             this.tpDownload.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tpBinaries.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.gbManualUpdate.ResumeLayout(false);
             this.gbManualUpdate.PerformLayout();
             this.tpPresets.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -774,7 +793,6 @@
         private System.Windows.Forms.Button btnPresetAdd;
         private System.Windows.Forms.Button btnPresetEdit;
         private System.Windows.Forms.CheckBox cbBasicMode;
-        private System.Windows.Forms.CheckBox cbCheckForUpdates;
         private System.Windows.Forms.CheckBox cbStayTop;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDefaultDownloadDirectory;
@@ -795,5 +813,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbxUpdateInterval;
     }
 }

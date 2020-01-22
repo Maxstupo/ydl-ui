@@ -1,5 +1,6 @@
 ﻿using Maxstupo.YdlUi.Utility;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,8 +13,11 @@ namespace Maxstupo.YdlUi.Settings {
         public int Version { get; set; } = 1;
         public string Language { get; set; } = "";
 
-        public bool CheckForUpdates { get; set; } = true;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public UpdateInterval UpdateInterval { get; set; } = UpdateInterval.Weekly;
 
+        public DateTime LastUpdateTime { get; set; }
+        
         public bool PromptDownloadingOnClose { get; set; } = true;
 
         public bool BasicMode { get; set; } = true;
@@ -39,6 +43,14 @@ namespace Maxstupo.YdlUi.Settings {
         public Preset StoredDownloadSettings { get; set; } = new Preset("(PreviousOptions)", false);
         public BindingList<Preset> Presets { get; private set; } = new BindingList<Preset>();
 
+    }
+
+    public enum UpdateInterval {
+        Never = 0,
+        OnStart = 1,
+        Daily = 2,
+        Weekly = 3,
+        Monthly = 4
     }
 
     public class ColumnDef {

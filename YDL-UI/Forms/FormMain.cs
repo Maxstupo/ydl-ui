@@ -138,11 +138,13 @@ namespace Maxstupo.YdlUi.Forms {
             }
 
 #if !DEBUG
-            if (PreferencesManager.Preferences.CheckForUpdates)
+            if (ShouldCheckForUpdates())
                 CheckForUpdates(true);
 #endif
 
         }
+
+
 
         private void OnLanguageChanged(object sender, EventArgs args) {
             // Update preferences manually instead of using data binding, as the language property can change from what you set it to.
@@ -469,6 +471,28 @@ namespace Maxstupo.YdlUi.Forms {
                 e.ToolTipText = download?.Title ?? e.ToolTipText;
         }
 
+        // This method is called once at startup of YDL-UI, if it returns true we will check for updates.
+        private bool ShouldCheckForUpdates() {
+            // If last update time isn't set in preferences, it will default to 1/01/0001 12:00AM
+            DateTime lastUpdateTime = PreferencesManager.Preferences.LastUpdateTime; 
+            TimeSpan durationSinceUpdate = (DateTime.Now.ToUniversalTime() - lastUpdateTime).Duration();
+
+            switch (PreferencesManager.Preferences.UpdateInterval) {
+                case UpdateInterval.Never:
+                    return false;
+                case UpdateInterval.OnStart:
+                    return true;
+                case UpdateInterval.Daily:
+                    return durationSinceUpdate.TotalDays >= 1;
+                case UpdateInterval.Weekly:
+                    return durationSinceUpdate.TotalDays >= 7;
+                case UpdateInterval.Monthly:
+                    return durationSinceUpdate.TotalDays >= 30;
+                default:
+                    return false;
+            }
+        }
+
         /// <summary>
         /// Check for a new release of the application by accessing the github API for the YDL-UI repo.
         /// </summary>
@@ -493,6 +517,8 @@ namespace Maxstupo.YdlUi.Forms {
 
                 Version currentVersion = new Version(ApplicationVersion);
                 Version releaseVersion = new Version(releaseTagName);
+
+                PreferencesManager.Preferences.LastUpdateTime = DateTime.Now.ToUniversalTime();
 
                 int delta = releaseVersion.CompareTo(currentVersion);
                 if (delta > 0) {
@@ -610,7 +636,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e) {
-            foreach(Download download in downloadManager.Downloads) 
+            foreach (Download download in downloadManager.Downloads)
                 download.Log = string.Empty;
         }
     }

@@ -63,6 +63,8 @@ namespace Maxstupo.YdlUi.Forms {
             cbxLanguage.DisplayMember = nameof(Language.DisplayName);
             cbxLanguage.ValueMember = nameof(Language.Code);
 
+            cbxUpdateInterval.DataSource = Enum.GetValues(typeof(UpdateInterval));
+
             cbxLanguage.SelectedValue = preferences.Language;
             cbxLanguage.SelectionChangeCommitted += delegate { Localization.Language = (string)cbxLanguage.SelectedValue; };
 
@@ -74,7 +76,7 @@ namespace Maxstupo.YdlUi.Forms {
             nudMaxConcurrentDownloads.DataBindings.Add(nameof(nudMaxConcurrentDownloads.Value), preferences, nameof(preferences.MaxConcurrentDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
 
             cbPromptOnClose.DataBindings.Add(nameof(cbPromptOnClose.Checked), preferences, nameof(preferences.PromptDownloadingOnClose), false, DataSourceUpdateMode.OnPropertyChanged);
-            cbCheckForUpdates.DataBindings.Add(nameof(cbCheckForUpdates.Checked), preferences, nameof(preferences.CheckForUpdates), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbxUpdateInterval.DataBindings.Add(nameof(cbxUpdateInterval.SelectedItem), preferences, nameof(preferences.UpdateInterval), false, DataSourceUpdateMode.OnPropertyChanged);
             cbBasicMode.DataBindings.Add(nameof(cbBasicMode.Checked), preferences, nameof(preferences.BasicMode), false, DataSourceUpdateMode.OnPropertyChanged);
             cbStayTop.DataBindings.Add(nameof(cbStayTop.Checked), preferences, nameof(preferences.StayOnTop), false, DataSourceUpdateMode.OnPropertyChanged);
             cbResumeDownload.DataBindings.Add(nameof(cbResumeDownload.Checked), preferences, nameof(preferences.ResumeDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
