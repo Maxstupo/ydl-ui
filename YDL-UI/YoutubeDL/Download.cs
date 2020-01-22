@@ -18,6 +18,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         private string speed;
         private string size;
         private string eta;
+        private string playlist;
         private DownloadStatus status = DownloadStatus.Queued;
 
         public string Title { get => title; set { title = value; FirePropertyChanged(); } }
@@ -26,7 +27,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public string Size { get => size; set { size = value; FirePropertyChanged(); } }
         public string Speed { get => speed; set { speed = value; FirePropertyChanged(); } }
         public string Eta { get => eta; set { eta = value; FirePropertyChanged(); } }
-
+        public string Playlist { get => playlist; set { playlist = value; FirePropertyChanged(); } }
 
         public DownloadStatus Status { get => status; set { status = value; FirePropertyChanged(); } }
 
@@ -38,6 +39,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         public event EventHandler<string> LogUpdate; // Fires for each new log message.
 
         public string DownloadDirectory { get; }
+
 
         [JsonIgnore]
         private ExecutableProcess process, titleProcess;
@@ -70,6 +72,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 Status = DownloadStatus.Stopped;
                 Speed = string.Empty;
                 Eta = string.Empty;
+                Playlist = string.Empty;
 
                 WriteLog("\r\nDownload Stopped");
             }
@@ -122,6 +125,10 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             WriteLog($"\r\nExecuting: {process.Command}\r\n");
 
             process.OnExited += (s, exitCode) => {
+#if DEBUG
+                if (exitCode != 0)
+                    Console.WriteLine("Exit code: " + exitCode);
+#endif
                 Status = (exitCode == 0) ? DownloadStatus.Completed : DownloadStatus.Failed;
             };
 

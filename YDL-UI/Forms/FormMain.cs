@@ -92,6 +92,7 @@ namespace Maxstupo.YdlUi.Forms {
             dgvDownloads.Columns[5].Tag = "status";
             dgvDownloads.Columns[6].Tag = "download_directory";
             dgvDownloads.Columns[7].Tag = "title";
+            dgvDownloads.Columns[8].Tag = "playlist";
 
             completedDownloadsToolStripMenuItem.Tag = DownloadStatus.Completed;
             waitingDownloadsToolStripMenuItem.Tag = DownloadStatus.Waiting;
@@ -606,6 +607,11 @@ namespace Maxstupo.YdlUi.Forms {
                     }
                 }
             }
+        }
+
+        private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e) {
+            foreach(Download download in downloadManager.Downloads) 
+                download.Log = string.Empty;
         }
     }
 }
