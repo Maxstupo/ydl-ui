@@ -480,7 +480,7 @@ namespace Maxstupo.YdlUi.Forms {
             switch (PreferencesManager.Preferences.UpdateInterval) {
                 case UpdateInterval.Never:
                     return false;
-                case UpdateInterval.OnStart:
+                case UpdateInterval.EveryStart:
                     return true;
                 case UpdateInterval.Daily:
                     return durationSinceUpdate.TotalDays >= 1;
