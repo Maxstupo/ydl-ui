@@ -1,5 +1,6 @@
 ﻿using Maxstupo.YdlUi.Settings;
 using Maxstupo.YdlUi.Utility;
+using Maxstupo.YdlUi.YoutubeDL.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,31 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             download.PropertyChanged += Download_PropertyChanged;
             Downloads.Add(download);
 
+            // Get the video title, but dont download the video yet, even if the download is 'Waiting' or 'Stopped'
+            // TODO: Maybe add an option to disable video title collection?
+            if (download.Title == null) {
+                YdlArguments args = new YdlArguments();
+                args.Url = download.Url;
+                args.General.IgnoreConfig = true;
+                args.General.FlatPlaylist = true;
+                args.VideoSelection.NoPlaylist = true;
+                args.Verbosity.Simulate = true;
+                args.Verbosity.GetTitle = true;
+
+                string strArgs = Download.ArgumentSerializer.Serialize(args, true);
+                ExecutableProcess titleProcess = new ExecutableProcess(YdlPath, strArgs, download.DownloadDirectory);
+
+                titleProcess.OnReceived += (sender, data) => {
+                    if (download.Title == null && !string.IsNullOrWhiteSpace(data?.Trim()))
+                        download.Title = data.Trim();
+                };
+#if DEBUG
+                titleProcess.OnExited += (sender, code) => {
+                    Logger.Instance.Debug(nameof(DownloadManager), $"Title process has exited: {code}");
+                };
+#endif
+                titleProcess.Start();
+            }
 
             FirePropertyChanged(nameof(TotalDownloads));
             return true;
