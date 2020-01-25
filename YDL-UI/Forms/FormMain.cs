@@ -636,6 +636,11 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (MessageBox.Show(this,
+                Localization.GetString("msg.confirm_clear_download_logs", "Are you sure you want to clear all download logs?"),
+                Localization.GetString("msg.confirm_clear_download_log.title", "Are you sure?"),
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             foreach (Download download in downloadManager.Downloads)
                 download.Log = string.Empty;
         }
