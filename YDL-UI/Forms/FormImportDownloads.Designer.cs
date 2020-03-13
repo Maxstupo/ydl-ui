@@ -63,6 +63,8 @@
             // 
             this.cbSeparateOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSeparateOptions.AutoSize = true;
+            this.cbSeparateOptions.Checked = true;
+            this.cbSeparateOptions.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSeparateOptions.Location = new System.Drawing.Point(12, 110);
             this.cbSeparateOptions.Name = "cbSeparateOptions";
             this.cbSeparateOptions.Size = new System.Drawing.Size(116, 17);

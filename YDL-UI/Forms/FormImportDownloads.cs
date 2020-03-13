@@ -86,7 +86,7 @@ namespace Maxstupo.YdlUi.Forms {
                             if (isSilent) { // Auto add
                                 using (FormAddDownload dialog2 = new FormAddDownload(prefs, url, null, false, true)) {
                                     if (dialog2.ShowDialog(this) == DialogResult.OK)
-                                        callback(dialog.Download);
+                                        callback(dialog2.Download);
                                 }
                             } else {
                                 Download download = dialog.CreateDownload(url);
