@@ -644,5 +644,12 @@ namespace Maxstupo.YdlUi.Forms {
             foreach (Download download in downloadManager.Downloads)
                 download.Log = string.Empty;
         }
+
+        private void downloadToolStripMenuItem_DropDownOpening(object sender, EventArgs e) {
+            bool hasDownloads = downloadManager.TotalDownloads > 0;
+            clearLogsToolStripMenuItem.Enabled = hasDownloads;
+            selectToolStripMenuItem.Enabled = hasDownloads;
+            exportToolStripMenuItem.Enabled = hasDownloads;
+        }
     }
 }

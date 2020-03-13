@@ -44,6 +44,8 @@
             this.queuedDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.failedDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitingDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.tsslStatusLeft = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSpring = new System.Windows.Forms.ToolStripStatusLabel();
@@ -77,8 +79,6 @@
             this.downloadDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDownloads)).BeginInit();
@@ -167,6 +167,7 @@
             this.downloadToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.downloadToolStripMenuItem.Tag = "download";
             this.downloadToolStripMenuItem.Text = "&Download";
+            this.downloadToolStripMenuItem.DropDownOpening += new System.EventHandler(this.downloadToolStripMenuItem_DropDownOpening);
             // 
             // addURLToolStripMenuItem
             // 
@@ -247,6 +248,19 @@
             this.waitingDownloadsToolStripMenuItem.Name = "waitingDownloadsToolStripMenuItem";
             this.waitingDownloadsToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.waitingDownloadsToolStripMenuItem.Text = "Waiting Download(s)";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            // 
+            // clearLogsToolStripMenuItem
+            // 
+            this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
+            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearLogsToolStripMenuItem.Tag = "clear_logs";
+            this.clearLogsToolStripMenuItem.Text = "Clear Logs";
+            this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -561,19 +575,6 @@
             this.playlistToolStripMenuItem.Tag = "playlist";
             this.playlistToolStripMenuItem.Text = "Playlist";
             this.playlistToolStripMenuItem.Click += new System.EventHandler(this.viewMenuItem_Click);
-            // 
-            // clearLogsToolStripMenuItem
-            // 
-            this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.clearLogsToolStripMenuItem.Tag = "clear_logs";
-            this.clearLogsToolStripMenuItem.Text = "Clear Logs";
-            this.clearLogsToolStripMenuItem.Click += new System.EventHandler(this.clearLogsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // FormMain
             // 
