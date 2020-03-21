@@ -104,6 +104,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                     Logger.Instance.Warn(nameof(Download), $"Exit code: {exitCode}");
 #endif
                 Status = (exitCode == 0) ? DownloadStatus.Completed : DownloadStatus.Failed;
+                Progress = 100;
             };
 
             process.OnReceived += (s, e) => {
