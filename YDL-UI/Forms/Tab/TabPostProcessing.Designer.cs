@@ -29,6 +29,7 @@
             this.cbRecodeFormat = new System.Windows.Forms.CheckBox();
             this.cbAudioOnly = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cbEmbedThumbnail = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -38,7 +39,7 @@
             this.cbxAudioOnly.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbxAudioOnly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAudioOnly.FormattingEnabled = true;
-            this.cbxAudioOnly.Location = new System.Drawing.Point(115, 3);
+            this.cbxAudioOnly.Location = new System.Drawing.Point(127, 3);
             this.cbxAudioOnly.Name = "cbxAudioOnly";
             this.cbxAudioOnly.Size = new System.Drawing.Size(116, 21);
             this.cbxAudioOnly.TabIndex = 1;
@@ -50,7 +51,7 @@
             this.cbxRecodeFormat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbxRecodeFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxRecodeFormat.FormattingEnabled = true;
-            this.cbxRecodeFormat.Location = new System.Drawing.Point(115, 30);
+            this.cbxRecodeFormat.Location = new System.Drawing.Point(127, 30);
             this.cbxRecodeFormat.Name = "cbxRecodeFormat";
             this.cbxRecodeFormat.Size = new System.Drawing.Size(116, 21);
             this.cbxRecodeFormat.TabIndex = 3;
@@ -90,6 +91,19 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // cbEmbedThumbnail
+            // 
+            this.cbEmbedThumbnail.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbEmbedThumbnail.AutoSize = true;
+            this.cbEmbedThumbnail.Location = new System.Drawing.Point(3, 57);
+            this.cbEmbedThumbnail.Name = "cbEmbedThumbnail";
+            this.cbEmbedThumbnail.Size = new System.Drawing.Size(118, 17);
+            this.cbEmbedThumbnail.TabIndex = 4;
+            this.cbEmbedThumbnail.Tag = "embed_thumbnail";
+            this.cbEmbedThumbnail.Text = "Embed Thumbnail";
+            this.toolTip.SetToolTip(this.cbEmbedThumbnail, "Embed thumbnail in the audio as cover art.");
+            this.cbEmbedThumbnail.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -97,16 +111,19 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.cbEmbedThumbnail, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cbxAudioOnly, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbAudioOnly, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbRecodeFormat, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.cbxRecodeFormat, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 55);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 85);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
             // 
@@ -133,5 +150,6 @@
         public System.Windows.Forms.CheckBox cbAudioOnly;
         public System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.CheckBox cbEmbedThumbnail;
     }
 }
