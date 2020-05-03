@@ -1,0 +1,31 @@
+version: 2.6.5.{build}
+image: Visual Studio 2019
+configuration: ReleasePortable
+skip_commits:
+  files:
+    - README.md
+init:
+- cmd: git clone -q --branch=master https://github.com/Maxstupo/ydl-ui_i18n.git C:\projects\ydl-ui_i18n
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+before_build:
+- cmd: nuget restore
+build:
+  project: YDL-UI.sln
+  verbosity: minimal
+after_build:
+- cmd: >-
+    mkdir "YDL-UI_v%APPVEYOR_BUILD_VERSION%_Portable"
+
+    xcopy "%APPVEYOR_BUILD_FOLDER%\YDL-UI\build\ReleasePortable" "YDL-UI_v%APPVEYOR_BUILD_VERSION%_Portable" /E /C
+
+    7z a "YDL-UI_v%APPVEYOR_BUILD_VERSION%_Portable.zip" "YDL-UI_v%APPVEYOR_BUILD_VERSION%_Portable"
+test: off
+artifacts:
+- path: YDL-UI_v$(APPVEYOR_BUILD_VERSION)_Portable.zip
+  name: YDL-UI_Portable
+deploy: off
