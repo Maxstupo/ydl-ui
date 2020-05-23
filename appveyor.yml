@@ -1,4 +1,4 @@
-version: 2.6.5.{build}
+version: 2.6.6.{build}
 image: Visual Studio 2019
 configuration: ReleasePortable
 skip_commits:
