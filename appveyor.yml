@@ -1,4 +1,5 @@
 version: 2.6.6.{build}
+skip_tags: true
 image: Visual Studio 2019
 configuration: ReleasePortable
 skip_commits:
