@@ -3,7 +3,9 @@
  <img src="https://img.shields.io/github/license/Maxstupo/ydl-ui.svg" />
  <img src="https://img.shields.io/github/release/Maxstupo/ydl-ui.svg" />
  <img src="https://img.shields.io/github/downloads/Maxstupo/ydl-ui/total.svg" />
- <img src="https://ci.appveyor.com/api/projects/status/v0hl8me24o12u1xt?svg=true" />
+ <a href="https://ci.appveyor.com/project/Maxstupo/ydl-ui">
+    <img src="https://ci.appveyor.com/api/projects/status/v0hl8me24o12u1xt?svg=true" />
+ </a>
 </p>
 
 A UI for the command-line video downloader "youtube-dl"
