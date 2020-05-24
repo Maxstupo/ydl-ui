@@ -32,6 +32,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             arguments.PostProcessing.ExtractAudio = (arguments.PostProcessing.AudioFormat != null);
             
             arguments.PostProcessing.EmbedThumbnail = cbEmbedThumbnail.Checked;
+            arguments.PostProcessing.AddMetadata = cbAddMetadata.Checked;
 
             arguments.PostProcessing.RecodeVideo = cbxRecodeFormat.Enabled ? (VideoFormatRecode?)cbxRecodeFormat.SelectedValue : null;
         }

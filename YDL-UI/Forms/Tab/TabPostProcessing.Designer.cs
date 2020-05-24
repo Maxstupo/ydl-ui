@@ -30,6 +30,7 @@
             this.cbAudioOnly = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cbEmbedThumbnail = new System.Windows.Forms.CheckBox();
+            this.cbAddMetadata = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -104,6 +105,19 @@
             this.toolTip.SetToolTip(this.cbEmbedThumbnail, "Embed thumbnail in the audio as cover art.");
             this.cbEmbedThumbnail.UseVisualStyleBackColor = true;
             // 
+            // cbAddMetadata
+            // 
+            this.cbAddMetadata.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbAddMetadata.AutoSize = true;
+            this.cbAddMetadata.Location = new System.Drawing.Point(3, 80);
+            this.cbAddMetadata.Name = "cbAddMetadata";
+            this.cbAddMetadata.Size = new System.Drawing.Size(99, 17);
+            this.cbAddMetadata.TabIndex = 5;
+            this.cbAddMetadata.Tag = "add_metadata";
+            this.cbAddMetadata.Text = "Add Metadata";
+            this.toolTip.SetToolTip(this.cbAddMetadata, "Write metadata to the video file.");
+            this.cbAddMetadata.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -111,6 +125,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.cbAddMetadata, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.cbEmbedThumbnail, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cbxAudioOnly, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbAudioOnly, 0, 0);
@@ -118,12 +133,13 @@
             this.tableLayoutPanel1.Controls.Add(this.cbxRecodeFormat, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 85);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 110);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
             // 
@@ -151,5 +167,6 @@
         public System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.CheckBox cbEmbedThumbnail;
+        private System.Windows.Forms.CheckBox cbAddMetadata;
     }
 }
