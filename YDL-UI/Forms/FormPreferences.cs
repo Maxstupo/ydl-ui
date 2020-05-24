@@ -3,12 +3,9 @@ using Maxstupo.YdlUi.Utility;
 using Maxstupo.YdlUi.YoutubeDL;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace Maxstupo.YdlUi.Forms {
@@ -25,7 +22,7 @@ namespace Maxstupo.YdlUi.Forms {
         public FormPreferences(DownloadManager downloadManager, Preferences preferences, string preferencesLocation = null) {
             InitializeComponent();
             this.preferences = preferences;
-                       
+
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
             FormClosing += delegate {
                 Localization.OnLanguageChanged -= OnLanguageChanged;
@@ -63,7 +60,8 @@ namespace Maxstupo.YdlUi.Forms {
             cbxLanguage.DisplayMember = nameof(Language.DisplayName);
             cbxLanguage.ValueMember = nameof(Language.Code);
 
-            cbxUpdateInterval.DataSource = Enum.GetValues(typeof(UpdateInterval));
+
+            SetupUpdateIntervalDataSource();
 
             cbxLanguage.SelectedValue = preferences.Language;
             cbxLanguage.SelectionChangeCommitted += delegate { Localization.Language = (string)cbxLanguage.SelectedValue; };
@@ -76,7 +74,7 @@ namespace Maxstupo.YdlUi.Forms {
             nudMaxConcurrentDownloads.DataBindings.Add(nameof(nudMaxConcurrentDownloads.Value), preferences, nameof(preferences.MaxConcurrentDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
 
             cbPromptOnClose.DataBindings.Add(nameof(cbPromptOnClose.Checked), preferences, nameof(preferences.PromptDownloadingOnClose), false, DataSourceUpdateMode.OnPropertyChanged);
-            cbxUpdateInterval.DataBindings.Add(nameof(cbxUpdateInterval.SelectedItem), preferences, nameof(preferences.UpdateInterval), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbxUpdateInterval.DataBindings.Add(nameof(cbxUpdateInterval.SelectedItem), preferences, nameof(preferences.UpdateIntervalDisplay), false, DataSourceUpdateMode.OnPropertyChanged);
             cbBasicMode.DataBindings.Add(nameof(cbBasicMode.Checked), preferences, nameof(preferences.BasicMode), false, DataSourceUpdateMode.OnPropertyChanged);
             cbStayTop.DataBindings.Add(nameof(cbStayTop.Checked), preferences, nameof(preferences.StayOnTop), false, DataSourceUpdateMode.OnPropertyChanged);
             cbResumeDownload.DataBindings.Add(nameof(cbResumeDownload.Checked), preferences, nameof(preferences.ResumeDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -104,11 +102,16 @@ namespace Maxstupo.YdlUi.Forms {
             OnLanguageChanged(null, EventArgs.Empty);
         }
 
+        private void SetupUpdateIntervalDataSource() {
+            cbxUpdateInterval.DataSource = Enum.GetValues(typeof(UpdateInterval)).Cast<UpdateInterval>().Select(x => new UpdateIntervalDisplay(x)).ToArray();
+            cbxUpdateInterval.SelectedItem = preferences.UpdateIntervalDisplay;
+        }
+
         private void OnLanguageChanged(object sender, EventArgs args) {
             Localization.ApplyLocaleText(this, toolTip);
             UpdateCategoryList();
 
-
+            SetupUpdateIntervalDataSource();
 
             // Replace common templates in labels.
             this.ForEachControl<Label>(c => {
@@ -252,7 +255,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         #endregion
-               
+
         #region Browse Events
 
         private void btnBrowseYdl_Click(object sender, EventArgs e) {

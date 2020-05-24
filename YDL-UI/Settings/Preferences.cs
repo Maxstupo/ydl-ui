@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace Maxstupo.YdlUi.Settings {
@@ -16,8 +15,11 @@ namespace Maxstupo.YdlUi.Settings {
         [JsonConverter(typeof(StringEnumConverter))]
         public UpdateInterval UpdateInterval { get; set; } = UpdateInterval.Weekly;
 
+        [JsonIgnore]
+        public UpdateIntervalDisplay UpdateIntervalDisplay { get => new UpdateIntervalDisplay(UpdateInterval); set => UpdateInterval = value.UpdateInterval; }
+
         public DateTime LastUpdateTime { get; set; }
-        
+
         public bool PromptDownloadingOnClose { get; set; } = true;
 
         public bool BasicMode { get; set; } = true;
@@ -43,6 +45,46 @@ namespace Maxstupo.YdlUi.Settings {
         public Preset StoredDownloadSettings { get; set; } = new Preset("(PreviousOptions)", false);
         public BindingList<Preset> Presets { get; private set; } = new BindingList<Preset>();
 
+    }
+
+    public struct UpdateIntervalDisplay : IEquatable<UpdateIntervalDisplay> {
+
+        public UpdateInterval UpdateInterval { get; }
+
+        public string DisplayText { get; }
+
+        public UpdateIntervalDisplay(UpdateInterval updateInterval) {
+            this.UpdateInterval = updateInterval;
+            this.DisplayText = Localization.GetString($"settings_dialog.general.update_interval.values.{updateInterval.ToString().ToLowerInvariant()}", updateInterval.ToString());
+        }
+
+        public override string ToString() {
+            return DisplayText;
+        }
+
+        public override bool Equals(object obj) {
+            return obj is UpdateIntervalDisplay display && Equals(display);
+        }
+
+        public bool Equals(UpdateIntervalDisplay other) {
+            return this.UpdateInterval == other.UpdateInterval &&
+                   this.DisplayText == other.DisplayText;
+        }
+
+        public override int GetHashCode() {
+            int hashCode = -1766446357;
+            hashCode = hashCode * -1521134295 + this.UpdateInterval.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(this.DisplayText);
+            return hashCode;
+        }
+
+        public static bool operator ==(UpdateIntervalDisplay left, UpdateIntervalDisplay right) {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(UpdateIntervalDisplay left, UpdateIntervalDisplay right) {
+            return !(left == right);
+        }
     }
 
     public enum UpdateInterval {
