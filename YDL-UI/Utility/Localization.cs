@@ -106,6 +106,7 @@ namespace Maxstupo.YdlUi.Utility {
             if (!locales.ContainsKey(defaultCode)) // Add default locale.
                 locales.Add(defaultCode, new Dictionary<string, string>());
 
+            Language = Language; // Trigger OS language detection by reassigning the variable.
         }
 
         // Convert language code (e.g. en-US) to neutral varient (e.g. en) if it doesn't exist, if the provided code is null or whitespace use the default system language.
