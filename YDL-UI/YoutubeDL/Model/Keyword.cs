@@ -1,25 +1,29 @@
-﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
+﻿using Maxstupo.YdlUi.Utility;
+using System;
+
+namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
     public class Keyword {
         public string Value { get; set; }
-        public string Description { get; set; }
+
+        private readonly string defaultDescription;
+        public string Description => Localization.GetString($"keyword_dialog.keywords.description.{Value.ToLowerInvariant()}", defaultDescription);
+
         public bool IsNumeric { get; set; }
 
-        public Keyword() : this(string.Empty, false, string.Empty) { }
-
-        public Keyword(string value, bool isNumeric = false, string description = null) {
-            this.Value = value;
+        public Keyword(string value, bool isNumeric, string defaultDescription) {
+            this.Value = value ?? throw new ArgumentNullException(nameof(value));
             this.IsNumeric = isNumeric;
-            this.Description = description;
+            this.defaultDescription = defaultDescription;
         }
 
         public override string ToString() {
-            return Value ?? GetType().Name;
+            return Value;
         }
 
+        public static string Regex => @"%\(\w+\)(?:s{1}|(\d+)d)";
 
-        public static string Regex { get { return @"%\(\w+\)(?:s{1}|(\d+)d)"; } }
-        public static string Template { get { return "%({keyword})s"; } }
+        public static string Template => "%({keyword})s";
 
         public static Keyword[] Keywords { get; } = new Keyword[] {
                     new Keyword("id", false, "Video identifier"),
