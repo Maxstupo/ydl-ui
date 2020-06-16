@@ -118,7 +118,6 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         public bool CanQueueDownload(Download download) {
             return download.Status != DownloadStatus.Downloading &&
-                download.Status != DownloadStatus.Completed &&
                 download.Status != DownloadStatus.Queued &&
                 download.Status != DownloadStatus.Processing;
         }
