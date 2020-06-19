@@ -45,13 +45,17 @@ namespace Maxstupo.YdlUi.Controls {
 
         }
               
-        private void InsertButton_Click(object sender, EventArgs e) {
+        public void ShowKeywordDialog() {
             using (FormKeyword dialog = new FormKeyword()) {
                 if (dialog.ShowDialog() == DialogResult.OK) {
                     string keyword = Keyword.Template.Replace("{keyword}", dialog.SelectedKeyword.Value);
                     InsertKeyword(keyword);
                 }
             }
+        }
+
+        private void InsertButton_Click(object sender, EventArgs e) {
+            ShowKeywordDialog();
         }
 
         private void KeywordTextbox_KeyUp(object sender, KeyEventArgs e) {

@@ -63,6 +63,7 @@ namespace Maxstupo.YdlUi.Forms {
             BackColor = Color.FromArgb(238, 238, 238);
 
             txtFilenameTemplate.BindEnabledTo(cbFilenameTemplate);
+            btnInsertKeyword.BindEnabledTo(cbFilenameTemplate);
             txtDownloadArchive.BindEnabledTo(cbDownloadArchive);
             btnDownloadArchiveBrowse.BindEnabledTo(cbDownloadArchive);
 
@@ -202,7 +203,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void cbBasicMode_CheckedChanged(object sender, EventArgs e) {
-            txtFilenameTemplate.Visible = cbFilenameTemplate.Visible = !BasicMode;
+            txtFilenameTemplate.Visible = btnInsertKeyword.Visible = cbFilenameTemplate.Visible = !BasicMode;
             btnDownloadArchiveBrowse.Visible = cbDownloadArchive.Visible = txtDownloadArchive.Visible = !BasicMode;
 
             if (BasicMode) {
@@ -297,6 +298,10 @@ namespace Maxstupo.YdlUi.Forms {
             string filepath = GuiUtil.SelectFile(this, Localization.GetString("msg.select_download_archive_file.title", "Select download archive..."), "Text Files (*.txt)|*.txt|All Files (*.*)|*.*", txtDownloadArchive.Text, false);
             if (filepath != null)
                 txtDownloadArchive.Text = filepath;
+        }
+
+        private void btnInsertKeyword_Click(object sender, EventArgs e) {
+            txtFilenameTemplate.ShowKeywordDialog();
         }
 
         private void cbxPreset_SelectedIndexChanged(object sender, EventArgs e) {
