@@ -39,6 +39,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
             this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
+            this.cbWriteSub = new System.Windows.Forms.CheckBox();
             this.gbGeneral.SuspendLayout();
             this.gbFileSystem.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             this.gbFileSystem.AutoSize = true;
             this.gbFileSystem.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gbFileSystem.Controls.Add(this.cbWriteSub);
             this.gbFileSystem.Controls.Add(this.cbNoOverwrites);
             this.gbFileSystem.Controls.Add(this.cbRestrictFilenames);
             this.gbFileSystem.Controls.Add(this.cbWriteThumbnail);
@@ -109,7 +111,7 @@
             this.cbNoOverwrites.AutoSize = true;
             this.cbNoOverwrites.Checked = true;
             this.cbNoOverwrites.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbNoOverwrites.Location = new System.Drawing.Point(6, 113);
+            this.cbNoOverwrites.Location = new System.Drawing.Point(6, 136);
             this.cbNoOverwrites.Name = "cbNoOverwrites";
             this.cbNoOverwrites.Size = new System.Drawing.Size(99, 17);
             this.cbNoOverwrites.TabIndex = 4;
@@ -121,7 +123,7 @@
             // cbRestrictFilenames
             // 
             this.cbRestrictFilenames.AutoSize = true;
-            this.cbRestrictFilenames.Location = new System.Drawing.Point(6, 90);
+            this.cbRestrictFilenames.Location = new System.Drawing.Point(6, 113);
             this.cbRestrictFilenames.Name = "cbRestrictFilenames";
             this.cbRestrictFilenames.Size = new System.Drawing.Size(118, 17);
             this.cbRestrictFilenames.TabIndex = 3;
@@ -136,7 +138,7 @@
             this.cbWriteThumbnail.AutoSize = true;
             this.cbWriteThumbnail.Location = new System.Drawing.Point(6, 67);
             this.cbWriteThumbnail.Name = "cbWriteThumbnail";
-            this.cbWriteThumbnail.Size = new System.Drawing.Size(111, 17);
+            this.cbWriteThumbnail.Size = new System.Drawing.Size(112, 17);
             this.cbWriteThumbnail.TabIndex = 2;
             this.cbWriteThumbnail.Tag = "write_thumbnail";
             this.cbWriteThumbnail.Text = "Write Thumbnail";
@@ -178,7 +180,7 @@
             // 
             this.cbCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbCustomFormatSelector.AutoSize = true;
-            this.cbCustomFormatSelector.Location = new System.Drawing.Point(6, 222);
+            this.cbCustomFormatSelector.Location = new System.Drawing.Point(6, 312);
             this.cbCustomFormatSelector.Name = "cbCustomFormatSelector";
             this.cbCustomFormatSelector.Size = new System.Drawing.Size(148, 17);
             this.cbCustomFormatSelector.TabIndex = 1;
@@ -190,7 +192,7 @@
             // 
             this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomFormatSelector.Location = new System.Drawing.Point(6, 245);
+            this.txtCustomFormatSelector.Location = new System.Drawing.Point(6, 335);
             this.txtCustomFormatSelector.Name = "txtCustomFormatSelector";
             this.txtCustomFormatSelector.ReadOnly = true;
             this.txtCustomFormatSelector.Size = new System.Drawing.Size(760, 22);
@@ -241,6 +243,18 @@
             this.videoQualitySelector.TabIndex = 0;
             this.videoQualitySelector.Tag = "#";
             // 
+            // cbWriteSub
+            // 
+            this.cbWriteSub.AutoSize = true;
+            this.cbWriteSub.Location = new System.Drawing.Point(6, 90);
+            this.cbWriteSub.Name = "cbWriteSub";
+            this.cbWriteSub.Size = new System.Drawing.Size(97, 17);
+            this.cbWriteSub.TabIndex = 5;
+            this.cbWriteSub.Tag = "write_sub";
+            this.cbWriteSub.Text = "Write Subtitle";
+            this.toolTip.SetToolTip(this.cbWriteSub, "Write subtitle file.");
+            this.cbWriteSub.UseVisualStyleBackColor = true;
+            // 
             // TabQuality
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,7 +264,7 @@
             this.Controls.Add(this.cbCustomFormatSelector);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabQuality";
-            this.Size = new System.Drawing.Size(772, 276);
+            this.Size = new System.Drawing.Size(772, 366);
             this.Tag = "#";
             this.Load += new System.EventHandler(this.TabQuality_Load);
             this.gbGeneral.ResumeLayout(false);
@@ -280,5 +294,6 @@
         private System.Windows.Forms.CheckBox cbCustomFormatSelector;
         private System.Windows.Forms.TextBox txtCustomFormatSelector;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.CheckBox cbWriteSub;
     }
 }

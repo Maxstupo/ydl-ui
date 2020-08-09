@@ -41,6 +41,8 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             arguments.FileSystem.RestrictFilenames = cbRestrictFilenames.Checked;
             arguments.FileSystem.NoOverwrites = cbNoOverwrites.Checked;
             arguments.Thumbnail.WriteThumbnail = cbWriteThumbnail.Checked;
+            
+            arguments.Subtitle.WriteSub = cbWriteSub.Checked;
 
             if (cbCustomFormatSelector.Checked) {
                 arguments.VideoFormat.Format = txtCustomFormatSelector.Text;
