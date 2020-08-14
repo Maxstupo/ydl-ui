@@ -1,4 +1,4 @@
-version: 2.6.7.{build}
+version: 2.6.8.{build}
 skip_tags: true
 image: Visual Studio 2019
 configuration: ReleasePortable
