@@ -70,8 +70,8 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
                     break;
             }
 
-
-            sb.Append("best");
+            // If no video formats are available with the specific resolution/framerate, find the best available.
+            sb.Append($"bestvideo[height<={vqFallback}{VideoQuality.Height}][fps<={frFallback}{FrameRate}]+bestaudio/best");
             return sb.ToString();
         }
 
