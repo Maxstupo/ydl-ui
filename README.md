@@ -49,7 +49,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * [youtube-dl](https://github.com/rg3/youtube-dl)
-* [ffmpeg](https://www.ffmpeg.org/) - compiled binaries from [ffmpeg.zeranoe.com](https://ffmpeg.zeranoe.com/builds/)
+* [ffmpeg](https://www.ffmpeg.org/) - compiled using [ffmpeg-windows-build-helpers](https://github.com/rdp/ffmpeg-windows-build-helpers)
 * [ByteSize](https://github.com/omar/ByteSize)
 * [Json.NET](https://github.com/JamesNK/Newtonsoft.Json)
 * [Fody](https://github.com/Fody/Fody/) & [Fody.Costura](https://github.com/Fody/Costura)

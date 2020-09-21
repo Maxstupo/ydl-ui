@@ -113,7 +113,7 @@ namespace Maxstupo.YdlUi.Settings {
         public string YoutubeDl { get; set; } = "bin\\youtube-dl.exe";
 
         [JsonProperty(PropertyName = "ffmpeg")]
-        public string Ffmpeg { get; set; } = "bin\\ffmpeg.exe";
+        public string Ffmpeg { get; set; } = "bin\\ffmpeg\\ffmpeg.exe";
 
     }
 

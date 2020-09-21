@@ -365,37 +365,37 @@
     <None Include="ydl-ui_1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\avcodec-58.dll">
+    <Content Include="bin\ffmpeg\avcodec-58.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\avdevice-58.dll">
+    <Content Include="bin\ffmpeg\avdevice-58.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\avfilter-7.dll">
+    <Content Include="bin\ffmpeg\avfilter-7.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\avformat-58.dll">
+    <Content Include="bin\ffmpeg\avformat-58.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\avutil-56.dll">
+    <Content Include="bin\ffmpeg\avresample-4.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\ffmpeg.exe">
+    <Content Include="bin\ffmpeg\avutil-56.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\ffplay.exe">
+    <Content Include="bin\ffmpeg\ffmpeg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\ffprobe.exe">
+    <Content Include="bin\ffmpeg\ffprobe.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\postproc-55.dll">
+    <Content Include="bin\ffmpeg\postproc-55.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\swresample-3.dll">
+    <Content Include="bin\ffmpeg\swresample-3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\swscale-5.dll">
+    <Content Include="bin\ffmpeg\swscale-5.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bin\youtube-dl.exe">
