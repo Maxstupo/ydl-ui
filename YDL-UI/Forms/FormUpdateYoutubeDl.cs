@@ -70,11 +70,19 @@ namespace Maxstupo.YdlUi.Forms {
                 string latestBinaryDownloadUrl = null;
                 long downloadSize = 1;
 
+                bool is64BitOS = Environment.Is64BitOperatingSystem;
+
                 // Find youtube-dl binary from the list of assets.
                 foreach (var asset in json["assets"]) {
                     string name = asset["name"].Value<string>();
-                    if (!name.Equals("youtube-dl.exe", StringComparison.OrdinalIgnoreCase))
+
+                    if (!name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || !name.StartsWith("youtube-dl", StringComparison.OrdinalIgnoreCase))
                         continue;
+
+                    if (!is64BitOS && name.IndexOf("x86", StringComparison.OrdinalIgnoreCase) < 0)
+                        continue;
+
+
                     latestBinaryDownloadUrl = asset["browser_download_url"].Value<string>();
                     downloadSize = asset["size"].Value<long>();
                     break;

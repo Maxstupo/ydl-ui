@@ -23,7 +23,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private const string UrlWiki = @"https://github.com/Maxstupo/ydl-ui/wiki";
         private const string UpdateUrl = @"https://api.github.com/repos/Maxstupo/ydl-ui/releases/latest";
-        public const string YoutubeDlLatest = @"https://api.github.com/repos/ytdl-org/youtube-dl/releases/latest";
+        public const string YoutubeDlLatest = @"https://api.github.com/repos/blackjack4494/yt-dlc/releases/latest";
 
         public PreferencesManager<Preferences> PreferencesManager { get; }
         private readonly DownloadManager downloadManager;
