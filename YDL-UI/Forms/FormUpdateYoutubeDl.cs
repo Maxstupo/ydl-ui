@@ -38,98 +38,39 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
 
-        private async void StartDownload() {
+        private void StartDownload() {
+            BeginInvoke(((Action)delegate {
+                lblStatus.Text = Localization.GetString("update_dialog.status.waiting", "Please wait...");
+            }));
 
             string currentVersion = GetYdlVersion(BinaryLocation);
 
             WriteLogLine(Localization.GetString("update_dialog.log.current_version", "Current version: {CurrentVersion}").Replace("{CurrentVersion}", currentVersion));
-            WriteLogLine(Localization.GetString("update_dialog.log.check", "Finding latest release..."));
 
-            // Make HTTP Get request from api.github.com to find the latest version of youtube-dl available.
-            string userAgent = $"YDL-UI v{Application.ProductVersion}";
-            JObject json;
-            try {
-                string data = await NetUtil.HttpGetAsync(FormMain.YoutubeDlLatest, userAgent);
-                json = JObject.Parse(data);
-            } catch (Exception) {
-                WriteLogLine(Localization.GetString("update_dialog.log.check.failed", "Failed to find latest release!"));
-                UpdateCompleted(false);
-                return;
+            string checkingText = Localization.GetString("update_dialog.checking", "Checking for updates...");
+            BeginInvoke(((Action)delegate {
+                lblStatus.Text = checkingText;
+            }));
+
+            WriteLogLine(checkingText);
+
+            bool hasErrors = false;
+
+            using (ExecutableProcess ep = new ExecutableProcess(BinaryLocation, "-U")) {
+                ep.OnReceived += (s, data) => {
+                    if (data == null) return;
+
+                    if (data.IndexOf("ERROR", StringComparison.InvariantCultureIgnoreCase) != -1)
+                        hasErrors = true;
+                    WriteLogLine(data);
+                };
+                ep.OnError += (s, data) => WriteLogLine(data);
+
+                ep.Start();
+                ep.WaitForExit();
             }
 
-            string latestVersion = json["tag_name"].Value<string>().ToLower();
-            WriteLogLine(Localization.GetString("update_dialog.log.check.found", "Found {Version}").Replace("{Version}", latestVersion));
-
-            // Compare versions.
-            if (latestVersion.Equals(currentVersion, StringComparison.OrdinalIgnoreCase)) {
-                WriteLogLine(Localization.GetString("update_dialog.log.check.no_new_versions", "youtube-dl is up-to-date ({CurrentVersion})").Replace("{CurrentVersion}", currentVersion));
-                UpdateCompleted(true);
-
-            } else { // Begin Update
-
-                string latestBinaryDownloadUrl = null;
-                long downloadSize = 1;
-
-                bool is64BitOS = Environment.Is64BitOperatingSystem;
-
-                // Find youtube-dl binary from the list of assets.
-                foreach (var asset in json["assets"]) {
-                    string name = asset["name"].Value<string>();
-
-                    if (!name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || !name.StartsWith("youtube-dl", StringComparison.OrdinalIgnoreCase))
-                        continue;
-
-                    if (!is64BitOS && name.IndexOf("x86", StringComparison.OrdinalIgnoreCase) < 0)
-                        continue;
-
-
-                    latestBinaryDownloadUrl = asset["browser_download_url"].Value<string>();
-                    downloadSize = asset["size"].Value<long>();
-                    break;
-                }
-
-                // Unable to find youtube-dl binary download URL from latest release assets.
-                if (latestBinaryDownloadUrl == null) {
-                    WriteLogLine(Localization.GetString("update_dialog.log.download.failed.missing", "Download failed! Latest release is missing download link!"));
-                    UpdateCompleted(false);
-
-                } else {
-
-                    WriteLogLine(Localization.GetString("update_dialog.log.download.start", "Downloading: {DownloadUrl}").Replace("{DownloadUrl}", latestBinaryDownloadUrl));
-
-                    BeginInvoke((Action)delegate {
-                        progressBar.Style = ProgressBarStyle.Continuous;
-                        lblStatus.Text = Localization.GetString("update_dialog.status.downloading", "Downloading...");
-                    });
-
-                    // Begin downloading file.
-                    try {
-                        NetUtil.HttpGetFileDownload(latestBinaryDownloadUrl, BinaryLocation, downloadSize, userAgent, (progress) => {
-                            BeginInvoke((Action<int>)((val) => {
-                                progressBar.Value = val;
-                            }), (int)(progress * 1000));
-                        });
-                    } catch (Exception) {
-                        WriteLogLine(Localization.GetString("update_dialog.log.download.failed", "Download failed!"));
-                        UpdateCompleted(false);
-                        return;
-                    }
-
-                    BeginInvoke((Action)delegate {
-                        progressBar.Style = ProgressBarStyle.Marquee;
-                        lblStatus.Text = Localization.GetString("update_dialog.status.waiting", "Please wait...");
-                    });
-
-                    WriteLogLine(Localization.GetString("update_dialog.log.download.complete", "Download complete.\r\nVerifying download..."));
-
-                    // Display the new downloaded version of youtube-dl.
-                    string newCurrentVersion = GetYdlVersion(BinaryLocation);
-
-                    WriteLogLine(Localization.GetString("update_dialog.log.new_version", "New version: {NewVersion}\r\nUpdate complete!").Replace("{NewVersion}", newCurrentVersion));
-                    UpdateCompleted(true);
-                }
-
-            }
+            UpdateCompleted(!hasErrors);
 
         }
 
