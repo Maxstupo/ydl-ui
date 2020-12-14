@@ -108,8 +108,7 @@ namespace Maxstupo.YdlUi.Forms {
                 foreach (DataGridViewColumn column in dgvDownloads.Columns) {
                     if (p.Columns.TryGetValue(column.Name, out ColumnDef def)) {
                         column.DisplayIndex = Math.Min(Math.Max(def.Index, 0), dgvDownloads.ColumnCount - 1);
-                        column.Visible = (column.Name == "colUrl") ? true : def.Visible;
-                        column.Width = (int)(dgvDownloads.Width * Math.Min(Math.Max(def.Width, 0), 1));
+                        column.Visible = (column.Name == "colUrl") || def.Visible;
                     }
                 }
             };
@@ -117,7 +116,7 @@ namespace Maxstupo.YdlUi.Forms {
             PreferencesManager.OnPreSave += (sdr, p) => {
                 p.Columns.Clear();
                 foreach (DataGridViewColumn column in dgvDownloads.Columns)
-                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible, (float)column.Width / dgvDownloads.Width));
+                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible));
             };
 
             Localization.OnLanguageChanged += OnLanguageChanged;
