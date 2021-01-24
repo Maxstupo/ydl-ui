@@ -37,23 +37,23 @@
             this.btnDownloadArchiveBrowse = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpQuality = new System.Windows.Forms.TabPage();
+            this.quality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
             this.tpVideoSelection = new System.Windows.Forms.TabPage();
+            this.videoSelection = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
             this.tpPostProcessing = new System.Windows.Forms.TabPage();
+            this.postProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
             this.tpWorkarounds = new System.Windows.Forms.TabPage();
+            this.workarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.cbDownloadArchive = new System.Windows.Forms.CheckBox();
             this.cbFilenameTemplate = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cbBasicMode = new System.Windows.Forms.CheckBox();
             this.btnInsertKeyword = new System.Windows.Forms.Button();
+            this.txtFilenameTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
             this.cbxPreset = new System.Windows.Forms.ComboBox();
             this.panelActions = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtFilenameTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
-            this.quality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
-            this.videoSelection = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
-            this.postProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
-            this.workarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.tabControl.SuspendLayout();
             this.tpQuality.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
@@ -120,9 +120,9 @@
             // 
             this.txtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.txtUrl, 2);
-            this.txtUrl.Location = new System.Drawing.Point(132, 3);
+            this.txtUrl.Location = new System.Drawing.Point(133, 3);
             this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(641, 22);
+            this.txtUrl.Size = new System.Drawing.Size(640, 22);
             this.txtUrl.TabIndex = 1;
             this.txtUrl.Tag = "url.value";
             this.toolTip.SetToolTip(this.txtUrl, "The URL to download.");
@@ -130,11 +130,11 @@
             // txtDownloadDirectory
             // 
             this.txtDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDownloadDirectory.Location = new System.Drawing.Point(132, 31);
+            this.txtDownloadDirectory.Location = new System.Drawing.Point(133, 31);
             this.txtDownloadDirectory.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.txtDownloadDirectory.Name = "txtDownloadDirectory";
             this.txtDownloadDirectory.ReadOnly = true;
-            this.txtDownloadDirectory.Size = new System.Drawing.Size(602, 22);
+            this.txtDownloadDirectory.Size = new System.Drawing.Size(601, 22);
             this.txtDownloadDirectory.TabIndex = 3;
             this.txtDownloadDirectory.Tag = "directory.value";
             this.toolTip.SetToolTip(this.txtDownloadDirectory, "The directory to download the video to.");
@@ -166,11 +166,11 @@
             // txtDownloadArchive
             // 
             this.txtDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDownloadArchive.Location = new System.Drawing.Point(132, 89);
+            this.txtDownloadArchive.Location = new System.Drawing.Point(133, 89);
             this.txtDownloadArchive.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.txtDownloadArchive.Name = "txtDownloadArchive";
             this.txtDownloadArchive.ReadOnly = true;
-            this.txtDownloadArchive.Size = new System.Drawing.Size(602, 22);
+            this.txtDownloadArchive.Size = new System.Drawing.Size(601, 22);
             this.txtDownloadArchive.TabIndex = 8;
             this.txtDownloadArchive.Tag = "download_archive.value";
             this.toolTip.SetToolTip(this.txtDownloadArchive, "Download the video only if it\'s not listed in the archive file. \r\nUpon successful" +
@@ -215,6 +215,16 @@
             this.tpQuality.Tag = "quality";
             this.tpQuality.Text = "Quality";
             // 
+            // quality
+            // 
+            this.quality.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.quality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quality.Location = new System.Drawing.Point(0, 0);
+            this.quality.Name = "quality";
+            this.quality.Size = new System.Drawing.Size(766, 383);
+            this.quality.TabIndex = 0;
+            this.quality.Tag = "#";
+            // 
             // tpVideoSelection
             // 
             this.tpVideoSelection.BackColor = System.Drawing.Color.White;
@@ -226,6 +236,16 @@
             this.tpVideoSelection.TabIndex = 0;
             this.tpVideoSelection.Tag = "video_selection";
             this.tpVideoSelection.Text = "Video Selection";
+            // 
+            // videoSelection
+            // 
+            this.videoSelection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.videoSelection.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.videoSelection.Location = new System.Drawing.Point(3, 3);
+            this.videoSelection.Name = "videoSelection";
+            this.videoSelection.Size = new System.Drawing.Size(760, 377);
+            this.videoSelection.TabIndex = 0;
+            this.videoSelection.Tag = "#";
             // 
             // tpPostProcessing
             // 
@@ -239,6 +259,16 @@
             this.tpPostProcessing.Tag = "post_processing";
             this.tpPostProcessing.Text = "Post Processing";
             // 
+            // postProcessing
+            // 
+            this.postProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postProcessing.Location = new System.Drawing.Point(3, 3);
+            this.postProcessing.Name = "postProcessing";
+            this.postProcessing.Size = new System.Drawing.Size(760, 377);
+            this.postProcessing.TabIndex = 0;
+            this.postProcessing.Tag = "#";
+            // 
             // tpWorkarounds
             // 
             this.tpWorkarounds.BackColor = System.Drawing.Color.White;
@@ -249,6 +279,16 @@
             this.tpWorkarounds.TabIndex = 2;
             this.tpWorkarounds.Tag = "workarounds";
             this.tpWorkarounds.Text = "Workarounds";
+            // 
+            // workarounds
+            // 
+            this.workarounds.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workarounds.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.workarounds.Location = new System.Drawing.Point(0, 0);
+            this.workarounds.Name = "workarounds";
+            this.workarounds.Size = new System.Drawing.Size(766, 383);
+            this.workarounds.TabIndex = 0;
+            this.workarounds.Tag = "#";
             // 
             // cbDownloadArchive
             // 
@@ -270,7 +310,7 @@
             this.cbFilenameTemplate.AutoSize = true;
             this.cbFilenameTemplate.Location = new System.Drawing.Point(3, 63);
             this.cbFilenameTemplate.Name = "cbFilenameTemplate";
-            this.cbFilenameTemplate.Size = new System.Drawing.Size(123, 17);
+            this.cbFilenameTemplate.Size = new System.Drawing.Size(124, 17);
             this.cbFilenameTemplate.TabIndex = 5;
             this.cbFilenameTemplate.Tag = "filename_template";
             this.cbFilenameTemplate.Text = "Filename Template:";
@@ -290,7 +330,7 @@
             this.cbBasicMode.AutoSize = true;
             this.cbBasicMode.Location = new System.Drawing.Point(3, 11);
             this.cbBasicMode.Name = "cbBasicMode";
-            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
+            this.cbBasicMode.Size = new System.Drawing.Size(84, 17);
             this.cbBasicMode.TabIndex = 0;
             this.cbBasicMode.Tag = "mode";
             this.cbBasicMode.Text = "Basic Mode";
@@ -311,14 +351,34 @@
             this.btnInsertKeyword.UseVisualStyleBackColor = true;
             this.btnInsertKeyword.Click += new System.EventHandler(this.btnInsertKeyword_Click);
             // 
+            // txtFilenameTemplate
+            // 
+            this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFilenameTemplate.AutoCompleteCustomSource.AddRange(new string[] {
+            "%(title)s.%(ext)s",
+            "%(title)s - %(id)s.%(ext)s",
+            "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s",
+            "%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"});
+            this.txtFilenameTemplate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtFilenameTemplate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtFilenameTemplate.KeywordMatchingEnabled = true;
+            this.txtFilenameTemplate.Location = new System.Drawing.Point(133, 60);
+            this.txtFilenameTemplate.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.txtFilenameTemplate.Name = "txtFilenameTemplate";
+            this.txtFilenameTemplate.Size = new System.Drawing.Size(601, 22);
+            this.txtFilenameTemplate.TabIndex = 6;
+            this.txtFilenameTemplate.Tag = "filename_template.value";
+            this.toolTip.SetToolTip(this.txtFilenameTemplate, "Output filename template.");
+            // 
             // cbxPreset
             // 
             this.cbxPreset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxPreset.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxPreset.FormattingEnabled = true;
-            this.cbxPreset.Location = new System.Drawing.Point(94, 9);
+            this.cbxPreset.Location = new System.Drawing.Point(93, 9);
+            this.cbxPreset.MinimumSize = new System.Drawing.Size(121, 0);
             this.cbxPreset.Name = "cbxPreset";
-            this.cbxPreset.Size = new System.Drawing.Size(121, 21);
+            this.cbxPreset.Size = new System.Drawing.Size(383, 21);
             this.cbxPreset.TabIndex = 1;
             this.cbxPreset.Tag = "!_ignore";
             this.cbxPreset.SelectedIndexChanged += new System.EventHandler(this.cbxPreset_SelectedIndexChanged);
@@ -340,16 +400,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 6;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.cbxPreset, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.cbBasicMode, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.cbImmediateStart, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbxPreset, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(10, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -390,65 +450,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(776, 115);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
-            // 
-            // txtFilenameTemplate
-            // 
-            this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilenameTemplate.AutoCompleteCustomSource.AddRange(new string[] {
-            "%(title)s.%(ext)s",
-            "%(title)s - %(id)s.%(ext)s",
-            "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s",
-            "%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"});
-            this.txtFilenameTemplate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtFilenameTemplate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtFilenameTemplate.KeywordMatchingEnabled = true;
-            this.txtFilenameTemplate.Location = new System.Drawing.Point(132, 60);
-            this.txtFilenameTemplate.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.txtFilenameTemplate.Name = "txtFilenameTemplate";
-            this.txtFilenameTemplate.Size = new System.Drawing.Size(602, 22);
-            this.txtFilenameTemplate.TabIndex = 6;
-            this.txtFilenameTemplate.Tag = "filename_template.value";
-            this.toolTip.SetToolTip(this.txtFilenameTemplate, "Output filename template.");
-            // 
-            // quality
-            // 
-            this.quality.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.quality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quality.Location = new System.Drawing.Point(0, 0);
-            this.quality.Name = "quality";
-            this.quality.Size = new System.Drawing.Size(766, 383);
-            this.quality.TabIndex = 0;
-            this.quality.Tag = "#";
-            // 
-            // videoSelection
-            // 
-            this.videoSelection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.videoSelection.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.videoSelection.Location = new System.Drawing.Point(3, 3);
-            this.videoSelection.Name = "videoSelection";
-            this.videoSelection.Size = new System.Drawing.Size(760, 377);
-            this.videoSelection.TabIndex = 0;
-            this.videoSelection.Tag = "#";
-            // 
-            // postProcessing
-            // 
-            this.postProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.postProcessing.Location = new System.Drawing.Point(3, 3);
-            this.postProcessing.Name = "postProcessing";
-            this.postProcessing.Size = new System.Drawing.Size(760, 377);
-            this.postProcessing.TabIndex = 0;
-            this.postProcessing.Tag = "#";
-            // 
-            // workarounds
-            // 
-            this.workarounds.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workarounds.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.workarounds.Location = new System.Drawing.Point(0, 0);
-            this.workarounds.Name = "workarounds";
-            this.workarounds.Size = new System.Drawing.Size(766, 383);
-            this.workarounds.TabIndex = 0;
-            this.workarounds.Tag = "#";
             // 
             // FormAddDownload
             // 

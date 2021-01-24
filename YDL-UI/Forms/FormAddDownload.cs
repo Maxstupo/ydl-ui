@@ -101,6 +101,15 @@ namespace Maxstupo.YdlUi.Forms {
                     }
                 }
 
+                // Ensure preset dropdown is wide enough.
+                int maxPresetTextWidth = cbxPreset.Size.Width;
+                foreach (Preset item in cbxPreset.Items.Cast<Preset>())
+                    maxPresetTextWidth = Math.Max(maxPresetTextWidth, TextRenderer.MeasureText(item.DisplayText, cbxPreset.Font).Width);
+                
+                // +20 width for "dropdown arrow"
+                cbxPreset.MaximumSize = new Size(Math.Max(maxPresetTextWidth + 20, cbxPreset.MinimumSize.Width), cbxPreset.MaximumSize.Height);
+                cbxPreset.DropDownWidth = maxPresetTextWidth;
+           
                 txtUrl.TextChanged += TxtUrl_TextChanged;
                 TxtUrl_TextChanged(this, new EventArgs());
             }
