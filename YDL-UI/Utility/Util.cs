@@ -1,14 +1,14 @@
-﻿using ByteSizeLib;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net;
+    using System.Reflection;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using ByteSizeLib;
+
     public static class Util {
 
         /// <summary>
@@ -108,13 +108,13 @@ namespace Maxstupo.YdlUi.Utility {
 
             try {
                 return Uri.UnescapeDataString(folderUri.MakeRelativeUri(fileUri).ToString().Replace('/', Path.DirectorySeparatorChar));
-            } catch (InvalidOperationException e) {
+            } catch (InvalidOperationException) {
                 return path;
             }
         }
 
         public static TValue TryGetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> src, TKey key, TValue addNotExists) {
-            if(src.TryGetValue(key, out TValue result)) {
+            if (src.TryGetValue(key, out TValue result)) {
                 return result;
             } else {
                 src.Add(key, addNotExists);
@@ -130,14 +130,14 @@ namespace Maxstupo.YdlUi.Utility {
         public static async Task<string> HttpGetAsync(string url, string userAgent = null) {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
             request.Timeout = 15000; // 15 seconds
 
             if (userAgent != null)
                 request.UserAgent = userAgent;
 
 
-            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync()) {
+            using (HttpWebResponse response = (HttpWebResponse) await request.GetResponseAsync()) {
                 using (Stream stream = response.GetResponseStream()) {
                     using (StreamReader streamReader = new StreamReader(stream)) {
                         return await streamReader.ReadToEndAsync();
@@ -153,7 +153,7 @@ namespace Maxstupo.YdlUi.Utility {
 
             progress?.Invoke(0);
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
             request.Timeout = 15000; // 15 seconds
 
             if (userAgent != null)
@@ -161,7 +161,7 @@ namespace Maxstupo.YdlUi.Utility {
 
 
 
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse()) {
+            using (HttpWebResponse response = (HttpWebResponse) request.GetResponse()) {
                 using (Stream inputStream = response.GetResponseStream()) {
 
                     File.Delete(destination);
@@ -175,12 +175,14 @@ namespace Maxstupo.YdlUi.Utility {
                             fileStream.Flush();
 
                             received += read;
-                            progress?.Invoke((float)received / size);
+                            progress?.Invoke((float) received / size);
                         }
                     }
                 }
             }
 
         }
+
     }
+
 }
