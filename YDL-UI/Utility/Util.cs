@@ -104,7 +104,7 @@
                 folder += Path.DirectorySeparatorChar;
 
             Uri fileUri = new Uri(path);
-            Uri folderUri = new Uri(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar);
+            Uri folderUri = new Uri(folder);
 
             try {
                 return Uri.UnescapeDataString(folderUri.MakeRelativeUri(fileUri).ToString().Replace('/', Path.DirectorySeparatorChar));
