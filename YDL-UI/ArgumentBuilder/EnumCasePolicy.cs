@@ -13,10 +13,11 @@
         /// Enum names will be changed to uppercase.
         /// </summary>
         Uppercase,
-        
+
         /// <summary>
         /// Enum names will be changed to lowercase.
         /// </summary>
         Lowercase
     }
+
 }

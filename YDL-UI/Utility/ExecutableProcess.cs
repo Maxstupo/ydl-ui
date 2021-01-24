@@ -1,7 +1,8 @@
-﻿using System;
-using System.Diagnostics;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Diagnostics;
+
     public class ExecutableProcess : IDisposable {
         private readonly string path;
         private readonly string arguments;
@@ -12,7 +13,7 @@ namespace Maxstupo.YdlUi.Utility {
         public EventHandler<string> OnReceived { get; set; }
         public EventHandler<string> OnError { get; set; }
 
-        public string Command { get => $"{path} {arguments}"; }
+        public string Command => $"{path} {arguments}";
 
         public ExecutableProcess(string path, string arguments, string workingDirectory = null) {
             this.path = path;
@@ -76,5 +77,7 @@ namespace Maxstupo.YdlUi.Utility {
         public void Dispose() {
             process.Dispose();
         }
+
     }
+
 }

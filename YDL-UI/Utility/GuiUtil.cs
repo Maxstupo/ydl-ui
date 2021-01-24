@@ -1,11 +1,12 @@
-﻿using ByteSizeLib;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Windows.Forms;
+    using ByteSizeLib;
+    using Microsoft.WindowsAPICodePack.Dialogs;
+
     public static class GuiUtil {
 
         #region Control Value Getters
@@ -19,7 +20,7 @@ namespace Maxstupo.YdlUi.Utility {
         public static ByteSize? GetUnitValue(this NumericUpDown src, ComboBox cbxUnit, ByteSize? defaultValue = null) {
             if (cbxUnit.SelectedValue == null) return defaultValue;
 
-            return src.Enabled && cbxUnit.Enabled ? (ByteSize?)Util.From((double)src.Value, (FilesizeUnit)cbxUnit.SelectedValue) : defaultValue;
+            return src.Enabled && cbxUnit.Enabled ? (ByteSize?) Util.From((double) src.Value, (FilesizeUnit) cbxUnit.SelectedValue) : defaultValue;
         }
 
         /// <summary>
@@ -41,8 +42,8 @@ namespace Maxstupo.YdlUi.Utility {
         /// </summary>
         /// <param name="defaultValue">The value to return if the control is disabled.</param>
         /// <returns>The <see cref="ComboBox"/> selected value, or the <paramref name="defaultValue"/> if the control is disabled.</returns>
-        public static T GetSelectedValue<T>(this ComboBox src, T defaultValue = default(T)) {
-            return src.Enabled ? (T)src.SelectedValue : defaultValue;
+        public static T GetSelectedValue<T>(this ComboBox src, T defaultValue = default) {
+            return src.Enabled ? (T) src.SelectedValue : defaultValue;
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace Maxstupo.YdlUi.Utility {
         #region Binding Helpers
 
         private static void SwitchBool(object s, ConvertEventArgs ee) {
-            ee.Value = !((bool)ee.Value);
+            ee.Value = !((bool) ee.Value);
         }
 
         public static Binding Invert(this Binding src) {
@@ -141,9 +142,7 @@ namespace Maxstupo.YdlUi.Utility {
         /// </summary>
         /// <param name="application">The application the URL will be opened with.</param>
         public static void OpenCellLinkOnClick(this DataGridView src, string application) {
-            src.OpenCellLinkOnClick(uri => {
-                Process.Start(application, uri.AbsoluteUri);
-            });
+            src.OpenCellLinkOnClick(uri => Process.Start(application, uri.AbsoluteUri));
         }
 
         /// <summary>
@@ -191,7 +190,7 @@ namespace Maxstupo.YdlUi.Utility {
         /// </summary>
         /// <returns>Returns the first selected row of the <see cref="DataGridView"/>.</returns>
         public static T SelectedRow<T>(this DataGridView src) where T : class {
-            return src.HasSingleSelectedRow() ? ((T)src.SelectedRows[0].DataBoundItem) : null;
+            return src.HasSingleSelectedRow() ? ((T) src.SelectedRows[0].DataBoundItem) : null;
         }
 
         /// <summary>
@@ -203,7 +202,7 @@ namespace Maxstupo.YdlUi.Utility {
                 return null;
             List<T> list = new List<T>();
             foreach (DataGridViewRow row in src.SelectedRows)
-                list.Add((T)row.DataBoundItem);
+                list.Add((T) row.DataBoundItem);
             return list.ToArray();
         }
 
@@ -231,7 +230,7 @@ namespace Maxstupo.YdlUi.Utility {
         /// <param name="deselectOnFail">If true and the predicate returns false the row will be unselected.</param>
         public static void SelectRows<T>(this DataGridView src, Func<T, bool> predicate, bool deselectOnFail = true) {
             foreach (DataGridViewRow row in src.Rows) {
-                T item = (T)row.DataBoundItem;
+                T item = (T) row.DataBoundItem;
 
                 if (predicate(item)) {
                     row.Selected = true;
@@ -279,8 +278,8 @@ namespace Maxstupo.YdlUi.Utility {
                     dialog.ShowNewFolderButton = true;
                     dialog.SelectedPath = initialDirectory;
 
-                    if (dialog.ShowDialog(form) == DialogResult.OK) 
-                        return dialog.SelectedPath;                    
+                    if (dialog.ShowDialog(form) == DialogResult.OK)
+                        return dialog.SelectedPath;
                 }
             }
             return null;
@@ -302,4 +301,5 @@ namespace Maxstupo.YdlUi.Utility {
         }
 
     }
+
 }

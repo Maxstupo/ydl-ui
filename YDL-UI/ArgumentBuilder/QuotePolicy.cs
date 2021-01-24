@@ -19,4 +19,5 @@
         /// </summary>
         WhenNecessary
     }
+
 }

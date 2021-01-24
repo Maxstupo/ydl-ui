@@ -1,18 +1,14 @@
-﻿using Maxstupo.YdlUi.Forms;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using Newtonsoft.Json;
+
     public class Language {
         public string Code { get; }
         public string DisplayName { get; }
@@ -111,7 +107,7 @@ namespace Maxstupo.YdlUi.Utility {
 
         // Convert language code (e.g. en-US) to neutral varient (e.g. en) if it doesn't exist, if the provided code is null or whitespace use the default system language.
         private static string ResolveLanguageCode(string code, bool fallback = false) {
-            Logger.Instance.Debug(nameof(Localization), "Resolve language code: '{0}' {1}", code,fallback);
+            Logger.Instance.Debug(nameof(Localization), "Resolve language code: '{0}' {1}", code, fallback);
 
             if (string.IsNullOrWhiteSpace(code)) { // Return the system language if no code was provided.
                 string defaultLanguage = DefaultLanguage;
@@ -119,7 +115,7 @@ namespace Maxstupo.YdlUi.Utility {
                 if (defaultLanguage != null && !fallback)
                     return ResolveLanguageCode(defaultLanguage, true);
 
-                fallback = true; 
+                fallback = true;
 
             } else if (locales.ContainsKey(code)) { // If we have a valid translation loaded use the provided code.
                 return code;
@@ -128,7 +124,7 @@ namespace Maxstupo.YdlUi.Utility {
                 return ResolveLanguageCode(code.Split('-', '_')[0], fallback);
 
             }
-            
+
             return fallback ? DefaultCode : ResolveLanguageCode(null, true);
         }
 
@@ -269,5 +265,7 @@ namespace Maxstupo.YdlUi.Utility {
                 return obj.ToString();
             }
         }
+
     }
+
 }

@@ -1,13 +1,14 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿namespace Maxstupo.YdlUi.Settings {
 
-namespace Maxstupo.YdlUi.Settings {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using Maxstupo.YdlUi.Utility;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     public class Preferences {
         public int Version { get; set; } = 1;
         public string Language { get; set; } = "";
@@ -126,7 +127,7 @@ namespace Maxstupo.YdlUi.Settings {
         public bool IsSimpleMode { get; set; }
 
 
-        [JsonIgnore] public string DisplayText { get => IsDefault ? $"{Name} (Default)" : Name; }
+        [JsonIgnore] public string DisplayText => IsDefault ? $"{Name} (Default)" : Name;
 
         public List<ControlState> State { get; set; } = new List<ControlState>();
 
@@ -184,8 +185,7 @@ namespace Maxstupo.YdlUi.Settings {
         public static bool operator !=(Preset preset1, Preset preset2) {
             return !(preset1 == preset2);
         }
+
     }
-
-
 
 }

@@ -1,10 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Controls {
 
-namespace Maxstupo.YdlUi.Controls {
+    using System;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Windows.Forms;
 
     public class DataGridViewProgressColumn : DataGridViewImageColumn {
         public DataGridViewProgressColumn() {
@@ -32,7 +32,7 @@ namespace Maxstupo.YdlUi.Controls {
 
         protected override void Paint(Graphics g, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts) {
             try {
-                int progressVal = (int)value;
+                int progressVal = (int) value;
                 float percentage = (progressVal / 100.0f);
 
                 // Draws the cell grid
@@ -72,4 +72,5 @@ namespace Maxstupo.YdlUi.Controls {
         }
 
     }
+
 }

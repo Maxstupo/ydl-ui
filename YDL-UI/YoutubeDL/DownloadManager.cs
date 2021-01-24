@@ -1,16 +1,16 @@
-﻿using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Timers;
+﻿namespace Maxstupo.YdlUi.YoutubeDL {
 
-namespace Maxstupo.YdlUi.YoutubeDL {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Timers;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+    using Newtonsoft.Json;
+
     public class DownloadManager : INotifyPropertyChanged {
         private readonly PreferencesManager<Preferences> preferencesManager;
         private readonly string downloadListFilepath;
@@ -21,9 +21,9 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         public SortableBindingList<Download> Downloads { get; }
 
-        public int TotalDownloads { get => downloads.Count; }
-        public int ConcurrentDownloads { get => Downloads.Count(dl => dl.Status == DownloadStatus.Downloading || dl.Status == DownloadStatus.Processing); }
-        public int CompletedDownloads { get => Downloads.Count(dl => dl.Status == DownloadStatus.Completed); }
+        public int TotalDownloads => downloads.Count;
+        public int ConcurrentDownloads => Downloads.Count(dl => dl.Status == DownloadStatus.Downloading || dl.Status == DownloadStatus.Processing);
+        public int CompletedDownloads => Downloads.Count(dl => dl.Status == DownloadStatus.Completed);
 
         public string YdlPath { get; set; }
         public string FfmpegPath { get; set; }
@@ -73,12 +73,13 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             // TODO: Maybe add an option to disable video title collection?
             if (download.Title == null) {
                 YdlArguments args = new YdlArguments();
-                args.Url = download.Url;
                 args.General.IgnoreConfig = true;
                 args.General.FlatPlaylist = true;
                 args.VideoSelection.NoPlaylist = true;
                 args.Verbosity.Simulate = true;
                 args.Verbosity.GetTitle = true;
+
+                args.Url = download.Url;
 
                 string strArgs = Download.ArgumentSerializer.Serialize(args, true);
                 ExecutableProcess titleProcess = new ExecutableProcess(YdlPath, strArgs, download.DownloadDirectory);
@@ -88,9 +89,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                         download.Title = data.Trim();
                 };
 #if DEBUG
-                titleProcess.OnExited += (sender, code) => {
-                    Logger.Instance.Debug(nameof(DownloadManager), $"Title process has exited: {code}");
-                };
+                titleProcess.OnExited += (sender, code) => Logger.Instance.Debug(nameof(DownloadManager), $"Title process has exited: {code}");
 #endif
                 titleProcess.Start();
             }
@@ -186,5 +185,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
             return true;
         }
+
     }
+
 }

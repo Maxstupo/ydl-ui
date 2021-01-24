@@ -1,9 +1,10 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms.Tab {
 
-namespace Maxstupo.YdlUi.Forms.Tab {
+    using System;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class TabWorkarounds : UserControl {
 
         public TabWorkarounds() {
@@ -72,7 +73,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
 
             // Network
             arguments.Network.Proxy = txtProxy.GetText();
-            arguments.Network.SocketTimeout = (int?)nudSocketTimeout.GetValue();
+            arguments.Network.SocketTimeout = (int?) nudSocketTimeout.GetValue();
             arguments.Network.SourceAddress = txtSourceAddress.GetText();
             arguments.Network.ForceIpv4 = rbForceIp4.Checked;
             arguments.Network.ForceIpv6 = rbForceIp6.Checked;
@@ -80,17 +81,17 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             // Download
             arguments.Download.LimitRate = nudLimitRate.GetUnitValue(cbxLimitRateUnit);
 
-            int? retries = (int?)nudRetries.GetValue();
-            int? fragRetries = (int?)nudFragmentRetries.GetValue();
+            int? retries = (int?) nudRetries.GetValue();
+            int? fragRetries = (int?) nudFragmentRetries.GetValue();
             arguments.Download.Retries = retries == null ? null : (retries >= 0 ? retries.ToString() : "infinite");
             arguments.Download.FragmentRetries = fragRetries == null ? null : (fragRetries >= 0 ? fragRetries.ToString() : "infinite");
 
             // Sleep interval
-            arguments.Workarounds.SleepInterval = (int?)nudSleepInterval.GetValue();
+            arguments.Workarounds.SleepInterval = (int?) nudSleepInterval.GetValue();
 
             if (rbSleepIntervalRange.Checked) {
-                arguments.Workarounds.MinSleepInterval = (int?)nudSleepIntervalMin.GetValue();
-                arguments.Workarounds.MaxSleepInterval = (int?)nudSleepIntervalMax.GetValue();
+                arguments.Workarounds.MinSleepInterval = (int?) nudSleepIntervalMin.GetValue();
+                arguments.Workarounds.MaxSleepInterval = (int?) nudSleepIntervalMax.GetValue();
             } else {
                 arguments.Workarounds.MaxSleepInterval = null;
             }
@@ -107,8 +108,8 @@ namespace Maxstupo.YdlUi.Forms.Tab {
                 if (row.IsNewRow)
                     continue;
 
-                string key = (string)row.Cells["colKey"].Value;
-                string value = (string)row.Cells["colValue"].Value;
+                string key = (string) row.Cells["colKey"].Value;
+                string value = (string) row.Cells["colValue"].Value;
 
                 if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(value))
                     continue;
@@ -124,5 +125,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             if (filepath != null)
                 txtCookies.Text = filepath;
         }
+
     }
+
 }

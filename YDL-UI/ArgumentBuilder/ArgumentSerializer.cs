@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿namespace Maxstupo.YdlUi.ArgumentBuilder {
 
-namespace Maxstupo.YdlUi.ArgumentBuilder {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
 
     /// <summary>
     /// Serializes object properties into a command-line argument string.
@@ -60,16 +60,16 @@ namespace Maxstupo.YdlUi.ArgumentBuilder {
             CommonSerializationChecker = (a, t, v) => v != null;
 
             // Only serialize boolean flags if the value is true.
-            SerializationCheckers.Add(typeof(bool), (a, t, v) => (bool)v); // Serialize boolean flags if value isn't false.
+            SerializationCheckers.Add(typeof(bool), (a, t, v) => (bool) v); // Serialize boolean flags if value isn't false.
 
             // Only serialize dictionaries if they contain items.
-            SerializationCheckers.Add(typeof(Dictionary<string, string>), (a, t, v) => ((Dictionary<string, string>)v).Count > 0);
+            SerializationCheckers.Add(typeof(Dictionary<string, string>), (a, t, v) => ((Dictionary<string, string>) v).Count > 0);
 
             // Translates string properties to string... duh!
             ValueTranslators.Add(typeof(string), (a, t, v) => v.ToString());
 
             // Translate DateTime objects to the format of "yyyyMMdd".
-            ValueTranslators.Add(typeof(DateTime), (a, t, v) => ((DateTime)v).ToString("yyyyMMdd"));
+            ValueTranslators.Add(typeof(DateTime), (a, t, v) => ((DateTime) v).ToString("yyyyMMdd"));
 
             // Translates enum properties to string by using the name representing the enum value.
             ValueTranslators.Add(typeof(Enum), (a, t, v) => {
@@ -89,7 +89,7 @@ namespace Maxstupo.YdlUi.ArgumentBuilder {
 
             // Custom builder for string -> string dictionaries repeatedly adds flag with key-value pair seperated by colon.
             Builders.Add(typeof(Dictionary<string, string>), (argument, type, value) => {
-                Dictionary<string, string> dictionary = (Dictionary<string, string>)value;
+                Dictionary<string, string> dictionary = (Dictionary<string, string>) value;
                 if (dictionary.Count == 0)
                     return null; // Returning null for a builder, or value translator ignores this argument.
 
@@ -249,4 +249,5 @@ namespace Maxstupo.YdlUi.ArgumentBuilder {
         }
 
     }
+
 }

@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public sealed class StringPattern {
         public string Pattern { get; }
 
         private readonly List<Token> tokens = new List<Token>();
-        public IReadOnlyList<Token> Tokens { get => tokens.AsReadOnly(); }
+        public IReadOnlyList<Token> Tokens => tokens.AsReadOnly();
 
         private StringPattern(string pattern, List<Token> tokens) {
             Pattern = pattern ?? throw new ArgumentNullException(nameof(pattern));
@@ -154,5 +155,7 @@ namespace Maxstupo.YdlUi.Utility {
                 Content = content ?? throw new ArgumentNullException(nameof(content));
             }
         }
+
     }
+
 }

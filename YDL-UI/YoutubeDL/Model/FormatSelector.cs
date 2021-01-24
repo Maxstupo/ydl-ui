@@ -1,13 +1,14 @@
-﻿using Maxstupo.YdlUi.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
-namespace Maxstupo.YdlUi.YoutubeDL.Model {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Maxstupo.YdlUi.Controls;
+
     public class FormatSelector {
         public static readonly int[] DefaultFrameRates = { 144, 120, 60, 50, 48, 30, 25, 24 };
-     
+
         public VideoQuality VideoQuality { get; set; }
         public int FrameRate { get; set; }
 
@@ -80,4 +81,5 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
         }
 
     }
+
 }

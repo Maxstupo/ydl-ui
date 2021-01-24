@@ -1,15 +1,12 @@
-﻿using Maxstupo.YdlUi.Utility;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Text;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+
     public partial class FormPlaylistRangeEditor : Form {
 
 
@@ -72,7 +69,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void btnAdd_Click(object sender, EventArgs e) {
-            using (FormPromptNumber dialog = new FormPromptNumber( false)) {
+            using (FormPromptNumber dialog = new FormPromptNumber(false)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK) {
                     PlaylistItem item = new PlaylistItem(dialog.Value1);
 
@@ -145,6 +142,7 @@ namespace Maxstupo.YdlUi.Forms {
         public static bool operator !=(PlaylistItem item1, PlaylistItem item2) {
             return !(item1 == item2);
         }
+
     }
 
 }

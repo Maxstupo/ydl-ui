@@ -1,7 +1,7 @@
-﻿using Maxstupo.YdlUi.Utility;
-using System;
+﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
-namespace Maxstupo.YdlUi.YoutubeDL.Model {
+    using System;
+    using Maxstupo.YdlUi.Utility;
 
     public class Keyword {
         public string Value { get; set; }

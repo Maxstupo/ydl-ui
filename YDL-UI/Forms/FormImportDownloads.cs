@@ -14,10 +14,10 @@
 
     public partial class FormImportDownloads : Form {
 
-        private Preferences prefs;
+        private readonly Preferences prefs;
         private readonly DownloadManager downloadManager;
 
-        private Action<Download> callback;
+        private readonly Action<Download> callback;
 
         private readonly int totalUrls;
         private readonly List<string> urlsToAdd;

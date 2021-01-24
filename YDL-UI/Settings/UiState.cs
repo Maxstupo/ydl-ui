@@ -1,18 +1,12 @@
-﻿using Maxstupo.YdlUi.Controls;
-using Maxstupo.YdlUi.Forms;
-using Maxstupo.YdlUi.Forms.Tab;
-using Maxstupo.YdlUi.Utility;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Settings {
 
-namespace Maxstupo.YdlUi.Settings {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Controls;
+    using Maxstupo.YdlUi.Utility;
 
     /// <summary>
     /// A class containing a key-value pair, representing a serialized value of a <see cref="Control"/>.
@@ -72,13 +66,13 @@ namespace Maxstupo.YdlUi.Settings {
         public virtual UiState DefaultSerializers() {
             Serializers.Clear();
             Serializers.Add(typeof(TextBox), control => control.Text);
-            Serializers.Add(typeof(KeywordTextBox), control => ((KeywordTextBox)control).Text);
-            Serializers.Add(typeof(RadioButton), control => ((RadioButton)control).Checked.ToString());
-            Serializers.Add(typeof(CheckBox), control => ((CheckBox)control).Checked.ToString());
-            Serializers.Add(typeof(NumericUpDown), control => ((NumericUpDown)control).Value.ToString());
-            Serializers.Add(typeof(DateTimePicker), control => ((DateTimePicker)control).Value.ToString());
+            Serializers.Add(typeof(KeywordTextBox), control => ((KeywordTextBox) control).Text);
+            Serializers.Add(typeof(RadioButton), control => ((RadioButton) control).Checked.ToString());
+            Serializers.Add(typeof(CheckBox), control => ((CheckBox) control).Checked.ToString());
+            Serializers.Add(typeof(NumericUpDown), control => ((NumericUpDown) control).Value.ToString());
+            Serializers.Add(typeof(DateTimePicker), control => ((DateTimePicker) control).Value.ToString());
             Serializers.Add(typeof(ComboBox), control => {
-                ComboBox cbx = (ComboBox)control;
+                ComboBox cbx = (ComboBox) control;
 
                 //   if (cbx.Items.Count == 0) // No items in combobox, dont serialize selected item, as we don't know the item type.
                 //        return null;
@@ -88,7 +82,7 @@ namespace Maxstupo.YdlUi.Settings {
             Serializers.Add(typeof(DataGridView), control => {
                 StringBuilder sb = new StringBuilder();
 
-                DataGridView dgv = (DataGridView)control;
+                DataGridView dgv = (DataGridView) control;
                 foreach (DataGridViewRow row in dgv.Rows) {
                     if (row.IsNewRow)
                         continue;
@@ -115,20 +109,20 @@ namespace Maxstupo.YdlUi.Settings {
         public virtual UiState DefaultDeserializer() {
             Deserializers.Clear();
             Deserializers.Add(typeof(TextBox), (c, val) => c.Text = val);
-            Deserializers.Add(typeof(KeywordTextBox), (c, val) => ((KeywordTextBox)c).Text = val);
-            Deserializers.Add(typeof(CheckBox), (c, val) => ((CheckBox)c).Checked = (val == bool.TrueString)); // TODO: Use bool.TryParse
-            Deserializers.Add(typeof(RadioButton), (c, val) => ((RadioButton)c).Checked = (val == bool.TrueString)); // TODO: Use bool.TryParse
+            Deserializers.Add(typeof(KeywordTextBox), (c, val) => ((KeywordTextBox) c).Text = val);
+            Deserializers.Add(typeof(CheckBox), (c, val) => ((CheckBox) c).Checked = (val == bool.TrueString)); // TODO: Use bool.TryParse
+            Deserializers.Add(typeof(RadioButton), (c, val) => ((RadioButton) c).Checked = (val == bool.TrueString)); // TODO: Use bool.TryParse
             Deserializers.Add(typeof(NumericUpDown), (c, val) => {
                 if (decimal.TryParse(val, out decimal result))
-                    ((NumericUpDown)c).Value = result;
+                    ((NumericUpDown) c).Value = result;
             });
             Deserializers.Add(typeof(DateTimePicker), (c, val) => {
                 if (DateTime.TryParse(val, out DateTime result))
-                    ((DateTimePicker)c).Value = result;
+                    ((DateTimePicker) c).Value = result;
             });
 
             Deserializers.Add(typeof(ComboBox), (c, val) => {
-                ComboBox cbx = (ComboBox)c;
+                ComboBox cbx = (ComboBox) c;
                 try {
                     cbx.SelectedIndex = int.Parse(val);
                 } catch (Exception e) {
@@ -137,7 +131,7 @@ namespace Maxstupo.YdlUi.Settings {
             });
 
             Deserializers.Add(typeof(DataGridView), (c, val) => {
-                DataGridView dgv = (DataGridView)c;
+                DataGridView dgv = (DataGridView) c;
 
                 string[] rows = val.Split('|');
                 for (int i = 0; i < rows.Length; i++) {
@@ -283,5 +277,7 @@ namespace Maxstupo.YdlUi.Settings {
             Key = key ?? throw new ArgumentNullException(nameof(key));
             Control = control ?? throw new ArgumentNullException(nameof(control));
         }
+
     }
+
 }

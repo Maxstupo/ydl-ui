@@ -1,9 +1,10 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms.Tab {
 
-namespace Maxstupo.YdlUi.Forms.Tab {
+    using System;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class TabVideoSelection : UserControl {
 
         public TabVideoSelection() {
@@ -68,12 +69,12 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             arguments.VideoSelection.MaxFilesize = nudMaxSize.GetUnitValue(cbxMaxSizeUnit);
 
             // View Count
-            arguments.VideoSelection.MinViews = (int?)nudMinViews.GetValue();
-            arguments.VideoSelection.MaxViews = (int?)nudMaxViews.GetValue();
+            arguments.VideoSelection.MinViews = (int?) nudMinViews.GetValue();
+            arguments.VideoSelection.MaxViews = (int?) nudMaxViews.GetValue();
 
             // Playlist Filters
-            arguments.VideoSelection.PlaylistStart = (int?)nudPlaylistStart.GetValue();
-            arguments.VideoSelection.PlaylistEnd = (int?)nudPlaylistEnd.GetValue();
+            arguments.VideoSelection.PlaylistStart = (int?) nudPlaylistStart.GetValue();
+            arguments.VideoSelection.PlaylistEnd = (int?) nudPlaylistEnd.GetValue();
             arguments.VideoSelection.PlaylistItems = txtPlaylistRange.GetText();
 
             arguments.Download.PlaylistRandom = cbPlaylistRandom.Checked;
@@ -87,14 +88,16 @@ namespace Maxstupo.YdlUi.Forms.Tab {
 
         // Only allow numbers, commas, and hyphens for playlist range.
         private void txtPlaylistRange_KeyPress(object sender, KeyPressEventArgs e) {
-            e.Handled = e.KeyChar != (char)Keys.Back && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !char.IsControl(e.KeyChar);
+            e.Handled = e.KeyChar != (char) Keys.Back && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !char.IsControl(e.KeyChar);
         }
 
         private void btnPlaylistRangeEditor_Click(object sender, EventArgs e) {
             using (FormPlaylistRangeEditor dialog = new FormPlaylistRangeEditor(txtPlaylistRange.Text)) {
-                if (dialog.ShowDialog(this) == DialogResult.OK) 
+                if (dialog.ShowDialog(this) == DialogResult.OK)
                     txtPlaylistRange.Text = dialog.Selector;
             }
         }
+
     }
+
 }

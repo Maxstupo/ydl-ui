@@ -1,7 +1,8 @@
-﻿using Maxstupo.YdlUi.Utility;
-using System.Collections.Generic;
+﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
-namespace Maxstupo.YdlUi.YoutubeDL.Model {
+    using System.Collections.Generic;
+    using Maxstupo.YdlUi.Utility;
+
     public class VideoQuality {
         public int Width { get; }
         public int Height { get; }
@@ -38,5 +39,7 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
             return string.Format("{0}p {1}", Height, nicknames);
         }
+
     }
+
 }

@@ -1,11 +1,11 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿namespace Maxstupo.YdlUi.Settings {
 
-namespace Maxstupo.YdlUi.Settings {
+    using System;
+    using System.IO;
+    using System.Text;
+    using Maxstupo.YdlUi.Utility;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Manages saving and loading of an object containing the settings of the application.
     /// </summary>
@@ -26,7 +26,7 @@ namespace Maxstupo.YdlUi.Settings {
         /// The preferences object, this object will be serialized/deserialized to the <see cref="PrefPath"/>.
         /// </summary>
         public T Preferences { get; private set; }
-       
+
         /// <summary>
         /// Invoked before the preferences have been saved from calling <see cref="Save"/>. 
         /// </summary>
@@ -114,5 +114,7 @@ namespace Maxstupo.YdlUi.Settings {
 
             File.WriteAllText(filepath, JsonConvert.SerializeObject(preferences, Formatting.Indented), Encoding.UTF8);
         }
+
     }
+
 }

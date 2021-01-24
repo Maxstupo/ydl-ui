@@ -1,20 +1,16 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class FormKeyword : Form {
         private readonly SortableBindingList<Keyword> keywords;
 
-        public Keyword SelectedKeyword { get => dgvKeywords.SelectedRow<Keyword>(); }
+        public Keyword SelectedKeyword => dgvKeywords.SelectedRow<Keyword>();
 
         public FormKeyword() {
             InitializeComponent();
@@ -49,5 +45,7 @@ namespace Maxstupo.YdlUi.Forms {
             if (e.Button == MouseButtons.Left)
                 btnInsert.PerformClick();
         }
+
     }
+
 }

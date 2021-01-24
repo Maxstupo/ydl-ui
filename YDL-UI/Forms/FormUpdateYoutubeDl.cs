@@ -1,18 +1,11 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+
     public partial class FormUpdateYoutubeDl : Form {
         private string BinaryLocation { get; }
 
@@ -30,7 +23,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void FormUpdateYoutubeDl_Shown(object sender, EventArgs e) {
-            Task.Run((Action)StartDownload);
+            Task.Run((Action) StartDownload);
         }
 
         private void btnDone_Click(object sender, EventArgs e) {
@@ -39,7 +32,7 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private void StartDownload() {
-            BeginInvoke(((Action)delegate {
+            BeginInvoke(((Action) delegate {
                 lblStatus.Text = Localization.GetString("update_dialog.status.waiting", "Please wait...");
             }));
 
@@ -48,7 +41,7 @@ namespace Maxstupo.YdlUi.Forms {
             WriteLogLine(Localization.GetString("update_dialog.log.current_version", "Current version: {CurrentVersion}").Replace("{CurrentVersion}", currentVersion));
 
             string checkingText = Localization.GetString("update_dialog.checking", "Checking for updates...");
-            BeginInvoke(((Action)delegate {
+            BeginInvoke(((Action) delegate {
                 lblStatus.Text = checkingText;
             }));
 
@@ -88,7 +81,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void UpdateCompleted(bool success) {
-            BeginInvoke((Action)delegate {
+            BeginInvoke((Action) delegate {
                 progressBar.Style = ProgressBarStyle.Continuous;
                 progressBar.Value = 1000;
                 lblStatus.Text = success ? Localization.GetString("update_dialog.completed", "Update Completed.") : Localization.GetString("update_dialog.failed", "Update Failed.");
@@ -97,10 +90,11 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void WriteLogLine(string data) {
-            BeginInvoke((Action)delegate {
+            BeginInvoke((Action) delegate {
                 txtUpdateLog.Text += (txtUpdateLog.Text.Length == 0) ? data : $"{Environment.NewLine}{data}";
             });
         }
 
     }
+
 }

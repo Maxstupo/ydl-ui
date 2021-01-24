@@ -1,19 +1,13 @@
-﻿using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.IO;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+
     public partial class FormUpdateBinaryLocations : Form {
-        private Preferences preferences;
+        private readonly Preferences preferences;
 
         public FormUpdateBinaryLocations(Preferences preferences) {
             InitializeComponent();
@@ -61,5 +55,7 @@ namespace Maxstupo.YdlUi.Forms {
 
             DialogResult = DialogResult.None;
         }
+
     }
+
 }

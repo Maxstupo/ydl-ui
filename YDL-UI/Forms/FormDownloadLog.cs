@@ -1,14 +1,13 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL;
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL;
+
     public partial class FormDownloadLog : Form {
 
-        private Download download;
+        private readonly Download download;
 
         public FormDownloadLog(Download download) {
             InitializeComponent();
@@ -27,9 +26,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void Download_LogUpdate(object sender, string e) {
-            BeginInvoke((Action)(() => {
-                txtLog.AppendText(e);
-            }));
+            BeginInvoke((Action) (() => txtLog.AppendText(e)));
         }
 
         private void btnOkay_Click(object sender, EventArgs e) {
@@ -44,5 +41,7 @@ namespace Maxstupo.YdlUi.Forms {
             download.Log = string.Empty;
             txtLog.Text = string.Empty;
         }
+
     }
+
 }

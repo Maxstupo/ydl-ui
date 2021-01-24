@@ -12,7 +12,7 @@
 
     public partial class FormPreferences : Form {
         private readonly DownloadManager downloadManager;
-        private Preferences preferences;
+        private readonly Preferences preferences;
 
         public bool RequiresRestart { get; private set; } = false;
 
@@ -20,7 +20,7 @@
 
         private bool hasConcurrentDownloads = false;
 
-        public FormPreferences(DownloadManager downloadManager, Preferences preferences, string preferencesLocation = null) {
+        public FormPreferences(DownloadManager downloadManager, Preferences preferences) {
             InitializeComponent();
             this.downloadManager = downloadManager;
             this.preferences = preferences;

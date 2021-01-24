@@ -1,10 +1,12 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms.Tab {
 
-namespace Maxstupo.YdlUi.Forms.Tab {
+    using System;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class TabPostProcessing : UserControl {
+
         public TabPostProcessing() {
             InitializeComponent();
         }
@@ -12,7 +14,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
         private void TabPostProcessing_Load(object sender, EventArgs e) {
             cbxAudioOnly.DataSource = Enum.GetValues(typeof(AudioFormat));
             cbxAudioOnly.Format += (s, ee) => {
-                if (((AudioFormat)ee.ListItem) == AudioFormat.Best)
+                if (((AudioFormat) ee.ListItem) == AudioFormat.Best)
                     ee.Value = Localization.GetString("download_dialog.post_processing.audio_only.best", AudioFormat.Best.ToString());
             };
             cbxAudioOnly.SelectedItem = AudioFormat.Mp3;
@@ -28,13 +30,15 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             if (arguments == null)
                 return;
 
-            arguments.PostProcessing.AudioFormat = cbxAudioOnly.Enabled ? (AudioFormat?)cbxAudioOnly.SelectedValue : null;
+            arguments.PostProcessing.AudioFormat = cbxAudioOnly.Enabled ? (AudioFormat?) cbxAudioOnly.SelectedValue : null;
             arguments.PostProcessing.ExtractAudio = (arguments.PostProcessing.AudioFormat != null);
-            
+
             arguments.PostProcessing.EmbedThumbnail = cbEmbedThumbnail.Checked;
             arguments.PostProcessing.AddMetadata = cbAddMetadata.Checked;
 
-            arguments.PostProcessing.RecodeVideo = cbxRecodeFormat.Enabled ? (VideoFormatRecode?)cbxRecodeFormat.SelectedValue : null;
+            arguments.PostProcessing.RecodeVideo = cbxRecodeFormat.Enabled ? (VideoFormatRecode?) cbxRecodeFormat.SelectedValue : null;
         }
+
     }
+
 }

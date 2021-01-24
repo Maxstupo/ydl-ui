@@ -1,16 +1,12 @@
-﻿using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.Drawing;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+
     public partial class FormPreset : Form {
         private readonly Preferences preferences;
 
@@ -78,5 +74,7 @@ namespace Maxstupo.YdlUi.Forms {
             RequestRemoval = true;
             DialogResult = DialogResult.OK;
         }
+
     }
+
 }

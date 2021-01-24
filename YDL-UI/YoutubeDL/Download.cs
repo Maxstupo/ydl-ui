@@ -1,13 +1,14 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using Newtonsoft.Json;
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.YoutubeDL {
 
-namespace Maxstupo.YdlUi.YoutubeDL {
+    using System;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+    using System.Text;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+    using Newtonsoft.Json;
+
     public class Download : INotifyPropertyChanged {
         public static readonly YdlArgumentSerializer ArgumentSerializer = new YdlArgumentSerializer();
 
@@ -22,7 +23,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
         private DownloadStatus status = DownloadStatus.Queued;
 
         public string Title { get => title; set { title = value; FirePropertyChanged(); } }
-        [JsonIgnore] public string Url { get => Arguments.Url; }
+        [JsonIgnore] public string Url => Arguments.Url;
         public int Progress { get => progress; set { progress = value; FirePropertyChanged(); } }
         public string Size { get => size; set { size = value; FirePropertyChanged(); } }
         public string Speed { get => speed; set { speed = value; FirePropertyChanged(); } }
@@ -113,9 +114,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
                 WriteLog($"\r\n{e}");
             };
 
-            process.OnError += (s, exitCode) => {
-                WriteLog($"\r\n{exitCode}");
-            };
+            process.OnError += (s, exitCode) => WriteLog($"\r\n{exitCode}");
 
             process.Start();
 

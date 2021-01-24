@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace Maxstupo.YdlUi.YoutubeDL {
 
-namespace Maxstupo.YdlUi.YoutubeDL {
+    using System;
 
     /// <summary>
     /// The status of each <see cref="Download"/>.
@@ -46,4 +46,5 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
         All = Queued | Downloading | Completed | Waiting | Failed | Processing,
     }
+
 }

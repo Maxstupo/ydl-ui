@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace Maxstupo.YdlUi.ArgumentBuilder {
 
-namespace Maxstupo.YdlUi.ArgumentBuilder {
+    using System;
 
     /// <summary>
     /// Marks a property as a command line argument, contains metadata describing how to serialize the property.
@@ -39,7 +39,7 @@ namespace Maxstupo.YdlUi.ArgumentBuilder {
         public Argument(string flag) {
             this.Flag = flag ?? throw new ArgumentNullException(nameof(flag));
         }
-    }
 
+    }
 
 }

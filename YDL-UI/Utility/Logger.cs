@@ -1,10 +1,11 @@
-﻿using System;
-using System.Text;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Text;
+
     public class Logger {
         private static Logger log;
-        public static Logger Instance { get { return log ?? (log = new Logger()); } }
+        public static Logger Instance => log ?? (log = new Logger());
 
         public const int LevelOff = 600;
         public const int LevelSevere = 500;
@@ -31,7 +32,7 @@ namespace Maxstupo.YdlUi.Utility {
         public int Level { get; set; } = 0;
 
         private ConsoleColor prevForeground, prevBackground;
-        private StringBuilder sb = new StringBuilder();
+        private readonly StringBuilder sb = new StringBuilder();
 
         public void Log(int level, string tag, string category, string message, params object[] objs) {
             if (this.Level > level)
@@ -104,5 +105,7 @@ namespace Maxstupo.YdlUi.Utility {
             Console.BackgroundColor = prevBackground;
             Console.ForegroundColor = prevForeground;
         }
+
     }
+
 }

@@ -17,14 +17,14 @@
         private readonly Preferences preferences;
         private readonly DownloadManager downloadManager;
 
-        private Preset preset;
+        private readonly Preset preset;
 
         private bool IsPresetEditMode { get; }
         private bool IsSilent { get; }
 
         public Download Download { get; private set; }
 
-        private bool BasicMode { get => cbBasicMode.Checked; }
+        private bool BasicMode => cbBasicMode.Checked;
 
         private BasicAddDownloadPanel basicAddDownloadPanel;
 
@@ -141,9 +141,7 @@
             }
 
             if (IsSilent) {
-                BeginInvoke((Action<Button>) (btn => {
-                    btn.PerformClick();
-                }), btnAdd);
+                BeginInvoke((Action<Button>) (btn => btn.PerformClick()), btnAdd);
             } else {
                 BeginInvoke((Action) delegate {
                     txtUrl.Focus();

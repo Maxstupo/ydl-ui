@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Reflection;
-using System.Xml.Linq;
+﻿namespace Maxstupo.YdlUi.Utility {
 
-namespace Maxstupo.YdlUi.Utility {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Reflection;
+    using System.Xml.Linq;
 
     public class SortableBindingList<T> : BindingList<T> {
 
@@ -13,10 +13,10 @@ namespace Maxstupo.YdlUi.Utility {
         private ListSortDirection sortDirection;
         private PropertyDescriptor sortProperty;
 
-        protected override bool IsSortedCore { get { return isSorted; } }
-        protected override ListSortDirection SortDirectionCore { get { return sortDirection; } }
-        protected override PropertyDescriptor SortPropertyCore { get { return sortProperty; } }
-        protected override bool SupportsSortingCore { get { return true; } }
+        protected override bool IsSortedCore => isSorted;
+        protected override ListSortDirection SortDirectionCore => sortDirection;
+        protected override PropertyDescriptor SortPropertyCore => sortProperty;
+        protected override bool SupportsSortingCore => true;
 
         public SortableBindingList(List<T> list) : base(list) {
         }
@@ -25,7 +25,7 @@ namespace Maxstupo.YdlUi.Utility {
             if (!PropertyComparer.CanSort(property.PropertyType))
                 return;
 
-            ((List<T>)Items).Sort(new PropertyComparer(property, direction));
+            ((List<T>) Items).Sort(new PropertyComparer(property, direction));
 
             sortDirection = direction;
             sortProperty = property;
@@ -62,7 +62,7 @@ namespace Maxstupo.YdlUi.Utility {
 
                 if (CanSortWithIComparable(property.PropertyType)) {
                     PropertyInfo propertyInfo = typeof(Comparer<>).MakeGenericType(new[] { property.PropertyType }).GetTypeInfo().GetDeclaredProperty("Default");
-                    comparer = (IComparer)propertyInfo.GetValue(null, null);
+                    comparer = (IComparer) propertyInfo.GetValue(null, null);
                     useToString = false;
 
                 } else if (CanSortWithToString(property.PropertyType)) {
@@ -105,5 +105,7 @@ namespace Maxstupo.YdlUi.Utility {
         }
 
         #endregion
+
     }
+
 }

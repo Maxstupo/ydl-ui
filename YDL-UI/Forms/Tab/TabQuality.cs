@@ -1,10 +1,12 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms.Tab {
 
-namespace Maxstupo.YdlUi.Forms.Tab {
+    using System;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class TabQuality : UserControl {
+
         public TabQuality() {
             InitializeComponent();
         }
@@ -41,7 +43,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
             arguments.FileSystem.RestrictFilenames = cbRestrictFilenames.Checked;
             arguments.FileSystem.NoOverwrites = cbNoOverwrites.Checked;
             arguments.Thumbnail.WriteThumbnail = cbWriteThumbnail.Checked;
-            
+
             arguments.Subtitle.WriteSub = cbWriteSub.Checked;
 
             if (cbCustomFormatSelector.Checked) {
@@ -51,5 +53,7 @@ namespace Maxstupo.YdlUi.Forms.Tab {
                 arguments.VideoFormat.Format = formatSelector.ToString();
             }
         }
+
     }
+
 }

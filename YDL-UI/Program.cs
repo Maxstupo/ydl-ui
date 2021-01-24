@@ -1,17 +1,18 @@
-﻿using Maxstupo.YdlUi.Forms;
-using Maxstupo.YdlUi.Utility;
-using System;
-using System.IO;
-using System.IO.Pipes;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security.AccessControl;
-using System.Security.Principal;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi {
 
-namespace Maxstupo.YdlUi {
+    using System;
+    using System.IO;
+    using System.IO.Pipes;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Security.AccessControl;
+    using System.Security.Principal;
+    using System.Text;
+    using System.Threading;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Forms;
+    using Maxstupo.YdlUi.Utility;
+
     static class Program {
 
         /// <summary>
@@ -41,12 +42,10 @@ namespace Maxstupo.YdlUi {
             }
 
             // Get the application GUID defined in AssemblyInfo.cs
-            string guid = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value.ToString();
+            string guid = ((GuidAttribute) Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value.ToString();
 
             // id for global mutex (global to machine)
             string mutexId = string.Format("Global\\{{{0}}}", guid);
-
-            bool createdNew = false;
 
             MutexAccessRule allowEveryoneRule = new MutexAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), MutexRights.FullControl, AccessControlType.Allow);
             MutexSecurity securitySettings = new MutexSecurity();
@@ -56,7 +55,7 @@ namespace Maxstupo.YdlUi {
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Only allow a single instance of YDL-UI to run.
-            using (Mutex mutex = new Mutex(false, mutexId, out createdNew, securitySettings)) {
+            using (Mutex mutex = new Mutex(false, mutexId, out _, securitySettings)) {
                 bool hasHandle = false;
                 try {
                     try {
@@ -102,5 +101,7 @@ namespace Maxstupo.YdlUi {
                 // TODO: Catch exception - Not really important, if it fails we dont add the URL.
             }
         }
+
     }
+
 }

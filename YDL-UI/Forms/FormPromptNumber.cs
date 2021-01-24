@@ -1,19 +1,14 @@
-﻿using Maxstupo.YdlUi.Utility;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+
     public partial class FormPromptNumber : Form {
 
-        public int Value1 { get => (int)nud1.Value; }
-        public int Value2 { get => (int)nud2.Value; }
+        public int Value1 => (int) nud1.Value;
+        public int Value2 => (int) nud2.Value;
 
         private bool RangeMode { get; }
 
@@ -66,4 +61,5 @@ namespace Maxstupo.YdlUi.Forms {
 
 
     }
+
 }

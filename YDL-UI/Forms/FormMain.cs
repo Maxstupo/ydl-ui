@@ -32,8 +32,8 @@
         private Thread pipeThread;
         private NamedPipeServerStream pipeServer;
 
-        private string urlToAdd;
-        private bool isSilent;
+        private readonly string urlToAdd;
+        private readonly bool isSilent;
         private bool isInitLanguageChange = true;
 
         private readonly string localesDirectory;
@@ -98,9 +98,7 @@
             queuedDownloadsToolStripMenuItem.Tag = DownloadStatus.Queued;
             failedDownloadsToolStripMenuItem.Tag = DownloadStatus.Failed;
 
-            PreferencesManager.OnUpdate += (sdr, p) => {
-                TopMost = p.StayOnTop;
-            };
+            PreferencesManager.OnUpdate += (sdr, p) => TopMost = p.StayOnTop;
             PreferencesManager.OnLoad += (sdr, p) => {
                 Localization.Language = p.Language;
                 p.Language = Localization.Language;
@@ -130,9 +128,7 @@
             downloadManager.Load(true);
 
             if (urlToAdd != null) {
-                BeginInvoke((Action<string, bool>) ((url, silent) => {
-                    ShowAddDownloadDialogIfValidUrl(url, silent);
-                }), urlToAdd, isSilent);
+                BeginInvoke((Action<string, bool>) ((url, silent) => ShowAddDownloadDialogIfValidUrl(url, silent)), urlToAdd, isSilent);
             }
 
 #if !DEBUG
@@ -192,9 +188,7 @@
                             string urlToAdd = data.Substring(2);
 
 
-                            BeginInvoke((Action<string, bool>) ((url, isSilent) => {
-                                ShowAddDownloadDialogIfValidUrl(url, isSilent);
-                            }), urlToAdd, silent);
+                            BeginInvoke((Action<string, bool>) ((url, isSilent) => ShowAddDownloadDialogIfValidUrl(url, isSilent)), urlToAdd, silent);
                         }
 
                         pipeServer.Disconnect();
@@ -273,7 +267,7 @@
         }
 
         private void ShowPreferencesDialog() {
-            using (FormPreferences dialog = new FormPreferences(downloadManager, PreferencesManager.Preferences, PreferencesManager.PrefPath)) {
+            using (FormPreferences dialog = new FormPreferences(downloadManager, PreferencesManager.Preferences)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK) {
                     PreferencesManager.Save();
 
@@ -598,11 +592,7 @@
 
             DataGridView.HitTestInfo hitTest = dgvDownloads.HitTest(e.X, e.Y);
 
-            if (hitTest.Type == DataGridViewHitTestType.ColumnHeader) {
-                dgvDownloads.ContextMenuStrip = contextMenuStripView;
-            } else {
-                dgvDownloads.ContextMenuStrip = contextMenuStrip;
-            }
+            dgvDownloads.ContextMenuStrip = hitTest.Type == DataGridViewHitTestType.ColumnHeader ? contextMenuStripView : contextMenuStrip;
         }
 
         private void contextMenuStripView_Opening(object sender, CancelEventArgs e) {

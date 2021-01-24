@@ -1,9 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿namespace Maxstupo.YdlUi.YoutubeDL {
 
-namespace Maxstupo.YdlUi.YoutubeDL {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+
     /// <summary>
     /// Provides methods to parse youtube-dl output.
     /// </summary>
@@ -25,7 +26,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
             try {
                 Match match = regexStatus.Match(line);
                 if (match.Success) {
-                    download.Progress = (int)float.Parse(match.Groups["percent"].Value, CultureInfo.InvariantCulture); // Issue #41 - Fix regional decimal separator.
+                    download.Progress = (int) float.Parse(match.Groups["percent"].Value, CultureInfo.InvariantCulture); // Issue #41 - Fix regional decimal separator.
 
                     // Issue #33
                     string rawEta = match.Groups["eta"].Value;
@@ -55,5 +56,7 @@ namespace Maxstupo.YdlUi.YoutubeDL {
 
 
         }
+
     }
+
 }

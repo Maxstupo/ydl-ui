@@ -1,18 +1,19 @@
-﻿using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Controls {
 
-namespace Maxstupo.YdlUi.Controls {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class FrameRateSelector : UserControl {
 
         public int FrameRate {
             get {
                 if (!IsCustomFrameRate) {
-                    return (int)cbxFrameRate.SelectedValue;
+                    return (int) cbxFrameRate.SelectedValue;
                 } else {
-                    return (int)nudCustomFrameRate.Value;
+                    return (int) nudCustomFrameRate.Value;
                 }
             }
         }
@@ -20,7 +21,7 @@ namespace Maxstupo.YdlUi.Controls {
         public bool IsFallback { get => cbFallback.Checked; }
         public bool IsPreferred { get => cbPreferred.Checked; }
 
-        public bool IsCustomFrameRate { get => cbxFrameRate.SelectedValue == null ? false : (int)cbxFrameRate.SelectedValue < 0; }
+        public bool IsCustomFrameRate { get => cbxFrameRate.SelectedValue == null ? false : (int) cbxFrameRate.SelectedValue < 0; }
 
         private bool isDropDownOpen;
 
@@ -36,7 +37,7 @@ namespace Maxstupo.YdlUi.Controls {
             cbxFrameRate.DataSource = frameRates;
             cbxFrameRate.SelectedIndex = 0;
             cbxFrameRate.Format += (s, ee) => {
-                int value = (int)ee.ListItem;
+                int value = (int) ee.ListItem;
                 ee.Value = value < 0 ? Localization.GetString("download_dialog.quality.fr.custom", "Custom") : value.ToString();
             };
 
@@ -71,6 +72,5 @@ namespace Maxstupo.YdlUi.Controls {
         }
 
     }
-
 
 }

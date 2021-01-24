@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using Maxstupo.YdlUi.YoutubeDL;
-using Maxstupo.YdlUi.Forms;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-
 namespace Maxstupo.YdlUi.Controls {
+
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Forms;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class KeywordTextBox : TextBox {
 
 
@@ -44,7 +40,7 @@ namespace Maxstupo.YdlUi.Controls {
             FindMatches();
 
         }
-              
+
         public void ShowKeywordDialog() {
             using (FormKeyword dialog = new FormKeyword()) {
                 if (dialog.ShowDialog() == DialogResult.OK) {
@@ -122,7 +118,7 @@ namespace Maxstupo.YdlUi.Controls {
             Text = Text.Insert(start, text);
             Select(Text.Length, 0);
         }
-    }
 
+    }
 
 }

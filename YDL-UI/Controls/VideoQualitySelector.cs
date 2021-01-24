@@ -1,15 +1,17 @@
-﻿using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Controls {
 
-namespace Maxstupo.YdlUi.Controls {
+    using System;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class VideoQualitySelector : UserControl {
+
         public VideoQuality Quality {
             get {
                 if (!IsCustomQuality) {
                     return cbxQuality.SelectedValue as VideoQuality;
                 } else {
-                    return new VideoQuality((int)nudCustomWidth.Value, (int)nudCustomHeight.Value, "Custom"); //  Name "Custom" not used.
+                    return new VideoQuality((int) nudCustomWidth.Value, (int) nudCustomHeight.Value, "Custom"); //  Name "Custom" not used.
                 }
             }
         }
@@ -66,7 +68,7 @@ namespace Maxstupo.YdlUi.Controls {
             nudCustomWidth.Value = vqs.nudCustomWidth.Value;
             nudCustomHeight.Value = vqs.nudCustomHeight.Value;
         }
-    }
 
+    }
 
 }

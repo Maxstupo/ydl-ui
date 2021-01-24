@@ -1,9 +1,9 @@
-﻿using ByteSizeLib;
-using Maxstupo.YdlUi.ArgumentBuilder;
-using System;
-using System.Collections.Generic;
+﻿namespace Maxstupo.YdlUi.YoutubeDL.Model {
 
-namespace Maxstupo.YdlUi.YoutubeDL.Model {
+    using System;
+    using System.Collections.Generic;
+    using ByteSizeLib;
+    using Maxstupo.YdlUi.ArgumentBuilder;
 
     [ArgumentContainer]
     public class YdlArguments {
@@ -215,7 +215,7 @@ namespace Maxstupo.YdlUi.YoutubeDL.Model {
         [FlagArgument("--bidi-workaround")] public bool BidiWorkaround { get; set; }
         [Argument("--sleep-interval")] public int? SleepInterval { get; set; } = null;
         [Argument("--max-sleep-interval")] public int? MaxSleepInterval { get; set; } = null;
-        public int? MinSleepInterval { get { return SleepInterval; } set { SleepInterval = value; } }
+        public int? MinSleepInterval { get => SleepInterval; set => SleepInterval = value; }
 
     }
 
