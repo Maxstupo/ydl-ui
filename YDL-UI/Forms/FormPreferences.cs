@@ -1,16 +1,17 @@
-﻿using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL;
-using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL;
+
     public partial class FormPreferences : Form {
-
+        private readonly DownloadManager downloadManager;
         private Preferences preferences;
 
         public bool RequiresRestart { get; private set; } = false;
@@ -21,6 +22,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         public FormPreferences(DownloadManager downloadManager, Preferences preferences, string preferencesLocation = null) {
             InitializeComponent();
+            this.downloadManager = downloadManager;
             this.preferences = preferences;
 
             downloadManager.PropertyChanged += DownloadManager_PropertyChanged;
@@ -64,7 +66,7 @@ namespace Maxstupo.YdlUi.Forms {
             SetupUpdateIntervalDataSource();
 
             cbxLanguage.SelectedValue = preferences.Language;
-            cbxLanguage.SelectionChangeCommitted += delegate { Localization.Language = (string)cbxLanguage.SelectedValue; };
+            cbxLanguage.SelectionChangeCommitted += delegate { Localization.Language = (string) cbxLanguage.SelectedValue; };
 
             txtBinaryYdl.DataBindings.Add(nameof(txtBinaryYdl.Text), preferences.Binaries, nameof(preferences.Binaries.YoutubeDl), false, DataSourceUpdateMode.OnPropertyChanged);
             txtBinaryFfmpeg.DataBindings.Add(nameof(txtBinaryFfmpeg.Text), preferences.Binaries, nameof(preferences.Binaries.Ffmpeg), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -189,7 +191,7 @@ namespace Maxstupo.YdlUi.Forms {
                     Preset preset = dialog.Preset;
 
                     Logger.Instance.Fine(nameof(FormPreferences), "Opening preset customizer...");
-                    using (FormAddDownload presetDialog = new FormAddDownload(preferences, null, preset, true)) {
+                    using (FormAddDownload presetDialog = new FormAddDownload(preferences, downloadManager, null, preset, true)) {
                         if (presetDialog.ShowDialog(this) == DialogResult.OK) {
                             preset.State = presetDialog.GetState();
                             Logger.Instance.Fine(nameof(FormPreferences), "Setting preset state.");
@@ -223,7 +225,7 @@ namespace Maxstupo.YdlUi.Forms {
                         Preset prs = dialog.Preset;
 
                         Logger.Instance.Fine(nameof(FormPreferences), "Opening preset customizer...");
-                        using (FormAddDownload presetDialog = new FormAddDownload(preferences, null, prs, true)) {
+                        using (FormAddDownload presetDialog = new FormAddDownload(preferences, downloadManager, null, prs, true)) {
 
                             if (presetDialog.ShowDialog(this) == DialogResult.OK) {
                                 prs.State = presetDialog.GetState();
@@ -314,4 +316,5 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
     }
+
 }

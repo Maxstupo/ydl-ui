@@ -1,23 +1,22 @@
-﻿using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL;
+    using Newtonsoft.Json;
+
     public partial class FormImportDownloads : Form {
 
         private Preferences prefs;
+        private readonly DownloadManager downloadManager;
+
         private Action<Download> callback;
 
         private readonly int totalUrls;
@@ -27,9 +26,10 @@ namespace Maxstupo.YdlUi.Forms {
         private bool SeparateOptions => cbSeparateOptions.Checked;
 
 
-        public FormImportDownloads(string filepath, bool isJson, Preferences prefs, Func<string, bool> containedInDownloadList, Action<Download> callback) {
+        public FormImportDownloads(string filepath, bool isJson, Preferences prefs, DownloadManager downloadManager, Func<string, bool> containedInDownloadList, Action<Download> callback) {
             InitializeComponent();
             this.prefs = prefs;
+            this.downloadManager = downloadManager;
             this.callback = callback;
 
             try {
@@ -67,7 +67,7 @@ namespace Maxstupo.YdlUi.Forms {
 
                     bool isSilent = AllowPresets && Preset.HasValidPreset(prefs.Presets, url);
 
-                    using (FormAddDownload dialog = new FormAddDownload(prefs, url, null, false, isSilent)) {
+                    using (FormAddDownload dialog = new FormAddDownload(prefs, downloadManager, url, null, false, isSilent)) {
                         if (dialog.ShowDialog(this) == DialogResult.OK)
                             callback(dialog.Download);
                     }
@@ -77,14 +77,14 @@ namespace Maxstupo.YdlUi.Forms {
 
             } else if (urlsToAdd.Count > 0) {
 
-                using (FormAddDownload dialog = new FormAddDownload(prefs, "sharedsettings.", null, false, false)) {
+                using (FormAddDownload dialog = new FormAddDownload(prefs, downloadManager, "sharedsettings.", null, false, false)) {
                     if (dialog.ShowDialog(this) == DialogResult.OK) {
 
                         foreach (string url in urlsToAdd) {
                             bool isSilent = AllowPresets && Preset.HasValidPreset(prefs.Presets, url);
 
                             if (isSilent) { // Auto add
-                                using (FormAddDownload dialog2 = new FormAddDownload(prefs, url, null, false, true)) {
+                                using (FormAddDownload dialog2 = new FormAddDownload(prefs, downloadManager, url, null, false, true)) {
                                     if (dialog2.ShowDialog(this) == DialogResult.OK)
                                         callback(dialog2.Download);
                                 }
@@ -105,5 +105,7 @@ namespace Maxstupo.YdlUi.Forms {
         private void btnCancel_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
         }
+
     }
+
 }

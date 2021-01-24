@@ -1,23 +1,23 @@
-﻿using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.IO.Pipes;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Drawing;
+    using System.IO;
+    using System.IO.Pipes;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Threading;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     public partial class FormMain : Form {
         public const string PipeName = "YDL_UI_IO";
 
@@ -130,7 +130,7 @@ namespace Maxstupo.YdlUi.Forms {
             downloadManager.Load(true);
 
             if (urlToAdd != null) {
-                BeginInvoke((Action<string, bool>)((url, silent) => {
+                BeginInvoke((Action<string, bool>) ((url, silent) => {
                     ShowAddDownloadDialogIfValidUrl(url, silent);
                 }), urlToAdd, isSilent);
             }
@@ -150,7 +150,7 @@ namespace Maxstupo.YdlUi.Forms {
             PreferencesManager.Preferences.Language = Localization.Language;
 
             Localization.ApplyLocaleText(this);
-            Localization.ApplyLocaleText(contextMenuStripView, null, (string)dgvDownloads.Tag, 1);
+            Localization.ApplyLocaleText(contextMenuStripView, null, (string) dgvDownloads.Tag, 1);
 
             // Status text at the bottom left.
             DownloadManager_PropertyChanged(null, null);
@@ -192,7 +192,7 @@ namespace Maxstupo.YdlUi.Forms {
                             string urlToAdd = data.Substring(2);
 
 
-                            BeginInvoke((Action<string, bool>)((url, isSilent) => {
+                            BeginInvoke((Action<string, bool>) ((url, isSilent) => {
                                 ShowAddDownloadDialogIfValidUrl(url, isSilent);
                             }), urlToAdd, silent);
                         }
@@ -289,7 +289,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void ShowAddDownloadDialog(string url = null, bool silent = false) {
-            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, url, null, false, silent)) {
+            using (FormAddDownload dialog = new FormAddDownload(PreferencesManager.Preferences, downloadManager, url, null, false, silent)) {
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                     AddDownload(dialog.Download);
             }
@@ -346,7 +346,7 @@ namespace Maxstupo.YdlUi.Forms {
 
         private void FormMain_DragEnter(object sender, DragEventArgs e) {
 
-            string url = (string)e.Data.GetData(DataFormats.Text);
+            string url = (string) e.Data.GetData(DataFormats.Text);
             if (url != null && Util.IsValidUrl(url)) {
                 e.Effect = DragDropEffects.Copy;
             } else {
@@ -355,7 +355,7 @@ namespace Maxstupo.YdlUi.Forms {
         }
 
         private void FormMain_DragDrop(object sender, DragEventArgs e) {
-            string url = (string)e.Data.GetData(DataFormats.Text);
+            string url = (string) e.Data.GetData(DataFormats.Text);
             ShowAddDownloadDialogIfValidUrl(url, PreferencesManager.Preferences.AutoConfirmDragDropDownloads);
         }
 
@@ -464,7 +464,7 @@ namespace Maxstupo.YdlUi.Forms {
             if (e.RowIndex < 0 || e.ColumnIndex != 0)
                 return;
 
-            Download download = (Download)dgvDownloads.Rows[e.RowIndex].DataBoundItem;
+            Download download = (Download) dgvDownloads.Rows[e.RowIndex].DataBoundItem;
             if (download != null)
                 e.ToolTipText = download?.Title ?? e.ToolTipText;
         }
@@ -472,7 +472,7 @@ namespace Maxstupo.YdlUi.Forms {
         // This method is called once at startup of YDL-UI, if it returns true we will check for updates.
         private bool ShouldCheckForUpdates() {
             // If last update time isn't set in preferences, it will default to 1/01/0001 12:00AM
-            DateTime lastUpdateTime = PreferencesManager.Preferences.LastUpdateTime; 
+            DateTime lastUpdateTime = PreferencesManager.Preferences.LastUpdateTime;
             TimeSpan durationSinceUpdate = (DateTime.Now.ToUniversalTime() - lastUpdateTime).Duration();
 
             switch (PreferencesManager.Preferences.UpdateInterval) {
@@ -552,11 +552,11 @@ namespace Maxstupo.YdlUi.Forms {
                     using (StreamWriter sw = new StreamWriter(dialog.FileName, false, new UTF8Encoding(false))) {
 
                         if (dialog.FilterIndex == 2) { // Export json file.
-                            string[] urls = dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download)r.DataBoundItem).Url).ToArray();
+                            string[] urls = dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download) r.DataBoundItem).Url).ToArray();
                             sw.Write(JsonConvert.SerializeObject(urls, Formatting.Indented));
 
                         } else { // Export plain text file.
-                            foreach (Download download in dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => (Download)r.DataBoundItem))
+                            foreach (Download download in dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => (Download) r.DataBoundItem))
                                 sw.WriteLine(download.Url);
                         }
 
@@ -572,7 +572,7 @@ namespace Maxstupo.YdlUi.Forms {
             if (filepath != null) {
                 bool isJson = Path.GetExtension(filepath).Equals(".json", StringComparison.InvariantCultureIgnoreCase);
 
-                using (FormImportDownloads dialog = new FormImportDownloads(filepath, isJson, PreferencesManager.Preferences, ContainedInDownloadList, AddDownload)) {
+                using (FormImportDownloads dialog = new FormImportDownloads(filepath, isJson, PreferencesManager.Preferences, downloadManager, ContainedInDownloadList, AddDownload)) {
                     dialog.ShowDialog(this);
                 }
             }
@@ -580,7 +580,7 @@ namespace Maxstupo.YdlUi.Forms {
 
 
         private bool ContainedInDownloadList(string url) {
-            return dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download)r.DataBoundItem).Url).Contains(url);
+            return dgvDownloads.Rows.Cast<DataGridViewRow>().Select(r => ((Download) r.DataBoundItem).Url).Contains(url);
         }
 
         #endregion
@@ -649,5 +649,7 @@ namespace Maxstupo.YdlUi.Forms {
             selectToolStripMenuItem.Enabled = hasDownloads;
             exportToolStripMenuItem.Enabled = hasDownloads;
         }
+
     }
+
 }

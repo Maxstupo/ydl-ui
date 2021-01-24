@@ -1,19 +1,21 @@
-﻿using Maxstupo.YdlUi.Controls;
-using Maxstupo.YdlUi.Settings;
-using Maxstupo.YdlUi.Utility;
-using Maxstupo.YdlUi.YoutubeDL;
-using Maxstupo.YdlUi.YoutubeDL.Model;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
+﻿namespace Maxstupo.YdlUi.Forms {
 
-namespace Maxstupo.YdlUi.Forms {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Maxstupo.YdlUi.Controls;
+    using Maxstupo.YdlUi.Settings;
+    using Maxstupo.YdlUi.Utility;
+    using Maxstupo.YdlUi.YoutubeDL;
+    using Maxstupo.YdlUi.YoutubeDL.Model;
+
     public partial class FormAddDownload : Form {
         private readonly UiState uiState = new UiState();
         private readonly Preferences preferences;
+        private readonly DownloadManager downloadManager;
 
         private Preset preset;
 
@@ -30,12 +32,12 @@ namespace Maxstupo.YdlUi.Forms {
         private Size minimumSizeAdvancedMode;
         private Size previousSizeBasicMode;
 
-        public FormAddDownload(Preferences preferences, string url, Preset preset, bool isPresetEditMode, bool isSilent = false) {
+        public FormAddDownload(Preferences preferences, DownloadManager downloadManager, string url, Preset preset, bool isPresetEditMode, bool isSilent = false) {
             InitializeComponent();
             InitializeBasicAdvancedModes(preferences.BasicMode);
 
             this.preferences = preferences;
-
+            this.downloadManager = downloadManager;
             this.preset = preset;
             this.IsPresetEditMode = isPresetEditMode;
             this.IsSilent = isSilent;
@@ -67,6 +69,14 @@ namespace Maxstupo.YdlUi.Forms {
             txtDownloadArchive.BindEnabledTo(cbDownloadArchive);
             btnDownloadArchiveBrowse.BindEnabledTo(cbDownloadArchive);
 
+            txtUrl.TextChanged += tabControl_AttemptPreviewUpdate;
+            txtDownloadDirectory.TextChanged += tabControl_AttemptPreviewUpdate;
+
+            cbFilenameTemplate.CheckStateChanged += tabControl_AttemptPreviewUpdate;
+            txtFilenameTemplate.TextChanged += tabControl_AttemptPreviewUpdate;
+
+            cbDownloadArchive.CheckStateChanged += tabControl_AttemptPreviewUpdate;
+            txtDownloadArchive.TextChanged += tabControl_AttemptPreviewUpdate;
 
             // Preload data bindings for tabs. (XXX: Really need to find a better way of doing this)
             tabControl.PreloadTabs();
@@ -105,11 +115,11 @@ namespace Maxstupo.YdlUi.Forms {
                 int maxPresetTextWidth = cbxPreset.Size.Width;
                 foreach (Preset item in cbxPreset.Items.Cast<Preset>())
                     maxPresetTextWidth = Math.Max(maxPresetTextWidth, TextRenderer.MeasureText(item.DisplayText, cbxPreset.Font).Width);
-                
+
                 // +20 width for "dropdown arrow"
                 cbxPreset.MaximumSize = new Size(Math.Max(maxPresetTextWidth + 20, cbxPreset.MinimumSize.Width), cbxPreset.MaximumSize.Height);
                 cbxPreset.DropDownWidth = maxPresetTextWidth;
-           
+
                 txtUrl.TextChanged += TxtUrl_TextChanged;
                 TxtUrl_TextChanged(this, new EventArgs());
             }
@@ -131,11 +141,11 @@ namespace Maxstupo.YdlUi.Forms {
             }
 
             if (IsSilent) {
-                BeginInvoke((Action<Button>)(btn => {
+                BeginInvoke((Action<Button>) (btn => {
                     btn.PerformClick();
                 }), btnAdd);
             } else {
-                BeginInvoke((Action)delegate {
+                BeginInvoke((Action) delegate {
                     txtUrl.Focus();
                 });
             }
@@ -325,6 +335,23 @@ namespace Maxstupo.YdlUi.Forms {
             }
         }
 
+        private void tabControl_AttemptPreviewUpdate(object sender, EventArgs e) {
+            int tpCmdIndex = tabControl.TabPages.IndexOf(tpCommandPreview);
+            if (tabControl.SelectedIndex == tpCmdIndex)
+                UpdateCommandPreview();
+        }
+
+        private void UpdateCommandPreview() {
+            if (txtUrl.Text.Length == 0) {
+                txtCommandPreview.Text = Localization.GetString("download_dialog.preview.no_url", "<Waiting for URL>");
+            } else {
+                YdlArguments args = new YdlArguments { Url = txtUrl.Text };
+                SetArguments(args);
+
+                txtCommandPreview.Text = $"\"{downloadManager.YdlPath}\" {Download.ArgumentSerializer.Serialize(args)}";
+            }
+        }
+
         private void UpdateStateBetweenModes() {
             if (BasicMode) {
                 basicAddDownloadPanel.cbWriteThumbnail.Checked = quality.cbWriteThumbnail.Checked;
@@ -364,6 +391,7 @@ namespace Maxstupo.YdlUi.Forms {
                 preferences.StoredDownloadSettings.State = uiState.CreateFrom(this, nameof(txtUrl), nameof(cbxPreset));
         }
 
+
         #region Performance Optimization
 
         private void FormAddDownload_ResizeBegin(object sender, EventArgs e) {
@@ -377,4 +405,5 @@ namespace Maxstupo.YdlUi.Forms {
         #endregion
 
     }
+
 }
