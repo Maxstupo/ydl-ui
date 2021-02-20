@@ -1,5 +1,5 @@
 ﻿namespace Maxstupo.YdlUi.Forms.Tab {
-    partial class TabQuality {
+    partial class TabGeneral {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -28,21 +28,31 @@
             this.cbIgnoreErrors = new System.Windows.Forms.CheckBox();
             this.cbAbortOnErrors = new System.Windows.Forms.CheckBox();
             this.gbFileSystem = new System.Windows.Forms.GroupBox();
+            this.cbWriteSub = new System.Windows.Forms.CheckBox();
             this.cbNoOverwrites = new System.Windows.Forms.CheckBox();
             this.cbRestrictFilenames = new System.Windows.Forms.CheckBox();
             this.cbWriteThumbnail = new System.Windows.Forms.CheckBox();
             this.cbWriteAnnotations = new System.Windows.Forms.CheckBox();
             this.cbWriteDescription = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cbAddMetadata = new System.Windows.Forms.CheckBox();
+            this.cbEmbedThumbnail = new System.Windows.Forms.CheckBox();
+            this.cbxAudioOnly = new System.Windows.Forms.ComboBox();
+            this.cbAudioOnly = new System.Windows.Forms.CheckBox();
+            this.cbRecodeFormat = new System.Windows.Forms.CheckBox();
+            this.cbxRecodeFormat = new System.Windows.Forms.ComboBox();
             this.cbCustomFormatSelector = new System.Windows.Forms.CheckBox();
             this.txtCustomFormatSelector = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
             this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
-            this.cbWriteSub = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gbGeneral.SuspendLayout();
             this.gbFileSystem.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbGeneral
@@ -53,11 +63,11 @@
             this.gbGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbGeneral.Location = new System.Drawing.Point(3, 105);
             this.gbGeneral.Name = "gbGeneral";
-            this.gbGeneral.Size = new System.Drawing.Size(620, 68);
+            this.gbGeneral.Size = new System.Drawing.Size(620, 72);
             this.gbGeneral.TabIndex = 3;
             this.gbGeneral.TabStop = false;
-            this.gbGeneral.Tag = "general";
-            this.gbGeneral.Text = "General";
+            this.gbGeneral.Tag = "download";
+            this.gbGeneral.Text = "Download";
             // 
             // cbIgnoreErrors
             // 
@@ -100,11 +110,23 @@
             this.gbFileSystem.MinimumSize = new System.Drawing.Size(100, 170);
             this.gbFileSystem.Name = "gbFileSystem";
             this.tableLayoutPanel1.SetRowSpan(this.gbFileSystem, 2);
-            this.gbFileSystem.Size = new System.Drawing.Size(133, 170);
+            this.gbFileSystem.Size = new System.Drawing.Size(133, 174);
             this.gbFileSystem.TabIndex = 2;
             this.gbFileSystem.TabStop = false;
             this.gbFileSystem.Tag = "file_system";
             this.gbFileSystem.Text = "File System";
+            // 
+            // cbWriteSub
+            // 
+            this.cbWriteSub.AutoSize = true;
+            this.cbWriteSub.Location = new System.Drawing.Point(6, 90);
+            this.cbWriteSub.Name = "cbWriteSub";
+            this.cbWriteSub.Size = new System.Drawing.Size(97, 17);
+            this.cbWriteSub.TabIndex = 5;
+            this.cbWriteSub.Tag = "write_sub";
+            this.cbWriteSub.Text = "Write Subtitle";
+            this.toolTip.SetToolTip(this.cbWriteSub, "Write subtitle file.");
+            this.cbWriteSub.UseVisualStyleBackColor = true;
             // 
             // cbNoOverwrites
             // 
@@ -176,11 +198,87 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 140;
             // 
+            // cbAddMetadata
+            // 
+            this.cbAddMetadata.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbAddMetadata.AutoSize = true;
+            this.cbAddMetadata.Location = new System.Drawing.Point(3, 80);
+            this.cbAddMetadata.Name = "cbAddMetadata";
+            this.cbAddMetadata.Size = new System.Drawing.Size(99, 17);
+            this.cbAddMetadata.TabIndex = 5;
+            this.cbAddMetadata.Tag = "add_metadata";
+            this.cbAddMetadata.Text = "Add Metadata";
+            this.toolTip.SetToolTip(this.cbAddMetadata, "Write metadata to the video file.");
+            this.cbAddMetadata.UseVisualStyleBackColor = true;
+            // 
+            // cbEmbedThumbnail
+            // 
+            this.cbEmbedThumbnail.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbEmbedThumbnail.AutoSize = true;
+            this.cbEmbedThumbnail.Location = new System.Drawing.Point(3, 57);
+            this.cbEmbedThumbnail.Name = "cbEmbedThumbnail";
+            this.cbEmbedThumbnail.Size = new System.Drawing.Size(119, 17);
+            this.cbEmbedThumbnail.TabIndex = 4;
+            this.cbEmbedThumbnail.Tag = "embed_thumbnail";
+            this.cbEmbedThumbnail.Text = "Embed Thumbnail";
+            this.toolTip.SetToolTip(this.cbEmbedThumbnail, "Embed thumbnail in the audio as cover art.");
+            this.cbEmbedThumbnail.UseVisualStyleBackColor = true;
+            // 
+            // cbxAudioOnly
+            // 
+            this.cbxAudioOnly.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbxAudioOnly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAudioOnly.FormattingEnabled = true;
+            this.cbxAudioOnly.Location = new System.Drawing.Point(128, 3);
+            this.cbxAudioOnly.Name = "cbxAudioOnly";
+            this.cbxAudioOnly.Size = new System.Drawing.Size(116, 21);
+            this.cbxAudioOnly.TabIndex = 1;
+            this.cbxAudioOnly.Tag = "audio_only.dropdown";
+            this.toolTip.SetToolTip(this.cbxAudioOnly, "Convert video file to audio-only file.");
+            // 
+            // cbAudioOnly
+            // 
+            this.cbAudioOnly.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbAudioOnly.AutoSize = true;
+            this.cbAudioOnly.Location = new System.Drawing.Point(3, 5);
+            this.cbAudioOnly.Name = "cbAudioOnly";
+            this.cbAudioOnly.Size = new System.Drawing.Size(87, 17);
+            this.cbAudioOnly.TabIndex = 0;
+            this.cbAudioOnly.Tag = "audio_only";
+            this.cbAudioOnly.Text = "Audio Only:";
+            this.toolTip.SetToolTip(this.cbAudioOnly, "Convert video file to audio-only file.");
+            this.cbAudioOnly.UseVisualStyleBackColor = true;
+            // 
+            // cbRecodeFormat
+            // 
+            this.cbRecodeFormat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbRecodeFormat.AutoSize = true;
+            this.cbRecodeFormat.Location = new System.Drawing.Point(3, 32);
+            this.cbRecodeFormat.Name = "cbRecodeFormat";
+            this.cbRecodeFormat.Size = new System.Drawing.Size(106, 17);
+            this.cbRecodeFormat.TabIndex = 2;
+            this.cbRecodeFormat.Tag = "recode_format";
+            this.cbRecodeFormat.Text = "Recode Format:";
+            this.toolTip.SetToolTip(this.cbRecodeFormat, "Encode the video to another format if necessary.");
+            this.cbRecodeFormat.UseVisualStyleBackColor = true;
+            // 
+            // cbxRecodeFormat
+            // 
+            this.cbxRecodeFormat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbxRecodeFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxRecodeFormat.FormattingEnabled = true;
+            this.cbxRecodeFormat.Location = new System.Drawing.Point(128, 30);
+            this.cbxRecodeFormat.Name = "cbxRecodeFormat";
+            this.cbxRecodeFormat.Size = new System.Drawing.Size(116, 21);
+            this.cbxRecodeFormat.TabIndex = 3;
+            this.cbxRecodeFormat.Tag = "recode_format.value";
+            this.toolTip.SetToolTip(this.cbxRecodeFormat, "Encode the video to another format if necessary.");
+            // 
             // cbCustomFormatSelector
             // 
             this.cbCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbCustomFormatSelector.AutoSize = true;
-            this.cbCustomFormatSelector.Location = new System.Drawing.Point(6, 312);
+            this.cbCustomFormatSelector.Location = new System.Drawing.Point(6, 341);
             this.cbCustomFormatSelector.Name = "cbCustomFormatSelector";
             this.cbCustomFormatSelector.Size = new System.Drawing.Size(148, 17);
             this.cbCustomFormatSelector.TabIndex = 1;
@@ -192,7 +290,7 @@
             // 
             this.txtCustomFormatSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCustomFormatSelector.Location = new System.Drawing.Point(6, 335);
+            this.txtCustomFormatSelector.Location = new System.Drawing.Point(6, 364);
             this.txtCustomFormatSelector.Name = "txtCustomFormatSelector";
             this.txtCustomFormatSelector.ReadOnly = true;
             this.txtCustomFormatSelector.Size = new System.Drawing.Size(760, 22);
@@ -201,22 +299,27 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.frameRateSelector, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.videoQualitySelector, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbGeneral, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.gbFileSystem, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(766, 176);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(766, 332);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
             // 
@@ -243,17 +346,45 @@
             this.videoQualitySelector.TabIndex = 0;
             this.videoQualitySelector.Tag = "#";
             // 
-            // cbWriteSub
+            // groupBox1
             // 
-            this.cbWriteSub.AutoSize = true;
-            this.cbWriteSub.Location = new System.Drawing.Point(6, 90);
-            this.cbWriteSub.Name = "cbWriteSub";
-            this.cbWriteSub.Size = new System.Drawing.Size(97, 17);
-            this.cbWriteSub.TabIndex = 5;
-            this.cbWriteSub.Tag = "write_sub";
-            this.cbWriteSub.Text = "Write Subtitle";
-            this.toolTip.SetToolTip(this.cbWriteSub, "Write subtitle file.");
-            this.cbWriteSub.UseVisualStyleBackColor = true;
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 3);
+            this.groupBox1.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox1.Location = new System.Drawing.Point(3, 183);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(760, 121);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Tag = "post_processing";
+            this.groupBox1.Text = "Post Processing";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.cbAddMetadata, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.cbEmbedThumbnail, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.cbxAudioOnly, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbAudioOnly, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbRecodeFormat, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cbxRecodeFormat, 1, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(755, 101);
+            this.tableLayoutPanel2.TabIndex = 1;
+            this.tableLayoutPanel2.Tag = "#$";
             // 
             // TabQuality
             // 
@@ -264,15 +395,18 @@
             this.Controls.Add(this.cbCustomFormatSelector);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "TabQuality";
-            this.Size = new System.Drawing.Size(772, 366);
+            this.Size = new System.Drawing.Size(772, 395);
             this.Tag = "#";
-            this.Load += new System.EventHandler(this.TabQuality_Load);
+            this.Load += new System.EventHandler(this.TabGeneral_Load);
             this.gbGeneral.ResumeLayout(false);
             this.gbGeneral.PerformLayout();
             this.gbFileSystem.ResumeLayout(false);
             this.gbFileSystem.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +429,13 @@
         private System.Windows.Forms.TextBox txtCustomFormatSelector;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.CheckBox cbWriteSub;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.CheckBox cbAddMetadata;
+        private System.Windows.Forms.CheckBox cbEmbedThumbnail;
+        public System.Windows.Forms.ComboBox cbxAudioOnly;
+        public System.Windows.Forms.CheckBox cbAudioOnly;
+        private System.Windows.Forms.CheckBox cbRecodeFormat;
+        private System.Windows.Forms.ComboBox cbxRecodeFormat;
     }
 }

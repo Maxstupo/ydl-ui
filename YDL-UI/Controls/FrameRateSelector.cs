@@ -38,7 +38,7 @@
             cbxFrameRate.SelectedIndex = 0;
             cbxFrameRate.Format += (s, ee) => {
                 int value = (int) ee.ListItem;
-                ee.Value = value < 0 ? Localization.GetString("download_dialog.quality.fr.custom", "Custom") : value.ToString();
+                ee.Value = value < 0 ? Localization.GetString("download_dialog.general.fr.custom", "Custom") : value.ToString();
             };
 
             nudCustomFrameRate.Visible = false;

@@ -29,7 +29,7 @@
 
         public override string ToString() {
             if (Width < 0 && Height < 0)
-                return Localization.GetString("download_dialog.quality.vq.custom", "Custom");
+                return Localization.GetString("download_dialog.general.vq.custom", "Custom");
 
             string nicknames = string.Empty;
             if (Names != null && Names.Length > 0) {

@@ -5,13 +5,13 @@
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.YoutubeDL.Model;
 
-    public partial class TabQuality : UserControl {
+    public partial class TabGeneral : UserControl {
 
-        public TabQuality() {
+        public TabGeneral() {
             InitializeComponent();
         }
 
-        private void TabQuality_Load(object sender, EventArgs e) {
+        private void TabGeneral_Load(object sender, EventArgs e) {
             videoQualitySelector.OnChange += UpdateCustomFormat;
             frameRateSelector.OnChange += UpdateCustomFormat;
 
@@ -21,6 +21,20 @@
             frameRateSelector.BindEnabledTo(cbCustomFormatSelector).Invert();
 
             UpdateCustomFormat(this, EventArgs.Empty);
+
+
+            cbxAudioOnly.DataSource = Enum.GetValues(typeof(AudioFormat));
+            cbxAudioOnly.Format += (s, ee) => {
+                if (((AudioFormat) ee.ListItem) == AudioFormat.Best)
+                    ee.Value = Localization.GetString("download_dialog.general.post_processing.audio_only.best", AudioFormat.Best.ToString());
+            };
+            cbxAudioOnly.SelectedItem = AudioFormat.Mp3;
+
+            cbxRecodeFormat.DataSource = Enum.GetValues(typeof(VideoFormatRecode));
+            cbxRecodeFormat.SelectedItem = VideoFormatRecode.Mp4;
+
+            cbxAudioOnly.BindEnabledTo(cbAudioOnly);
+            cbxRecodeFormat.BindEnabledTo(cbRecodeFormat);
         }
 
         private void UpdateCustomFormat(object sender, EventArgs e) {
@@ -33,7 +47,7 @@
             if (arguments == null)
                 return;
 
-            // General
+            // Download
             arguments.General.IgnoreErrors = cbIgnoreErrors.Checked;
             arguments.General.AbortOnError = cbAbortOnErrors.Checked;
 
@@ -52,6 +66,17 @@
                 FormatSelector formatSelector = new FormatSelector(videoQualitySelector, frameRateSelector);
                 arguments.VideoFormat.Format = formatSelector.ToString();
             }
+
+
+            // Post Processing 
+            arguments.PostProcessing.AudioFormat = cbxAudioOnly.Enabled ? (AudioFormat?) cbxAudioOnly.SelectedValue : null;
+            arguments.PostProcessing.ExtractAudio = (arguments.PostProcessing.AudioFormat != null);
+
+            arguments.PostProcessing.EmbedThumbnail = cbEmbedThumbnail.Checked;
+            arguments.PostProcessing.AddMetadata = cbAddMetadata.Checked;
+
+            arguments.PostProcessing.RecodeVideo = cbxRecodeFormat.Enabled ? (VideoFormatRecode?) cbxRecodeFormat.SelectedValue : null;
+
         }
 
     }

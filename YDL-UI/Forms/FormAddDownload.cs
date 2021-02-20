@@ -125,11 +125,10 @@
             }
 
 
-            Localization.RegisterTooltip(quality, quality.toolTip);
-            Localization.RegisterTooltip(quality.frameRateSelector, quality.frameRateSelector.toolTip);
-            Localization.RegisterTooltip(quality.videoQualitySelector, quality.videoQualitySelector.toolTip);
+            Localization.RegisterTooltip(general, general.toolTip);
+            Localization.RegisterTooltip(general.frameRateSelector, general.frameRateSelector.toolTip);
+            Localization.RegisterTooltip(general.videoQualitySelector, general.videoQualitySelector.toolTip);
 
-            Localization.RegisterTooltip(postProcessing, postProcessing.toolTip);
             Localization.RegisterTooltip(workarounds, workarounds.toolTip);
             Localization.RegisterTooltip(videoSelection, videoSelection.toolTip);
 
@@ -283,9 +282,8 @@
 
 
             if (!BasicMode) {
-                quality.SetArguments(arguments);
+                general.SetArguments(arguments);
                 videoSelection.SetArguments(arguments);
-                postProcessing.SetArguments(arguments);
                 workarounds.SetArguments(arguments);
             } else {
                 basicAddDownloadPanel.SetArguments(arguments);
@@ -352,26 +350,26 @@
 
         private void UpdateStateBetweenModes() {
             if (BasicMode) {
-                basicAddDownloadPanel.cbWriteThumbnail.Checked = quality.cbWriteThumbnail.Checked;
-                basicAddDownloadPanel.cbRestrictFilenames.Checked = quality.cbRestrictFilenames.Checked;
-                basicAddDownloadPanel.cbNoOverwrites.Checked = quality.cbNoOverwrites.Checked;
+                basicAddDownloadPanel.cbWriteThumbnail.Checked = general.cbWriteThumbnail.Checked;
+                basicAddDownloadPanel.cbRestrictFilenames.Checked = general.cbRestrictFilenames.Checked;
+                basicAddDownloadPanel.cbNoOverwrites.Checked = general.cbNoOverwrites.Checked;
 
-                basicAddDownloadPanel.cbAudioOnly.Checked = postProcessing.cbAudioOnly.Checked;
-                basicAddDownloadPanel.cbxAudioOnly.SelectedIndex = postProcessing.cbxAudioOnly.SelectedIndex;
+                basicAddDownloadPanel.cbAudioOnly.Checked = general.cbAudioOnly.Checked;
+                basicAddDownloadPanel.cbxAudioOnly.SelectedIndex = general.cbxAudioOnly.SelectedIndex;
 
-                basicAddDownloadPanel.videoQualitySelector.Set(quality.videoQualitySelector);
-                basicAddDownloadPanel.frameRateSelector.Set(quality.frameRateSelector);
+                basicAddDownloadPanel.videoQualitySelector.Set(general.videoQualitySelector);
+                basicAddDownloadPanel.frameRateSelector.Set(general.frameRateSelector);
             } else {
 
-                quality.cbWriteThumbnail.Checked = basicAddDownloadPanel.cbWriteThumbnail.Checked;
-                quality.cbRestrictFilenames.Checked = basicAddDownloadPanel.cbRestrictFilenames.Checked;
-                quality.cbNoOverwrites.Checked = basicAddDownloadPanel.cbNoOverwrites.Checked;
+                general.cbWriteThumbnail.Checked = basicAddDownloadPanel.cbWriteThumbnail.Checked;
+                general.cbRestrictFilenames.Checked = basicAddDownloadPanel.cbRestrictFilenames.Checked;
+                general.cbNoOverwrites.Checked = basicAddDownloadPanel.cbNoOverwrites.Checked;
 
-                postProcessing.cbAudioOnly.Checked = basicAddDownloadPanel.cbAudioOnly.Checked;
-                basicAddDownloadPanel.cbxAudioOnly.SelectedIndex = postProcessing.cbxAudioOnly.SelectedIndex;
+                general.cbAudioOnly.Checked = basicAddDownloadPanel.cbAudioOnly.Checked;
+                basicAddDownloadPanel.cbxAudioOnly.SelectedIndex = general.cbxAudioOnly.SelectedIndex;
 
-                quality.videoQualitySelector.Set(basicAddDownloadPanel.videoQualitySelector);
-                quality.frameRateSelector.Set(basicAddDownloadPanel.frameRateSelector);
+                general.videoQualitySelector.Set(basicAddDownloadPanel.videoQualitySelector);
+                general.frameRateSelector.Set(basicAddDownloadPanel.frameRateSelector);
 
             }
         }

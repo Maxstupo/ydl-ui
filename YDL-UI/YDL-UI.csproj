@@ -222,17 +222,11 @@
     <Compile Include="Forms\FormUpdateYoutubeDl.Designer.cs">
       <DependentUpon>FormUpdateYoutubeDl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Tab\TabPostProcessing.cs">
+    <Compile Include="Forms\Tab\TabGeneral.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Tab\TabPostProcessing.Designer.cs">
-      <DependentUpon>TabPostProcessing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Tab\TabQuality.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\Tab\TabQuality.Designer.cs">
-      <DependentUpon>TabQuality.cs</DependentUpon>
+    <Compile Include="Forms\Tab\TabGeneral.Designer.cs">
+      <DependentUpon>TabGeneral.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Tab\TabVideoSelection.cs">
       <SubType>UserControl</SubType>
@@ -314,11 +308,8 @@
     <EmbeddedResource Include="Forms\FormUpdateYoutubeDl.resx">
       <DependentUpon>FormUpdateYoutubeDl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Tab\TabPostProcessing.resx">
-      <DependentUpon>TabPostProcessing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Tab\TabQuality.resx">
-      <DependentUpon>TabQuality.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Tab\TabGeneral.resx">
+      <DependentUpon>TabGeneral.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tab\TabVideoSelection.resx">
       <DependentUpon>TabVideoSelection.cs</DependentUpon>

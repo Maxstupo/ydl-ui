@@ -36,10 +36,11 @@
             this.txtDownloadArchive = new System.Windows.Forms.TextBox();
             this.btnDownloadArchiveBrowse = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tpQuality = new System.Windows.Forms.TabPage();
+            this.tpGeneral = new System.Windows.Forms.TabPage();
             this.tpVideoSelection = new System.Windows.Forms.TabPage();
-            this.tpPostProcessing = new System.Windows.Forms.TabPage();
             this.tpWorkarounds = new System.Windows.Forms.TabPage();
+            this.tpCommandPreview = new System.Windows.Forms.TabPage();
+            this.txtCommandPreview = new System.Windows.Forms.TextBox();
             this.cbDownloadArchive = new System.Windows.Forms.CheckBox();
             this.cbFilenameTemplate = new System.Windows.Forms.CheckBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -49,22 +50,18 @@
             this.panelActions = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tpCommandPreview = new System.Windows.Forms.TabPage();
-            this.txtCommandPreview = new System.Windows.Forms.TextBox();
             this.txtFilenameTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
-            this.quality = new Maxstupo.YdlUi.Forms.Tab.TabQuality();
+            this.general = new Maxstupo.YdlUi.Forms.Tab.TabGeneral();
             this.videoSelection = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
-            this.postProcessing = new Maxstupo.YdlUi.Forms.Tab.TabPostProcessing();
             this.workarounds = new Maxstupo.YdlUi.Forms.Tab.TabWorkarounds();
             this.tabControl.SuspendLayout();
-            this.tpQuality.SuspendLayout();
+            this.tpGeneral.SuspendLayout();
             this.tpVideoSelection.SuspendLayout();
-            this.tpPostProcessing.SuspendLayout();
             this.tpWorkarounds.SuspendLayout();
+            this.tpCommandPreview.SuspendLayout();
             this.panelActions.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tpCommandPreview.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -196,9 +193,8 @@
             this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tpQuality);
+            this.tabControl.Controls.Add(this.tpGeneral);
             this.tabControl.Controls.Add(this.tpVideoSelection);
-            this.tabControl.Controls.Add(this.tpPostProcessing);
             this.tabControl.Controls.Add(this.tpWorkarounds);
             this.tabControl.Controls.Add(this.tpCommandPreview);
             this.tabControl.Location = new System.Drawing.Point(12, 121);
@@ -209,16 +205,16 @@
             this.tabControl.Tag = "#";
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_AttemptPreviewUpdate);
             // 
-            // tpQuality
+            // tpGeneral
             // 
-            this.tpQuality.BackColor = System.Drawing.Color.White;
-            this.tpQuality.Controls.Add(this.quality);
-            this.tpQuality.Location = new System.Drawing.Point(4, 22);
-            this.tpQuality.Name = "tpQuality";
-            this.tpQuality.Size = new System.Drawing.Size(766, 383);
-            this.tpQuality.TabIndex = 3;
-            this.tpQuality.Tag = "quality";
-            this.tpQuality.Text = "Quality";
+            this.tpGeneral.BackColor = System.Drawing.Color.White;
+            this.tpGeneral.Controls.Add(this.general);
+            this.tpGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tpGeneral.Name = "tpGeneral";
+            this.tpGeneral.Size = new System.Drawing.Size(766, 383);
+            this.tpGeneral.TabIndex = 3;
+            this.tpGeneral.Tag = "general";
+            this.tpGeneral.Text = "General";
             // 
             // tpVideoSelection
             // 
@@ -232,18 +228,6 @@
             this.tpVideoSelection.Tag = "video_selection";
             this.tpVideoSelection.Text = "Video Selection";
             // 
-            // tpPostProcessing
-            // 
-            this.tpPostProcessing.BackColor = System.Drawing.Color.White;
-            this.tpPostProcessing.Controls.Add(this.postProcessing);
-            this.tpPostProcessing.Location = new System.Drawing.Point(4, 22);
-            this.tpPostProcessing.Name = "tpPostProcessing";
-            this.tpPostProcessing.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPostProcessing.Size = new System.Drawing.Size(766, 383);
-            this.tpPostProcessing.TabIndex = 1;
-            this.tpPostProcessing.Tag = "post_processing";
-            this.tpPostProcessing.Text = "Post Processing";
-            // 
             // tpWorkarounds
             // 
             this.tpWorkarounds.BackColor = System.Drawing.Color.White;
@@ -254,6 +238,29 @@
             this.tpWorkarounds.TabIndex = 2;
             this.tpWorkarounds.Tag = "workarounds";
             this.tpWorkarounds.Text = "Workarounds";
+            // 
+            // tpCommandPreview
+            // 
+            this.tpCommandPreview.Controls.Add(this.txtCommandPreview);
+            this.tpCommandPreview.Location = new System.Drawing.Point(4, 22);
+            this.tpCommandPreview.Name = "tpCommandPreview";
+            this.tpCommandPreview.Padding = new System.Windows.Forms.Padding(3);
+            this.tpCommandPreview.Size = new System.Drawing.Size(766, 383);
+            this.tpCommandPreview.TabIndex = 4;
+            this.tpCommandPreview.Tag = "preview";
+            this.tpCommandPreview.Text = "Preview";
+            this.tpCommandPreview.UseVisualStyleBackColor = true;
+            // 
+            // txtCommandPreview
+            // 
+            this.txtCommandPreview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommandPreview.Location = new System.Drawing.Point(3, 3);
+            this.txtCommandPreview.Multiline = true;
+            this.txtCommandPreview.Name = "txtCommandPreview";
+            this.txtCommandPreview.ReadOnly = true;
+            this.txtCommandPreview.Size = new System.Drawing.Size(760, 377);
+            this.txtCommandPreview.TabIndex = 0;
+            this.txtCommandPreview.Tag = "!_ignore";
             // 
             // cbDownloadArchive
             // 
@@ -397,29 +404,6 @@
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
             // 
-            // tpCommandPreview
-            // 
-            this.tpCommandPreview.Controls.Add(this.txtCommandPreview);
-            this.tpCommandPreview.Location = new System.Drawing.Point(4, 22);
-            this.tpCommandPreview.Name = "tpCommandPreview";
-            this.tpCommandPreview.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCommandPreview.Size = new System.Drawing.Size(766, 383);
-            this.tpCommandPreview.TabIndex = 4;
-            this.tpCommandPreview.Tag = "preview";
-            this.tpCommandPreview.Text = "Preview";
-            this.tpCommandPreview.UseVisualStyleBackColor = true;
-            // 
-            // txtCommandPreview
-            // 
-            this.txtCommandPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCommandPreview.Location = new System.Drawing.Point(3, 3);
-            this.txtCommandPreview.Multiline = true;
-            this.txtCommandPreview.Name = "txtCommandPreview";
-            this.txtCommandPreview.ReadOnly = true;
-            this.txtCommandPreview.Size = new System.Drawing.Size(760, 377);
-            this.txtCommandPreview.TabIndex = 0;
-            this.txtCommandPreview.Tag = "!_ignore";
-            // 
             // txtFilenameTemplate
             // 
             this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -441,13 +425,13 @@
             // 
             // quality
             // 
-            this.quality.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.quality.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quality.Location = new System.Drawing.Point(0, 0);
-            this.quality.Name = "quality";
-            this.quality.Size = new System.Drawing.Size(766, 383);
-            this.quality.TabIndex = 0;
-            this.quality.Tag = "#";
+            this.general.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.general.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.general.Location = new System.Drawing.Point(0, 0);
+            this.general.Name = "quality";
+            this.general.Size = new System.Drawing.Size(766, 383);
+            this.general.TabIndex = 0;
+            this.general.Tag = "#";
             // 
             // videoSelection
             // 
@@ -458,16 +442,6 @@
             this.videoSelection.Size = new System.Drawing.Size(760, 377);
             this.videoSelection.TabIndex = 0;
             this.videoSelection.Tag = "#";
-            // 
-            // postProcessing
-            // 
-            this.postProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postProcessing.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.postProcessing.Location = new System.Drawing.Point(3, 3);
-            this.postProcessing.Name = "postProcessing";
-            this.postProcessing.Size = new System.Drawing.Size(760, 377);
-            this.postProcessing.TabIndex = 0;
-            this.postProcessing.Tag = "#";
             // 
             // workarounds
             // 
@@ -503,17 +477,16 @@
             this.ResizeBegin += new System.EventHandler(this.FormAddDownload_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.FormAddDownload_ResizeEnd);
             this.tabControl.ResumeLayout(false);
-            this.tpQuality.ResumeLayout(false);
+            this.tpGeneral.ResumeLayout(false);
             this.tpVideoSelection.ResumeLayout(false);
-            this.tpPostProcessing.ResumeLayout(false);
             this.tpWorkarounds.ResumeLayout(false);
+            this.tpCommandPreview.ResumeLayout(false);
+            this.tpCommandPreview.PerformLayout();
             this.panelActions.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tpCommandPreview.ResumeLayout(false);
-            this.tpCommandPreview.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -532,16 +505,14 @@
         private System.Windows.Forms.TextBox txtDownloadArchive;
         private System.Windows.Forms.Button btnDownloadArchiveBrowse;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tpQuality;
+        private System.Windows.Forms.TabPage tpGeneral;
         private System.Windows.Forms.TabPage tpVideoSelection;
-        private System.Windows.Forms.TabPage tpPostProcessing;
         private System.Windows.Forms.TabPage tpWorkarounds;
         private System.Windows.Forms.CheckBox cbDownloadArchive;
         private System.Windows.Forms.CheckBox cbFilenameTemplate;
         private Tab.TabVideoSelection videoSelection;
         private Tab.TabWorkarounds workarounds;
-        private Tab.TabPostProcessing postProcessing;
-        private Tab.TabQuality quality;
+        private Tab.TabGeneral general;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ComboBox cbxPreset;
         private System.Windows.Forms.Panel panelActions;
