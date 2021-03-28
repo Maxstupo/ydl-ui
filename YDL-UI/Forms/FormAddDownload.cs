@@ -344,6 +344,15 @@
                 YdlArguments args = new YdlArguments { Url = txtUrl.Text };
                 SetArguments(args);
 
+                // Arguments from the Download class.
+                args.General.IgnoreConfig = true;
+                args.FileSystem.NoCacheDir = true;
+                args.PostProcessing.PreferFFmpeg = true;
+                args.PostProcessing.FFmpegLocation = downloadManager.FfmpegPath;
+#if DEBUG
+                args.Verbosity.Simulate = true;
+#endif
+
                 txtCommandPreview.Text = $"\"{downloadManager.YdlPath}\" {Download.ArgumentSerializer.Serialize(args)}";
             }
         }
