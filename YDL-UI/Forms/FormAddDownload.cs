@@ -347,6 +347,7 @@
                 // Arguments from the Download class.
                 args.General.IgnoreConfig = true;
                 args.FileSystem.NoCacheDir = true;
+                args.FileSystem.NoMTime = true;
                 args.PostProcessing.PreferFFmpeg = true;
                 args.PostProcessing.FFmpegLocation = downloadManager.FfmpegPath;
 #if DEBUG
