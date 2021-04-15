@@ -258,6 +258,7 @@
             this.txtCommandPreview.Multiline = true;
             this.txtCommandPreview.Name = "txtCommandPreview";
             this.txtCommandPreview.ReadOnly = true;
+            this.txtCommandPreview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtCommandPreview.Size = new System.Drawing.Size(760, 377);
             this.txtCommandPreview.TabIndex = 0;
             this.txtCommandPreview.Tag = "!_ignore";
