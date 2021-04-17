@@ -22,6 +22,7 @@
 
             UpdateCustomFormat(this, EventArgs.Empty);
 
+            txtSubLanguages.BindEnabledTo(rbSubLanguages);
 
             cbxAudioOnly.DataSource = Enum.GetValues(typeof(AudioFormat));
             cbxAudioOnly.Format += (s, ee) => {
@@ -58,7 +59,10 @@
             arguments.FileSystem.NoOverwrites = cbNoOverwrites.Checked;
             arguments.Thumbnail.WriteThumbnail = cbWriteThumbnail.Checked;
 
-            arguments.Subtitle.WriteSub = cbWriteSub.Checked;
+            // Subtitles
+            arguments.Subtitle.AllSubs = rbSubAll.Checked;
+            arguments.Subtitle.WriteSub = rbSubDefault.Checked || rbSubLanguages.Checked;
+            arguments.Subtitle.SubLang = rbSubLanguages.Checked ? txtSubLanguages.Text : null;
 
             if (cbCustomFormatSelector.Checked) {
                 arguments.VideoFormat.Format = txtCustomFormatSelector.Text;
