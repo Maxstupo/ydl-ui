@@ -292,7 +292,7 @@
             this.txtSubLanguages.Size = new System.Drawing.Size(343, 22);
             this.txtSubLanguages.TabIndex = 2;
             this.txtSubLanguages.Tag = "languages.value";
-            this.toolTip.SetToolTip(this.txtSubLanguages, "Languages of the subtitles to download. Separated by commas.");
+            this.toolTip.SetToolTip(this.txtSubLanguages, "Languages of the subtitles to download. Separated by commas. Lowercase language codes (e.g. en, de, fr-CA, zh-Hans, es-MX)");
             // 
             // rbSubAll
             // 
