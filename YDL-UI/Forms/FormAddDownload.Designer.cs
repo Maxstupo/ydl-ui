@@ -50,6 +50,9 @@
             this.panelActions = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtCustomArguments = new System.Windows.Forms.TextBox();
+            this.cbCustomArguments = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtFilenameTemplate = new Maxstupo.YdlUi.Controls.KeywordTextBox();
             this.general = new Maxstupo.YdlUi.Forms.Tab.TabGeneral();
             this.videoSelection = new Maxstupo.YdlUi.Forms.Tab.TabVideoSelection();
@@ -62,6 +65,7 @@
             this.panelActions.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -241,6 +245,7 @@
             // 
             // tpCommandPreview
             // 
+            this.tpCommandPreview.Controls.Add(this.tableLayoutPanel3);
             this.tpCommandPreview.Controls.Add(this.txtCommandPreview);
             this.tpCommandPreview.Location = new System.Drawing.Point(4, 22);
             this.tpCommandPreview.Name = "tpCommandPreview";
@@ -253,13 +258,15 @@
             // 
             // txtCommandPreview
             // 
-            this.txtCommandPreview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommandPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCommandPreview.Location = new System.Drawing.Point(3, 3);
             this.txtCommandPreview.Multiline = true;
             this.txtCommandPreview.Name = "txtCommandPreview";
             this.txtCommandPreview.ReadOnly = true;
             this.txtCommandPreview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCommandPreview.Size = new System.Drawing.Size(760, 377);
+            this.txtCommandPreview.Size = new System.Drawing.Size(760, 345);
             this.txtCommandPreview.TabIndex = 0;
             this.txtCommandPreview.Tag = "!_ignore";
             // 
@@ -405,6 +412,48 @@
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Tag = "#$";
             // 
+            // txtCustomArguments
+            // 
+            this.txtCustomArguments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCustomArguments.Location = new System.Drawing.Point(133, 3);
+            this.txtCustomArguments.Name = "txtCustomArguments";
+            this.txtCustomArguments.Size = new System.Drawing.Size(630, 22);
+            this.txtCustomArguments.TabIndex = 2;
+            this.txtCustomArguments.Tag = "custom_arguments.value";
+            this.toolTip.SetToolTip(this.txtCustomArguments, "Extra command-line arguments for this download.");
+            this.txtCustomArguments.TextChanged += new System.EventHandler(this.txtCustomArguments_TextChanged);
+            // 
+            // cbCustomArguments
+            // 
+            this.cbCustomArguments.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbCustomArguments.AutoSize = true;
+            this.cbCustomArguments.Location = new System.Drawing.Point(3, 6);
+            this.cbCustomArguments.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this.cbCustomArguments.Name = "cbCustomArguments";
+            this.cbCustomArguments.Size = new System.Drawing.Size(127, 17);
+            this.cbCustomArguments.TabIndex = 3;
+            this.cbCustomArguments.Tag = "custom_arguments";
+            this.cbCustomArguments.Text = "Custom Arguments:";
+            this.toolTip.SetToolTip(this.cbCustomArguments, "Extra command-line arguments for this download.");
+            this.cbCustomArguments.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.cbCustomArguments, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtCustomArguments, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 354);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(766, 29);
+            this.tableLayoutPanel3.TabIndex = 4;
+            this.tableLayoutPanel3.Tag = "#$";
+            // 
             // txtFilenameTemplate
             // 
             this.txtFilenameTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -424,12 +473,12 @@
             this.txtFilenameTemplate.Tag = "filename_template.value";
             this.toolTip.SetToolTip(this.txtFilenameTemplate, "Output filename template.");
             // 
-            // quality
+            // general
             // 
             this.general.Dock = System.Windows.Forms.DockStyle.Fill;
             this.general.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.general.Location = new System.Drawing.Point(0, 0);
-            this.general.Name = "quality";
+            this.general.Name = "general";
             this.general.Size = new System.Drawing.Size(766, 383);
             this.general.TabIndex = 0;
             this.general.Tag = "#";
@@ -488,6 +537,8 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,5 +575,8 @@
         private System.Windows.Forms.Button btnInsertKeyword;
         private System.Windows.Forms.TabPage tpCommandPreview;
         private System.Windows.Forms.TextBox txtCommandPreview;
+        private System.Windows.Forms.TextBox txtCustomArguments;
+        private System.Windows.Forms.CheckBox cbCustomArguments;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }

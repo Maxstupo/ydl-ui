@@ -69,6 +69,8 @@
             txtDownloadArchive.BindEnabledTo(cbDownloadArchive);
             btnDownloadArchiveBrowse.BindEnabledTo(cbDownloadArchive);
 
+            txtCustomArguments.BindEnabledTo(cbCustomArguments);
+
             txtUrl.TextChanged += tabControl_AttemptPreviewUpdate;
             txtDownloadDirectory.TextChanged += tabControl_AttemptPreviewUpdate;
 
@@ -280,6 +282,7 @@
             if (arguments.VideoSelection.DownloadArchive != null)
                 arguments.VideoSelection.DownloadArchive = Util.GetAbsolutePath(arguments.VideoSelection.DownloadArchive);
 
+            arguments.CustomArgs = txtCustomArguments.GetText();
 
             if (!BasicMode) {
                 general.SetArguments(arguments);
@@ -335,6 +338,10 @@
             int tpCmdIndex = tabControl.TabPages.IndexOf(tpCommandPreview);
             if (tabControl.SelectedIndex == tpCmdIndex)
                 UpdateCommandPreview();
+        }
+
+        private void txtCustomArguments_TextChanged(object sender, EventArgs e) {
+            UpdateCommandPreview();
         }
 
         private void UpdateCommandPreview() {

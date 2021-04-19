@@ -9,6 +9,9 @@
     public class YdlArguments {
         [Argument("", QuotePolicy = QuotePolicy.Always, Order = int.MaxValue)] public string Url { get; set; } = null;
 
+        [Argument("", Order = int.MaxValue - 1)]
+        public string CustomArgs { get; set; }
+
         public YdlArgumentsGeneral General { get; set; } = new YdlArgumentsGeneral();
         public YdlArgumentsNetwork Network { get; set; } = new YdlArgumentsNetwork();
         public YdlArgumentsGeoRestriction GeoRestriction { get; set; } = new YdlArgumentsGeoRestriction();
