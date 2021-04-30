@@ -250,7 +250,7 @@
             this.tpCommandPreview.Location = new System.Drawing.Point(4, 22);
             this.tpCommandPreview.Name = "tpCommandPreview";
             this.tpCommandPreview.Padding = new System.Windows.Forms.Padding(3);
-            this.tpCommandPreview.Size = new System.Drawing.Size(766, 383);
+            this.tpCommandPreview.Size = new System.Drawing.Size(766, 393);
             this.tpCommandPreview.TabIndex = 4;
             this.tpCommandPreview.Tag = "preview";
             this.tpCommandPreview.Text = "Preview";
@@ -265,11 +265,11 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.cbCustomArguments, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.txtCustomArguments, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 45);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 365);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(192, 29);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(766, 28);
             this.tableLayoutPanel3.TabIndex = 4;
             this.tableLayoutPanel3.Tag = "#$";
             // 
@@ -277,7 +277,7 @@
             // 
             this.cbCustomArguments.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbCustomArguments.AutoSize = true;
-            this.cbCustomArguments.Location = new System.Drawing.Point(3, 6);
+            this.cbCustomArguments.Location = new System.Drawing.Point(3, 5);
             this.cbCustomArguments.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.cbCustomArguments.Name = "cbCustomArguments";
             this.cbCustomArguments.Size = new System.Drawing.Size(127, 17);
@@ -293,7 +293,7 @@
             this.txtCustomArguments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomArguments.Location = new System.Drawing.Point(133, 3);
             this.txtCustomArguments.Name = "txtCustomArguments";
-            this.txtCustomArguments.Size = new System.Drawing.Size(56, 22);
+            this.txtCustomArguments.Size = new System.Drawing.Size(630, 22);
             this.txtCustomArguments.TabIndex = 2;
             this.txtCustomArguments.Tag = "custom_arguments.value";
             this.toolTip.SetToolTip(this.txtCustomArguments, "Extra command-line arguments for this download.");
@@ -309,7 +309,7 @@
             this.txtCommandPreview.Name = "txtCommandPreview";
             this.txtCommandPreview.ReadOnly = true;
             this.txtCommandPreview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCommandPreview.Size = new System.Drawing.Size(186, 36);
+            this.txtCommandPreview.Size = new System.Drawing.Size(760, 356);
             this.txtCommandPreview.TabIndex = 0;
             this.txtCommandPreview.Tag = "!_ignore";
             // 
