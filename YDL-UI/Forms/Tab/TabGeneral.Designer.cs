@@ -52,6 +52,7 @@
             this.gbSubtitles = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rbNoSubtitles = new System.Windows.Forms.RadioButton();
+            this.cbEmbedSubtitles = new System.Windows.Forms.CheckBox();
             this.frameRateSelector = new Maxstupo.YdlUi.Controls.FrameRateSelector();
             this.videoQualitySelector = new Maxstupo.YdlUi.Controls.VideoQualitySelector();
             this.gbGeneral.SuspendLayout();
@@ -198,7 +199,7 @@
             // 
             this.cbAddMetadata.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbAddMetadata.AutoSize = true;
-            this.cbAddMetadata.Location = new System.Drawing.Point(3, 80);
+            this.cbAddMetadata.Location = new System.Drawing.Point(3, 103);
             this.cbAddMetadata.Name = "cbAddMetadata";
             this.cbAddMetadata.Size = new System.Drawing.Size(99, 17);
             this.cbAddMetadata.TabIndex = 5;
@@ -292,7 +293,8 @@
             this.txtSubLanguages.Size = new System.Drawing.Size(343, 22);
             this.txtSubLanguages.TabIndex = 2;
             this.txtSubLanguages.Tag = "languages.value";
-            this.toolTip.SetToolTip(this.txtSubLanguages, "Languages of the subtitles to download. Separated by commas. Lowercase language codes (e.g. en, de, fr-CA, zh-Hans, es-MX)");
+            this.toolTip.SetToolTip(this.txtSubLanguages, "Languages of the subtitles to download. Separated by commas. Lowercase language c" +
+        "odes (e.g. en, de, fr-CA, zh-Hans, es-MX)");
             // 
             // rbSubAll
             // 
@@ -301,7 +303,7 @@
             this.rbSubAll.AutoSize = true;
             this.rbSubAll.Location = new System.Drawing.Point(3, 77);
             this.rbSubAll.Name = "rbSubAll";
-            this.rbSubAll.Size = new System.Drawing.Size(86, 20);
+            this.rbSubAll.Size = new System.Drawing.Size(86, 45);
             this.rbSubAll.TabIndex = 3;
             this.rbSubAll.Tag = "all_subtitles";
             this.rbSubAll.Text = "All Subtitles";
@@ -379,7 +381,7 @@
             this.gbPostProcessing.Controls.Add(this.tableLayoutPanel2);
             this.gbPostProcessing.Location = new System.Drawing.Point(3, 183);
             this.gbPostProcessing.Name = "gbPostProcessing";
-            this.gbPostProcessing.Size = new System.Drawing.Size(307, 121);
+            this.gbPostProcessing.Size = new System.Drawing.Size(307, 146);
             this.gbPostProcessing.TabIndex = 4;
             this.gbPostProcessing.TabStop = false;
             this.gbPostProcessing.Tag = "post_processing";
@@ -390,7 +392,8 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.cbAddMetadata, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.cbEmbedSubtitles, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.cbAddMetadata, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.cbEmbedThumbnail, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.cbxAudioOnly, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.cbAudioOnly, 0, 0);
@@ -399,13 +402,14 @@
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(301, 100);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(301, 125);
             this.tableLayoutPanel2.TabIndex = 1;
             this.tableLayoutPanel2.Tag = "#$";
             // 
@@ -417,7 +421,7 @@
             this.gbSubtitles.Controls.Add(this.tableLayoutPanel3);
             this.gbSubtitles.Location = new System.Drawing.Point(316, 183);
             this.gbSubtitles.Name = "gbSubtitles";
-            this.gbSubtitles.Size = new System.Drawing.Size(447, 121);
+            this.gbSubtitles.Size = new System.Drawing.Size(447, 146);
             this.gbSubtitles.TabIndex = 5;
             this.gbSubtitles.TabStop = false;
             this.gbSubtitles.Tag = "subtitles";
@@ -431,8 +435,8 @@
             this.tableLayoutPanel3.Controls.Add(this.rbSubDefault, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.rbNoSubtitles, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.rbSubLanguages, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.rbSubAll, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.txtSubLanguages, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.rbSubAll, 0, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 18);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -442,7 +446,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(441, 100);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(441, 125);
             this.tableLayoutPanel3.TabIndex = 3;
             this.tableLayoutPanel3.Tag = "#$";
             // 
@@ -460,6 +464,19 @@
             this.rbNoSubtitles.Tag = "none";
             this.rbNoSubtitles.Text = "None";
             this.rbNoSubtitles.UseVisualStyleBackColor = true;
+            // 
+            // cbEmbedSubtitles
+            // 
+            this.cbEmbedSubtitles.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbEmbedSubtitles.AutoSize = true;
+            this.cbEmbedSubtitles.Location = new System.Drawing.Point(3, 80);
+            this.cbEmbedSubtitles.Name = "cbEmbedSubtitles";
+            this.cbEmbedSubtitles.Size = new System.Drawing.Size(109, 17);
+            this.cbEmbedSubtitles.TabIndex = 6;
+            this.cbEmbedSubtitles.Tag = "embed_subtitles";
+            this.cbEmbedSubtitles.Text = "Embed Subtitles";
+            this.toolTip.SetToolTip(this.cbEmbedSubtitles, "Embed subtitles in the video (only for mp4, webm and mkv videos)");
+            this.cbEmbedSubtitles.UseVisualStyleBackColor = true;
             // 
             // frameRateSelector
             // 
@@ -544,5 +561,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.RadioButton rbSubAll;
         private System.Windows.Forms.RadioButton rbSubDefault;
+        private System.Windows.Forms.CheckBox cbEmbedSubtitles;
     }
 }

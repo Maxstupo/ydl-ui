@@ -204,7 +204,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 121);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(774, 409);
+            this.tabControl.Size = new System.Drawing.Size(774, 419);
             this.tabControl.TabIndex = 1;
             this.tabControl.Tag = "#";
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_AttemptPreviewUpdate);
@@ -215,7 +215,7 @@
             this.tpGeneral.Controls.Add(this.general);
             this.tpGeneral.Location = new System.Drawing.Point(4, 22);
             this.tpGeneral.Name = "tpGeneral";
-            this.tpGeneral.Size = new System.Drawing.Size(766, 383);
+            this.tpGeneral.Size = new System.Drawing.Size(766, 393);
             this.tpGeneral.TabIndex = 3;
             this.tpGeneral.Tag = "general";
             this.tpGeneral.Text = "General";
@@ -265,11 +265,11 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.cbCustomArguments, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.txtCustomArguments, 1, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 354);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 45);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(766, 29);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(192, 29);
             this.tableLayoutPanel3.TabIndex = 4;
             this.tableLayoutPanel3.Tag = "#$";
             // 
@@ -293,7 +293,7 @@
             this.txtCustomArguments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomArguments.Location = new System.Drawing.Point(133, 3);
             this.txtCustomArguments.Name = "txtCustomArguments";
-            this.txtCustomArguments.Size = new System.Drawing.Size(630, 22);
+            this.txtCustomArguments.Size = new System.Drawing.Size(56, 22);
             this.txtCustomArguments.TabIndex = 2;
             this.txtCustomArguments.Tag = "custom_arguments.value";
             this.toolTip.SetToolTip(this.txtCustomArguments, "Extra command-line arguments for this download.");
@@ -309,7 +309,7 @@
             this.txtCommandPreview.Name = "txtCommandPreview";
             this.txtCommandPreview.ReadOnly = true;
             this.txtCommandPreview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCommandPreview.Size = new System.Drawing.Size(760, 345);
+            this.txtCommandPreview.Size = new System.Drawing.Size(186, 36);
             this.txtCommandPreview.TabIndex = 0;
             this.txtCommandPreview.Tag = "!_ignore";
             // 
@@ -391,7 +391,7 @@
             // 
             this.panelActions.Controls.Add(this.tableLayoutPanel2);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelActions.Location = new System.Drawing.Point(0, 533);
+            this.panelActions.Location = new System.Drawing.Point(0, 543);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(798, 40);
             this.panelActions.TabIndex = 2;
@@ -480,7 +480,7 @@
             this.general.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.general.Location = new System.Drawing.Point(0, 0);
             this.general.Name = "general";
-            this.general.Size = new System.Drawing.Size(766, 383);
+            this.general.Size = new System.Drawing.Size(766, 393);
             this.general.TabIndex = 0;
             this.general.Tag = "#";
             // 
@@ -510,14 +510,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(798, 573);
+            this.ClientSize = new System.Drawing.Size(798, 583);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panelActions);
             this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(814, 612);
+            this.MinimumSize = new System.Drawing.Size(814, 622);
             this.Name = "FormAddDownload";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

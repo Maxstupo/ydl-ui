@@ -77,6 +77,8 @@
             arguments.PostProcessing.ExtractAudio = (arguments.PostProcessing.AudioFormat != null);
 
             arguments.PostProcessing.EmbedThumbnail = cbEmbedThumbnail.Checked;
+            arguments.PostProcessing.EmbedSubs = cbEmbedSubtitles.Checked;
+
             arguments.PostProcessing.AddMetadata = cbAddMetadata.Checked;
 
             arguments.PostProcessing.RecodeVideo = cbxRecodeFormat.Enabled ? (VideoFormatRecode?) cbxRecodeFormat.SelectedValue : null;
