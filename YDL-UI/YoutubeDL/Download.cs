@@ -88,7 +88,6 @@
             // Begin download
             Arguments.General.IgnoreConfig = true;
             Arguments.FileSystem.NoCacheDir = true;
-            Arguments.FileSystem.NoMTime = true;
             Arguments.PostProcessing.PreferFFmpeg = true;
             Arguments.PostProcessing.FFmpegLocation = ffmpegPath;
 #if DEBUG

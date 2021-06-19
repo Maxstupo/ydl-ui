@@ -24,13 +24,21 @@
         public bool PromptDownloadingOnClose { get; set; } = true;
 
         public bool BasicMode { get; set; } = true;
+
         public bool StayOnTop { get; set; } = false;
 
         public int MaxConcurrentDownloads { get; set; } = 4;
+
         public bool ResumeDownloads { get; set; } = true;
+
         public bool RememberDownloadSettings { get; set; } = false;
+
         public bool UseBasicFolderPicker { get; set; } = false;
+
         public bool AutoConfirmDragDropDownloads { get; set; } = false;
+
+        public bool KeepOriginalDateAndTime { get; set; } = false;
+
 
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;

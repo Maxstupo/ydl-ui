@@ -83,6 +83,7 @@
             cbRememberDownloadSettings.DataBindings.Add(nameof(cbRememberDownloadSettings.Checked), preferences, nameof(preferences.RememberDownloadSettings), false, DataSourceUpdateMode.OnPropertyChanged);
             cbUseBasicFolderPicker.DataBindings.Add(nameof(cbUseBasicFolderPicker.Checked), preferences, nameof(preferences.UseBasicFolderPicker), false, DataSourceUpdateMode.OnPropertyChanged);
             cbAutoStartDragDropDownloads.DataBindings.Add(nameof(cbAutoStartDragDropDownloads.Checked), preferences, nameof(preferences.AutoConfirmDragDropDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
+            cbKeepOriginalDateAndTime.DataBindings.Add(nameof(cbKeepOriginalDateAndTime.Checked), preferences, nameof(preferences.KeepOriginalDateAndTime), false, DataSourceUpdateMode.OnPropertyChanged);
 
             bsPresets.DataSource = preferences.Presets;
             lbxPresets.DataSource = bsPresets;

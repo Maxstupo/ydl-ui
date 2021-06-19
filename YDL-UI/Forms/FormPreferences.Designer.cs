@@ -72,6 +72,7 @@
             this.btnPresetAdd = new System.Windows.Forms.Button();
             this.lbxPresets = new System.Windows.Forms.ListBox();
             this.panelActions = new System.Windows.Forms.Panel();
+            this.cbKeepOriginalDateAndTime = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -164,7 +165,7 @@
             this.cbUseBasicFolderPicker.AutoSize = true;
             this.cbUseBasicFolderPicker.Location = new System.Drawing.Point(6, 123);
             this.cbUseBasicFolderPicker.Name = "cbUseBasicFolderPicker";
-            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(143, 17);
+            this.cbUseBasicFolderPicker.Size = new System.Drawing.Size(142, 17);
             this.cbUseBasicFolderPicker.TabIndex = 2;
             this.cbUseBasicFolderPicker.Tag = "use_basic_folder_picker";
             this.cbUseBasicFolderPicker.Text = "Use Basic Folder Picker";
@@ -223,7 +224,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 215);
+            this.label6.Location = new System.Drawing.Point(3, 230);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 13);
             this.label6.TabIndex = 8;
@@ -235,7 +236,7 @@
             // 
             this.txtDefaultDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 233);
+            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 248);
             this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
             this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
             this.txtDefaultDownloadDirectory.TabIndex = 9;
@@ -245,7 +246,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 158);
+            this.label5.Location = new System.Drawing.Point(3, 173);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 13);
             this.label5.TabIndex = 5;
@@ -257,7 +258,7 @@
             // 
             this.txtDefaultDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 176);
+            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 191);
             this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
             this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
             this.txtDefaultDownloadArchive.TabIndex = 6;
@@ -269,7 +270,7 @@
             this.cbBasicMode.AutoSize = true;
             this.cbBasicMode.Location = new System.Drawing.Point(6, 6);
             this.cbBasicMode.Name = "cbBasicMode";
-            this.cbBasicMode.Size = new System.Drawing.Size(85, 17);
+            this.cbBasicMode.Size = new System.Drawing.Size(84, 17);
             this.cbBasicMode.TabIndex = 1;
             this.cbBasicMode.Tag = "mode";
             this.cbBasicMode.Text = "Basic Mode";
@@ -487,6 +488,7 @@
             // 
             // tpDownload
             // 
+            this.tpDownload.Controls.Add(this.cbKeepOriginalDateAndTime);
             this.tpDownload.Controls.Add(this.tableLayoutPanel2);
             this.tpDownload.Controls.Add(this.cbAutoStartDragDropDownloads);
             this.tpDownload.Controls.Add(this.cbRememberDownloadSettings);
@@ -516,7 +518,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.nudMaxConcurrentDownloads, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 110);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 125);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -527,7 +529,7 @@
             // btnBrowseDownloadDirectory
             // 
             this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 233);
+            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 248);
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
             this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadDirectory.TabIndex = 10;
@@ -539,7 +541,7 @@
             // btnBrowseDownloadArchive
             // 
             this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 176);
+            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 191);
             this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
             this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadArchive.TabIndex = 7;
@@ -721,6 +723,19 @@
             this.panelActions.TabIndex = 1;
             this.panelActions.Tag = "#";
             // 
+            // cbKeepOriginalDateAndTime
+            // 
+            this.cbKeepOriginalDateAndTime.AutoSize = true;
+            this.cbKeepOriginalDateAndTime.Location = new System.Drawing.Point(6, 98);
+            this.cbKeepOriginalDateAndTime.Name = "cbKeepOriginalDateAndTime";
+            this.cbKeepOriginalDateAndTime.Size = new System.Drawing.Size(171, 17);
+            this.cbKeepOriginalDateAndTime.TabIndex = 14;
+            this.cbKeepOriginalDateAndTime.Tag = "keep_original_date_and_time";
+            this.cbKeepOriginalDateAndTime.Text = "Keep original date and time";
+            this.toolTip.SetToolTip(this.cbKeepOriginalDateAndTime, "Use the original file date and time from the server. Otherwise use the local down" +
+        "loaded date and time.");
+            this.cbKeepOriginalDateAndTime.UseVisualStyleBackColor = true;
+            // 
             // FormPreferences
             // 
             this.AcceptButton = this.btnOkay;
@@ -815,5 +830,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbxUpdateInterval;
+        private System.Windows.Forms.CheckBox cbKeepOriginalDateAndTime;
     }
 }

@@ -291,6 +291,8 @@
             } else {
                 basicAddDownloadPanel.SetArguments(arguments);
             }
+
+            arguments.FileSystem.NoMTime = !preferences.KeepOriginalDateAndTime;
         }
 
         private void btnAdd_Click(object sender, EventArgs e) {
@@ -354,7 +356,6 @@
                 // Arguments from the Download class.
                 args.General.IgnoreConfig = true;
                 args.FileSystem.NoCacheDir = true;
-                args.FileSystem.NoMTime = true;
                 args.PostProcessing.PreferFFmpeg = true;
                 args.PostProcessing.FFmpegLocation = downloadManager.FfmpegPath;
 #if DEBUG
