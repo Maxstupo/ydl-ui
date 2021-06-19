@@ -369,7 +369,7 @@
 
             // download will be null if multiple rows are selected.
             copyDownloadLinkToolStripMenuItem.Enabled = singleRowSelected;
-            openDownloadDirectoryToolStripMenuItem.Enabled = singleRowSelected;
+            openDownloadDirectoryToolStripMenuItem.Enabled = singleRowSelected && Directory.Exists(dgvDownloads.SelectedRow<Download>().DownloadDirectory);
             viewLogToolStripMenuItem.Enabled = singleRowSelected;
 
             Download[] downloads = dgvDownloads.SelectedRows<Download>();
@@ -397,7 +397,7 @@
 
         private void openDownloadDirectoryToolStripMenuItem_Click(object sender, EventArgs e) {
             Download download = dgvDownloads.SelectedRow<Download>();
-            if (download != null)
+            if (download != null && Directory.Exists(download.DownloadDirectory))
                 Process.Start(download.DownloadDirectory);
         }
 
