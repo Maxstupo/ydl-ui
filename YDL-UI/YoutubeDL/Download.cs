@@ -1,6 +1,7 @@
 ﻿namespace Maxstupo.YdlUi.YoutubeDL {
 
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Text;
@@ -14,6 +15,7 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private int index;
         private string title;
         private int progress;
         private string speed;
@@ -22,6 +24,7 @@
         private string playlist;
         private DownloadStatus status = DownloadStatus.Queued;
 
+        public int Index { get => index; set { index = value; FirePropertyChanged(); } }
         public string Title { get => title; set { title = value; FirePropertyChanged(); } }
         [JsonIgnore] public string Url => Arguments.Url;
         public int Progress { get => progress; set { progress = value; FirePropertyChanged(); } }
@@ -119,6 +122,8 @@
             process.Start();
 
         }
+
+   
 
     }
 

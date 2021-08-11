@@ -83,15 +83,18 @@
             dgvDownloads.SelectRowOnRightClick();
             dgvDownloads.DataSource = downloadManager.Downloads;
 
-            dgvDownloads.Columns[0].Tag = "url";
-            dgvDownloads.Columns[1].Tag = "progress";
-            dgvDownloads.Columns[2].Tag = "size";
-            dgvDownloads.Columns[3].Tag = "speed";
-            dgvDownloads.Columns[4].Tag = "eta";
-            dgvDownloads.Columns[5].Tag = "status";
-            dgvDownloads.Columns[6].Tag = "download_directory";
-            dgvDownloads.Columns[7].Tag = "title";
-            dgvDownloads.Columns[8].Tag = "playlist";
+            // Tag property not available in designer.
+            dgvDownloads.Columns[0].Tag = "index";
+            dgvDownloads.Columns[1].Tag = "url";
+            dgvDownloads.Columns[2].Tag = "progress";
+            dgvDownloads.Columns[3].Tag = "size";
+            dgvDownloads.Columns[4].Tag = "speed";
+            dgvDownloads.Columns[5].Tag = "eta";
+            dgvDownloads.Columns[6].Tag = "status";
+            dgvDownloads.Columns[7].Tag = "download_directory";
+            dgvDownloads.Columns[8].Tag = "title";
+            dgvDownloads.Columns[9].Tag = "playlist";
+
 
             completedDownloadsToolStripMenuItem.Tag = DownloadStatus.Completed;
             waitingDownloadsToolStripMenuItem.Tag = DownloadStatus.Waiting;
@@ -580,7 +583,7 @@
         #endregion
 
         private void dgvDownloads_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
-            if (e.ColumnIndex == 5 && e.Value != null)
+            if (e.ColumnIndex == 6 && !string.IsNullOrEmpty(e.Value?.ToString()))
                 e.Value = Localization.GetString($"download_list.status.{e.Value.ToString().ToLower()}", e.Value.ToString()); // Localize status column.
 
         }
@@ -638,6 +641,49 @@
             clearLogsToolStripMenuItem.Enabled = hasDownloads;
             selectToolStripMenuItem.Enabled = hasDownloads;
             exportToolStripMenuItem.Enabled = hasDownloads;
+        }
+
+        private void editToolStripMenuItem_DropDownOpening(object sender, EventArgs e) {
+            bool canSort = dgvDownloads.HasSelectedRows() && downloadManager.TotalDownloads > 1;
+
+            topOfQueueToolStripMenuItem.Enabled = canSort;
+            moveUpQueueToolStripMenuItem.Enabled = canSort;
+            moveDownQueueToolStripMenuItem.Enabled = canSort;
+            bottomOfQueueToolStripMenuItem.Enabled = canSort;
+        }
+
+        private void topOfQueueToolStripMenuItem_Click(object sender, EventArgs e) {
+            Download[] downloads = dgvDownloads.SelectedRows<Download>();
+            downloadManager.MoveToTopOfQueue(downloads);
+            ResortDownloadList(downloads);
+        }
+
+        private void bottomOfQueueToolStripMenuItem_Click(object sender, EventArgs e) {
+            Download[] downloads = dgvDownloads.SelectedRows<Download>();
+            downloadManager.MoveToBottomOfQueue(downloads);
+            ResortDownloadList(downloads);
+        }
+
+        private void moveUpQueueToolStripMenuItem_Click(object sender, EventArgs e) {
+            Download[] downloads = dgvDownloads.SelectedRows<Download>();
+            downloadManager.MoveUpQueue(downloads);
+            ResortDownloadList(downloads);
+        }
+
+        private void moveDownQueueToolStripMenuItem_Click(object sender, EventArgs e) {
+            Download[] downloads = dgvDownloads.SelectedRows<Download>();
+            downloadManager.MoveDownQueue(downloads);
+            ResortDownloadList(downloads);
+        }
+
+        private void ResortDownloadList(Download[] previouslySelected) {
+            downloadManager.Downloads.ReapplySorting();
+
+            foreach (DataGridViewRow row in dgvDownloads.Rows.Cast<DataGridViewRow>()) {
+                Download download = (Download) row.DataBoundItem;
+                row.Selected = previouslySelected.Any(x => x.Url == download.Url);
+            }
+
         }
 
         private void stopAllToolStripMenuItem_Click(object sender, EventArgs e) {

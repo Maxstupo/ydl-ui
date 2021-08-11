@@ -1,5 +1,4 @@
 ﻿namespace Maxstupo.YdlUi.YoutubeDL {
-
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
@@ -41,7 +40,7 @@
         }
 
         private void Update() {
-            foreach (Download download in downloads) {
+            foreach (Download download in downloads.OrderBy(x => x.Index)) {
                 if (download.Status != DownloadStatus.Queued)
                     continue;
                 if (ConcurrentDownloads >= preferencesManager.Preferences.MaxConcurrentDownloads)
@@ -67,6 +66,9 @@
                 download.Status = preferencesManager.Preferences.ResumeDownloads ? DownloadStatus.Queued : DownloadStatus.Stopped;
 
             download.PropertyChanged += Download_PropertyChanged;
+
+            download.Index = Downloads.Count + 1;
+
             Downloads.Add(download);
 
             // Get the video title, but dont download the video yet, even if the download is 'Waiting' or 'Stopped'
@@ -142,6 +144,13 @@
 
             FirePropertyChanged(nameof(TotalDownloads));
 
+            // Update download indices
+            int index = download.Index;
+            foreach (Download dl in downloads.OrderBy(x => x.Index)) {
+                if (dl.Index > download.Index)
+                    dl.Index = index++;
+            }
+
             return true;
         }
 
@@ -183,6 +192,52 @@
             downloads.ForEach(d => AddDownload(d));
 
             return true;
+        }
+
+        public void MoveToBottomOfQueue(Download[] toMove) {
+            int index = 0;
+            int moveIndex = 0;
+            foreach (Download download in downloads.OrderBy(x => x.Index)) {
+                if (toMove.Contains(download)) {
+                    download.Index = downloads.Count - (toMove.Length - ++moveIndex);
+                } else {
+                    download.Index = ++index;
+                }
+            }
+        }
+
+        public void MoveToTopOfQueue(Download[] toMove) {
+            int index = toMove.Length;
+            int moveIndex = 0;
+            foreach (Download download in downloads.OrderBy(x => x.Index)) {
+                if (toMove.Contains(download)) {
+                    download.Index = ++moveIndex;
+                } else {
+                    download.Index = ++index;
+                }
+            }
+        }
+
+        public void MoveDownQueue(Download[] toMove) {
+            foreach (Download download in toMove.OrderBy(x => x.Index)) {
+                Download other = downloads.FirstOrDefault(x => x.Index == download.Index + 1);
+                if (other != null && other.Index > 1) {
+                    other.Index--;
+
+                    download.Index++;
+                }
+            }
+        }
+
+        public void MoveUpQueue(Download[] toMove) {
+            foreach (Download download in toMove.OrderBy(x => x.Index)) {
+                if (download.Index > 1) {
+                    download.Index--;
+
+                    Download other = downloads.First(x => x.Index == download.Index);
+                    other.Index++;
+                }
+            }
         }
 
     }

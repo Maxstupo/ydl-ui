@@ -19,6 +19,12 @@
         protected override bool SupportsSortingCore => true;
 
         public SortableBindingList(List<T> list) : base(list) {
+
+        }
+
+        public void ReapplySorting() {
+            if (isSorted)
+                ApplySortCore(sortProperty, sortDirection);
         }
 
         protected override void ApplySortCore(PropertyDescriptor property, ListSortDirection direction) {
@@ -33,7 +39,6 @@
 
             OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
         }
-
 
         protected override void RemoveSortCore() {
             isSorted = false;
