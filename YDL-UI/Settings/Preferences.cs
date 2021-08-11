@@ -39,6 +39,7 @@
 
         public bool KeepOriginalDateAndTime { get; set; } = false;
 
+        public bool FetchTitle { get; set; } = true;
 
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadArchive { get; set; } = string.Empty;

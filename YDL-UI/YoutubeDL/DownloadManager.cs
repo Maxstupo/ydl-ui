@@ -70,8 +70,7 @@
             Downloads.Add(download);
 
             // Get the video title, but dont download the video yet, even if the download is 'Waiting' or 'Stopped'
-            // TODO: Maybe add an option to disable video title collection?
-            if (download.Title == null) {
+            if (preferencesManager.Preferences.FetchTitle && download.Title == null) {
                 YdlArguments args = new YdlArguments();
                 args.General.IgnoreConfig = true;
                 args.General.FlatPlaylist = true;
