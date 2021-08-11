@@ -640,6 +640,18 @@
             exportToolStripMenuItem.Enabled = hasDownloads;
         }
 
+        private void stopAllToolStripMenuItem_Click(object sender, EventArgs e) {
+            foreach (Download download in downloadManager.Downloads)
+                downloadManager.Stop(download);
+        }
+
+        private void startAllToolStripMenuItem_Click(object sender, EventArgs e) {
+            foreach (Download download in downloadManager.Downloads) {
+                if (download.Status != DownloadStatus.Completed)
+                    downloadManager.Queue(download);
+            }
+        }
+
     }
 
 }
