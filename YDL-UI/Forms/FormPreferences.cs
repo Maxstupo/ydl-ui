@@ -85,6 +85,9 @@
             cbAutoStartDragDropDownloads.DataBindings.Add(nameof(cbAutoStartDragDropDownloads.Checked), preferences, nameof(preferences.AutoConfirmDragDropDownloads), false, DataSourceUpdateMode.OnPropertyChanged);
             cbKeepOriginalDateAndTime.DataBindings.Add(nameof(cbKeepOriginalDateAndTime.Checked), preferences, nameof(preferences.KeepOriginalDateAndTime), false, DataSourceUpdateMode.OnPropertyChanged);
 
+            nudFailedRetryAttempts.DataBindings.Add(nameof(nudFailedRetryAttempts.Value), preferences, nameof(preferences.RetryAttempts), false, DataSourceUpdateMode.OnPropertyChanged);
+            nudRetryDelay.DataBindings.Add(nameof(nudRetryDelay.Value), preferences, nameof(preferences.RetryAttemptInterval), false, DataSourceUpdateMode.OnPropertyChanged);
+
             bsPresets.DataSource = preferences.Presets;
             lbxPresets.DataSource = bsPresets;
             lbxPresets.DisplayMember = nameof(Preset.DisplayText);

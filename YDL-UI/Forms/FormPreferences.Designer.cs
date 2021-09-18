@@ -49,6 +49,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbxUpdateInterval = new System.Windows.Forms.ComboBox();
+            this.cbKeepOriginalDateAndTime = new System.Windows.Forms.CheckBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbxCategories = new System.Windows.Forms.ListBox();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -72,7 +73,11 @@
             this.btnPresetAdd = new System.Windows.Forms.Button();
             this.lbxPresets = new System.Windows.Forms.ListBox();
             this.panelActions = new System.Windows.Forms.Panel();
-            this.cbKeepOriginalDateAndTime = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nudRetryDelay = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.nudFailedRetryAttempts = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxConcurrentDownloads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -88,6 +93,9 @@
             this.gbManualUpdate.SuspendLayout();
             this.tpPresets.SuspendLayout();
             this.panelActions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRetryDelay)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFailedRetryAttempts)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -224,7 +232,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 230);
+            this.label6.Location = new System.Drawing.Point(3, 243);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 13);
             this.label6.TabIndex = 8;
@@ -236,7 +244,7 @@
             // 
             this.txtDefaultDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 248);
+            this.txtDefaultDownloadDirectory.Location = new System.Drawing.Point(6, 261);
             this.txtDefaultDownloadDirectory.Name = "txtDefaultDownloadDirectory";
             this.txtDefaultDownloadDirectory.Size = new System.Drawing.Size(408, 22);
             this.txtDefaultDownloadDirectory.TabIndex = 9;
@@ -246,7 +254,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 173);
+            this.label5.Location = new System.Drawing.Point(3, 195);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 13);
             this.label5.TabIndex = 5;
@@ -258,7 +266,7 @@
             // 
             this.txtDefaultDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 191);
+            this.txtDefaultDownloadArchive.Location = new System.Drawing.Point(6, 213);
             this.txtDefaultDownloadArchive.Name = "txtDefaultDownloadArchive";
             this.txtDefaultDownloadArchive.Size = new System.Drawing.Size(408, 22);
             this.txtDefaultDownloadArchive.TabIndex = 6;
@@ -388,6 +396,19 @@
             this.toolTip.SetToolTip(this.cbxUpdateInterval, "The frequency of checking for updates, if a new update is found a prompt will a a" +
         "ppear.");
             // 
+            // cbKeepOriginalDateAndTime
+            // 
+            this.cbKeepOriginalDateAndTime.AutoSize = true;
+            this.cbKeepOriginalDateAndTime.Location = new System.Drawing.Point(6, 98);
+            this.cbKeepOriginalDateAndTime.Name = "cbKeepOriginalDateAndTime";
+            this.cbKeepOriginalDateAndTime.Size = new System.Drawing.Size(168, 17);
+            this.cbKeepOriginalDateAndTime.TabIndex = 14;
+            this.cbKeepOriginalDateAndTime.Tag = "keep_original_date_and_time";
+            this.cbKeepOriginalDateAndTime.Text = "Keep original date and time";
+            this.toolTip.SetToolTip(this.cbKeepOriginalDateAndTime, "Use the original file date and time from the server. Otherwise use the local down" +
+        "loaded date and time.");
+            this.cbKeepOriginalDateAndTime.UseVisualStyleBackColor = true;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -488,6 +509,7 @@
             // 
             // tpDownload
             // 
+            this.tpDownload.Controls.Add(this.tableLayoutPanel4);
             this.tpDownload.Controls.Add(this.cbKeepOriginalDateAndTime);
             this.tpDownload.Controls.Add(this.tableLayoutPanel2);
             this.tpDownload.Controls.Add(this.cbAutoStartDragDropDownloads);
@@ -520,8 +542,9 @@
             this.tableLayoutPanel2.Controls.Add(this.nudMaxConcurrentDownloads, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 125);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(444, 28);
             this.tableLayoutPanel2.TabIndex = 13;
             this.tableLayoutPanel2.Tag = "#$";
@@ -529,7 +552,7 @@
             // btnBrowseDownloadDirectory
             // 
             this.btnBrowseDownloadDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 248);
+            this.btnBrowseDownloadDirectory.Location = new System.Drawing.Point(420, 261);
             this.btnBrowseDownloadDirectory.Name = "btnBrowseDownloadDirectory";
             this.btnBrowseDownloadDirectory.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadDirectory.TabIndex = 10;
@@ -541,7 +564,7 @@
             // btnBrowseDownloadArchive
             // 
             this.btnBrowseDownloadArchive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 191);
+            this.btnBrowseDownloadArchive.Location = new System.Drawing.Point(420, 213);
             this.btnBrowseDownloadArchive.Name = "btnBrowseDownloadArchive";
             this.btnBrowseDownloadArchive.Size = new System.Drawing.Size(36, 23);
             this.btnBrowseDownloadArchive.TabIndex = 7;
@@ -723,18 +746,94 @@
             this.panelActions.TabIndex = 1;
             this.panelActions.Tag = "#";
             // 
-            // cbKeepOriginalDateAndTime
+            // label8
             // 
-            this.cbKeepOriginalDateAndTime.AutoSize = true;
-            this.cbKeepOriginalDateAndTime.Location = new System.Drawing.Point(6, 98);
-            this.cbKeepOriginalDateAndTime.Name = "cbKeepOriginalDateAndTime";
-            this.cbKeepOriginalDateAndTime.Size = new System.Drawing.Size(171, 17);
-            this.cbKeepOriginalDateAndTime.TabIndex = 14;
-            this.cbKeepOriginalDateAndTime.Tag = "keep_original_date_and_time";
-            this.cbKeepOriginalDateAndTime.Text = "Keep original date and time";
-            this.toolTip.SetToolTip(this.cbKeepOriginalDateAndTime, "Use the original file date and time from the server. Otherwise use the local down" +
-        "loaded date and time.");
-            this.cbKeepOriginalDateAndTime.UseVisualStyleBackColor = true;
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(0, 7);
+            this.label8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(119, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Tag = "failed_retry_attempts";
+            this.label8.Text = "Failed Retry Attempts:";
+            this.toolTip.SetToolTip(this.label8, "The number of times to restart the download if it fails.");
+            // 
+            // nudRetryDelay
+            // 
+            this.nudRetryDelay.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.nudRetryDelay.Location = new System.Drawing.Point(244, 3);
+            this.nudRetryDelay.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.nudRetryDelay.Maximum = new decimal(new int[] {
+            1800,
+            0,
+            0,
+            0});
+            this.nudRetryDelay.Minimum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.nudRetryDelay.Name = "nudRetryDelay";
+            this.nudRetryDelay.Size = new System.Drawing.Size(58, 22);
+            this.nudRetryDelay.TabIndex = 4;
+            this.nudRetryDelay.Tag = "retry_delay.value";
+            this.toolTip.SetToolTip(this.nudRetryDelay, "The number of seconds before restarting a failed download.");
+            this.nudRetryDelay.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.nudFailedRetryAttempts, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.nudRetryDelay, 1, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 156);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(444, 28);
+            this.tableLayoutPanel4.TabIndex = 14;
+            this.tableLayoutPanel4.Tag = "#$";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(174, 7);
+            this.label9.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Tag = "retry_delay";
+            this.label9.Text = "Retry Delay:";
+            this.toolTip.SetToolTip(this.label9, "The number of seconds before restarting a failed download.");
+            // 
+            // nudFailedRetryAttempts
+            // 
+            this.nudFailedRetryAttempts.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.nudFailedRetryAttempts.Location = new System.Drawing.Point(122, 3);
+            this.nudFailedRetryAttempts.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.nudFailedRetryAttempts.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudFailedRetryAttempts.Name = "nudFailedRetryAttempts";
+            this.nudFailedRetryAttempts.Size = new System.Drawing.Size(49, 22);
+            this.nudFailedRetryAttempts.TabIndex = 6;
+            this.nudFailedRetryAttempts.Tag = "failed_retry_attempts.value";
+            this.toolTip.SetToolTip(this.nudFailedRetryAttempts, "The number of times to restart the download if it fails.");
             // 
             // FormPreferences
             // 
@@ -778,6 +877,10 @@
             this.gbManualUpdate.PerformLayout();
             this.tpPresets.ResumeLayout(false);
             this.panelActions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudRetryDelay)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFailedRetryAttempts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -831,5 +934,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbxUpdateInterval;
         private System.Windows.Forms.CheckBox cbKeepOriginalDateAndTime;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudRetryDelay;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown nudFailedRetryAttempts;
     }
 }

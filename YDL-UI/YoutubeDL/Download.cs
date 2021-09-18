@@ -44,6 +44,10 @@
 
         public string DownloadDirectory { get; }
 
+        public int RetryAttempts { get; set; } = 0;
+
+        [JsonIgnore]
+        public int RetryCounter { get; set; } = 0;
 
         [JsonIgnore]
         private ExecutableProcess process;
@@ -109,6 +113,9 @@
                     Logger.Instance.Warn(nameof(Download), $"Exit code: {exitCode}");
 #endif
                 Status = (exitCode == 0) ? DownloadStatus.Completed : DownloadStatus.Failed;
+                if (Status == DownloadStatus.Failed)
+                    RetryAttempts++;
+
                 Progress = 100;
             };
 
@@ -123,7 +130,7 @@
 
         }
 
-   
+
 
     }
 

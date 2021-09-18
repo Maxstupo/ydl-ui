@@ -41,6 +41,19 @@
 
         private void Update() {
             foreach (Download download in downloads.OrderBy(x => x.Index)) {
+
+                // Attempt to restart the download.
+                if (download.Status == DownloadStatus.Failed && download.RetryAttempts <= preferencesManager.Preferences.RetryAttempts) {
+
+                    if (download.RetryCounter >= preferencesManager.Preferences.RetryAttemptInterval) {
+                        download.RetryCounter = 0;
+                        download.Status = DownloadStatus.Queued;
+                    } else {
+                        download.RetryCounter += (int) (updateTimer.Interval / 1000);
+                    }
+
+                }
+
                 if (download.Status != DownloadStatus.Queued)
                     continue;
                 if (ConcurrentDownloads >= preferencesManager.Preferences.MaxConcurrentDownloads)
@@ -123,8 +136,10 @@
         }
 
         public void Queue(Download download) {
-            if (CanQueueDownload(download))
+            if (CanQueueDownload(download)) {
                 download.Status = DownloadStatus.Queued;
+                download.RetryAttempts = 0;
+            }
         }
 
 

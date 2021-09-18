@@ -47,6 +47,9 @@
         [JsonProperty(Required = Required.AllowNull)]
         public string DefaultDownloadDirectory { get; set; } = string.Empty;
 
+        public int RetryAttempts { get; set; } = 0;
+
+        public int RetryAttemptInterval { get; set; } = 60 * 5; //  seconds
 
         public PreferencesBinaries Binaries { get; private set; } = new PreferencesBinaries();
 
