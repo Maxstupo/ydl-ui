@@ -3,8 +3,8 @@
  <img src="https://img.shields.io/github/license/Maxstupo/ydl-ui.svg" />
  <img src="https://img.shields.io/github/release/Maxstupo/ydl-ui.svg" />
  <img src="https://img.shields.io/github/downloads/Maxstupo/ydl-ui/total.svg" />
- <a href="https://ci.appveyor.com/project/Maxstupo/ydl-ui">
-    <img src="https://ci.appveyor.com/api/projects/status/v0hl8me24o12u1xt?svg=true" />
+ <a href="https://ci.appveyor.com/project/Maxstupo/ydl-ui?branch=master">
+    <img src="https://ci.appveyor.com/api/projects/status/v0hl8me24o12u1xt/branch/master?svg=true" />
  </a>
 </p>
 
@@ -22,7 +22,7 @@ YDL-UI provides a simplified way to download videos using "youtube-dl", without 
 You can find both the latest and previous releases of YDL-UI on the [releases page](https://github.com/Maxstupo/ydl-ui/releases).
 
 #### Development Builds
-The latest development build of YDL-UI can be found on the [artifacts](https://ci.appveyor.com/project/Maxstupo/ydl-ui/build/artifacts) page of YDL-UI's AppVeyor.
+The latest development build of YDL-UI can be found on the [artifacts](https://ci.appveyor.com/project/Maxstupo/ydl-ui/build/artifacts?branch=master) page of YDL-UI's AppVeyor.
 Note: These builds are temporary and may be unstable as the are built from each commit automatically.
 
 ## Installation & Setup

@@ -5,6 +5,9 @@ configuration: ReleasePortable
 skip_commits:
   files:
     - README.md
+branches:
+  only:
+    - master
 init:
 - cmd: git clone -q --branch=master https://github.com/Maxstupo/ydl-ui_i18n.git C:\projects\ydl-ui_i18n
 assembly_info:
