@@ -3,33 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YDL-UI", "YDL-UI\YDL-UI.csproj", "{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YDL-UI", "YDL-UI\YDL-UI.csproj", "{5086A2CD-46E7-47A1-BD09-157A239B99FC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57B8B45E-D968-48FA-BB5C-BC4758B8B2DE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{352EE8C7-9B19-4585-930C-AC98647D4BC0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		appveyor.yml = appveyor.yml
-		LICENSE.md = LICENSE.md
+		LICENSE = LICENSE
 		README.md = README.md
-		YDL-UI\Update YT-DL.bat = YDL-UI\Update YT-DL.bat
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		DebugPortable|Any CPU = DebugPortable|Any CPU
-		ReleasePortable|Any CPU = ReleasePortable|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.DebugPortable|Any CPU.ActiveCfg = DebugPortable|Any CPU
-		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.DebugPortable|Any CPU.Build.0 = DebugPortable|Any CPU
-		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.ReleasePortable|Any CPU.ActiveCfg = ReleasePortable|Any CPU
-		{DAD7EA1A-DBB7-4291-9E85-960E21773AF4}.ReleasePortable|Any CPU.Build.0 = ReleasePortable|Any CPU
+		{5086A2CD-46E7-47A1-BD09-157A239B99FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5086A2CD-46E7-47A1-BD09-157A239B99FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5086A2CD-46E7-47A1-BD09-157A239B99FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5086A2CD-46E7-47A1-BD09-157A239B99FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4F66AB2A-00F0-4E97-97BC-942079D28960}
+		SolutionGuid = {F0C8DC10-2213-4164-8D2E-3F42511C99D0}
 	EndGlobalSection
 EndGlobal
