@@ -4,7 +4,6 @@ image: Visual Studio 2019
 environment:
   TITLE: 'YDL-UI'
   PROJECT_NAME: 'YDL-UI'
-  NON_MASTER_VERSION: '2.9.0'
   APPVEYOR_TOKEN:
     secure: EnZNz248FTxQXX+pCmZL7Ds5vFWwk8gkJASFBaQSos0=
 
