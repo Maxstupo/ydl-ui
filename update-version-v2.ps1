@@ -15,7 +15,7 @@
 
 $TAG_REGEX = 'v?(\d+\.\d+\.\d+)(?:\-(.+))?'
 
-if(!$APPVEYOR) {
+if (!$env:APPVEYOR) {
     Write-Error "Script not running in AppVeyor. Exiting..."
     exit
 }
