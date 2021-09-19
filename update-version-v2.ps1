@@ -1,7 +1,7 @@
 ﻿#
 # Updates the build version using the last existing version tag (e.g. v1.0.0) and provides environment variables for both normal and informational versions.
 # 
-# Requires secure environment variable named "APPVEYOR_TOKEN" for AppVeyor REST API
+# Requires secure environment variable named "APPVEYOR_TOKEN" for AppVeyor REST API - see https://ci.appveyor.com/api-keys and https://ci.appveyor.com/tools/encrypt
 #
 # Notes: 
 # - Tag versioning only supported for master branch.
@@ -106,3 +106,5 @@ if ($env:APPVEYOR_REPO_TAG -eq "true") {
 Write-Host "BUILD_VERSION: $env:BUILD_VERSION"
 Write-Host "APP_VERSION: $env:APP_VERSION"
 Write-Host "APP_VERSION_INFORMATIONAL: $env:APP_VERSION_INFORMATIONAL"
+
+Update-AppveyorBuild -Version "$env:APP_VERSION_INFORMATIONAL"
