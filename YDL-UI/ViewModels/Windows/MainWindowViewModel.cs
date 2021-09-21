@@ -1,4 +1,5 @@
 ﻿namespace Maxstupo.YdlUi.ViewModels.Windows {
+    using System.Threading.Tasks;
     using Stylet;
 
     public sealed class MainWindowViewModel : Screen {
