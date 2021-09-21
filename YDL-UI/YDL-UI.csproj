@@ -118,5 +118,11 @@
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YDL-UI.Core\YDL-UI.Core.csproj">
+      <Project>{6ce40f4f-7bcc-4c10-bee9-e5c513f7353a}</Project>
+      <Name>YDL-UI.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
