@@ -9,6 +9,7 @@
     using Maxstupo.YdlUi.Core.Utility.Extensions;
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.ViewModels.Windows;
+    using NLog.Config;
     using Stylet;
     using StyletIoC;
 
@@ -17,6 +18,14 @@
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         protected override void OnStart() {
+            // NLog didn't find a config file, so load the embedded one.
+            if (NLog.LogManager.Configuration == null) {
+                using (Stream configFileStream = Assembly.GetExecutingAssembly().GetEmbeddedResourceStream("NLog.config")) {
+                    using (XmlReader xmlReader = XmlReader.Create(configFileStream))
+                        NLog.LogManager.Configuration = new XmlLoggingConfiguration(xmlReader, null);
+                }
+            }
+                        
             Logger.Trace("OnStart()");
 
             // Link stylet logging to NLog logging.
