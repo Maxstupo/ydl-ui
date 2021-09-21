@@ -9,8 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		LICENSE = LICENSE
+		package-build.ps1 = package-build.ps1
 		README.md = README.md
+		update-version-v2.ps1 = update-version-v2.ps1
+		version.txt = version.txt
 	EndProjectSection
 EndProject
 Global

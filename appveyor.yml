@@ -4,9 +4,7 @@ image: Visual Studio 2019
 environment:
   TITLE: 'YDL-UI'
   PROJECT_NAME: 'YDL-UI'
-  NON_MASTER_VERSION: '2.9.0'
-  APPVEYOR_TOKEN:
-    secure: EnZNz248FTxQXX+pCmZL7Ds5vFWwk8gkJASFBaQSos0=
+  ISS: 'ydl-ui-installer.iss'
 
 skip_commits:
   files:
@@ -35,6 +33,13 @@ install:
 build:
   project: '$(PROJECT_NAME).sln'
   verbosity: minimal
+
+artifacts:
+  - path: '$(TITLE)-Portable_v*.zip'
+    name: $(CONFIGURATION)-Portable
+  - path: '$(TITLE)-Setup_v*.exe'
+    name: $(CONFIGURATION)-Setup
+
 
 test: off
 deploy: off
