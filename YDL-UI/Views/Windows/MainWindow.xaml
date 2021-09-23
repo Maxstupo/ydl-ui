@@ -8,7 +8,7 @@
         xmlns:vmw="clr-namespace:Maxstupo.YdlUi.ViewModels.Windows"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vmw:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="{Binding DisplayName}" Height="450" Width="800">
+        Title="{Binding I18N[windows.main.title]}" Height="450" Width="800">
     <Grid>
         
     </Grid>

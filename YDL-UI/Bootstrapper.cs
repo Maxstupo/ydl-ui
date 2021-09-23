@@ -2,10 +2,13 @@
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
+    using System.IO.Abstractions;
     using System.Reflection;
     using System.Windows.Threading;
     using System.Xml;
+    using Maxstupo.YdlUi.Core.Localization;
+    using Maxstupo.YdlUi.Core.Localization.Providers;
+    using Maxstupo.YdlUi.Core.Localization.Readers;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.ViewModels.Windows;
@@ -44,6 +47,31 @@
             Logger.Trace("ConfigureIoC()");
 
             builder.Bind<IViewManager>().To<MappingViewManager>();
+            // bind file system
+            IFileSystem fileSystem = new FileSystem();
+            builder.Bind<IFileSystem>().ToInstance(fileSystem);
+            builder.Bind<IDirectory>().ToInstance(fileSystem.Directory);
+            builder.Bind<IFile>().ToInstance(fileSystem.File);
+            builder.Bind<IPath>().ToInstance(fileSystem.Path);
+
+            // bind i18n
+            builder.Bind<II18N>().And<II18NSource>().To<I18N>().InSingletonScope();
+        protected override void Configure() {
+            Logger.Trace("Configure()");
+
+            IFileSystem fileSystem = Container.Get<IFileSystem>();
+
+            // init i18n
+            II18NSource i18n = Container.Get<II18NSource>();
+
+            FileSystemProvider provider = new FileSystemProvider(fileSystem, "default");
+            provider.AddDirectory("locales");
+            i18n.RegisterProvider(provider);
+
+            i18n.RegisterReader(new JsonTreeReader(), ".json");
+            i18n.RegisterReader(new JsonKvpReader(), ".jkvp");
+
+            i18n.Init();
         }
 
 
