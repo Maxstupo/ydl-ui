@@ -42,6 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Arguments\Argument.cs" />
+    <Compile Include="Arguments\ArgumentContainer.cs" />
+    <Compile Include="Arguments\ArgumentSerializer.cs" />
+    <Compile Include="Arguments\EnumCasePolicy.cs" />
+    <Compile Include="Arguments\FlagArgument.cs" />
+    <Compile Include="Arguments\IArgumentSerializer.cs" />
+    <Compile Include="Arguments\QuotePolicy.cs" />
+    <Compile Include="Ydl\YdlArgumentSerializer.cs" />
     <Compile Include="Localization\II18N.cs" />
     <Compile Include="Localization\I18N.cs" />
     <Compile Include="Localization\ILocaleProvider.cs" />

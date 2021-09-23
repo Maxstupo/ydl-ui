@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\I18NDesigner.cs" />
     <Compile Include="Utility\MappingViewManager.cs" />
     <Compile Include="Utility\NLogLogger.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -97,7 +98,6 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Converters\" />
-    <Folder Include="Services\" />
     <Folder Include="Views\Dialogs\" />
   </ItemGroup>
   <ItemGroup>

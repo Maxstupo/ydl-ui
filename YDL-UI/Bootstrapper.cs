@@ -6,10 +6,12 @@
     using System.Reflection;
     using System.Windows.Threading;
     using System.Xml;
+    using Maxstupo.YdlUi.Core.Arguments;
     using Maxstupo.YdlUi.Core.Localization;
     using Maxstupo.YdlUi.Core.Localization.Providers;
     using Maxstupo.YdlUi.Core.Localization.Readers;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
+    using Maxstupo.YdlUi.Services;
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.ViewModels.Windows;
     using NLog.Config;
@@ -28,7 +30,7 @@
                         NLog.LogManager.Configuration = new XmlLoggingConfiguration(xmlReader, null);
                 }
             }
-                        
+
             Logger.Trace("OnStart()");
 
             // Link stylet logging to NLog logging.
@@ -56,6 +58,10 @@
 
             // bind i18n
             builder.Bind<II18N>().And<II18NSource>().To<I18N>().InSingletonScope();
+
+            builder.Bind<ICommandLineSerializer>().To<YdlArgumentSerializer>().InSingletonScope();
+        }
+
         protected override void Configure() {
             Logger.Trace("Configure()");
 
