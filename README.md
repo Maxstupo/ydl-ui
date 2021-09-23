@@ -40,7 +40,7 @@ To learn how to use YDL-UI check out the [wiki](https://github.com/Maxstupo/ydl-
 ## Translation
 Wanting to contribute by translating YDL-UI to your language, or fix a typo?
 <br><br>
-Locales for YDL-UI are available in the [ydl-ui_i18n](https://github.com/Maxstupo/ydl-ui_i18n) repository.
+Visit the [YDL-UI](https://www.transifex.com/ydl-apps/ydl-ui) project on Transifex.
 
 ## License
 
