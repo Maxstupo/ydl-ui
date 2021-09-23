@@ -1,6 +1,6 @@
 ﻿namespace Maxstupo.YdlUi.ViewModels {
     using System;
-    using Maxstupo.YdlUi.Core.Services.Localization;
+    using Maxstupo.YdlUi.Core.Localization;
     using Maxstupo.YdlUi.Services;
     using Stylet;
 

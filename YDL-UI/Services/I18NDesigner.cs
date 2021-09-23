@@ -3,10 +3,9 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
-    using System.IO.Abstractions;
     using System.Runtime.CompilerServices;
-    using Maxstupo.YdlUi.Core.Services.Localization;
-    using Maxstupo.YdlUi.Core.Services.Localization.Readers;
+    using Maxstupo.YdlUi.Core.Localization;
+    using Maxstupo.YdlUi.Core.Localization.Readers;
 
     /// <summary>A class for translating text between multiple languages. This is a dummy version for use with the WPF designer.</summary>
     public sealed class I18NDesigner : II18N {
