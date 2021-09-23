@@ -1,6 +1,6 @@
 ﻿namespace Maxstupo.YdlUi.ViewModels.Windows {
     using System.Threading.Tasks;
-    using Maxstupo.YdlUi.Core.Services.Localization;
+    using Maxstupo.YdlUi.Core.Localization;
     using Stylet;
 
     public sealed class MainWindowViewModel : ViewModelBase {

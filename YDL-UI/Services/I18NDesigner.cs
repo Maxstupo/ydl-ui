@@ -17,7 +17,9 @@
         public string Locale { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
         public string Variant { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
+#pragma warning disable CS0067
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore CS0067
 
         public ILocaleReader Reader { get; }
 
