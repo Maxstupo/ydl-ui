@@ -49,6 +49,9 @@
             Logger.Trace("ConfigureIoC()");
 
             builder.Bind<IViewManager>().To<MappingViewManager>();
+
+            builder.Bind<IFileFolderDialog>().To<NativeFileFolderDialog>().InSingletonScope();
+
             // bind file system
             IFileSystem fileSystem = new FileSystem();
             builder.Bind<IFileSystem>().ToInstance(fileSystem);
