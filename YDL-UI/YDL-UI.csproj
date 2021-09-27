@@ -142,4 +142,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist "$(TargetDir)locales\" mkdir "$(TargetDir)locales\"
+del /q "$(TargetDir)locales\*"
+FOR /D %25%25p IN ("$(TargetDir)locales\*.*") DO rmdir "%25%25p" /s /q
+xcopy "$(SolutionDir)ydl-ui_i18n\locales" "$(TargetDir)locales\" /E
+copy /Y "$(SolutionDir)LICENSE" "$(TargetDir)LICENSE"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

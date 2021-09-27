@@ -63,6 +63,8 @@ Source: "YDL-UI\bin\{#Configuration}\YDL-UI.exe"; DestDir: "{app}"; Flags: ignor
 Source: "YDL-UI\bin\{#Configuration}\YDL-UI.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "YDL-UI\bin\{#Configuration}\*.dll"; DestDir: "{app}"; 
 Source: "YDL-UI\bin\{#Configuration}\NLog.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "YDL-UI\bin\{#Configuration}\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "YDL-UI\bin\{#Configuration}\locales\*"; DestDir: "{app}\locales"; Flags: ignoreversion recursesubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
