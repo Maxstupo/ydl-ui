@@ -17,6 +17,10 @@ configuration:
   - Debug
   - Release
 
+clone_script:
+  - cmd: git clone -q --recurse-submodules --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
+  - cmd: git checkout -qf %APPVEYOR_REPO_COMMIT%
+
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
