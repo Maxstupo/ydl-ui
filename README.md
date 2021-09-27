@@ -23,7 +23,7 @@ You can download a development build from [AppVeyor - dev/v3 branch](https://ci.
 
 The `package-build.ps1` script can build and package YDL-UI into an installer and portable zip file. It requires the following to be installed: 7-Zip, Inno Setup 6, and MSBuild (on path)
 ```
-git clone -b dev/v3 https://github.com/Maxstupo/ydl-ui.git
+git clone --recurse-submodules -b dev/v3 https://github.com/Maxstupo/ydl-ui.git
 ./package-build.ps1
 ```
 If you don't care about packaged builds, you can just build the solution in Visual Studio and directly use the files in the output directory.
