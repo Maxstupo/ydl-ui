@@ -136,6 +136,10 @@
       <Project>{6ce40f4f-7bcc-4c10-bee9-e5c513f7353a}</Project>
       <Name>YDL-UI.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YDL-UI.Styles\YDL-UI.Styles.csproj">
+      <Project>{2b3964ec-f64d-4fb4-ba22-9ce734b3258c}</Project>
+      <Name>YDL-UI.Styles</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

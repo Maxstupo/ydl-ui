@@ -14,6 +14,8 @@
                     </s:ApplicationLoader.Bootstrapper>
                 </s:ApplicationLoader>
 
+                <ResourceDictionary Source="pack://application:,,,/YDL-UI.Styles;component/Styles.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

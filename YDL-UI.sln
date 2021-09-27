@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YDL-UI.Core", "YDL-UI.Core\YDL-UI.Core.csproj", "{6CE40F4F-7BCC-4C10-BEE9-E5C513F7353A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YDL-UI.Styles", "YDL-UI.Styles\YDL-UI.Styles.csproj", "{2B3964EC-F64D-4FB4-BA22-9CE734B3258C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6CE40F4F-7BCC-4C10-BEE9-E5C513F7353A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE40F4F-7BCC-4C10-BEE9-E5C513F7353A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CE40F4F-7BCC-4C10-BEE9-E5C513F7353A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3964EC-F64D-4FB4-BA22-9CE734B3258C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3964EC-F64D-4FB4-BA22-9CE734B3258C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3964EC-F64D-4FB4-BA22-9CE734B3258C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3964EC-F64D-4FB4-BA22-9CE734B3258C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
