@@ -1,0 +1,4 @@
+[submodule "ydl-ui_i18n"]
+	path = ydl-ui_i18n
+	url = https://github.com/Maxstupo/ydl-ui_i18n.git
+	branch = dev/v3
