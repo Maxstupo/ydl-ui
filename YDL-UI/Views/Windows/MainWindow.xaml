@@ -10,6 +10,86 @@
         d:DataContext="{d:DesignInstance vmw:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="{Binding I18N[windows.main.title]}" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--menustrip-->
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="Add URL..." InputGestureText="Ctrl+D" IsEnabled="False"/>
+                <Separator/>
+                <MenuItem Header="Import..." IsEnabled="False"/>
+                <MenuItem Header="Export..." IsEnabled="False"/>
+                <Separator/>
+                <MenuItem Header="_Exit"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Start"/>
+                <MenuItem Header="Start All"/>
+                <MenuItem Header="Stop"/>
+                <MenuItem Header="Stop All"/>
+                <Separator/>
+                <MenuItem Header="Select...">
+
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Delete" InputGestureText="Del"/>
+                <Separator/>
+                <MenuItem Header="Top of Queue"/>
+                <MenuItem Header="Move Up Queue"/>
+                <MenuItem Header="Move Down Queue"/>
+                <MenuItem Header="Bottom of Queue"/>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Top Toolbar" IsChecked="True"/>
+                <MenuItem Header="Status Bar" IsChecked="True"/>
+                <Separator/>
+                <MenuItem Header="Columns">
+                    <MenuItem Header="#" IsChecked="True"/>
+                    <MenuItem Header="URL" IsChecked="True"/>
+                    <MenuItem Header="Progress" IsChecked="True"/>
+                    <MenuItem Header="Size" IsChecked="True"/>
+                    <MenuItem Header="Speed" IsChecked="True"/>
+                    <MenuItem Header="ETA" IsChecked="True"/>
+                    <MenuItem Header="Added On" IsChecked="False"/>
+                    <MenuItem Header="Title" IsChecked="False"/>
+                    <MenuItem Header="Filename" IsChecked="False"/>
+                    <MenuItem Header="Download Directory" IsChecked="False"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Settings" InputGestureText="Ctrl+P"/>
+                <Separator/>
+                <MenuItem Header="Enable Clipboard Link Detection"/>
+                <Separator/>
+                <MenuItem Header="Clear Logs"/>
+            </MenuItem>
+
+            <MenuItem Header="Help">
+                <MenuItem Header="About YDL-UI" IsEnabled="False"/>
+                <MenuItem Header="Documentation" InputGestureText="F1" IsEnabled="False"/>
+                <Separator/>
+                <MenuItem Header="Check for Updates" IsEnabled="False"/>
+            </MenuItem>
+        </Menu>
+
+        <!--download list-->
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False"></DataGrid>
         
+        <!--statusbar-->
+        <StatusBar Grid.Row="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel LastChildFill="False" />
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+
+            <StatusBarItem Content="Downloaded 0 of 1, 0 running."/>
+           
+            <StatusBarItem DockPanel.Dock="Right" Content="0 B/s [3.2 MiB/s] (0 B)"/>
+        </StatusBar>
     </Grid>
 </Window>
