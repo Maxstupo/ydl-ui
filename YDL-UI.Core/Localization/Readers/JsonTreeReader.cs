@@ -23,12 +23,30 @@
                 Dictionary<string, string> translations = new Dictionary<string, string>();
 
                 foreach (JToken token in FindTokens(json)) {
-                    if (token.Type != JTokenType.String)
+                    if (token.Type != JTokenType.String && token.Type != JTokenType.Object)
                         continue;
 
-                    string value = token.Value<string>().UnescapeLineBreaks();
+                    string value = null;
 
-                    translations.Add(token.Path.Trim(), value);
+                    if (token.Type == JTokenType.Object) {
+                        JToken valueSelf = token["$val"] ?? token["$value"];
+                        if (valueSelf != null)
+                            value = valueSelf.Value<string>().UnescapeLineBreaks();
+                    } else {
+
+                        string keyName = ((JProperty) token.Parent).Name.Trim();
+                        if (keyName == "$val" || keyName == "$value")
+                            continue;
+
+                        value = token.Value<string>().UnescapeLineBreaks();
+                    }
+
+                    if (value != null) {
+                        if (value.StartsWith("@"))
+                            value = json.SelectToken($"$.{value.Substring(1)}")?.Value<string>() ?? value;
+
+                        translations.Add(token.Path.Trim(), value);
+                    }
                 }
 
                 return translations;
