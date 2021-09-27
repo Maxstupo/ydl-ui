@@ -9,7 +9,7 @@
     /// </summary>
     public abstract class ViewModelBase : Screen {
 
-        public static readonly string DesignerLocaleFilepath = "../Locales/default.en.json";
+        public static readonly string DesignerLocaleFilepath = "../../ydl-ui_i18n/locales/en/default.en.json";
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
