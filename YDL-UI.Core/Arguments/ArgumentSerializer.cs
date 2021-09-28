@@ -111,7 +111,7 @@
                 Argument argument = propertyInfo.GetCustomAttribute<Argument>();
                 if (argument == null) {
                     // Inspect objects that are defined without an argument attribute, and have an ArgumentContainer
-                    if (propertyType.IsClass && propertyType.GetCustomAttribute<ArgumentContainer>() != null) {
+                    if (propertyType.IsClass && propertyInfo.GetCustomAttribute<ArgumentContainer>() != null) {
                         foreach (BuiltFlag flag in SerializeObject(value))
                             yield return flag;
                     }
