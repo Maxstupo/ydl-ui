@@ -11,7 +11,7 @@
     using Maxstupo.YdlUi.Core.Localization.Providers;
     using Maxstupo.YdlUi.Core.Localization.Readers;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
-    using Maxstupo.YdlUi.Core.Ydl;
+    using Maxstupo.YdlUi.Core.YoutubeDl;
     using Maxstupo.YdlUi.Services;
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.ViewModels.Windows;
