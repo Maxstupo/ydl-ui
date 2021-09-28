@@ -21,7 +21,7 @@ YDL-UI provides a simplified way to download videos using "youtube-dl", without 
 
 You can download a development build from [AppVeyor - dev/v3 branch](https://ci.appveyor.com/project/Maxstupo/ydl-ui?branch=dev/v3) or you can manually build the repository.
 
-The `package-build.ps1` script can build and package YDL-UI into an installer and portable zip file. It requires the following to be installed: [7-Zip](https://www.7-zip.org/), [Inno Setup 6](https://jrsoftware.org), and [MSBuild](https://visualstudio.microsoft.com/vs/) (on path)
+The `package-build.ps1` script can build and package YDL-UI into an installer and portable zip file. It requires the following to be installed: [7-Zip](https://www.7-zip.org/), [Inno Setup 6](https://jrsoftware.org/isinfo.php), and [MSBuild](https://visualstudio.microsoft.com/vs/) (on path)
 ```
 git clone --recurse-submodules -b dev/v3 https://github.com/Maxstupo/ydl-ui.git
 ./package-build.ps1
