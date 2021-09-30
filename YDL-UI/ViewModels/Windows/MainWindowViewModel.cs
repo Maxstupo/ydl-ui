@@ -1,18 +1,28 @@
 ﻿namespace Maxstupo.YdlUi.ViewModels.Windows {
     using System.Threading.Tasks;
     using Maxstupo.YdlUi.Core.Localization;
+    using Maxstupo.YdlUi.ViewModels.Dialogs;
     using Stylet;
 
     public sealed class MainWindowViewModel : ViewModelBase {
 
         private static readonly NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public MainWindowViewModel(II18N i18n) : base(i18n) {
+        private readonly IWindowManager windowManager;
+        private readonly SettingsDialogViewModel settingsDialogViewModel;
 
+        public MainWindowViewModel(II18N i18n, IWindowManager windowManager, SettingsDialogViewModel settingsDialogViewModel) : base(i18n) {
+            this.windowManager = windowManager;
+            this.settingsDialogViewModel = settingsDialogViewModel;
         }
 
         // Designer ctor
         public MainWindowViewModel() : base() { }
+
+
+        public void ShowSettingsDialog() {
+            windowManager.ShowDialog(settingsDialogViewModel, this);
+        }
 
     }
 

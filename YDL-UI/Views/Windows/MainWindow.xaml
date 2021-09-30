@@ -61,7 +61,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{Binding I18N[windows.main.menu.options]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.options.settings]}" InputGestureText="Ctrl+P"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.options.settings]}" InputGestureText="Ctrl+P" Command="{s:Action ShowSettingsDialog}"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.options.enable_clipboard_link_detection]}"/>
                 <Separator/>
