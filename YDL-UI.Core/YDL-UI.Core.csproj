@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arguments\ArgumentsCollection.cs" />
     <Compile Include="Options\ISettings.cs" />
     <Compile Include="Options\ISettingsManager.cs" />
     <Compile Include="Options\JsonSettingsManager.cs" />
@@ -54,7 +55,7 @@
     <Compile Include="Utility\Exec\ExecutableProcess.cs" />
     <Compile Include="Utility\Exec\IExecutableProcess.cs" />
     <Compile Include="Utility\Extensions\TypeExtensions.cs" />
-    <Compile Include="Arguments\IArguments.cs" />
+    <Compile Include="Arguments\ArgumentDefinition.cs" />
     <Compile Include="YoutubeDl\YdlArgumentSerializer.cs" />
     <Compile Include="Localization\II18N.cs" />
     <Compile Include="Localization\I18N.cs" />
