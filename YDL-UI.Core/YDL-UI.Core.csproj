@@ -55,7 +55,14 @@
     <Compile Include="Utility\Exec\ExecutableProcess.cs" />
     <Compile Include="Utility\Exec\IExecutableProcess.cs" />
     <Compile Include="Utility\Extensions\TypeExtensions.cs" />
+    <Compile Include="YoutubeDl\Binaries\IInterpretableBinaryProvider.cs" />
+    <Compile Include="YoutubeDl\Binaries\IYdlBinaryLibrary.cs" />
+    <Compile Include="YoutubeDl\Binaries\YdlBinaryDefinition.cs" />
+    <Compile Include="YoutubeDl\Binaries\YdlBinaryProvider.cs" />
+    <Compile Include="YoutubeDl\Download.cs" />
+    <Compile Include="YoutubeDl\DownloadManager.cs" />
     <Compile Include="Arguments\ArgumentDefinition.cs" />
+    <Compile Include="YoutubeDl\IOutputParser.cs" />
     <Compile Include="YoutubeDl\YdlArgumentSerializer.cs" />
     <Compile Include="Localization\II18N.cs" />
     <Compile Include="Localization\I18N.cs" />

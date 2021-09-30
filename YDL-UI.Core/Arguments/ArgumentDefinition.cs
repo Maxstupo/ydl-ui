@@ -7,6 +7,7 @@
     public sealed class ArgumentDefinition {
 
         public string Id { get; }
+        public string Name { get; }
 
         /// <summary>
         /// The command-line flag this property argument is representing.
@@ -36,6 +37,9 @@
         public string Description { get; }
 
         public Type Type { get; }
+
+        public bool Enabled { get; set; } = true;
+        public bool Hidden { get; } 
 
         public ArgumentDefinition(string id, string flag, string template = null, QuotePolicy quotePolicy = QuotePolicy.WhenNecessary, EnumCasePolicy enumCase = EnumCasePolicy.Lowercase, int order = 0, Type type = null, string description = null) {
             this.Id = id;
