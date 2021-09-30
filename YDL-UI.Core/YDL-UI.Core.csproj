@@ -51,6 +51,8 @@
     <Compile Include="Arguments\EnumCasePolicy.cs" />
     <Compile Include="Arguments\IArgumentSerializer.cs" />
     <Compile Include="Arguments\QuotePolicy.cs" />
+    <Compile Include="Utility\Exec\ExecutableProcess.cs" />
+    <Compile Include="Utility\Exec\IExecutableProcess.cs" />
     <Compile Include="Utility\Extensions\TypeExtensions.cs" />
     <Compile Include="Arguments\IArguments.cs" />
     <Compile Include="YoutubeDl\YdlArgumentSerializer.cs" />
