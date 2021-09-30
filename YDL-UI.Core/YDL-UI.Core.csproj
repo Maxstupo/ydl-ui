@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Options\ISettings.cs" />
+    <Compile Include="Options\ISettingsManager.cs" />
+    <Compile Include="Options\JsonSettingsManager.cs" />
+    <Compile Include="Options\FallbackSettingsManager.cs" />
+    <Compile Include="Options\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arguments\Argument.cs" />
     <Compile Include="Arguments\ArgumentContainer.cs" />
