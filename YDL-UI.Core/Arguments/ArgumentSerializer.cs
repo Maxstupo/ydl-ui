@@ -2,9 +2,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Text;
 
+    /// <summary>
+    /// A multi-purpose argument serializer that can be derived to add handling for additional types and functionalities.
+    /// </summary>
     public class ArgumentSerializer : IArgumentSerializer, ICommandLineSerializer {
 
         private static readonly NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -12,22 +14,22 @@
         /// <summary>
         /// A lookup dictionary to translate argument object values to strings. If the argument data type isn't defined in the dictionary, <see cref="Object.ToString()"/> will be used instead.
         /// </summary>
-        protected Dictionary<Type, Func<Argument, Type, object, string>> ValueTranslators { get; } = new Dictionary<Type, Func<Argument, Type, object, string>>();
+        protected Dictionary<Type, Func<ArgumentDefinition, object, string>> ValueTranslators { get; } = new Dictionary<Type, Func<ArgumentDefinition, object, string>>();
 
         /// <summary>
         /// A defined function called for all arguments to check if they should be serialized.
         /// </summary>
-        protected Func<Argument, Type, object, bool> CommonChecker { get; set; }
+        protected Func<ArgumentDefinition, object, bool> CommonChecker { get; set; }
 
         /// <summary>
         /// A lookup dictionary to check if an argument of a specific data type should be serialized.
         /// </summary>
-        protected Dictionary<Type, Func<Argument, Type, object, bool>> Checkers { get; } = new Dictionary<Type, Func<Argument, Type, object, bool>>();
+        protected Dictionary<Type, Func<ArgumentDefinition, object, bool>> Checkers { get; } = new Dictionary<Type, Func<ArgumentDefinition, object, bool>>();
 
         /// <summary>
         /// A dictionary of builders used to create argument strings for specific argument data types.
         /// </summary>
-        protected Dictionary<Type, Func<Argument, Type, object, string>> Builders { get; } = new Dictionary<Type, Func<Argument, Type, object, string>>();
+        protected Dictionary<Type, Func<ArgumentDefinition, object, string>> Builders { get; } = new Dictionary<Type, Func<ArgumentDefinition, object, string>>();
 
 
         /// <summary>The separator between each argument.</summary>
@@ -40,6 +42,9 @@
             Init();
         }
 
+        /// <summary>
+        /// Setup this argument serializer. Override this method to add additional type handling.
+        /// </summary>
         protected virtual void Init() {
             ValueTranslators.Clear();
             Builders.Clear();
@@ -49,20 +54,20 @@
             Separator = " ";
 
             // Only serialize flag if value isn't null. This is called before any other registered serialization checkers.
-            CommonChecker = (argument, type, value) => value != null;
+            CommonChecker = (argument, value) => value != null;
 
             // Only serialize boolean flags if the value is true.
-            Checkers.Add(typeof(bool), (argument, type, value) => (bool) value); // Serialize boolean flags if value isn't false.
+            Checkers.Add(typeof(bool), (argument, value) => (bool) value); // Serialize boolean flags if value isn't false.
 
             // Only serialize dictionaries if they contain items.
-            Checkers.Add(typeof(Dictionary<string, string>), (argument, type, value) => ((Dictionary<string, string>) value).Count > 0);
+            Checkers.Add(typeof(Dictionary<string, string>), (argument, value) => ((Dictionary<string, string>) value).Count > 0);
 
             // Translates string properties to string... duh!
-            ValueTranslators.Add(typeof(string), (argument, type, value) => value.ToString());
+            ValueTranslators.Add(typeof(string), (argument, value) => value.ToString());
 
             // Translates enum properties to string by using the name representing the enum value.
-            ValueTranslators.Add(typeof(Enum), (argument, type, value) => {
-                string name = Enum.GetName(type, value);
+            ValueTranslators.Add(typeof(Enum), (argument, value) => {
+                string name = Enum.GetName(argument.Type, value);
 
                 switch (argument.EnumCase) {
                     case EnumCasePolicy.Lowercase:
@@ -76,60 +81,44 @@
             });
         }
 
-        public string Serialize(string filename, object argObject) {
-            return $"{filename} {Serialize(argObject)}";
+        public string Serialize(string filename, IArgumentsCollection argumentsCollection) {
+            return $"{filename} {Serialize(argumentsCollection)}";
         }
 
-        public string Serialize(object argObject) {
-            List<BuiltFlag> flags = SerializeObject(argObject).OrderBy(x => x.Argument.Order).ToList();
+        public string Serialize(IArgumentsCollection argumentsCollection) {
+            // Serialize and sort by argument order.
+            List<BuiltFlag> flags = SerializeObject(argumentsCollection).OrderBy(x => x.Argument.Order).ToList();
 
+            // Build the argument string.
             StringBuilder sb = new StringBuilder();
             flags.ForEach(flag => sb.Append(flag.Value).Append(ArgumentSeparator));
 
-            if (flags.Count > 0)
+            if (flags.Count > 0) // remove unneeded last argument separator.
                 sb.Remove(sb.Length - ArgumentSeparator.Length, ArgumentSeparator.Length);
 
             return sb.ToString();
         }
 
-        private IEnumerable<BuiltFlag> SerializeObject(object argObject) {
-            if (argObject == null)
+        private IEnumerable<BuiltFlag> SerializeObject(IArgumentsCollection argumentsCollection) {
+            if (argumentsCollection == null)
                 yield break;
 
-            Type containerType = argObject.GetType();
+            foreach (ArgumentDefinition argument in argumentsCollection.Definitions) {
 
-            // Get all properties from the arguments object.
-            PropertyInfo[] propertyInfos = containerType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                object value = argumentsCollection.Get(argument.Id); // The value of the argument.
 
-            foreach (PropertyInfo propertyInfo in propertyInfos) {
-                Type propertyType = Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType; // The property type.
-
-                object value = propertyInfo.GetValue(argObject, null); // The value of the property.
-
-
-                // Only process properties that have an Argument attribute defined.
-                Argument argument = propertyInfo.GetCustomAttribute<Argument>();
-                if (argument == null) {
-                    // Inspect objects that are defined without an argument attribute, and have an ArgumentContainer
-                    if (propertyType.IsClass && propertyInfo.GetCustomAttribute<ArgumentContainer>() != null) {
-                        foreach (BuiltFlag flag in SerializeObject(value))
-                            yield return flag;
-                    }
-                    continue;
-                }
-
-                if (!ShouldAppendFlag(argument, propertyType, value))
+                if (!ShouldAppendFlag(argument, value))
                     continue;
 
-                Type typeKey = propertyType.IsEnum ? typeof(Enum) : propertyType;
+                Type typeKey = argument.Type.IsEnum ? typeof(Enum) : argument.Type;
 
                 // Build the flag using a custom builder if registered for the property type.
                 string builtFlag;
-                if (Builders.TryGetValue(typeKey, out Func<Argument, Type, object, string> builder)) {
-                    builtFlag = builder(argument, propertyType, value);
+                if (Builders.TryGetValue(typeKey, out Func<ArgumentDefinition, object, string> builder)) {
+                    builtFlag = builder(argument, value);
 
                 } else { // else build the flag with the registered value translators.
-                    string translatedValue = TranslateFlagValue(argument, propertyType, value);
+                    string translatedValue = TranslateFlagValue(argument, value);
                     builtFlag = BuildFlag(argument, translatedValue);
                 }
 
@@ -140,26 +129,33 @@
 
         }
 
-
-        protected virtual string TranslateFlagValue(Argument argument, Type type, object value) {
+        /// <summary>
+        /// Translates the raw object value of this argument into a valid string value. 
+        /// Uses a registered value translator if available, else uses ToString(). See <see cref="ValueTranslators"/>.
+        /// </summary>
+        protected virtual string TranslateFlagValue(ArgumentDefinition argument, object value) {
             if (value == null)
                 return string.Empty;
 
-            Type typeKey = type.IsEnum ? typeof(Enum) : type;
+            Type typeKey = argument.Type.IsEnum ? typeof(Enum) : argument.Type;
 
-            if (ValueTranslators.TryGetValue(typeKey, out Func<Argument, Type, object, string> translator))
-                return translator(argument, type, value);
+            if (ValueTranslators.TryGetValue(typeKey, out Func<ArgumentDefinition, object, string> translator))
+                return translator(argument, value);
 
             return value.ToString();
         }
 
-        protected virtual bool ShouldAppendFlag(Argument argument, Type type, object value) {
+        /// <summary>
+        /// Returns true if this argument and value are valid based on checking registered checkers.
+        /// See <see cref="CommonChecker"/> and <see cref="Checkers"/>.
+        /// </summary>
+        protected virtual bool ShouldAppendFlag(ArgumentDefinition argument, object value) {
 
-            if (CommonChecker != null && !CommonChecker(argument, type, value))
+            if (CommonChecker != null && !CommonChecker(argument, value))
                 return false;
 
-            if (Checkers.TryGetValue(type, out Func<Argument, Type, object, bool> append))
-                return append(argument, type, value);
+            if (Checkers.TryGetValue(argument.Type, out Func<ArgumentDefinition, object, bool> append))
+                return append(argument, value);
 
             return true;
         }
@@ -170,7 +166,7 @@
         /// <param name="argument">The argument that contains the template and flag.</param>
         /// <param name="value">The value of the argument.</param>
         /// <returns>A combined flag and value.</returns>
-        protected virtual string BuildFlag(Argument argument, string value) {
+        protected virtual string BuildFlag(ArgumentDefinition argument, string value) {
             string quotedValue = QuoteValue(argument.QuotePolicy, value);
             string builtFlag = argument.Template;
 
@@ -201,10 +197,10 @@
         /// A container struct that holds an Argument attribute and the parsed value of its property.
         /// </summary>
         protected struct BuiltFlag {
-            public Argument Argument { get; }
+            public ArgumentDefinition Argument { get; }
             public string Value { get; }
 
-            public BuiltFlag(Argument argument, string value) {
+            public BuiltFlag(ArgumentDefinition argument, string value) {
                 this.Argument = argument;
                 this.Value = value;
             }

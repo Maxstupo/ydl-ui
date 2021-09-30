@@ -3,19 +3,19 @@
     using ByteSizeLib;
     using Maxstupo.YdlUi.Core.Arguments;
 
-    public sealed class YdlArgumentSerializer : ArgumentSerializer {
+    public class YdlArgumentSerializer : ArgumentSerializer {
 
         protected override void Init() {
             base.Init();
 
             // Translate DateTime objects to the format of "yyyyMMdd".
-            ValueTranslators.Add(typeof(DateTime), (a, t, v) => ((DateTime) v).ToString("yyyyMMdd"));
+            ValueTranslators.Add(typeof(DateTime), (a, v) => ((DateTime) v).ToString("yyyyMMdd"));
 
             // Translate TimeSpan objects to seconds.
-            ValueTranslators.Add(typeof(TimeSpan), (a, t, v) => ((int) ((TimeSpan) v).TotalSeconds).ToString());
+            ValueTranslators.Add(typeof(TimeSpan), (a, v) => ((int) ((TimeSpan) v).TotalSeconds).ToString());
 
             // Translate ByteSize to bytes.
-            ValueTranslators.Add(typeof(ByteSize), (a, t, v) => {
+            ValueTranslators.Add(typeof(ByteSize), (a, v) => {
                 long bytes = (long) ((ByteSize) v).Bytes;
                 return bytes == 0 ? "0" : bytes.ToString();
             });
