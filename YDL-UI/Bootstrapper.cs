@@ -1,5 +1,6 @@
 ﻿namespace Maxstupo.YdlUi {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
     using System.IO.Abstractions;
@@ -10,6 +11,7 @@
     using Maxstupo.YdlUi.Core.Localization;
     using Maxstupo.YdlUi.Core.Localization.Providers;
     using Maxstupo.YdlUi.Core.Localization.Readers;
+    using Maxstupo.YdlUi.Core.Options;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
     using Maxstupo.YdlUi.Core.YoutubeDl;
     using Maxstupo.YdlUi.Services;
@@ -22,6 +24,16 @@
     public sealed class Bootstrapper : Bootstrapper<MainWindowViewModel> {
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        private static readonly string[] LocalSettingsLocations = new string[] {
+            "./settings.json",
+            "./config.json",
+            "./options.json"
+        };
+
+        private static readonly ISettings DefaultSettings = new Settings.ReadonlySettings(new Dictionary<string, object> {
+       
+        });
 
         protected override void OnStart() {
             // NLog didn't find a config file, so load the embedded one.
@@ -63,7 +75,12 @@
             // bind i18n
             builder.Bind<II18N>().And<II18NSource>().To<I18N>().InSingletonScope();
 
-            builder.Bind<ICommandLineSerializer>().To<YdlArgumentSerializer>().InSingletonScope();
+            // bind the command-line serializer
+            builder.Bind<IArgumentSerializer>().And<ICommandLineSerializer>().To<YdlArgumentSerializer>().InSingletonScope();
+
+            // bind settings manager
+            builder.Bind<ISettingsManager>().And<IFileSettingsManager>().To<JsonSettingsManager>().InSingletonScope();
+
         }
 
         protected override void Configure() {
@@ -82,6 +99,12 @@
             i18n.RegisterReader(new JsonKvpReader(), ".jkvp");
 
             i18n.Init();
+
+            // init settings
+            IFileSettingsManager settingsManager = Container.Get<IFileSettingsManager>();
+            settingsManager.Init(DefaultSettings, "MediaCat", "settings.json", LocalSettingsLocations);
+            settingsManager.Load();
+
         }
 
 

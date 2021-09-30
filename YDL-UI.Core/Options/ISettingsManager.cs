@@ -23,8 +23,12 @@
         /// <summary>The file location that loading and saving will read and write from.</summary>
         string Filepath { get; }
 
+        // TODO: Update XML doc.
+        string Directory { get; }
+
+        // TODO: Update XML doc.
         /// <summary>Initialize this settings manager, by providing default settings and filepaths.</summary>
-        void Init(ISettings defaults, params string[] filepaths);
+        void Init(ISettings defaults, string appName, string settingsName, string[] filepaths);
 
     }
 
