@@ -12,6 +12,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -76,11 +77,16 @@
             </MenuItem>
         </Menu>
 
+        <!--toolbar-->
+        <ToolBar Grid.Row="1" Visibility="Collapsed">
+
+        </ToolBar>
+
         <!--download list-->
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False"></DataGrid>
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False"></DataGrid>
 
         <!--statusbar-->
-        <StatusBar Grid.Row="2">
+        <StatusBar Grid.Row="3">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel LastChildFill="False" />

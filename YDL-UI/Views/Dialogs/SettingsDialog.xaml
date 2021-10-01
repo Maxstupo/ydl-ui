@@ -6,13 +6,126 @@
         xmlns:local="clr-namespace:Maxstupo.YdlUi.Views.Dialogs"
         xmlns:s="https://github.com/canton7/Stylet"
         xmlns:vmd="clr-namespace:Maxstupo.YdlUi.ViewModels.Dialogs"
+        xmlns:util="clr-namespace:Maxstupo.YdlUi.Utility"
+        xmlns:c="clr-namespace:Maxstupo.YdlUi.Converters"
+        xmlns:controls="clr-namespace:Maxstupo.YdlUi.Controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vmd:SettingsDialogViewModel, IsDesignTimeCreatable=True}"
         Title="{Binding I18N[dialogs.settings.title]}"
         WindowStyle="ToolWindow"
         WindowStartupLocation="CenterOwner"
-        Height="350" Width="550">
+         MinHeight="200" MinWidth="300" Width="670" Height="490">
+    <Window.Resources>
+        <c:I18NConverter x:Key="i18Converter"/>
+        <util:BindingProxy x:Key="prox" Data="{Binding}"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#ffeeeeee">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" MaxWidth="255"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Page Filter-->
+            <TextBox Grid.Column="0" Grid.Row="0" Margin="10 10 0 5" Text="{Binding PageFilter, ElementName=pageSelector, Mode=TwoWay, NotifyOnTargetUpdated=True,NotifyOnSourceUpdated=True,UpdateSourceTrigger=PropertyChanged}"/>
+
+            <!--Page List-->
+            <ListBox Grid.Column="0"  Grid.Row="1"  Margin="10 5 0 10" SelectedItem="{Binding SelectedPageId, ElementName=pageSelector, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Pages, ElementName=pageSelector}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0 1">
+                            <ContentPresenter Content="{Binding Header}" VerticalAlignment="Center" Margin="0 0 4 0" Width="20"/>
+                            <TextBlock FontSize="14" VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource i18Converter}">
+                                        <Binding Path="Data.I18N" Source="{StaticResource prox}"/>
+                                        <Binding Path="LocalizationPath"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!--splitter-->
+            <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+            <!--Page Title-->
+            <TextBlock Grid.Column="2" Grid.Row="0" Margin="0 5 0 0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource i18Converter}">
+                        <Binding Path="I18N"/>
+                        <Binding Path="SelectedPage.LocalizationPath" ElementName="pageSelector"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+
+
+            <controls:PageSelector x:Name="pageSelector"
+                                   DesignTimeSelectedPageId="general"
+                                   SelectedPageId="general"
+                                   LocalizationBase="dialogs.settings.tabs"
+                                   Grid.Row="1"
+                                   Grid.Column="2"
+                                   Margin="0 5 10 10">
+                <controls:PageSelector.Elements>
+
+                    <Grid controls:PageSelector.PageId="general">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="Cog"/>
+                        </controls:PageSelector.Header>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0" Text="{Binding I18N[dialogs.settings.tabs.general.language]}"/>
+                        <ComboBox Grid.Column="1" ItemsSource="{Binding I18N.Languages}" SelectedItem="{Binding Language,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    </Grid>
+
+                    <Grid controls:PageSelector.PageId="downloads">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="Download"/>
+                        </controls:PageSelector.Header>
+                        <TextBlock>bandwidth</TextBlock>
+
+                    </Grid>
+
+                    <Grid controls:PageSelector.PageId="advanced">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="Exclamation"/>
+                        </controls:PageSelector.Header>
+                        <TextBlock>advanced stuff</TextBlock>
+                    </Grid>
+
+                </controls:PageSelector.Elements>
+            </controls:PageSelector>
+
+        </Grid>
+
+        <!--buttons-->
+        <Grid Grid.Row="1" Background="LightGray" >
+            <Button Content="{Binding I18N[common.confirm]}" Command="{s:Action Confirm}" IsDefault="True" HorizontalAlignment="Right" Margin="10 10 100 10" Width="75"/>
+            <Button Content="{Binding I18N[common.cancel]}" Command="{s:Action Cancel}" IsCancel="True" HorizontalAlignment="Right" Margin="10 10 10 10" Width="75" />
+        </Grid>
+
     </Grid>
 </Window>
