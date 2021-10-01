@@ -110,7 +110,9 @@
                 if (!ShouldAppendFlag(argument, value))
                     continue;
 
-                Type typeKey = argument.Type.IsEnum ? typeof(Enum) : argument.Type;
+                Type argType = Nullable.GetUnderlyingType(argument.Type) ?? argument.Type;
+
+                Type typeKey = argType.IsEnum ? typeof(Enum) : argType;
 
                 // Build the flag using a custom builder if registered for the property type.
                 string builtFlag;
@@ -137,7 +139,9 @@
             if (value == null)
                 return string.Empty;
 
-            Type typeKey = argument.Type.IsEnum ? typeof(Enum) : argument.Type;
+            Type argType = Nullable.GetUnderlyingType(argument.Type) ?? argument.Type;
+
+            Type typeKey = argType.IsEnum ? typeof(Enum) : argType;
 
             if (ValueTranslators.TryGetValue(typeKey, out Func<ArgumentDefinition, object, string> translator))
                 return translator(argument, value);
@@ -154,7 +158,9 @@
             if (CommonChecker != null && !CommonChecker(argument, value))
                 return false;
 
-            if (Checkers.TryGetValue(argument.Type, out Func<ArgumentDefinition, object, bool> append))
+            Type typeKey = Nullable.GetUnderlyingType(argument.Type) ?? argument.Type;
+
+            if (Checkers.TryGetValue(typeKey, out Func<ArgumentDefinition, object, bool> append))
                 return append(argument, value);
 
             return true;

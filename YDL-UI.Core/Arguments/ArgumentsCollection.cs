@@ -7,7 +7,7 @@
     /// <summary>Represents an implementation that can provide argument collections.</summary>
     public interface IArgumentsProvider {
 
-        IArgumentsCollection CreateArguments();
+        IArgumentsCollection CreateArguments(string key = null);
 
     }
 
@@ -15,6 +15,8 @@
     /// Represents an implementation that provides the means to set and get argument values based on predefined argument definitions.
     /// </summary>
     public interface IArgumentsCollection {
+
+        string Key { get; }
 
         /// <summary>The valid definitions that can be used within this collection.</summary>
         IList<ArgumentDefinition> Definitions { get; }
@@ -42,6 +44,8 @@
     public sealed class ArgumentsCollection : IArgumentsCollection {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+        public string Key { get; }
+
         /// <summary>A readonly list of valid definitions that can be used within this collection.</summary>
         public IList<ArgumentDefinition> Definitions { get; }
 
@@ -51,13 +55,15 @@
         /// Create a new arguments collection using the provided arguments definitions. Argument values will be initialized to their defaults. 
         /// If multiple arguments exist with the same ID, it will be logged and ignored, but no error exception will be thrown.
         /// </summary>
-        public ArgumentsCollection(params ArgumentDefinition[] argumentDefinitions) : this(argumentDefinitions.ToList()) { }
+        public ArgumentsCollection(string key, params ArgumentDefinition[] argumentDefinitions) : this(key, argumentDefinitions.ToList()) {
+        }
 
         /// <summary>
         /// Create a new arguments collection using the provided arguments definitions. Argument values will be initialized to their defaults. 
         /// If multiple arguments exist with the same ID, it will be logged and ignored, but no error exception will be thrown.
         /// </summary>
-        public ArgumentsCollection(List<ArgumentDefinition> argumentDefinitions) {
+        public ArgumentsCollection(string key, List<ArgumentDefinition> argumentDefinitions) {
+            this.Key = key;
             this.Definitions = argumentDefinitions.AsReadOnly();
 
             foreach (ArgumentDefinition definition in argumentDefinitions) {
@@ -85,6 +91,8 @@
         public void Set(string id, object value) {
             if (Has(id))
                 values[id] = value;
+            else
+                Logger.Warn("Failed to set argument {id} not a valid argument id for this {key} argument collection.", id, Key);
         }
 
     }
