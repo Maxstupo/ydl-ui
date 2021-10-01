@@ -15,8 +15,8 @@
             this.binaryProvider = binaryProvider;
         }
 
-        public IArgumentsCollection CreateArguments() {
-            return binaryProvider.CreateArguments();
+        public IArgumentsCollection CreateArguments(string key) {
+            return binaryProvider.CreateArguments(key);
         }
 
         public IDownload CreateDownload(IArgumentsCollection arguments, string downloadDirectory) {

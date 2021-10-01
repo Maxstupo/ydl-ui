@@ -57,6 +57,8 @@
     <Compile Include="Utility\Extensions\TypeExtensions.cs" />
     <Compile Include="YoutubeDl\Binaries\IInterpretableBinaryProvider.cs" />
     <Compile Include="YoutubeDl\Binaries\IYdlBinaryLibrary.cs" />
+    <Compile Include="YoutubeDl\Binaries\Readers\IYdlBinaryReader.cs" />
+    <Compile Include="YoutubeDl\Binaries\Readers\JsonBinaryReader.cs" />
     <Compile Include="YoutubeDl\Binaries\YdlBinaryDefinition.cs" />
     <Compile Include="YoutubeDl\Binaries\YdlBinaryProvider.cs" />
     <Compile Include="YoutubeDl\Download.cs" />

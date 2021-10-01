@@ -14,6 +14,8 @@
     using Maxstupo.YdlUi.Core.Options;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
     using Maxstupo.YdlUi.Core.YoutubeDl;
+    using Maxstupo.YdlUi.Core.YoutubeDl.Binaries;
+    using Maxstupo.YdlUi.Core.YoutubeDl.Binaries.Readers;
     using Maxstupo.YdlUi.Services;
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.ViewModels.Windows;
@@ -32,7 +34,9 @@
         };
 
         private static readonly ISettings DefaultSettings = new Settings.ReadonlySettings(new Dictionary<string, object> {
-       
+            { "binary", "youtube-dl"},
+            { "locale",null},
+            { "locale_variant",null }
         });
 
         protected override void OnStart() {
@@ -62,8 +66,7 @@
             Logger.Trace("ConfigureIoC()");
 
             builder.Bind<IViewManager>().To<MappingViewManager>();
-
-            builder.Bind<IFileFolderDialog>().To<NativeFileFolderDialog>().InSingletonScope();
+            builder.Bind<IFileFolderDialog>().To<NativeFileFolderDialog>();
 
             // bind file system
             IFileSystem fileSystem = new FileSystem();
@@ -76,17 +79,32 @@
             builder.Bind<II18N>().And<II18NSource>().To<I18N>().InSingletonScope();
 
             // bind the command-line serializer
-            builder.Bind<IArgumentSerializer>().And<ICommandLineSerializer>().To<YdlArgumentSerializer>().InSingletonScope();
+            builder.Bind<IArgumentSerializer>().And<ICommandLineSerializer>().To<YdlArgumentSerializer>();
 
             // bind settings manager
-            builder.Bind<ISettingsManager>().And<IFileSettingsManager>().To<JsonSettingsManager>().InSingletonScope();
+            ISettingsManager settingsManager = new JsonSettingsManager(fileSystem);
+            builder.Bind<ISettingsManager>().And<IFileSettingsManager>().ToInstance(settingsManager);
+            builder.Bind<ISettings>().ToInstance(settingsManager.Settings);
 
+            builder.Bind<IYdlBinaryReader>().To<JsonBinaryReader>();
+
+            // bind binary provider provider
+            builder.Bind<IArgumentsProvider>().And<IYdlBinaryLibrary>().And<IInterpretableBinaryProvider>().To<YdlBinaryProvider>().InSingletonScope();
+
+            // bind the download manager 
+            builder.Bind<IDownloadManager>().To<DownloadManager>().InSingletonScope();
         }
 
         protected override void Configure() {
             Logger.Trace("Configure()");
 
             IFileSystem fileSystem = Container.Get<IFileSystem>();
+
+
+            // init settings
+            IFileSettingsManager settingsManager = Container.Get<IFileSettingsManager>();
+            settingsManager.Init(DefaultSettings, "YDL-UI", "settings.json", LocalSettingsLocations);
+            settingsManager.Load();
 
             // init i18n
             II18NSource i18n = Container.Get<II18NSource>();
@@ -98,12 +116,16 @@
             i18n.RegisterReader(new JsonTreeReader(), ".json");
             i18n.RegisterReader(new JsonKvpReader(), ".jkvp");
 
-            i18n.Init();
+            i18n.Init(settingsManager.Settings.Get<string>("locale"), settingsManager.Settings.Get<string>("locale_variant"));
 
-            // init settings
-            IFileSettingsManager settingsManager = Container.Get<IFileSettingsManager>();
-            settingsManager.Init(DefaultSettings, "YDL-UI", "settings.json", LocalSettingsLocations);
-            settingsManager.Load();
+
+            // setup available packaged binaries.
+            IYdlBinaryLibrary binaryLibrary = Container.Get<IYdlBinaryLibrary>();
+
+            // Read and load binary definitions from file.
+            IYdlBinaryReader reader = Container.Get<IYdlBinaryReader>();
+            reader.Read(binaryLibrary, "./binaries.json");
+
 
         }
 
