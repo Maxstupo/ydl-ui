@@ -18,15 +18,16 @@
         /// <summary>The write-enabled settings store. This should be used when saving, loading, or reseting.</summary>
         protected readonly ISettings settings = new Settings();
 
-        /// <summary>A readonly settings store. This instance will remain constant between loading, saving, and reseting.</summary>
-        public ISettings Settings { get; }
+        /// <summary>A settings store. This instance will remain constant between loading, saving, and reseting.</summary>
+        public ISettings Settings => settings;
 
         /// <summary>The readonly settings store for default values. Used for reseting to default values.</summary>
         protected ISettings Defaults { get; private set; }
 
+        public abstract EventHandler OnChanged { get; set; }
+
         public FallbackSettingsManager(IFileSystem fileSystem) {
             this.fileSystem = fileSystem;
-            Settings = new Settings.ReadonlySettings(settings);
         }
 
         /// <summary>

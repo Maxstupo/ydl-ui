@@ -1,4 +1,5 @@
 ﻿namespace Maxstupo.YdlUi.Core.Options {
+    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.IO.Abstractions;
@@ -12,6 +13,8 @@
         private static readonly NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly IFileSystem fileSystem;
+
+        public override EventHandler OnChanged { get; set; }
 
         public JsonSettingsManager(IFileSystem fileSystem) : base(fileSystem) {
             this.fileSystem = fileSystem;
@@ -52,6 +55,8 @@
 
             settings.Clear();
             settings.Apply(new Settings(values));
+
+            OnChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public override void Save() {
@@ -76,6 +81,8 @@
                     }
                 }
             }
+
+        
         }
 
         public override void Reset() {
@@ -83,6 +90,8 @@
 
             settings.Clear();
             settings.Apply(Defaults);
+
+            OnChanged?.Invoke(this, EventArgs.Empty);
         }
 
     }

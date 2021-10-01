@@ -1,10 +1,14 @@
 ﻿namespace Maxstupo.YdlUi.Core.Options {
+    using System;
 
     /// <summary>Represents an implementation that can save and load a ISettings object.</summary>
     public interface ISettingsManager {
 
         /// <summary>The settings store. The instance should remain constant.</summary>
         ISettings Settings { get; }
+
+        /// <summary>Invoked when the settings changes due to loading or resetting.</summary>
+        EventHandler OnChanged { get; set; }
 
         /// <summary>Load the settings instance, updating the values to what was stored.</summary>
         void Load();
