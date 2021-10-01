@@ -102,7 +102,7 @@
 
             // init settings
             IFileSettingsManager settingsManager = Container.Get<IFileSettingsManager>();
-            settingsManager.Init(DefaultSettings, "MediaCat", "settings.json", LocalSettingsLocations);
+            settingsManager.Init(DefaultSettings, "YDL-UI", "settings.json", LocalSettingsLocations);
             settingsManager.Load();
 
         }
