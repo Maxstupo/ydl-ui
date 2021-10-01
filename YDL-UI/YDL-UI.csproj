@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BooleanVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanInverterConverter.cs" />
+    <Compile Include="Converters\I18NConverter.cs" />
     <Compile Include="Services\I18NDesigner.cs" />
     <Compile Include="Services\IFileFolderDialog.cs" />
     <Compile Include="Services\NativeFileFolderDialog.cs" />
@@ -106,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser">
