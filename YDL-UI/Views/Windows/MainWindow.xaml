@@ -19,7 +19,7 @@
         <!--menustrip-->
         <Menu Grid.Row="0">
             <MenuItem Header="{Binding I18N[windows.main.menu.file]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.file.add_url]}" InputGestureText="Ctrl+D" IsEnabled="False"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.file.add_url]}" InputGestureText="Ctrl+D" Command="{s:Action ShowAddDownloadDialog}"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.import]}" IsEnabled="False"/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.export]}" IsEnabled="False"/>
