@@ -19,10 +19,12 @@
         /// </summary>
         public Settings(Dictionary<string, object> options) {
             foreach (KeyValuePair<string, object> pair in options) {
-                Type type = pair.Value.GetType();
+                if (pair.Value != null) {
+                    Type type = pair.Value.GetType();
 
-                if (!type.IsPrimitive && type != typeof(string))
-                    throw new ArgumentException("Dictionary values must be primitive or strings!");
+                    if (!type.IsPrimitive && type != typeof(string))
+                        throw new ArgumentException("Dictionary values must be primitive or strings!");
+                }
 
                 dictionary.Add(pair.Key, pair.Value);
             }
