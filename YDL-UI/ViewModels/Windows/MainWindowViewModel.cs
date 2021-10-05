@@ -4,7 +4,7 @@
     using Maxstupo.YdlUi.ViewModels.Dialogs;
     using Stylet;
 
-    public sealed class MainWindowViewModel : ViewModelBase {
+    public sealed class MainWindowViewModel : ScreenViewModelBase {
 
         private static readonly NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -13,7 +13,9 @@
         private readonly SettingsDialogViewModel settingsDialogViewModel;
         private readonly AddDownloadDialogViewModel addDownloadDialog;
 
-        public MainWindowViewModel(II18N i18n, IWindowManager windowManager, 
+        public BindableCollection<DownloadItemViewModel> Downloads { get; } = new BindableCollection<DownloadItemViewModel>();
+
+        public MainWindowViewModel(II18N i18n, IWindowManager windowManager,
 
             SettingsDialogViewModel settingsDialogViewModel,
             AddDownloadDialogViewModel addDownloadDialog

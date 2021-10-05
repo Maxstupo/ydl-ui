@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Maxstupo.YdlUi.Views.Windows"
         xmlns:s="https://github.com/canton7/Stylet"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vmw="clr-namespace:Maxstupo.YdlUi.ViewModels.Windows"
+        xmlns:converters="clr-namespace:Maxstupo.YdlUi.Converters"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vmw:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="{Binding I18N[windows.main.title]}" Height="450" Width="800">
+    <Window.Resources>
+        <converters:TimeSpanConverter x:Key="timeSpanConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,33 +25,35 @@
         <!--menustrip-->
         <Menu Grid.Row="0">
             <MenuItem Header="{Binding I18N[windows.main.menu.file]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.file.add_url]}" InputGestureText="Ctrl+D" Command="{s:Action ShowAddDownloadDialog}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.file.add_url]}" InputGestureText="Ctrl+D" Command="{s:Action ShowAddDownloadDialog}" Icon="{iconPacks:Material Kind=LinkPlus}"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.import]}" IsEnabled="False"/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.export]}" IsEnabled="False"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.file.exit]}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.file.exit]}" Icon="{iconPacks:Material Kind=Plus, RotationAngle=45}"  Command="{s:Action RequestClose}"/>
             </MenuItem>
             <MenuItem Header="{Binding I18N[windows.main.menu.edit]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start]}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start_all]}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop]}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop_all]}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start]}" InputGestureText="Ctrl+S" Icon="{iconPacks:Material Kind=PlayOutline}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop]}" InputGestureText="Ctrl+P" Icon="{iconPacks:Material Kind=Pause}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start_all]}" InputGestureText="Ctrl+Shift+S" Icon="{iconPacks:Material Kind=PlayOutline}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop_all]}" InputGestureText="Ctrl+Shift+P" Icon="{iconPacks:Material Kind=Pause}"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.edit.select]}">
-
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.delete]}" InputGestureText="Del"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.delete]}" InputGestureText="Del" Icon="{iconPacks:Material Kind=DeleteOutline}"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.top_of_queue]}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_up_queue]}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_down_queue]}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.bottom_of_queue]}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.top_of_queue]}" InputGestureText="Ctrl+Shift++" Icon="{iconPacks:Material Kind=SkipNextOutline, RotationAngle=270}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_up_queue]}" InputGestureText="Ctrl++" Icon="{iconPacks:Material Kind=MenuUpOutline}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_down_queue]}" InputGestureText="Ctrl+-" Icon="{iconPacks:Material Kind=MenuDownOutline}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.bottom_of_queue]}" InputGestureText="Ctrl+Shift+-" Icon="{iconPacks:Material Kind=SkipPreviousOutline, RotationAngle=270}"/>
             </MenuItem>
             <MenuItem Header="{Binding I18N[windows.main.menu.view]}">
                 <MenuItem Header="{Binding I18N[windows.main.menu.view.toolbar]}" IsChecked="True"/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.view.statusbar]}" IsChecked="True"/>
+                <Separator/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.mode.table]}" InputGestureText="Alt+1" IsChecked="True"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.mode.details]}" InputGestureText="Alt+2" IsChecked="False"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.view.columns]}">
                     <MenuItem Header="{Binding I18N[windows.main.menu.view.columns.index]}" IsChecked="True"/>
@@ -62,28 +69,107 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{Binding I18N[windows.main.menu.options]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.options.settings]}" InputGestureText="Ctrl+P" Command="{s:Action ShowSettingsDialog}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.options.settings]}" InputGestureText="Ctrl+O" Command="{s:Action ShowSettingsDialog}" Icon="{iconPacks:Material Kind=CogOutline}"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.options.enable_clipboard_link_detection]}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.options.enable_clipboard_link_detection]}" Icon="{iconPacks:Material Kind=ClipboardArrowDownOutline}"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.options.clear_logs]}"/>
             </MenuItem>
 
             <MenuItem Header="{Binding I18N[windows.main.menu.help]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.help.about]}" IsEnabled="False"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.help.wiki]}" InputGestureText="F1" IsEnabled="False"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.help.about]}" IsEnabled="False"  Icon="{iconPacks:Material Kind=InformationOutline}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.help.wiki]}" InputGestureText="F1" IsEnabled="False"  Icon="{iconPacks:Material Kind=BookOutline}"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.help.check_for_updates]}" IsEnabled="False"/>
             </MenuItem>
         </Menu>
 
         <!--toolbar-->
-        <ToolBar Grid.Row="1" Visibility="Collapsed">
+        <ToolBar Grid.Row="1" Visibility="Visible">
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=LinkPlus}" Command="{s:Action ShowAddDownloadDialog}" ToolTip="{Binding I18N[windows.main.toolbar.add_url]}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=DeleteOutline}" ToolTip="{Binding I18N[windows.main.toolbar.delete]}"/>
+            <Separator Margin="2 0 6 0"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=PlayOutline}" ToolTip="{Binding I18N[windows.main.toolbar.start]}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=Pause}" ToolTip="{Binding I18N[windows.main.toolbar.stop]}"/>
+            <Separator Margin="2 0 6 0"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=SkipNextOutline, RotationAngle=270}" ToolTip="{Binding I18N[windows.main.toolbar.top_of_queue]}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=MenuUpOutline}" ToolTip="{Binding I18N[windows.main.toolbar.move_up_queue]}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=MenuDownOutline}" ToolTip="{Binding I18N[windows.main.toolbar.move_down_queue]}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=SkipPreviousOutline, RotationAngle=270}" ToolTip="{Binding I18N[windows.main.toolbar.bottom_of_queue]}"/>
+            <Separator Margin="2 0 6 0"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=CogOutline}" Command="{s:Action ShowSettingsDialog}" ToolTip="{Binding I18N[windows.main.toolbar.settings]}"/>
 
         </ToolBar>
 
         <!--download list-->
-        <DataGrid Grid.Row="2" AutoGenerateColumns="False"></DataGrid>
+        <DataGrid Grid.Row="2" Visibility="Visible"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionMode="Extended" SelectionUnit="FullRow" HeadersVisibility="Column" ItemsSource="{Binding Downloads}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Width="Auto" Binding="{Binding Index}"/>
+                <DataGridTextColumn Header="Title" Width="*" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Size" Width="Auto" Binding="{Binding Size}"/>
+                <DataGridTextColumn Header="ETA" Width="Auto" Binding="{Binding Eta, Converter={StaticResource timeSpanConverter}}"/>
+                <DataGridTextColumn Header="URL" Width="Auto" Binding="{Binding Url}"/>
+                <DataGridTextColumn Header="Speed" Width="Auto" Binding="{Binding Speed}"/>
+                <DataGridTextColumn Header="Status" Width="Auto" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Download Directory" Width="Auto" Binding="{Binding DownloadDirectory}"/>
+            </DataGrid.Columns>
+
+
+        </DataGrid>
+
+        <ListView Grid.Row="2"  Visibility="Collapsed"  ItemsSource="{Binding Downloads}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#efefefef">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="128"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="{Binding ThumbnailUrl}" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="4" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="16"  Margin="7 0 0 0"  TextWrapping="WrapWithOverflow" Text="{Binding Title}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="10"  Margin="7 0 0 0"  TextWrapping="WrapWithOverflow" >
+                            <Hyperlink NavigateUri="{Binding Url}">
+                                <TextBlock Text="{Binding Url}"/>
+                            </Hyperlink>
+                        </TextBlock>
+
+                        <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="8 2"/>
+
+                        <StackPanel Orientation="Horizontal"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom">
+                            <TextBlock FontWeight="Bold" Text="Duration: "/>
+                            <TextBlock Text="02:59:07"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"  Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom">
+                            <TextBlock FontWeight="Bold" Text="Size: "/>
+                            <Button Content="Load"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Center">
+                            <Button Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=CloseBoxOutline}"/>
+                            <Button Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=DownloadOutline}"/>
+                            <Button Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=InformationOutline}"/>
+                        </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <!--statusbar-->
         <StatusBar Grid.Row="3">
