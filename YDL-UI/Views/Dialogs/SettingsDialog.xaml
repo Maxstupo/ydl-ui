@@ -15,7 +15,7 @@
         Title="{Binding I18N[dialogs.settings.title]}"
         WindowStyle="ToolWindow"
         WindowStartupLocation="CenterOwner"
-         MinHeight="200" MinWidth="300" Width="670" Height="490">
+         MinHeight="200" MinWidth="400" Width="670" Height="490">
     <Window.Resources>
         <c:I18NConverter x:Key="i18Converter"/>
         <util:BindingProxy x:Key="prox" Data="{Binding}"/>
@@ -74,46 +74,193 @@
 
 
             <controls:PageSelector x:Name="pageSelector"
-                                   DesignTimeSelectedPageId="general"
-                                   SelectedPageId="general"
+                                   DesignTimeSelectedPageId="youtube_dl"
+                                   SelectedPageId="downloads"
                                    LocalizationBase="dialogs.settings.tabs"
                                    Grid.Row="1"
                                    Grid.Column="2"
                                    Margin="0 5 10 10">
                 <controls:PageSelector.Elements>
 
-                    <Grid controls:PageSelector.PageId="general">
+                    <!--general-->
+                    <StackPanel Orientation="Vertical" controls:PageSelector.PageId="general">
                         <controls:PageSelector.Header>
-                            <iconPacks:PackIconMaterial Kind="Cog"/>
+                            <iconPacks:PackIconMaterial Kind="CogOutline"/>
                         </controls:PageSelector.Header>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="40"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Interface" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackPanel Orientation="Vertical">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" Margin="0 0 5 0" Text="{Binding I18N[dialogs.settings.tabs.general.language]}"/>
+                                    <ComboBox  Grid.Column="1"   ItemsSource="{Binding I18N.Languages}" SelectedItem="{Binding Language,UpdateSourceTrigger=PropertyChanged}"/>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Application" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox>
+                                    <TextBlock Text="Start automatically with Windows" TextWrapping="WrapWithOverflow"/>
+                                </CheckBox>
+                                <CheckBox Content="Start minimized"/>
+                                <CheckBox Content="Check for application updates"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Startup" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox Content="Start automatically with Windows"/>
+                                <CheckBox Content="Start minimized"  />
+                                <CheckBox Content="Check for application updates" />
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="System Tray" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox Content="Close to Tray"/>
+                                <CheckBox Content="Minimize to Tray"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                    </StackPanel>
+
+                    <!--downloads-->
+                    <Grid controls:PageSelector.PageId="downloads">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="DownloadOutline"/>
+                        </controls:PageSelector.Header>
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox Content="Remember last download location"/>
+                            <CheckBox Content=""/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--network-->
+                    <Grid controls:PageSelector.PageId="network">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="NetworkOutline"/>
+                        </controls:PageSelector.Header>
+                        <!--proxy-->
+                        <!--timeouts-->
+                        <!--user-agents-->
+                        <!--referer-->
+                        <!--headers-->
+
+                    </Grid>
+
+                    <!--presets-->
+                    <Grid controls:PageSelector.PageId="presets">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="ArchiveOutline"/>
+                        </controls:PageSelector.Header>
+                    </Grid>
+
+                    <!--notifications-->
+                    <Grid controls:PageSelector.PageId="notifications">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="MessageOutline"/>
+                        </controls:PageSelector.Header>
+                        <TextBlock>notify</TextBlock>
+
+                    </Grid>
+
+                    <!--shotcuts-->
+                    <Grid controls:PageSelector.PageId="shortcuts">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="KeyboardOutline"/>
+                        </controls:PageSelector.Header>
+                    </Grid>
+
+                    <!--youtube-dl-->
+                    <Grid controls:PageSelector.PageId="youtube_dl">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="FileVideoOutline"/>
+                        </controls:PageSelector.Header>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0"  Margin="2 0 2 15" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" Text="Youtube-Dl is the utility that does the downloading for the URLs you provide. Keeping this updated will ensure that websites remain downloadable, and maximize the supported sites."/>
+
+                        <Grid Grid.Row="1">
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" MinWidth="22"/>
+                            </Grid.ColumnDefinitions>
+                         
+                            <TextBlock Grid.Column="0" Text="Path:" Margin="2" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Margin="2"/>
+                            <Button Grid.Column="2" Content="..." Margin="2"/>
+                            
+                        </Grid>
+
+                        <GroupBox Header="Updates" Grid.Row="2">
+
+                        </GroupBox>
+
+
+                    </Grid>
+
+                    <!--ffmpeg-->
+                    <Grid controls:PageSelector.PageId="ffmpeg">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="FileVideoOutline"/>
+                        </controls:PageSelector.Header>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"  Margin="2 0 2 15" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" Text="FFmpeg is used by youtube-dl for post-processing. This includes merging and extracting video and audio streams from sources you attempt to download."/>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto" MinWidth="22"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Path:" Margin="2" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Margin="2"/>
+                            <Button Grid.Column="2" Content="..." Margin="2"/>
+                        </Grid>
+
+
+                        <GroupBox Header="Updates" Grid.Row="2">
+
+                        </GroupBox>
+
+                    </Grid>
+
+                    <!--advanced-->
+                    <Grid controls:PageSelector.PageId="advanced">
+                        <controls:PageSelector.Header>
+                            <iconPacks:PackIconMaterial Kind="AlertOctagonOutline"/>
+                        </controls:PageSelector.Header>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Margin="0 0 5 0" Text="{Binding I18N[dialogs.settings.tabs.general.language]}"/>
-                        <ComboBox Grid.Column="1" ItemsSource="{Binding I18N.Languages}" SelectedItem="{Binding Language,UpdateSourceTrigger=PropertyChanged}"/>
-
-                    </Grid>
-
-                    <Grid controls:PageSelector.PageId="downloads">
-                        <controls:PageSelector.Header>
-                            <iconPacks:PackIconMaterial Kind="Download"/>
-                        </controls:PageSelector.Header>
-                        <TextBlock>bandwidth</TextBlock>
-
-                    </Grid>
-
-                    <Grid controls:PageSelector.PageId="advanced">
-                        <controls:PageSelector.Header>
-                            <iconPacks:PackIconMaterial Kind="Exclamation"/>
-                        </controls:PageSelector.Header>
-                        <TextBlock>advanced stuff</TextBlock>
+                        <TextBlock Grid.Row="0" FontStyle="Italic" TextWrapping="WrapWithOverflow" Padding="2 0 2 4" Text="Warning: Do not change these settings unless you know what you are doing!"/>
+                        <DataGrid Grid.Row="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Width="Auto"/>
+                                <DataGridTextColumn Header="Value" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
 
                 </controls:PageSelector.Elements>
@@ -123,6 +270,7 @@
 
         <!--buttons-->
         <Grid Grid.Row="1" Background="LightGray" >
+            <Button Content="{Binding I18N[common.reset]}" Command="{s:Action Reset}" IsDefault="True" HorizontalAlignment="Left" Margin="10 10 100 10" Width="75"/>
             <Button Content="{Binding I18N[common.confirm]}" Command="{s:Action Confirm}" IsDefault="True" HorizontalAlignment="Right" Margin="10 10 100 10" Width="75"/>
             <Button Content="{Binding I18N[common.cancel]}" Command="{s:Action Cancel}" IsCancel="True" HorizontalAlignment="Right" Margin="10 10 10 10" Width="75" />
         </Grid>

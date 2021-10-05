@@ -7,7 +7,7 @@
     using Maxstupo.YdlUi.Core.Localization;
     using Maxstupo.YdlUi.Core.Options;
 
-    public sealed class SettingsDialogViewModel : ViewModelBase {
+    public sealed class SettingsDialogViewModel : ScreenViewModelBase {
 
         private static readonly NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -18,19 +18,21 @@
 
                 I18N.Language = value;
 
-                settingsManager.Settings.Set("locale", value.Locale);
-                settingsManager.Settings.Set("locale_variant", value.VariantName);
+                settings.Value.Locale = value.Locale;
+                settings.Value.LocaleVariant = value.VariantName;
 
                 NotifyOfPropertyChange(nameof(I18N));
             }
         }
 
         private readonly ISettingsManager settingsManager;
+        private readonly ISettings<AppSettings> settings;
 
         private bool loadOnClose;
 
-        public SettingsDialogViewModel(II18N i18n, ISettingsManager settings) : base(i18n) {
-            this.settingsManager = settings;
+        public SettingsDialogViewModel(II18N i18n, ISettingsManager settingsManager, ISettings<AppSettings> settings) : base(i18n) {
+            this.settingsManager = settingsManager;
+            this.settings = settings;
         }
 
         // Designer ctor
@@ -68,6 +70,10 @@
             loadOnClose = false;
             settingsManager.Load();
             RequestClose(false);
+        }
+
+        public void Reset() {
+            // TODO: Implement settings reset button.
         }
 
     }

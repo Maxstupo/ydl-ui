@@ -8,5 +8,7 @@
             <Setter Property="VerticalGridLinesBrush" Value="LightGray"/>
         </Style.Setters>
     </Style>
+    
+    
 
 </ResourceDictionary>

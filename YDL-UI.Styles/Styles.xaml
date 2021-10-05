@@ -6,11 +6,17 @@
         <ResourceDictionary Source="Styles/Button.xaml"/>
         <ResourceDictionary Source="Styles/Menu.xaml"/>
         <ResourceDictionary Source="Styles/DataGrid.xaml"/>
+        <ResourceDictionary Source="Styles/ToolBar.xaml"/>
+        <ResourceDictionary Source="Styles/GroupBox.xaml"/>
+        <ResourceDictionary Source="Styles/CheckBox.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Default Styles -->
     <Style TargetType="DataGrid" BasedOn="{StaticResource PrimaryDataGridStyle}"/>
     <Style TargetType="Menu" BasedOn="{StaticResource PrimaryMenuStyle}"/>
+    <Style TargetType="ToolBar" BasedOn="{StaticResource PrimaryToolBarStyle}"/>
+    <Style TargetType="GroupBox" BasedOn="{StaticResource PrimaryGroupBoxStyle}"/>
+    <Style TargetType="CheckBox" BasedOn="{StaticResource PrimaryCheckBoxStyle}"/>
 
 </ResourceDictionary>
