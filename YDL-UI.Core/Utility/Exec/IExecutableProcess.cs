@@ -1,13 +1,12 @@
 ﻿namespace Maxstupo.YdlUi.Core.Utility.Exec {
     using System;
-    using Maxstupo.YdlUi.Core.Arguments;
 
     /// <summary>
     /// Represents a implementation that can create executable processes using a specific working directory and a set of arguments.
     /// </summary>
     public interface IExecutableProcessProvider {
 
-        IExecutableProcess CreateExecutableProcess(IArgumentsCollection arguments, string workingDirectory);
+        IExecutableProcess CreateExecutableProcess(object arguments, string workingDirectory);
 
     }
 

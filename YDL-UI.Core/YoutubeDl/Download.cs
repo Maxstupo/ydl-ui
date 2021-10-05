@@ -1,7 +1,7 @@
 ﻿namespace Maxstupo.YdlUi.Core.YoutubeDl {
     using Maxstupo.YdlUi.Core.Arguments;
     using Maxstupo.YdlUi.Core.Utility.Exec;
-    using Maxstupo.YdlUi.Core.YoutubeDl.Binaries;
+    using Maxstupo.YdlUi.Core.YoutubeDl.Arguments;
 
     /// <summary>The status of the download. Negative values are errors/failures.</summary>
     public enum DownloadStatus : int {
@@ -32,17 +32,16 @@
     }
 
     public sealed class Download : IDownload {
-        private readonly IOutputParser parser;
-        private readonly IExecutableProcess process;
 
         public DownloadStatus Status { get; }
 
         public string Directory { get; }
 
-        public Download(IInterpretableBinaryProvider binaryProvider, IArgumentsCollection arguments, string downloadDirectory) {
+        private readonly YdlArguments arguments;
+
+        public Download(IExecutableProcessProvider provider, YdlArguments arguments, string downloadDirectory) {
+            this.arguments = arguments;
             this.Directory = downloadDirectory;
-            process = binaryProvider.CreateExecutableProcess(arguments, downloadDirectory);
-            parser = binaryProvider.CreateParser();
         }
 
         public void Start() {

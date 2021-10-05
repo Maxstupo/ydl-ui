@@ -1,30 +1,31 @@
 ﻿namespace Maxstupo.YdlUi.Core.YoutubeDl {
     using Maxstupo.YdlUi.Core.Arguments;
-    using Maxstupo.YdlUi.Core.YoutubeDl.Binaries;
+    using Maxstupo.YdlUi.Core.Utility.Exec;
+    using Maxstupo.YdlUi.Core.YoutubeDl.Arguments;
 
-    public interface IDownloadManager : IArgumentsProvider {
+    public interface IDownloadManager {
 
-        IDownload CreateDownload(IArgumentsCollection arguments, string downloadDirectory);
+        IDownload CreateDownload(YdlArguments arguments, string downloadDirectory);
 
     }
 
-    public sealed class DownloadManager : IDownloadManager {
-        private readonly IInterpretableBinaryProvider binaryProvider;
+    public sealed class DownloadManager : IDownloadManager, IExecutableProcessProvider {
+        private readonly IArgumentSerializer serializer;
 
-        public DownloadManager(IInterpretableBinaryProvider binaryProvider) {
-            this.binaryProvider = binaryProvider;
+        public DownloadManager(IArgumentSerializer serializer) {
+            this.serializer = serializer;
         }
 
-        public IArgumentsCollection CreateArguments(string key) {
-            return binaryProvider.CreateArguments(key);
-        }
-
-        public IDownload CreateDownload(IArgumentsCollection arguments, string downloadDirectory) {
-            IDownload download = new Download(binaryProvider, arguments, downloadDirectory);
+        public IDownload CreateDownload(YdlArguments arguments, string downloadDirectory) {
+            IDownload download = new Download(null, arguments, downloadDirectory);
 
             return download;
         }
 
+        public IExecutableProcess CreateExecutableProcess(object arguments, string workingDirectory) {
+            string args = serializer.Serialize(arguments);
+            return new ExecutableProcess("", args, workingDirectory);
+        }
 
     }
 

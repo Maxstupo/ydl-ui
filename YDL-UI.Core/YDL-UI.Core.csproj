@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arguments\ArgumentsCollection.cs" />
-    <Compile Include="Options\ISettings.cs" />
+    <Compile Include="Arguments\Argument.cs" />
     <Compile Include="Options\ISettingsManager.cs" />
     <Compile Include="Options\JsonSettingsManager.cs" />
     <Compile Include="Options\FallbackSettingsManager.cs" />
-    <Compile Include="Options\Settings.cs" />
+    <Compile Include="Options\AppSettings.cs" />
+    <Compile Include="Utility\PropertyChangedBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arguments\ArgumentSerializer.cs" />
     <Compile Include="Arguments\EnumCasePolicy.cs" />
@@ -55,16 +55,9 @@
     <Compile Include="Utility\Exec\ExecutableProcess.cs" />
     <Compile Include="Utility\Exec\IExecutableProcess.cs" />
     <Compile Include="Utility\Extensions\TypeExtensions.cs" />
-    <Compile Include="YoutubeDl\Binaries\IInterpretableBinaryProvider.cs" />
-    <Compile Include="YoutubeDl\Binaries\IYdlBinaryLibrary.cs" />
-    <Compile Include="YoutubeDl\Binaries\Readers\IYdlBinaryReader.cs" />
-    <Compile Include="YoutubeDl\Binaries\Readers\JsonBinaryReader.cs" />
-    <Compile Include="YoutubeDl\Binaries\YdlBinaryDefinition.cs" />
-    <Compile Include="YoutubeDl\Binaries\YdlBinaryProvider.cs" />
+    <Compile Include="YoutubeDl\Arguments\YdlArguments.cs" />
     <Compile Include="YoutubeDl\Download.cs" />
     <Compile Include="YoutubeDl\DownloadManager.cs" />
-    <Compile Include="Arguments\ArgumentDefinition.cs" />
-    <Compile Include="YoutubeDl\IOutputParser.cs" />
     <Compile Include="YoutubeDl\YdlArgumentSerializer.cs" />
     <Compile Include="Localization\II18N.cs" />
     <Compile Include="Localization\I18N.cs" />
