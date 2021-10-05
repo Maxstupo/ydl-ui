@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using System.IO;
     using System.IO.Abstractions;
+    using System.Linq;
     using System.Reflection;
     using System.Windows.Threading;
     using System.Xml;
@@ -14,8 +15,7 @@
     using Maxstupo.YdlUi.Core.Options;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
     using Maxstupo.YdlUi.Core.YoutubeDl;
-    using Maxstupo.YdlUi.Core.YoutubeDl.Binaries;
-    using Maxstupo.YdlUi.Core.YoutubeDl.Binaries.Readers;
+    using Maxstupo.YdlUi.Core.YoutubeDl.Arguments;
     using Maxstupo.YdlUi.Services;
     using Maxstupo.YdlUi.Utility;
     using Maxstupo.YdlUi.ViewModels.Windows;
@@ -33,11 +33,8 @@
             "./options.json"
         };
 
-        private static readonly ISettings DefaultSettings = new Settings.ReadonlySettings(new Dictionary<string, object> {
-            { "binary", "youtube-dl"},
-            { "locale",null},
-            { "locale_variant",null }
-        });
+        // Settings classes mapped to object property names in the settings file.
+        private List<(Type Type, string Key)> SettingsMapping { get; } = new List<(Type Type, string Key)>();
 
         protected override void OnStart() {
             // NLog didn't find a config file, so load the embedded one.
@@ -82,15 +79,16 @@
             builder.Bind<IArgumentSerializer>().And<ICommandLineSerializer>().To<YdlArgumentSerializer>();
 
             // bind settings manager
-            ISettingsManager settingsManager = new JsonSettingsManager(fileSystem);
-            builder.Bind<ISettingsManager>().And<IFileSettingsManager>().ToInstance(settingsManager);
-            builder.Bind<ISettings>().ToInstance(settingsManager.Settings);
+            builder.Bind<ISettingsManager>().And<IFileSettingsManager>().And<ISettingsProvider>().To<JsonSettingsManager>().InSingletonScope();
 
-            builder.Bind<IYdlBinaryReader>().To<JsonBinaryReader>();
+            void BindSettings<T>(string key) where T : class {
+                builder.Bind<ISettings<T>>().ToFactory(x => x.Get<ISettingsProvider>().GetSettings<T>(key));
+                SettingsMapping.Add((typeof(T), key));
+            }
 
-            // bind binary provider provider
-            builder.Bind<IArgumentsProvider>().And<IYdlBinaryLibrary>().And<IInterpretableBinaryProvider>().To<YdlBinaryProvider>().InSingletonScope();
-
+            BindSettings<AppSettings>("app");
+            BindSettings<DownloadSettings>(null);
+                     
             // bind the download manager 
             builder.Bind<IDownloadManager>().To<DownloadManager>().InSingletonScope();
         }
@@ -100,10 +98,9 @@
 
             IFileSystem fileSystem = Container.Get<IFileSystem>();
 
-
             // init settings
             IFileSettingsManager settingsManager = Container.Get<IFileSettingsManager>();
-            settingsManager.Init(DefaultSettings, "YDL-UI", "settings.json", LocalSettingsLocations);
+            settingsManager.Init(SettingsMapping.ToArray(), "YDL-UI", "settings.json", LocalSettingsLocations);
             settingsManager.Load();
 
             // init i18n
@@ -116,19 +113,10 @@
             i18n.RegisterReader(new JsonTreeReader(), ".json");
             i18n.RegisterReader(new JsonKvpReader(), ".jkvp");
 
-            i18n.Init(settingsManager.Settings.Get<string>("locale"), settingsManager.Settings.Get<string>("locale_variant"));
-
-
-            // setup available packaged binaries.
-            IYdlBinaryLibrary binaryLibrary = Container.Get<IYdlBinaryLibrary>();
-
-            // Read and load binary definitions from file.
-            IYdlBinaryReader reader = Container.Get<IYdlBinaryReader>();
-            reader.Read(binaryLibrary, "./binaries.json");
-
+            ISettings<AppSettings> s = Container.Get<ISettings<AppSettings>>();
+            i18n.Init(s.Value.Locale, s.Value.LocaleVariant);
 
         }
-
 
         #region Crash Reporting - Unhandled Exceptions 
 

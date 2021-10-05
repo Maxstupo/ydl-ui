@@ -1,11 +1,19 @@
 ﻿namespace Maxstupo.YdlUi.Core.Options {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
 
-    /// <summary>Represents an implementation that can save and load a ISettings object.</summary>
+    /// <summary>Represents an implementation that has settings.</summary>
+    /// <typeparam name="T">The settings type.</typeparam>
+    public interface ISettings<T> where T : class {
+
+        /// <summary>The settings object.</summary>
+        T Value { get; }
+
+    }
+
+    /// <summary>Represents an implementation that can save and load a settings object.</summary>
     public interface ISettingsManager {
-
-        /// <summary>The settings store. The instance should remain constant.</summary>
-        ISettings Settings { get; }
 
         /// <summary>Invoked when the settings changes due to loading or resetting.</summary>
         EventHandler OnChanged { get; set; }
@@ -21,18 +29,15 @@
 
     }
 
-    /// <summary>A settings manager specifically for a file system. Provides initialization and a filepath.</summary>
+    public interface ISettingsProvider {
+
+        ISettings<T> GetSettings<T>(string key) where T : class;
+
+    }
+
     public interface IFileSettingsManager : ISettingsManager {
 
-        /// <summary>The file location that loading and saving will read and write from.</summary>
-        string Filepath { get; }
-
-        // TODO: Update XML doc.
-        string Directory { get; }
-
-        // TODO: Update XML doc.
-        /// <summary>Initialize this settings manager, by providing default settings and filepaths.</summary>
-        void Init(ISettings defaults, string appName, string settingsName, string[] filepaths);
+        void Init((Type Type, string Key)[] defaults, string appName, string settingsName, params string[] filepaths);
 
     }
 

@@ -1,10 +1,11 @@
 ﻿namespace Maxstupo.YdlUi.Core.Options {
     using System;
     using System.Collections.Generic;
-    using System.IO;
+    using System.ComponentModel;
     using System.IO.Abstractions;
     using System.Text;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// A settings manager that will save and load the settings in a key-value pair JSON format.
@@ -13,6 +14,8 @@
         private static readonly NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         private readonly IFileSystem fileSystem;
+
+        private JObject jSettings;
 
         public override EventHandler OnChanged { get; set; }
 
@@ -28,33 +31,10 @@
                 return;
             }
 
-            Dictionary<string, object> values = new Dictionary<string, object>();
-
             Logger.Debug("Reading settings from {filepath}", Filepath);
-            using (Stream stream = fileSystem.File.Open(Filepath, FileMode.Open)) {
-                using (StreamReader sw = new StreamReader(stream, Encoding.UTF8)) {
-                    using (JsonReader reader = new JsonTextReader(sw)) {
 
-                        string key = null;
-                        while (reader.Read()) {
-                            if (reader.Value == null)
-                                continue;
-
-                            if (reader.TokenType == JsonToken.PropertyName) { // property name
-                                key = reader.Value.ToString();
-
-                            } else if (key != null) { // property value
-                                values.Add(key, reader.Value);
-                                key = null;
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            settings.Clear();
-            settings.Apply(new Settings(values));
+            string json = fileSystem.File.ReadAllText(Filepath, Encoding.UTF8);
+            jSettings = JObject.Parse(json);
 
             OnChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -64,34 +44,75 @@
 
             Logger.Debug("Writing settings to {filepath}", Filepath);
 
-            using (Stream stream = fileSystem.File.Open(Filepath, FileMode.Create)) {
-                using (StreamWriter sw = new StreamWriter(stream, Encoding.UTF8)) {
-                    using (JsonWriter writer = new JsonTextWriter(sw)) {
-                        writer.Formatting = Formatting.Indented;
-
-                        writer.WriteStartObject();
-                        {
-                            IList<string> keys = settings.Keys;
-                            foreach (string key in keys) {
-                                writer.WritePropertyName(key);
-                                writer.WriteValue(settings.Get(key));
-                            }
-                        }
-                        writer.WriteEndObject();
-                    }
-                }
-            }
-
-        
+            string json = jSettings.ToString(Formatting.Indented);
+            fileSystem.File.WriteAllText(Filepath, json, Encoding.UTF8);
         }
 
         public override void Reset() {
             Logger.Info("Reset to defaults...");
 
-            settings.Clear();
-            settings.Apply(Defaults);
+            jSettings = new JObject();
+
+            foreach ((Type Type, string Key) tuple in Defaults) {
+                object defaultInstanceValues = Activator.CreateInstance(tuple.Type);
+
+                MergeValue(tuple.Key, defaultInstanceValues);
+            }
 
             OnChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void MergeValue(string key, object value) {
+            JObject jValue = JObject.FromObject(value);
+            JObject jSettings = key == null ? this.jSettings : (JObject) this.jSettings[key];
+            jSettings.Merge(jValue);
+        }
+
+        public override ISettings<T> GetSettings<T>(string key) {
+            // since the JToken instance is reinstantiated every load or reset, we need to fetch it each time.
+            return new SettingsProxy<T>(key,
+                 // Get value
+                 (_key) => (key == null ? jSettings : jSettings[key])?.ToObject<T>() ?? null,
+
+                 // Set value                 
+                 (_key, value) => MergeValue(key, value)
+            );
+        }
+
+        // An ISettings proxy that will fetch and set using delegates.
+        // Supports types with INotifyPropertyChanged by calling the set value delegate when a change occurs.
+        private sealed class SettingsProxy<T> : ISettings<T> where T : class {
+
+            private readonly string key;
+            private readonly Func<string, T> getValue;
+            private readonly Action<string, T> setValue;
+
+            private T lastValue;
+            public T Value {
+                get {
+                    if (lastValue != null && lastValue is INotifyPropertyChanged propertyChangedLast)
+                        propertyChangedLast.PropertyChanged -= UpdateValue_PropertyChanged;
+
+                    lastValue = getValue(key);
+
+                    if (lastValue != null && lastValue is INotifyPropertyChanged propertyChangedNew)
+                        propertyChangedNew.PropertyChanged += UpdateValue_PropertyChanged;
+
+                    return lastValue;
+                }
+
+            }
+
+            public SettingsProxy(string key, Func<string, T> getValue, Action<string, T> setValue) {
+                this.key = key;
+                this.getValue = getValue;
+                this.setValue = setValue;
+            }
+
+            private void UpdateValue_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+                setValue(key, lastValue);
+            }
+
         }
 
     }
