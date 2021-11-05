@@ -60,7 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviours\DataGridSelectedItemsBehaviour.cs" />
     <Compile Include="Controls\PageSelector.cs" />
+    <Compile Include="Converters\ByteSizeConverter.cs" />
+    <Compile Include="Converters\EnumBooleanConverter.cs" />
     <Compile Include="Converters\TimeSpanConverter.cs" />
     <Compile Include="Converters\BooleanVisibilityConverter.cs" />
     <Compile Include="Converters\BooleanInverterConverter.cs" />
@@ -71,21 +74,16 @@
     <Compile Include="Utility\BindingProxy.cs" />
     <Compile Include="Utility\MappingViewManager.cs" />
     <Compile Include="Utility\NLogLogger.cs" />
-    <Compile Include="ViewModels\Dialogs\AddDownloadDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\DownloadSettingsDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\SettingsDialogViewModel.cs" />
-    <Compile Include="ViewModels\DownloadItemViewModel.cs" />
-    <Compile Include="ViewModels\FetchInfoViewModel.cs" />
+    <Compile Include="ViewModels\DownloadViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\Windows\MainWindowViewModel.cs" />
-    <Page Include="Views\Dialogs\AddDownloadDialog.xaml">
+    <Page Include="Views\Dialogs\DownloadSettingsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\SettingsDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Download\FetchInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,6 +150,9 @@
     <PackageReference Include="Stylet">
       <Version>1.3.6</Version>
     </PackageReference>
+    <PackageReference Include="System.Windows.Interactivity.WPF">
+      <Version>2.0.20525</Version>
+    </PackageReference>
     <PackageReference Include="WindowsAPICodePack-Core">
       <Version>1.1.2</Version>
     </PackageReference>
@@ -172,6 +173,7 @@
       <Name>YDL-UI.Styles</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "$(TargetDir)locales\" mkdir "$(TargetDir)locales\"

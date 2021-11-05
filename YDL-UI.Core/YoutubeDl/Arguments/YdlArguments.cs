@@ -1,6 +1,7 @@
 ﻿namespace Maxstupo.YdlUi.Core.YoutubeDl.Arguments {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using ByteSizeLib;
     using Maxstupo.YdlUi.Core.Arguments;
     using Newtonsoft.Json;

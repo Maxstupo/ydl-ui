@@ -74,16 +74,42 @@
 
 
             <controls:PageSelector x:Name="pageSelector"
-                                   DesignTimeSelectedPageId="youtube_dl"
+                                   DesignTimeSelectedPageId="downloads"
                                    SelectedPageId="downloads"
                                    LocalizationBase="dialogs.settings.tabs"
                                    Grid.Row="1"
                                    Grid.Column="2"
                                    Margin="0 5 10 10">
+                <controls:PageSelector.Style>
+                    <Style TargetType="{x:Type controls:PageSelector}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type controls:PageSelector}">
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ContentPresenter ContentSource="Content"/>
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Content.(controls:PageSelector.PreventScrolling)}" Value="True">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type controls:PageSelector}">
+                                            <ScrollViewer VerticalScrollBarVisibility="Disabled">
+                                                <ContentPresenter ContentSource="Content"/>
+                                            </ScrollViewer>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:PageSelector.Style>
                 <controls:PageSelector.Elements>
 
                     <!--general-->
-                    <StackPanel Orientation="Vertical" controls:PageSelector.PageId="general">
+                    <StackPanel Margin="0 0 4 0"  Orientation="Vertical"  controls:PageSelector.PageId="general">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="CogOutline"/>
                         </controls:PageSelector.Header>
@@ -96,70 +122,123 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0"  VerticalAlignment="Center" Margin="0 0 5 0" Text="{Binding I18N[dialogs.settings.tabs.general.language]}"/>
-                                    <ComboBox  Grid.Column="1"   ItemsSource="{Binding I18N.Languages}" SelectedItem="{Binding Language,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Grid.Column="0" Margin="4 4 0 4" VerticalAlignment="Center" Text="{Binding I18N[dialogs.settings.tabs.general.language]}"/>
+                                    <ComboBox  Grid.Column="1" Margin="4" ItemsSource="{Binding I18N.Languages}" SelectedItem="{Binding Language,UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
                             </StackPanel>
                         </GroupBox>
 
-                        <GroupBox Header="Application" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                        <!--<GroupBox Header="Application" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
                             <StackPanel Orientation="Vertical">
-                                <CheckBox>
-                                    <TextBlock Text="Start automatically with Windows" TextWrapping="WrapWithOverflow"/>
-                                </CheckBox>
-                                <CheckBox Content="Start minimized"/>
-                                <CheckBox Content="Check for application updates"/>
+                               
                             </StackPanel>
-                        </GroupBox>
+                        </GroupBox>-->
                         <GroupBox Header="Startup" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Start automatically with Windows"/>
-                                <CheckBox Content="Start minimized"  />
-                                <CheckBox Content="Check for application updates" />
+                                <CheckBox Margin="4 4 4 0" Content="Start automatically with Windows"/>
+                                <CheckBox Margin="4 4 4 0" Content="Start minimized"  />
+                                <CheckBox Margin="4 4 4 4" Content="Check for application updates" />
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="System Tray" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                             <StackPanel Orientation="Vertical">
-                                <CheckBox Content="Close to Tray"/>
-                                <CheckBox Content="Minimize to Tray"/>
+                                <CheckBox  Margin="4 4 4 0" Content="Close to Tray"/>
+                                <CheckBox  Margin="4 4 4 4" Content="Minimize to Tray"/>
                             </StackPanel>
                         </GroupBox>
 
                     </StackPanel>
 
                     <!--downloads-->
-                    <Grid controls:PageSelector.PageId="downloads">
+                    <StackPanel Orientation="Vertical" Margin="0 0 4 0"  controls:PageSelector.PageId="downloads">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="DownloadOutline"/>
                         </controls:PageSelector.Header>
-                        <StackPanel Orientation="Vertical">
-                            <CheckBox Content="Remember last download location"/>
-                            <CheckBox Content=""/>
-                        </StackPanel>
-                    </Grid>
+                        <GroupBox Header="Default Downloads Folder">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" Margin="4" IsReadOnly="True"/>
+                                <Button  Margin="0 4 4 4" Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=FolderOutline}" Grid.Column="1"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Behaviour">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox Content="Immediate start quick-add downloads?"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
 
                     <!--network-->
-                    <Grid controls:PageSelector.PageId="network">
+                    <StackPanel Margin="0 0 4 0" Orientation="Vertical" controls:PageSelector.PageId="network" controls:PageSelector.PreventScrolling="False">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="NetworkOutline"/>
                         </controls:PageSelector.Header>
-                        <!--proxy-->
-                        <!--timeouts-->
-                        <!--user-agents-->
-                        <!--referer-->
-                        <!--headers-->
 
-                    </Grid>
+                        <GroupBox Header="Rate Limit" >
+                            <TextBox Margin="4" Text="7000"/>
+                        </GroupBox>
 
-                    <!--presets-->
-                    <Grid controls:PageSelector.PageId="presets">
-                        <controls:PageSelector.Header>
-                            <iconPacks:PackIconMaterial Kind="ArchiveOutline"/>
-                        </controls:PageSelector.Header>
-                    </Grid>
+                        <GroupBox Header="Cookies">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" Margin="4" IsReadOnly="True"/>
+                                <Button  Margin="0 4 4 4" Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=FolderOutline}" Grid.Column="1"/>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="User Agent">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox Margin="4" Content="Randomized User-Agent?" />
+                                <ComboBox Margin="4" IsEditable="True">
+                                    <ComboBoxItem IsSelected="True">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15</ComboBoxItem>
+                                    <ComboBoxItem>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Proxy" >
+                            <TextBox Margin="4" Text="HTTPS/SOCKS proxy URL"/>
+                        </GroupBox>
+
+                        <GroupBox Header="Referer">
+                            <TextBox Margin="4" Text=""/>
+                        </GroupBox>
+
+                        <GroupBox Header="HTTP Headers" MinHeight="150">
+                            <DataGrid Margin="4" AutoGenerateColumns="False" CanUserResizeRows="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Header" Width="3*"/>
+                                    <DataGridTextColumn Header="Value" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+
+
+                        <GroupBox Header="Misc">
+                            <StackPanel Orientation="Vertical">
+                                <CheckBox Margin="4 4 4 4" Content="Validate HTTPS Certificates?"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                    </StackPanel>
 
                     <!--notifications-->
-                    <Grid controls:PageSelector.PageId="notifications">
+                    <Grid Margin="0 0 4 0"  controls:PageSelector.PageId="notifications">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="MessageOutline"/>
                         </controls:PageSelector.Header>
@@ -168,14 +247,14 @@
                     </Grid>
 
                     <!--shotcuts-->
-                    <Grid controls:PageSelector.PageId="shortcuts">
+                    <Grid  Margin="0 0 4 0"  controls:PageSelector.PageId="shortcuts">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="KeyboardOutline"/>
                         </controls:PageSelector.Header>
                     </Grid>
 
                     <!--youtube-dl-->
-                    <Grid controls:PageSelector.PageId="youtube_dl">
+                    <Grid Margin="0 0 4 0"  controls:PageSelector.PageId="youtube_dl">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="FileVideoOutline"/>
                         </controls:PageSelector.Header>
@@ -185,7 +264,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <TextBlock Grid.Row="0"  Margin="2 0 2 15" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" Text="Youtube-Dl is the utility that does the downloading for the URLs you provide. Keeping this updated will ensure that websites remain downloadable, and maximize the supported sites."/>
 
                         <Grid Grid.Row="1">
@@ -196,11 +275,11 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto" MinWidth="22"/>
                             </Grid.ColumnDefinitions>
-                         
+
                             <TextBlock Grid.Column="0" Text="Path:" Margin="2" VerticalAlignment="Center"/>
                             <TextBox Grid.Column="1" Margin="2"/>
                             <Button Grid.Column="2" Content="..." Margin="2"/>
-                            
+
                         </Grid>
 
                         <GroupBox Header="Updates" Grid.Row="2">
@@ -211,7 +290,7 @@
                     </Grid>
 
                     <!--ffmpeg-->
-                    <Grid controls:PageSelector.PageId="ffmpeg">
+                    <Grid Margin="0 0 4 0"  controls:PageSelector.PageId="ffmpeg">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="FileVideoOutline"/>
                         </controls:PageSelector.Header>
@@ -244,7 +323,7 @@
                     </Grid>
 
                     <!--advanced-->
-                    <Grid controls:PageSelector.PageId="advanced">
+                    <Grid Margin="0 0 4 0"  controls:PageSelector.PageId="advanced">
                         <controls:PageSelector.Header>
                             <iconPacks:PackIconMaterial Kind="AlertOctagonOutline"/>
                         </controls:PageSelector.Header>

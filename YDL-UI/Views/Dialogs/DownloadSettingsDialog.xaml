@@ -1,0 +1,90 @@
+﻿<Window x:Class="Maxstupo.YdlUi.Views.Dialogs.DownloadSettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Maxstupo.YdlUi.Views.Dialogs"  
+        xmlns:s="https://github.com/canton7/Stylet"
+        xmlns:vmd="clr-namespace:Maxstupo.YdlUi.ViewModels.Dialogs"
+         xmlns:util="clr-namespace:Maxstupo.YdlUi.Utility"
+        xmlns:c="clr-namespace:Maxstupo.YdlUi.Converters"
+        xmlns:controls="clr-namespace:Maxstupo.YdlUi.Controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vmd:DownloadSettingsDialogViewModel, IsDesignTimeCreatable=True}"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding I18N[dialogs.download_settings.title]}" MinHeight="266" MinWidth="535" Height="290" Width="545">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" MinWidth="26" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--filename template-->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Filename Template:" VerticalAlignment="Center" Margin="4 0 4 0"/>
+        <ComboBox IsEditable="True" Grid.Row="0" Grid.Column="1" Margin="4" Text="%(title)s.%(ext)s">
+            <ComboBoxItem IsSelected="True" Content="%(title)s.%(ext)s"/>
+            <ComboBoxItem Content="%(title)s - %(id)s.%(ext)s"/>
+            <ComboBoxItem Content="%(uploader)s/%(title)s - %(id)s.%(ext)s"/>
+        </ComboBox>
+        <Button Grid.Row="0" Grid.Column="2" Content="&lt;&lt;" Margin="4"/>
+
+        <!--download location-->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Location:" VerticalAlignment="Center" Margin="4 0 4 0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="4" IsReadOnly="True" Text="{Binding DownloadLocation}"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="{Binding I18N[common.browse]}" Margin="4" Command="{s:Action ShowBrowseFolderDialog}"/>
+
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Video" Grid.Column="0"  Grid.Row="0" Margin="4 8 4 4">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Margin="4" MinWidth="100" ItemsSource="{Binding Modes}" SelectedItem="{Binding Mode}"/>
+                    <ComboBox Margin="4" MinWidth="80" ItemsSource="{Binding Resolutions}" SelectedItem="{Binding Resolution}" IsEnabled="{Binding CanResolution}"/>
+                    <ComboBox Margin="4" MinWidth="80" ItemsSource="{Binding Framerates}" SelectedItem="{Binding Framerate}" IsEnabled="{Binding CanFramerate}"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Audio" Grid.Column="1" Grid.Row="0" Margin="4 8 4 4">
+                <ComboBox SelectedItem="160K" Margin="4" MinWidth="60" IsEnabled="{Binding CanAudioBitrate}">
+                    <ComboBoxItem IsSelected="True" Content="258K"/>
+                    <ComboBoxItem Content="96K"/>
+                    <ComboBoxItem Content="48K"/>
+                </ComboBox>
+            </GroupBox>
+
+            <CheckBox Content="Restrict Filenames?" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="4"/>
+
+            <GroupBox Header="Subtitles" Grid.Column="0" Grid.Row="1" Margin="4">
+                <ComboBox Margin="4"/>
+            </GroupBox>
+            <GroupBox Header="Auto Subtitles" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Margin="4">
+                <ComboBox Margin="4"/>
+            </GroupBox>
+        </Grid>
+
+        <!--buttons-->
+        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Background="LightGray" >
+            <Button Content="{Binding I18N[common.confirm]}" Command="{s:Action Confirm}" IsDefault="True" HorizontalAlignment="Right" Margin="10 10 100 10" Width="75"/>
+            <Button Content="{Binding I18N[common.cancel]}" Command="{s:Action Cancel}" IsCancel="True" HorizontalAlignment="Right" Margin="10 10 10 10" Width="75" />
+        </Grid>
+
+    </Grid>
+</Window>

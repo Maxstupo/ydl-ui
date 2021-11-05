@@ -82,13 +82,13 @@
             });
         }
 
-        public string Serialize(string filename, object argumentsObject) {
-            return $"{filename} {Serialize(argumentsObject)}";
+        public string Serialize(string filename, params object[] argumentsObjects) {
+            return $"{filename} {Serialize(argumentsObjects)}";
         }
 
-        public string Serialize(object argumentsObject) {
+        public string Serialize(params object[] argumentsObjects) {
             // Serialize and sort by argument order.
-            List<BuiltFlag> flags = SerializeObject(argumentsObject).OrderBy(x => x.Argument.Order).ToList();
+            List<BuiltFlag> flags = argumentsObjects.SelectMany(x => SerializeObject(x)).OrderBy(x => x.Argument.Order).ToList();
 
             // Build the argument string.
             StringBuilder sb = new StringBuilder();
@@ -101,24 +101,21 @@
         }
 
 
-        public IEnumerable<Tuple<Argument, PropertyInfo, Type>> GetAvailableArguments(object argumentsObject) {
-            return GetAvailableArguments(argumentsObject.GetType());
-        }
 
-        public virtual IEnumerable<Tuple<Argument, PropertyInfo, Type>> GetAvailableArguments(Type argumentsObject, bool excludeHidden = false) {
-            foreach (PropertyInfo propertyInfo in argumentsObject.GetProperties(BindingFlags.Instance | BindingFlags.Public)) {
+        public virtual IEnumerable<Tuple<Argument, PropertyInfo, Type, object>> GetAvailableArguments(object argumentsObject, bool excludeHidden = false) {
+            foreach (PropertyInfo propertyInfo in argumentsObject.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)) {
                 Type propertyType = Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType; // The property type.
 
                 Argument argument = propertyInfo.GetCustomAttribute<Argument>();
 
                 if (argument == null) {
                     if (propertyInfo.PropertyType.IsClass && propertyInfo.GetCustomAttribute<ArgumentContainer>() != null) {
-                        foreach (Tuple<Argument, PropertyInfo, Type> tuple in GetAvailableArguments(propertyInfo.PropertyType))
+                        foreach (Tuple<Argument, PropertyInfo, Type, object> tuple in GetAvailableArguments(propertyInfo.GetValue(argumentsObject)))
                             yield return tuple;
                     }
 
                 } else {
-                    yield return Tuple.Create(argument, propertyInfo, propertyType);
+                    yield return Tuple.Create(argument, propertyInfo, propertyType, argumentsObject);
 
                 }
 
@@ -129,12 +126,11 @@
             if (argumentsObject == null)
                 yield break;
 
-            Type containerType = argumentsObject.GetType();
 
-            foreach (Tuple<Argument, PropertyInfo, Type> tuple in GetAvailableArguments(containerType, false)) {
-                tuple.Deconstruct(out Argument argument, out PropertyInfo propertyInfo, out Type propertyType);
+            foreach (Tuple<Argument, PropertyInfo, Type, object> tuple in GetAvailableArguments(argumentsObject, false)) {
+                tuple.Deconstruct(out Argument argument, out PropertyInfo propertyInfo, out Type propertyType, out object argObject);
 
-                object value = propertyInfo.GetValue(argumentsObject, null); // The value of the property.
+                object value = propertyInfo.GetValue(argObject, null); // The value of the property.
 
                 if (argument == null) {
                     // Inspect objects that are defined without an argument attribute, and have an ArgumentContainer

@@ -1,4 +1,4 @@
-﻿namespace Maxstupo.YdlUi.Core.YoutubeDl {
+﻿namespace Maxstupo.YdlUi.Core.YoutubeDl.Arguments {
     using System;
     using ByteSizeLib;
     using Maxstupo.YdlUi.Core.Arguments;

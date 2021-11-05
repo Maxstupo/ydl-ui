@@ -64,8 +64,19 @@
 
         private void MergeValue(string key, object value) {
             JObject jValue = JObject.FromObject(value);
-            JObject jSettings = key == null ? this.jSettings : (JObject) this.jSettings[key];
-            jSettings.Merge(jValue);
+            JObject jSettings = (key == null ? this.jSettings : (JObject) this.jSettings[key]);
+            if (jSettings != null) {
+
+                jSettings.Merge(jValue);
+            } else {
+                if (key == null) {
+                    this.jSettings = new JObject();
+                    this.jSettings.Merge(jValue);
+                } else {
+                    this.jSettings[key] = new JObject();
+                    ((JObject) this.jSettings[key]).Merge(jValue);
+                }
+            }
         }
 
         public override ISettings<T> GetSettings<T>(string key) {

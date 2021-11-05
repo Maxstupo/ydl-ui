@@ -8,13 +8,23 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vmw="clr-namespace:Maxstupo.YdlUi.ViewModels.Windows"
         xmlns:converters="clr-namespace:Maxstupo.YdlUi.Converters"
+        xmlns:controls="clr-namespace:Maxstupo.YdlUi.Controls"
+        xmlns:util="clr-namespace:Maxstupo.YdlUi.Utility"
+        xmlns:b="clr-namespace:Maxstupo.YdlUi.Behaviours"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vmw:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="{Binding I18N[windows.main.title]}" Height="450" Width="800">
     <Window.Resources>
         <converters:TimeSpanConverter x:Key="timeSpanConverter"/>
+        <converters:EnumVisibilityConverter x:Key="enumvis"/>
+        <converters:BooleanVisibilityConverter x:Key="boolvis"/>
+        <converters:ByteSizeConverter x:Key="bytesize"/>
     </Window.Resources>
     <Grid>
+        <Grid.Resources>
+            <CollectionViewSource Source="{Binding Downloads}" IsLiveSortingRequested="True" x:Key="downloads_view"/>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -25,7 +35,7 @@
         <!--menustrip-->
         <Menu Grid.Row="0">
             <MenuItem Header="{Binding I18N[windows.main.menu.file]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.file.add_url]}" InputGestureText="Ctrl+D" Command="{s:Action ShowAddDownloadDialog}" Icon="{iconPacks:Material Kind=LinkPlus}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.file.add_url]}" InputGestureText="Ctrl+D" Command="{s:Action ShowAddDownloadDialog}" Icon="{iconPacks:Material Kind=LinkPlus}"  IsEnabled="False"/>
                 <Separator/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.import]}" IsEnabled="False"/>
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.export]}" IsEnabled="False"/>
@@ -33,29 +43,29 @@
                 <MenuItem Header="{Binding I18N[windows.main.menu.file.exit]}" Icon="{iconPacks:Material Kind=Plus, RotationAngle=45}"  Command="{s:Action RequestClose}"/>
             </MenuItem>
             <MenuItem Header="{Binding I18N[windows.main.menu.edit]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start]}" InputGestureText="Ctrl+S" Icon="{iconPacks:Material Kind=PlayOutline}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop]}" InputGestureText="Ctrl+P" Icon="{iconPacks:Material Kind=Pause}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start_all]}" InputGestureText="Ctrl+Shift+S" Icon="{iconPacks:Material Kind=PlayOutline}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop_all]}" InputGestureText="Ctrl+Shift+P" Icon="{iconPacks:Material Kind=Pause}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start]}" InputGestureText="Ctrl+S" Icon="{iconPacks:Material Kind=PlayOutline}" Command="{s:Action QueueSelectedDownloads}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop]}" InputGestureText="Ctrl+P" Icon="{iconPacks:Material Kind=Pause}" IsEnabled="False"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.start_all]}" InputGestureText="Ctrl+Shift+S" Icon="{iconPacks:Material Kind=PlayOutline}" Command="{s:Action QueueDownloads}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.stop_all]}" InputGestureText="Ctrl+Shift+P" Icon="{iconPacks:Material Kind=Pause}"  IsEnabled="False"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.select]}">
-                </MenuItem>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.delete]}" InputGestureText="Del" Icon="{iconPacks:Material Kind=DeleteOutline}" Command="{s:Action RemoveSelectedDownloads}"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.delete]}" InputGestureText="Del" Icon="{iconPacks:Material Kind=DeleteOutline}"/>
-                <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.top_of_queue]}" InputGestureText="Ctrl+Shift++" Icon="{iconPacks:Material Kind=SkipNextOutline, RotationAngle=270}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_up_queue]}" InputGestureText="Ctrl++" Icon="{iconPacks:Material Kind=MenuUpOutline}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_down_queue]}" InputGestureText="Ctrl+-" Icon="{iconPacks:Material Kind=MenuDownOutline}"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.edit.bottom_of_queue]}" InputGestureText="Ctrl+Shift+-" Icon="{iconPacks:Material Kind=SkipPreviousOutline, RotationAngle=270}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.top_of_queue]}" InputGestureText="Ctrl+Shift++" Icon="{iconPacks:Material Kind=SkipNextOutline, RotationAngle=270}" Command="{s:Action MoveSelectedDownloadsToTop}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_up_queue]}" InputGestureText="Ctrl++" Icon="{iconPacks:Material Kind=MenuUpOutline}" Command="{s:Action MoveSelectedDownloadsUp}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.move_down_queue]}" InputGestureText="Ctrl+-" Icon="{iconPacks:Material Kind=MenuDownOutline}" Command="{s:Action MoveSelectedDownloadsDown}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.edit.bottom_of_queue]}" InputGestureText="Ctrl+Shift+-" Icon="{iconPacks:Material Kind=SkipPreviousOutline, RotationAngle=270}" Command="{s:Action MoveSelectedDownloadsToBottom}"/>
             </MenuItem>
             <MenuItem Header="{Binding I18N[windows.main.menu.view]}">
-                <MenuItem Header="{Binding I18N[windows.main.menu.view.toolbar]}" IsChecked="True"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.view.statusbar]}" IsChecked="True"/>
+                <MenuItem.Resources>
+                    <converters:EnumBooleanConverter x:Key="enum"/>
+                </MenuItem.Resources>
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.toolbar]}" IsChecked="{Binding ShowToolbar}" Command="{s:Action ToggleShowToolbar}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.statusbar]}" IsChecked="{Binding ShowStatusBar}" Command="{s:Action ToggleShowStatusBar}"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.view.mode.table]}" InputGestureText="Alt+1" IsChecked="True"/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.view.mode.details]}" InputGestureText="Alt+2" IsChecked="False"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.mode.table]}" Command="{s:Action ChangeView}" CommandParameter="{x:Static vmw:DisplayMode.Table}" InputGestureText="Alt+1" IsChecked="{Binding Path=DisplayMode, Converter={StaticResource enum}, ConverterParameter=Table, Mode=OneWay}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.mode.list]}" Command="{s:Action ChangeView}" CommandParameter="{x:Static vmw:DisplayMode.List}" InputGestureText="Alt+2" IsChecked="{Binding Path=DisplayMode, Converter={StaticResource enum}, ConverterParameter=List, Mode=OneWay}"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.view.columns]}">
+                <MenuItem Header="{Binding I18N[windows.main.menu.view.columns]}" IsEnabled="False">
                     <MenuItem Header="{Binding I18N[windows.main.menu.view.columns.index]}" IsChecked="True"/>
                     <MenuItem Header="{Binding I18N[windows.main.menu.view.columns.url]}" IsChecked="True"/>
                     <MenuItem Header="{Binding I18N[windows.main.menu.view.columns.progress]}" IsChecked="True"/>
@@ -71,9 +81,9 @@
             <MenuItem Header="{Binding I18N[windows.main.menu.options]}">
                 <MenuItem Header="{Binding I18N[windows.main.menu.options.settings]}" InputGestureText="Ctrl+O" Command="{s:Action ShowSettingsDialog}" Icon="{iconPacks:Material Kind=CogOutline}"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.options.enable_clipboard_link_detection]}" Icon="{iconPacks:Material Kind=ClipboardArrowDownOutline}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.options.enable_clipboard_link_detection]}" Icon="{iconPacks:Material Kind=ClipboardArrowDownOutline}" IsEnabled="False"/>
                 <Separator/>
-                <MenuItem Header="{Binding I18N[windows.main.menu.options.clear_logs]}"/>
+                <MenuItem Header="{Binding I18N[windows.main.menu.options.clear_logs]}"  IsEnabled="False"/>
             </MenuItem>
 
             <MenuItem Header="{Binding I18N[windows.main.menu.help]}">
@@ -85,39 +95,84 @@
         </Menu>
 
         <!--toolbar-->
-        <ToolBar Grid.Row="1" Visibility="Visible">
+        <ToolBar Grid.Row="1" Visibility="{Binding ShowToolbar, Converter={StaticResource boolvis}}">
             <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=LinkPlus}" Command="{s:Action ShowAddDownloadDialog}" ToolTip="{Binding I18N[windows.main.toolbar.add_url]}"/>
             <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=DeleteOutline}" ToolTip="{Binding I18N[windows.main.toolbar.delete]}"/>
             <Separator Margin="2 0 6 0"/>
             <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=PlayOutline}" ToolTip="{Binding I18N[windows.main.toolbar.start]}"/>
             <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=Pause}" ToolTip="{Binding I18N[windows.main.toolbar.stop]}"/>
             <Separator Margin="2 0 6 0"/>
-            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=SkipNextOutline, RotationAngle=270}" ToolTip="{Binding I18N[windows.main.toolbar.top_of_queue]}"/>
-            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=MenuUpOutline}" ToolTip="{Binding I18N[windows.main.toolbar.move_up_queue]}"/>
-            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=MenuDownOutline}" ToolTip="{Binding I18N[windows.main.toolbar.move_down_queue]}"/>
-            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=SkipPreviousOutline, RotationAngle=270}" ToolTip="{Binding I18N[windows.main.toolbar.bottom_of_queue]}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=SkipNextOutline, RotationAngle=270}" ToolTip="{Binding I18N[windows.main.toolbar.top_of_queue]}" Command="{s:Action MoveSelectedDownloadsToTop}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=MenuUpOutline}" ToolTip="{Binding I18N[windows.main.toolbar.move_up_queue]}" Command="{s:Action MoveSelectedDownloadsUp}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=MenuDownOutline}" ToolTip="{Binding I18N[windows.main.toolbar.move_down_queue]}" Command="{s:Action MoveSelectedDownloadsDown}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=SkipPreviousOutline, RotationAngle=270}" ToolTip="{Binding I18N[windows.main.toolbar.bottom_of_queue]}" Command="{s:Action MoveSelectedDownloadsToBottom}"/>
             <Separator Margin="2 0 6 0"/>
             <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=CogOutline}" Command="{s:Action ShowSettingsDialog}" ToolTip="{Binding I18N[windows.main.toolbar.settings]}"/>
-
+            <Separator Margin="2 0 6 0"/>
+            <TextBox MinWidth="60" Width="300" Text="{Binding ToolbarUrl, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Style="{StaticResource IconButton}" Margin="0 0 4 0" Content="{iconPacks:Material Kind=PlusOutline}" Command="{s:Action AddURL}"/>
         </ToolBar>
 
         <!--download list-->
-        <DataGrid Grid.Row="2" Visibility="Visible"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionMode="Extended" SelectionUnit="FullRow" HeadersVisibility="Column" ItemsSource="{Binding Downloads}">
+        <DataGrid Grid.Row="2" Visibility="{Binding Path=DisplayMode, Converter={StaticResource enumvis}, Mode=OneWay, ConverterParameter=Table}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" SelectionMode="Extended" SelectionUnit="FullRow" HeadersVisibility="Column" ItemsSource="{Binding Source={StaticResource downloads_view}}">
+            <i:Interaction.Behaviors>
+                <b:DataGridSelectedItemsBlendBehavior SelectedItems="{Binding SelectedDownloads, Mode=OneWay}"/>
+            </i:Interaction.Behaviors>
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu>
+                                <MenuItem Header="Open..."/>
+                                <MenuItem Header="Open Directory..."/>
+                                <Separator/>
+                                <MenuItem Header="Edit"/>
+                                <Separator/>
+                                <MenuItem Header="Delete"/>
+                                <Separator/>
+                                <MenuItem Header="Start"/>
+                                <MenuItem Header="Stop"/>
+                                <Separator/>
+                                <MenuItem Header="View Log"/>
+                            </ContextMenu>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Width="Auto" Binding="{Binding Index}"/>
-                <DataGridTextColumn Header="Title" Width="*" Binding="{Binding Title}"/>
-                <DataGridTextColumn Header="Size" Width="Auto" Binding="{Binding Size}"/>
-                <DataGridTextColumn Header="ETA" Width="Auto" Binding="{Binding Eta, Converter={StaticResource timeSpanConverter}}"/>
-                <DataGridTextColumn Header="URL" Width="Auto" Binding="{Binding Url}"/>
-                <DataGridTextColumn Header="Speed" Width="Auto" Binding="{Binding Speed}"/>
+                <DataGridTextColumn Header="Title" Width="4*" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="URL" Width="1*" Binding="{Binding Url}"/>
+                <DataGridTemplateColumn Header="Progress" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <ProgressBar IsIndeterminate="{Binding IsIndeterminate}" Value="{Binding Progress, Mode=OneWay}" Maximum="{Binding ProgressMaximum}">
+                                    <ProgressBar.Style>
+                                        <Style TargetType="ProgressBar">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="-1">
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ProgressBar.Style>
+                                </ProgressBar>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding StatusText}" FontSize="10" TextTrimming="CharacterEllipsis"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Size" Width="Auto" Binding="{Binding Size, Converter={StaticResource bytesize}}" />
+                <DataGridTextColumn Header="Speed" Width="Auto" Binding="{Binding Speed, Converter={StaticResource bytesize}}" />
                 <DataGridTextColumn Header="Status" Width="Auto" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Download Directory" Width="Auto" Binding="{Binding DownloadDirectory}"/>
+                <DataGridTextColumn Header="ETA" Width="Auto" Binding="{Binding Eta, Converter={StaticResource timeSpanConverter}}"/>
             </DataGrid.Columns>
 
 
         </DataGrid>
 
-        <ListView Grid.Row="2"  Visibility="Collapsed"  ItemsSource="{Binding Downloads}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView Grid.Row="2"  Visibility="{Binding Path=DisplayMode, Converter={StaticResource enumvis}, Mode=OneWay, ConverterParameter=List}" ScrollViewer.CanContentScroll="False"  ItemsSource="{Binding Downloads}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -126,6 +181,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="#efefefef">
+                        <Grid.Resources>
+                            <util:BindingProxy Data="{Binding}" x:Key="bb"/>
+                        </Grid.Resources>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="128"/>
                             <ColumnDefinition Width="Auto"/>
@@ -136,34 +194,40 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Image Source="{Binding ThumbnailUrl}" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="4" />
+                        <Image Source="{Binding ThumbnailUrl}" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="4" Height="96"  />
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="16"  Margin="7 0 0 0"  TextWrapping="WrapWithOverflow" Text="{Binding Title}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="10"  Margin="7 0 0 0"  TextWrapping="WrapWithOverflow" >
-                            <Hyperlink NavigateUri="{Binding Url}">
-                                <TextBlock Text="{Binding Url}"/>
-                            </Hyperlink>
-                        </TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="16"  Margin="7 0 0 0"  TextTrimming="CharacterEllipsis" Text="{Binding Title}"/>
 
-                        <ProgressBar Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="8 2"/>
+                        <ProgressBar Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="7 0" IsIndeterminate="{Binding IsIndeterminate}" Value="{Binding Progress, Mode=OneWay}" Maximum="{Binding ProgressMaximum}">
+                            <ProgressBar.Style>
+                                <Style TargetType="ProgressBar">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Status}" Value="-1">
+                                            <Setter Property="Foreground" Value="Red"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ProgressBar.Style>
+                        </ProgressBar>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="14 2" VerticalAlignment="Center" Text="{Binding StatusText}" FontSize="10" TextTrimming="CharacterEllipsis"/>
 
-                        <StackPanel Orientation="Horizontal"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom">
-                            <TextBlock FontWeight="Bold" Text="Duration: "/>
-                            <TextBlock Text="02:59:07"/>
+                        <StackPanel Orientation="Horizontal"   Grid.Row="2" Grid.Column="1" Margin="7 0 0 0"  VerticalAlignment="Center">
+                            <TextBlock FontWeight="Bold" Text="Duration: " VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Duration}"  VerticalAlignment="Center"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal"  Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom">
-                            <TextBlock FontWeight="Bold" Text="Size: "/>
+                        <StackPanel Orientation="Horizontal"  Grid.Row="2" Margin="12 0 0 0"  Grid.Column="2" VerticalAlignment="Center">
+                            <TextBlock FontWeight="Bold" Text="Size: " VerticalAlignment="Center"/>
                             <Button Content="Load"/>
                         </StackPanel>
 
-                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" VerticalAlignment="Center">
-                            <Button Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=CloseBoxOutline}"/>
-                            <Button Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=DownloadOutline}"/>
-                            <Button Style="{StaticResource IconButton}" Content="{iconPacks:Material Kind=InformationOutline}"/>
+                        <StackPanel Margin="0 0 4 0" Orientation="Vertical" Grid.Row="0" Grid.RowSpan="3" Grid.Column="3" VerticalAlignment="Center">
+                            <Button Style="{StaticResource IconButton}" Padding="4" Content="{iconPacks:Material Kind=TrashCanOutline}" Command="{s:Action Remove}" s:View.ActionTarget="{Binding}"/>
+                            <Button Style="{StaticResource IconButton}" Padding="4" Content="{iconPacks:Material Kind=CogOutline}" Command="{s:Action ShowDownloadSettingsDialog}" s:View.ActionTarget="{Binding}"/>
+                            <Button Style="{StaticResource IconButton}" Padding="4" Content="{iconPacks:Material Kind=DownloadOutline}" Command="{s:Action Queue}" s:View.ActionTarget="{Binding}"/>
+                            <Button Style="{StaticResource IconButton}" Padding="4" Content="{iconPacks:Material Kind=InformationOutline}"/>
                         </StackPanel>
 
                     </Grid>
@@ -172,7 +236,7 @@
         </ListView>
 
         <!--statusbar-->
-        <StatusBar Grid.Row="3">
+        <StatusBar Grid.Row="3" Visibility="{Binding ShowStatusBar, Converter={StaticResource boolvis}}">
             <StatusBar.ItemsPanel>
                 <ItemsPanelTemplate>
                     <DockPanel LastChildFill="False" />

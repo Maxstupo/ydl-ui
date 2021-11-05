@@ -4,7 +4,14 @@
     using Maxstupo.YdlUi.Services;
     using Stylet;
 
-    public interface IHasI18N { II18N I18N { get; } }
+    /// <summary>
+    /// This implementation includes an I18N property for translations. 
+    /// </summary>
+    public interface IHasI18N {
+
+        II18N I18N { get; }
+
+    }
 
     /// <summary>
     /// The base view model used by the majority of view models in YDL-UI. Includes I18N property (exposed to view) for translation with design-time support.

@@ -4,15 +4,16 @@
     using System.Diagnostics;
     using System.IO;
     using System.IO.Abstractions;
-    using System.Linq;
     using System.Reflection;
     using System.Windows.Threading;
     using System.Xml;
     using Maxstupo.YdlUi.Core.Arguments;
+    using Maxstupo.YdlUi.Core.Download;
     using Maxstupo.YdlUi.Core.Localization;
     using Maxstupo.YdlUi.Core.Localization.Providers;
     using Maxstupo.YdlUi.Core.Localization.Readers;
     using Maxstupo.YdlUi.Core.Options;
+    using Maxstupo.YdlUi.Core.Utility.Exec;
     using Maxstupo.YdlUi.Core.Utility.Extensions;
     using Maxstupo.YdlUi.Core.YoutubeDl;
     using Maxstupo.YdlUi.Core.YoutubeDl.Arguments;
@@ -86,11 +87,17 @@
                 SettingsMapping.Add((typeof(T), key));
             }
 
-            BindSettings<AppSettings>("app");
-            BindSettings<DownloadSettings>(null);
-                     
+            // bind sub settings.
+            BindSettings<AppSettings>(null); // root settings
+            BindSettings<DownloadSettings>("downloads");
+            BindSettings<BinarySettings>("binaries");
+            BindSettings<AdvancedSettings>("advanced");
+
+            builder.Bind<IYdlApi>().To<YdlApi>();
+
             // bind the download manager 
-            builder.Bind<IDownloadManager>().To<DownloadManager>().InSingletonScope();
+            builder.Bind<IDownloadManager>().And<IExecutableProcessProvider>().To<DownloadManager>().InSingletonScope();
+
         }
 
         protected override void Configure() {
@@ -107,14 +114,14 @@
             II18NSource i18n = Container.Get<II18NSource>();
 
             FileSystemProvider provider = new FileSystemProvider(fileSystem, "default");
-            provider.AddDirectory("locales");
+            provider.AddDirectory("locales"); // translation files will be read from ./locales folder.
             i18n.RegisterProvider(provider);
 
-            i18n.RegisterReader(new JsonTreeReader(), ".json");
-            i18n.RegisterReader(new JsonKvpReader(), ".jkvp");
+            i18n.RegisterReader(new JsonTreeReader(), ".json"); // associate .json files with JsonTreeReader
+            i18n.RegisterReader(new JsonKvpReader(), ".jkvp"); // associate .jvkp files with JsonKvpReader
 
-            ISettings<AppSettings> s = Container.Get<ISettings<AppSettings>>();
-            i18n.Init(s.Value.Locale, s.Value.LocaleVariant);
+            ISettings<AppSettings> settings = Container.Get<ISettings<AppSettings>>();
+            i18n.Init(settings.Value?.Locale, settings.Value?.LocaleVariant);
 
         }
 

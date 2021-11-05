@@ -1,9 +1,5 @@
 ﻿namespace Maxstupo.YdlUi.ViewModels.Dialogs {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Maxstupo.YdlUi.Core.Localization;
     using Maxstupo.YdlUi.Core.Options;
 
@@ -74,6 +70,9 @@
 
         public void Reset() {
             // TODO: Implement settings reset button.
+            settingsManager.Reset();
+            settingsManager.Load();
+
         }
 
     }

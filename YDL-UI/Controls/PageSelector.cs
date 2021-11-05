@@ -9,7 +9,7 @@
     using System.Windows.Media;
     using Stylet;
 
-    public sealed class VisualSelectorPage {
+    internal sealed class VisualSelectorPage {
 
         public object Header { get; }
 
@@ -34,7 +34,7 @@
 
     }
 
-    public sealed class PageSelector : ContentControl {
+    internal sealed class PageSelector : ContentControl {
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 

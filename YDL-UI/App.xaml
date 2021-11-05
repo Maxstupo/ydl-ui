@@ -17,33 +17,6 @@
 
                 <ResourceDictionary Source="pack://application:,,,/YDL-UI.Styles;component/Styles.xaml"/>
 
-                <ResourceDictionary>
-                    <Style TargetType="{x:Type controls:PageSelector}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type controls:PageSelector}">
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                        <ContentPresenter ContentSource="Content"/>
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Content.(controls:PageSelector.PreventScrolling)}" Value="True">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type controls:PageSelector}">
-                                            <ScrollViewer VerticalScrollBarVisibility="Disabled">
-                                                <ContentPresenter ContentSource="Content"/>
-                                            </ScrollViewer>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ResourceDictionary>
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

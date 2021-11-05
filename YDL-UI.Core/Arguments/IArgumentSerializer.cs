@@ -9,9 +9,9 @@
     /// </summary>
     public interface IArgumentSerializer {
 
-        IEnumerable<Tuple<Argument, PropertyInfo, Type>> GetAvailableArguments(Type argumentsObject, bool excludeHidden = false);
+        IEnumerable<Tuple<Argument, PropertyInfo, Type, object>> GetAvailableArguments(object argumentsObject, bool excludeHidden = false);
 
-        string Serialize(object argumentsObject);
+        string Serialize(params object[] argumentsObjects);
 
     }
 
@@ -21,7 +21,7 @@
     /// </summary>
     public interface ICommandLineSerializer {
 
-        string Serialize(string filename, object argumentsObject);
+        string Serialize(string filename, params object[] argumentsObjects);
 
     }
 
