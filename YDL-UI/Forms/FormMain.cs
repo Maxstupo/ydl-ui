@@ -38,6 +38,8 @@
 
         private readonly string localesDirectory;
 
+        private bool canSavePreferencesWidthDataGridView = false;
+
         public FormMain(string urlToAdd, bool silent) {
             InitializeComponent();
             this.urlToAdd = urlToAdd;
@@ -110,6 +112,9 @@
                     if (p.Columns.TryGetValue(column.Name, out ColumnDef def)) {
                         column.DisplayIndex = Math.Min(Math.Max(def.Index, 0), dgvDownloads.ColumnCount - 1);
                         column.Visible = (column.Name == "colUrl") || def.Visible;
+
+                        if (def.Width > 0) 
+                        column.Width = def.Width;
                     }
                 }
             };
@@ -117,7 +122,7 @@
             PreferencesManager.OnPreSave += (sdr, p) => {
                 p.Columns.Clear();
                 foreach (DataGridViewColumn column in dgvDownloads.Columns)
-                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible));
+                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible, column.Width));
             };
 
             Localization.OnLanguageChanged += OnLanguageChanged;
@@ -139,6 +144,7 @@
                 CheckForUpdates(true);
 #endif
 
+            canSavePreferencesWidthDataGridView = true;
         }
 
 
@@ -698,6 +704,12 @@
             }
         }
 
+        private void dgvDownloads_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e) {
+
+            if (!canSavePreferencesWidthDataGridView) return;
+
+            PreferencesManager.Save();
+        }
     }
 
 }
