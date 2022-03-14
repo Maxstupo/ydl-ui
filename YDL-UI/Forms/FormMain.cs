@@ -413,13 +413,11 @@
             Download download = dgvDownloads.SelectedRow<Download>();
             if (download != null && download.Url != null) {
                 try {
-
-                    string urlLink = download.Url;
-
-                    if (!urlLink.StartsWith("https://www.youtube.com"))
-                        urlLink = string.Format("https://www.youtube.com/watch?v={0}", urlLink);
-
-                    Clipboard.SetDataObject(urlLink, true, 5, 200); // Attempt to set clipboard 5 times, every 200ms.
+                            // string urlLink = download.Url;
+                            //  if (!urlLink.StartsWith("https://www.youtube.com"))
+                            //      urlLink = string.Format("https://www.youtube.com/watch?v={0}", urlLink);
+                    
+                    Clipboard.SetDataObject(download.Url, true, 5, 200); // Attempt to set clipboard 5 times, every 200ms.
 
                 } catch (ExternalException) { // Clipboard is being used by another process.
 
