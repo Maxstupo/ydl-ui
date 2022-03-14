@@ -63,6 +63,16 @@
             this.tsslSpring = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslStatusRight = new System.Windows.Forms.ToolStripStatusLabel();
             this.dgvDownloads = new System.Windows.Forms.DataGridView();
+            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUrl = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.colPercent = new Maxstupo.YdlUi.Controls.DataGridViewProgressColumn();
+            this.colSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpeed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDownloadDirectory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPlaylist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openDownloadDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyDownloadLinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,16 +93,6 @@
             this.downloadDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUrl = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.colPercent = new Maxstupo.YdlUi.Controls.DataGridViewProgressColumn();
-            this.colSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSpeed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDownloadDirectory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPlaylist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDownloads)).BeginInit();
@@ -463,8 +463,96 @@
             this.dgvDownloads.Tag = "download_list";
             this.dgvDownloads.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDownloads_CellFormatting);
             this.dgvDownloads.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.dgvDownloads_CellToolTipTextNeeded);
+            this.dgvDownloads.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvDownloads_ColumnWidthChanged);
             this.dgvDownloads.SelectionChanged += new System.EventHandler(this.dgvDownloads_SelectionChanged);
             this.dgvDownloads.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvDownloads_MouseDown);
+            // 
+            // colIndex
+            // 
+            this.colIndex.DataPropertyName = "Index";
+            this.colIndex.FillWeight = 13F;
+            this.colIndex.HeaderText = "#";
+            this.colIndex.MinimumWidth = 20;
+            this.colIndex.Name = "colIndex";
+            this.colIndex.ReadOnly = true;
+            // 
+            // colUrl
+            // 
+            this.colUrl.DataPropertyName = "Url";
+            this.colUrl.FillWeight = 59.2565F;
+            this.colUrl.HeaderText = "URL";
+            this.colUrl.Name = "colUrl";
+            this.colUrl.ReadOnly = true;
+            this.colUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // colPercent
+            // 
+            this.colPercent.DataPropertyName = "Progress";
+            this.colPercent.FillWeight = 47.4052F;
+            this.colPercent.HeaderText = "Progress";
+            this.colPercent.Name = "colPercent";
+            this.colPercent.ReadOnly = true;
+            this.colPercent.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPercent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // colSize
+            // 
+            this.colSize.DataPropertyName = "Size";
+            this.colSize.FillWeight = 23.7026F;
+            this.colSize.HeaderText = "Size";
+            this.colSize.Name = "colSize";
+            this.colSize.ReadOnly = true;
+            // 
+            // colSpeed
+            // 
+            this.colSpeed.DataPropertyName = "Speed";
+            this.colSpeed.FillWeight = 23.7026F;
+            this.colSpeed.HeaderText = "Speed";
+            this.colSpeed.Name = "colSpeed";
+            this.colSpeed.ReadOnly = true;
+            // 
+            // colEta
+            // 
+            this.colEta.DataPropertyName = "Eta";
+            this.colEta.FillWeight = 23.7026F;
+            this.colEta.HeaderText = "ETA";
+            this.colEta.Name = "colEta";
+            this.colEta.ReadOnly = true;
+            // 
+            // colStatus
+            // 
+            this.colStatus.DataPropertyName = "Status";
+            this.colStatus.FillWeight = 23.7026F;
+            this.colStatus.HeaderText = "Status";
+            this.colStatus.Name = "colStatus";
+            this.colStatus.ReadOnly = true;
+            // 
+            // colDownloadDirectory
+            // 
+            this.colDownloadDirectory.DataPropertyName = "DownloadDirectory";
+            this.colDownloadDirectory.FillWeight = 20F;
+            this.colDownloadDirectory.HeaderText = "Download Directory";
+            this.colDownloadDirectory.Name = "colDownloadDirectory";
+            this.colDownloadDirectory.ReadOnly = true;
+            this.colDownloadDirectory.Visible = false;
+            // 
+            // colTitle
+            // 
+            this.colTitle.DataPropertyName = "Title";
+            this.colTitle.FillWeight = 20F;
+            this.colTitle.HeaderText = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Visible = false;
+            // 
+            // colPlaylist
+            // 
+            this.colPlaylist.DataPropertyName = "Playlist";
+            this.colPlaylist.FillWeight = 20F;
+            this.colPlaylist.HeaderText = "Playlist";
+            this.colPlaylist.Name = "colPlaylist";
+            this.colPlaylist.ReadOnly = true;
+            this.colPlaylist.Visible = false;
             // 
             // contextMenuStrip
             // 
@@ -641,93 +729,6 @@
             this.playlistToolStripMenuItem.Tag = "playlist";
             this.playlistToolStripMenuItem.Text = "Playlist";
             this.playlistToolStripMenuItem.Click += new System.EventHandler(this.viewMenuItem_Click);
-            // 
-            // colIndex
-            // 
-            this.colIndex.DataPropertyName = "Index";
-            this.colIndex.FillWeight = 13F;
-            this.colIndex.HeaderText = "#";
-            this.colIndex.MinimumWidth = 20;
-            this.colIndex.Name = "colIndex";
-            this.colIndex.ReadOnly = true;
-            // 
-            // colUrl
-            // 
-            this.colUrl.DataPropertyName = "Url";
-            this.colUrl.FillWeight = 59.2565F;
-            this.colUrl.HeaderText = "URL";
-            this.colUrl.Name = "colUrl";
-            this.colUrl.ReadOnly = true;
-            this.colUrl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // colPercent
-            // 
-            this.colPercent.DataPropertyName = "Progress";
-            this.colPercent.FillWeight = 47.4052F;
-            this.colPercent.HeaderText = "Progress";
-            this.colPercent.Name = "colPercent";
-            this.colPercent.ReadOnly = true;
-            this.colPercent.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colPercent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // colSize
-            // 
-            this.colSize.DataPropertyName = "Size";
-            this.colSize.FillWeight = 23.7026F;
-            this.colSize.HeaderText = "Size";
-            this.colSize.Name = "colSize";
-            this.colSize.ReadOnly = true;
-            // 
-            // colSpeed
-            // 
-            this.colSpeed.DataPropertyName = "Speed";
-            this.colSpeed.FillWeight = 23.7026F;
-            this.colSpeed.HeaderText = "Speed";
-            this.colSpeed.Name = "colSpeed";
-            this.colSpeed.ReadOnly = true;
-            // 
-            // colEta
-            // 
-            this.colEta.DataPropertyName = "Eta";
-            this.colEta.FillWeight = 23.7026F;
-            this.colEta.HeaderText = "ETA";
-            this.colEta.Name = "colEta";
-            this.colEta.ReadOnly = true;
-            // 
-            // colStatus
-            // 
-            this.colStatus.DataPropertyName = "Status";
-            this.colStatus.FillWeight = 23.7026F;
-            this.colStatus.HeaderText = "Status";
-            this.colStatus.Name = "colStatus";
-            this.colStatus.ReadOnly = true;
-            // 
-            // colDownloadDirectory
-            // 
-            this.colDownloadDirectory.DataPropertyName = "DownloadDirectory";
-            this.colDownloadDirectory.FillWeight = 20F;
-            this.colDownloadDirectory.HeaderText = "Download Directory";
-            this.colDownloadDirectory.Name = "colDownloadDirectory";
-            this.colDownloadDirectory.ReadOnly = true;
-            this.colDownloadDirectory.Visible = false;
-            // 
-            // colTitle
-            // 
-            this.colTitle.DataPropertyName = "Title";
-            this.colTitle.FillWeight = 20F;
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Visible = false;
-            // 
-            // colPlaylist
-            // 
-            this.colPlaylist.DataPropertyName = "Playlist";
-            this.colPlaylist.FillWeight = 20F;
-            this.colPlaylist.HeaderText = "Playlist";
-            this.colPlaylist.Name = "colPlaylist";
-            this.colPlaylist.ReadOnly = true;
-            this.colPlaylist.Visible = false;
             // 
             // FormMain
             // 

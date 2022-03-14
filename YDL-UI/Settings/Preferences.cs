@@ -113,9 +113,12 @@
         public int Index { get; private set; }
         public bool Visible { get; private set; }
 
-        public ColumnDef(int index, bool visible) {
+        public int Width { get; private set; }
+
+        public ColumnDef(int index, bool visible, int width) {
             Index = index;
             Visible = visible;
+            Width = width;
         }
 
     }

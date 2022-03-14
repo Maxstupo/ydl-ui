@@ -38,6 +38,8 @@
 
         private readonly string localesDirectory;
 
+        private bool canSavePreferencesWidthDataGridView = false;
+
         public FormMain(string urlToAdd, bool silent) {
             InitializeComponent();
             this.urlToAdd = urlToAdd;
@@ -110,6 +112,9 @@
                     if (p.Columns.TryGetValue(column.Name, out ColumnDef def)) {
                         column.DisplayIndex = Math.Min(Math.Max(def.Index, 0), dgvDownloads.ColumnCount - 1);
                         column.Visible = (column.Name == "colUrl") || def.Visible;
+
+                        if (def.Width > 0)
+                            column.Width = def.Width;
                     }
                 }
             };
@@ -117,7 +122,7 @@
             PreferencesManager.OnPreSave += (sdr, p) => {
                 p.Columns.Clear();
                 foreach (DataGridViewColumn column in dgvDownloads.Columns)
-                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible));
+                    p.Columns.Add(column.Name, new ColumnDef(column.DisplayIndex, column.Visible, column.Width));
             };
 
             Localization.OnLanguageChanged += OnLanguageChanged;
@@ -138,7 +143,7 @@
             if (ShouldCheckForUpdates())
                 CheckForUpdates(true);
 #endif
-
+            canSavePreferencesWidthDataGridView = true;
         }
 
 
@@ -408,7 +413,13 @@
             Download download = dgvDownloads.SelectedRow<Download>();
             if (download != null && download.Url != null) {
                 try {
-                    Clipboard.SetDataObject(download.Url, true, 5, 200); // Attempt to set clipboard 5 times, every 200ms.
+
+                    string urlLink = download.Url;
+
+                    if (!urlLink.StartsWith("https://www.youtube.com"))
+                        urlLink = string.Format("https://www.youtube.com/watch?v={0}", urlLink);
+
+                    Clipboard.SetDataObject(urlLink, true, 5, 200); // Attempt to set clipboard 5 times, every 200ms.
 
                 } catch (ExternalException) { // Clipboard is being used by another process.
 
@@ -698,6 +709,11 @@
             }
         }
 
+        private void dgvDownloads_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e) {
+            if (!canSavePreferencesWidthDataGridView) return;
+
+            PreferencesManager.Save();
+        }
     }
 
 }

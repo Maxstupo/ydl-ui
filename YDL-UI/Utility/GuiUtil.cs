@@ -176,10 +176,16 @@
 
                 DataGridViewCell cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (cell is DataGridViewLinkCell) {
+
+                    string urlLink = (cell.Value as string).Trim();
+
+                    if (!urlLink.StartsWith("https://www.youtube.com"))
+                        urlLink = string.Format("https://www.youtube.com/watch?v={0}", urlLink);
+
                     if (action != null) {
-                        action(new Uri(cell.Value as string));
+                        action(new Uri(urlLink));
                     } else {
-                        Process.Start(cell.Value as string);
+                        Process.Start(urlLink);
                     }
                 }
             };
