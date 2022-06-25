@@ -10,6 +10,7 @@
     using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Threading;
     using System.Windows.Forms;
     using Maxstupo.YdlUi.Settings;
@@ -23,6 +24,9 @@
 
         private const string UrlWiki = @"https://github.com/Maxstupo/ydl-ui/wiki";
         private const string UpdateUrl = @"https://api.github.com/repos/Maxstupo/ydl-ui/releases/latest";
+
+        private static readonly Regex UrlRegex = new Regex(@"[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Regex YoutubeVideoIdRegex = new Regex(@"[a-zA-Z0-9_-]{11}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         public PreferencesManager<Preferences> PreferencesManager { get; }
         private readonly DownloadManager downloadManager;
@@ -79,7 +83,14 @@
 
             // Bind our downloads from the download manager to the datagridview.
             dgvDownloads.AutoGenerateColumns = false;
-            dgvDownloads.OpenCellLinkOnClick();
+            dgvDownloads.OpenCellLinkOnClick(translator: url => {
+                if (UrlRegex.IsMatch(url)) { // normal URL
+                    return url;
+                } else if (YoutubeVideoIdRegex.IsMatch(url)) { // youtube video ID
+                    return $"https://www.youtube.com/watch?v={url}";
+                }
+                return null;
+            });
             dgvDownloads.SelectRowOnRightClick();
             dgvDownloads.DataSource = downloadManager.Downloads;
 

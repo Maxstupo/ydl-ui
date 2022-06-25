@@ -142,7 +142,7 @@
         /// </summary>
         /// <param name="application">The application the URL will be opened with.</param>
         public static void OpenCellLinkOnClick(this DataGridView src, string application) {
-            src.OpenCellLinkOnClick(uri => Process.Start(application, uri.AbsoluteUri));
+            src.OpenCellLinkOnClick(action: url => Process.Start(application, url));
         }
 
         /// <summary>
@@ -166,7 +166,8 @@
         /// Registers a new event handler that will open the cell's URL when the link is clicked.
         /// </summary>
         /// <param name="action">A custom user-defined action for when the cell's link is clicked.</param>
-        public static void OpenCellLinkOnClick(this DataGridView src, Action<Uri> action = null) {
+        /// <param name="translator">A custom user-defined value translator for when the cell's link is clicked. Return null to ignore.</param>
+        public static void OpenCellLinkOnClick(this DataGridView src, Action<string> action = null, Func<string, string> translator = null) {
             src.CellContentClick += (sender, e) => {
                 if (e == null || e.RowIndex < 0 || e.ColumnIndex < 0)
                     return;
@@ -176,10 +177,17 @@
 
                 DataGridViewCell cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (cell is DataGridViewLinkCell) {
-                    if (action != null) {
-                        action(new Uri(cell.Value as string));
-                    } else {
-                        Process.Start(cell.Value as string);
+                    string url = cell.Value as string;
+
+                    if (translator != null)
+                        url = translator(url);
+
+                    if (!string.IsNullOrWhiteSpace(url)) {
+                        if (action != null) {
+                            action(url);
+                        } else {
+                            Process.Start(url);
+                        }
                     }
                 }
             };
