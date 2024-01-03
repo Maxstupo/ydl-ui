@@ -34,8 +34,7 @@ View the [installation](https://github.com/Maxstupo/ydl-ui/wiki/Installation) wi
 
 #### Prerequisites
 Ensure you have installed the prerequisites listed below in order to run YDL-UI.
- - .NET Framework 4.5
- - [Microsoft Visual C++ 2010 Redistributable Package (x86)](https://www.microsoft.com/en-US/download/details.aspx?id=5555)
+ - .NET Framework 4.8
 
 ## Wiki 
 To learn how to use YDL-UI check out the [wiki](https://github.com/Maxstupo/ydl-ui/wiki).<br>Please be aware the Wiki might not be updated for the latest release of YDL-UI.
