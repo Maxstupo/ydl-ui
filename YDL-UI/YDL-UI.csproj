@@ -373,7 +373,7 @@
     <Content Include="bin\ffmpeg\swscale-5.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\youtube-dl.exe">
+    <Content Include="bin\yt-dlp.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
